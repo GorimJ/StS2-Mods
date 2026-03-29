@@ -1,0 +1,53 @@
+<Project Sdk="Godot.NET.Sdk/4.5.1">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <GodotPath>C:\Users\Gorim\.gemini\antigravity\Slay the Spire 2 Modding\Godot_v4.5.1-stable_mono_win64\Godot_v4.5.1-stable_mono_win64.exe</GodotPath>
+    <SteamLibraryPath>A:\SteamLibrary\steamapps</SteamLibraryPath>
+    <Sts2Path>$(SteamLibraryPath)\common\Slay the Spire 2</Sts2Path>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="mod_manifest.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="localization\**" />
+    <Content Include="localization\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="decompiled_baselib\**" />
+    <Compile Remove="decompiled_sts2\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- We will reference Harmony, BaseLib, and Sts2 libraries here -->
+    <Reference Include="0Harmony">
+      <HintPath>$(Sts2Path)\data_sts2_windows_x86_64\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="BaseLib">
+      <HintPath>..\BaseLib-StS2\.godot\mono\temp\bin\Debug\BaseLib.dll</HintPath>
+    </Reference>
+    <Reference Include="sts2">
+      <HintPath>$(Sts2Path)\data_sts2_windows_x86_64\sts2.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="GodotPublish" BeforeTargets="CopyToModsFolderOnBuild">
+    <Message Text="Exporting Godot .pck to local build_output folder" Importance="high"/>
+    <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;Windows Desktop&quot; &quot;build_output\$(MSBuildProjectName).pck&quot;" ContinueOnError="WarnAndContinue"/>
+  </Target>
+
+  <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
+    <Message Text="Copying .dll and .pck to Slay the Spire 2 mods folder." Importance="high" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="build_output\" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(Sts2Path)\mods\" />
+    <Copy SourceFiles="build_output\$(MSBuildProjectName).pck" DestinationFolder="$(Sts2Path)\mods\" />
+  </Target>
+
+</Project>

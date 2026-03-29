@@ -1,0 +1,1236 @@
+Name,EnergyCost,StarCost,BaseText,UpgradedText
+Abrasive,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {DexterityPower:diff()} [gold]Dexterity[/gold].
+Gain {ThornsPower:diff()} [gold]Thorns[/gold].","Gain {DexterityPower:diff()} [gold]Dexterity[/gold].
+Gain {ThornsPower:diff()} [gold]Thorns[/gold]."
+Accelerant,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Poison[/gold] is triggered {Accelerant:diff()} additional {Accelerant:plural:time|times}.,[gold]Poison[/gold] is triggered {Accelerant:diff()} additional {Accelerant:plural:time|times}.
+Accuracy,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Shivs[/gold] deal {AccuracyPower:diff()} additional damage.,[gold]Shivs[/gold] deal {AccuracyPower:diff()} additional damage.
+Acrobatics,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Draw {Cards:diff()} cards.
+Discard 1 card.","Draw {Cards:diff()} cards.
+Discard 1 card."
+Adaptive Strike,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Add a 0{energyPrefix:energyIcons(1)} copy of this card into your [gold]Discard Pile[/gold].","Deal {Damage:diff()} damage.
+Add a 0{energyPrefix:energyIcons(1)} copy of this card into your [gold]Discard Pile[/gold]."
+Adrenaline,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Energy:energyIcons()}.
+Draw 2 cards.","Gain {Energy:energyIcons()}.
+Draw 2 cards."
+Afterimage,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you play a card, gain {AfterimagePower:diff()} [gold]Block[/gold].","Whenever you play a card, gain {AfterimagePower:diff()} [gold]Block[/gold]."
+Afterlife,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Summon[/gold] {Summon:diff()}.,[gold]Summon[/gold] {Summon:diff()}.
+Aggression,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, put a random Attack from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold] and [gold]Upgrade[/gold] it.","At the start of your turn, put a random Attack from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold] and [gold]Upgrade[/gold] it."
+Alchemize,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Procure a random potion.,Procure a random potion.
+Alignment,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,2,Gain {Energy:energyIcons()}.,Gain {Energy:energyIcons()}.
+All for One,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Put ALL 0{energyPrefix:energyIcons(1)} cards from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold].","Deal {Damage:diff()} damage.
+Put ALL 0{energyPrefix:energyIcons(1)} cards from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold]."
+Anger,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Add a copy of this card into your [gold]Discard Pile[/gold].","Deal {Damage:diff()} damage.
+Add a copy of this card into your [gold]Discard Pile[/gold]."
+Anointed,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Put every [gold]Rare[/gold] card from your [gold]Draw Pile[/gold] into your [gold]Hand[/gold].,Put every [gold]Rare[/gold] card from your [gold]Draw Pile[/gold] into your [gold]Hand[/gold].
+Anticipate,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {DexterityPower:diff()} [gold]Dexterity[/gold] this turn.,Gain {DexterityPower:diff()} [gold]Dexterity[/gold] this turn.
+Apotheosis,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Upgrade[/gold] ALL your cards.,[gold]Upgrade[/gold] ALL your cards.
+Apparition,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {IntangiblePower:diff()} [gold]Intangible[/gold].,Gain {IntangiblePower:diff()} [gold]Intangible[/gold].
+Armaments,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+[gold]Upgrade[/gold] {IfUpgraded:show:ALL cards|a card} in your [gold]Hand[/gold].","Gain {Block:diff()} [gold]Block[/gold].
+[gold]Upgrade[/gold] {IfUpgraded:show:ALL cards|a card} in your [gold]Hand[/gold]."
+Arsenal,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you play a Colorless card, gain {ArsenalPower:diff()} [gold]Strength[/gold].","Whenever you play a Colorless card, gain {ArsenalPower:diff()} [gold]Strength[/gold]."
+Ascender's Bane,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,,
+Ashen Strike,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for each card in your [gold]Exhaust Pile[/gold].","Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for each card in your [gold]Exhaust Pile[/gold]."
+Assassinate,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].","Deal {Damage:diff()} damage.
+Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]."
+Astral Pulse,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,3,Deal {Damage:diff()} damage to ALL enemies.,Deal {Damage:diff()} damage to ALL enemies.
+Automation,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Every 10 cards you draw, gain {Energy:energyIcons()}.","Every 10 cards you draw, gain {Energy:energyIcons()}."
+Backflip,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Draw 2 cards.","Gain {Block:diff()} [gold]Block[/gold].
+Draw 2 cards."
+Backstab,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage.,Deal {Damage:diff()} damage.
+Bad Luck,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the end of your turn, if this is in your Hand, lose {HpLoss:diff()} HP.","At the end of your turn, if this is in your Hand, lose {HpLoss:diff()} HP."
+Ball Lightning,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+[gold]Channel[/gold] 1 [gold]Lightning[/gold].","Deal {Damage:diff()} damage.
+[gold]Channel[/gold] 1 [gold]Lightning[/gold]."
+Banshee's Cry,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage to ALL enemies.
+Costs {Energy:energyIcons()} less for each [gold]Ethereal[/gold] card played this combat.","Deal {Damage:diff()} damage to ALL enemies.
+Costs {Energy:energyIcons()} less for each [gold]Ethereal[/gold] card played this combat."
+Barrage,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage for each [gold]Channeled[/gold] Orb.{InCombat:
+(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}","Deal {Damage:diff()} damage for each [gold]Channeled[/gold] Orb.{InCombat:
+(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}"
+Barricade,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Block[/gold] is not removed at the start of your turn.,[gold]Block[/gold] is not removed at the start of your turn.
+Bash,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].","Deal {Damage:diff()} damage.
+Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]."
+Battle Trance,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Draw {Cards:diff()} cards.
+You cannot draw additional cards this turn.","Draw {Cards:diff()} cards.
+You cannot draw additional cards this turn."
+Beacon of Hope,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you gain [gold]Block[/gold] on your turn, other players gain half that much [gold]Block[/gold].","Whenever you gain [gold]Block[/gold] on your turn, other players gain half that much [gold]Block[/gold]."
+Beam Cell,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].","Deal {Damage:diff()} damage.
+Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]."
+Beat Down,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Play {Cards:diff()} random Attacks from your [gold]Discard Pile[/gold].,Play {Cards:diff()} random Attacks from your [gold]Discard Pile[/gold].
+Beat into Shape,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+[gold]Forge[/gold] {CalculatedForge:diff()}.
+[gold]Forges[/gold] an additional {CalculationExtra:diff()} for every other time you've hit the enemy this turn.","Deal {Damage:diff()} damage.
+[gold]Forge[/gold] {CalculatedForge:diff()}.
+[gold]Forges[/gold] an additional {CalculationExtra:diff()} for every other time you've hit the enemy this turn."
+Beckon,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the end of your turn, if this is in your [gold]Hand[/gold],
+ lose {HpLoss} HP.","At the end of your turn, if this is in your [gold]Hand[/gold],
+ lose {HpLoss} HP."
+BEGONE!,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Choose a card in your [gold]Hand[/gold] to [gold]Transform[/gold] into [gold]{IfUpgraded:show:Minion Dive Bomb+|Minion Dive Bomb}[/gold].","Deal {Damage:diff()} damage.
+Choose a card in your [gold]Hand[/gold] to [gold]Transform[/gold] into [gold]{IfUpgraded:show:Minion Dive Bomb+|Minion Dive Bomb}[/gold]."
+Believe in You,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Another player gains {Energy:energyIcons()}.,Another player gains {Energy:energyIcons()}.
+Biased Cognition,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {FocusPower:diff()} [gold]Focus[/gold].
+At the start of your turn, lose {BiasedCognitionPower:diff()} [gold]Focus[/gold].","Gain {FocusPower:diff()} [gold]Focus[/gold].
+At the start of your turn, lose {BiasedCognitionPower:diff()} [gold]Focus[/gold]."
+Big Bang,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Draw {Cards:diff()} {Cards:plural:card|cards}.
+Gain {Energy:energyIcons()}.
+Gain {Stars:starIcons()}.
+[gold]Forge[/gold] {Forge:diff()}.","Draw {Cards:diff()} {Cards:plural:card|cards}.
+Gain {Energy:energyIcons()}.
+Gain {Stars:starIcons()}.
+[gold]Forge[/gold] {Forge:diff()}."
+Black Hole,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you spend or gain {singleStarIcon}, deal {BlackHolePower:diff()} damage to ALL enemies.","Whenever you spend or gain {singleStarIcon}, deal {BlackHolePower:diff()} damage to ALL enemies."
+Blade Dance,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Add {Cards:diff()} [gold]{Cards:plural:Shiv|Shivs}[/gold] into your [gold]Hand[/gold].,Add {Cards:diff()} [gold]{Cards:plural:Shiv|Shivs}[/gold] into your [gold]Hand[/gold].
+Blade of Ink,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"This turn, whenever you play an Attack, gain {StrengthPower:diff()} [gold]Strength[/gold] this turn.","This turn, whenever you play an Attack, gain {StrengthPower:diff()} [gold]Strength[/gold] this turn."
+Blight Strike,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Apply [gold]Doom[/gold] equal to damage dealt.","Deal {Damage:diff()} damage.
+Apply [gold]Doom[/gold] equal to damage dealt."
+Bloodletting,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Lose {HpLoss:diff()} HP.
+Gain {Energy:energyIcons()}.","Lose {HpLoss:diff()} HP.
+Gain {Energy:energyIcons()}."
+Blood Wall,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Lose {HpLoss:diff()} HP.
+Gain {Block:diff()} [gold]Block[/gold].","Lose {HpLoss:diff()} HP.
+Gain {Block:diff()} [gold]Block[/gold]."
+Bludgeon,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage.,Deal {Damage:diff()} damage.
+Blur,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+[gold]Block[/gold] is not removed at the start of your next turn.","Gain {Block:diff()} [gold]Block[/gold].
+[gold]Block[/gold] is not removed at the start of your next turn."
+Bodyguard,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Summon[/gold] {Summon:diff()}.,[gold]Summon[/gold] {Summon:diff()}.
+Body Slam,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal damage equal to your [gold]Block[/gold].{InCombat:
+(Deals {CalculatedDamage:diff()} damage)|}","Deal damage equal to your [gold]Block[/gold].{InCombat:
+(Deals {CalculatedDamage:diff()} damage)|}"
+Bolas,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+At the start of your next turn, return this to your [gold]Hand[/gold].","Deal {Damage:diff()} damage.
+At the start of your next turn, return this to your [gold]Hand[/gold]."
+Bombardment,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+At the start of your turn, plays from the [gold]Exhaust Pile[/gold].","Deal {Damage:diff()} damage.
+At the start of your turn, plays from the [gold]Exhaust Pile[/gold]."
+Bone Shards,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"If [gold]Osty[/gold] is alive, he deals {OstyDamage:diff()} damage to ALL enemies and you gain {Block:diff()} [gold]Block[/gold].
+[gold]Osty[/gold] dies.","If [gold]Osty[/gold] is alive, he deals {OstyDamage:diff()} damage to ALL enemies and you gain {Block:diff()} [gold]Block[/gold].
+[gold]Osty[/gold] dies."
+Boost Away,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Add a [gold]Dazed[/gold] into your [gold]Discard Pile[/gold].","Gain {Block:diff()} [gold]Block[/gold].
+Add a [gold]Dazed[/gold] into your [gold]Discard Pile[/gold]."
+Boot Sequence,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {Block:diff()} [gold]Block[/gold].,Gain {Block:diff()} [gold]Block[/gold].
+Borrowed Time,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Apply {DoomPower:diff()} [gold]Doom[/gold] to yourself.
+Gain {Energy:energyIcons()}.","Apply {DoomPower:diff()} [gold]Doom[/gold] to yourself.
+Gain {Energy:energyIcons()}."
+Bouncing Flask,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Apply {PoisonPower:diff()} [gold]Poison[/gold] to a random enemy {Repeat:diff()} times.,Apply {PoisonPower:diff()} [gold]Poison[/gold] to a random enemy {Repeat:diff()} times.
+Brand,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Lose {HpLoss:diff()} HP.
+[gold]Exhaust[/gold] 1 card.
+Gain {StrengthPower:diff()} [gold]Strength[/gold].","Lose {HpLoss:diff()} HP.
+[gold]Exhaust[/gold] 1 card.
+Gain {StrengthPower:diff()} [gold]Strength[/gold]."
+Break,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].","Deal {Damage:diff()} damage.
+Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]."
+Breakthrough,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Lose {HpLoss:diff()} HP.
+Deal {Damage:diff()} damage to ALL enemies.","Lose {HpLoss:diff()} HP.
+Deal {Damage:diff()} damage to ALL enemies."
+Brightest Flame,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Energy:energyIcons()}.
+Draw {Cards:diff()} {Cards:plural:card|cards}.
+Lose {MaxHp:diff()} Max HP.","Gain {Energy:energyIcons()}.
+Draw {Cards:diff()} {Cards:plural:card|cards}.
+Lose {MaxHp:diff()} Max HP."
+Bubble Bubble,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"If the enemy has [gold]Poison[/gold], apply {PoisonPower:diff()} [gold]Poison[/gold].","If the enemy has [gold]Poison[/gold], apply {PoisonPower:diff()} [gold]Poison[/gold]."
+Buffer,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Prevent the next {BufferPower:plural:time|{BufferPower:diff()} times} you would lose HP.,Prevent the next {BufferPower:plural:time|{BufferPower:diff()} times} you would lose HP.
+Bulk Up,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Lose {OrbSlots:diff()} Orb {OrbSlots:plural:Slot|Slots}.
+Gain {StrengthPower:diff()} [gold]Strength[/gold].
+Gain {DexterityPower:diff()} [gold]Dexterity[/gold].","Lose {OrbSlots:diff()} Orb {OrbSlots:plural:Slot|Slots}.
+Gain {StrengthPower:diff()} [gold]Strength[/gold].
+Gain {DexterityPower:diff()} [gold]Dexterity[/gold]."
+Bullet Time,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,You cannot draw additional cards this turn. ALL cards in your [gold]Hand[/gold] are free to play this turn.,You cannot draw additional cards this turn. ALL cards in your [gold]Hand[/gold] are free to play this turn.
+Bully,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for each [gold]Vulnerable[/gold] on the enemy.","Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for each [gold]Vulnerable[/gold] on the enemy."
+Bulwark,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+[gold]Forge[/gold] {Forge:diff()}.","Gain {Block:diff()} [gold]Block[/gold].
+[gold]Forge[/gold] {Forge:diff()}."
+Bundle of Joy,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Add {Cards:diff()} random Colorless {Cards:plural:card|cards} into your [gold]Hand[/gold].,Add {Cards:diff()} random Colorless {Cards:plural:card|cards} into your [gold]Hand[/gold].
+Burn,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the end of your turn, if this is in your [gold]Hand[/gold], take {Damage:diff()} damage.","At the end of your turn, if this is in your [gold]Hand[/gold], take {Damage:diff()} damage."
+Burning Pact,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Exhaust[/gold] 1 card.
+Draw {Cards:diff()} cards.","[gold]Exhaust[/gold] 1 card.
+Draw {Cards:diff()} cards."
+Burst,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"This turn, your next{IfUpgraded:show: 2} {Skills:plural:Skill is|Skills are} played an extra time.","This turn, your next{IfUpgraded:show: 2} {Skills:plural:Skill is|Skills are} played an extra time."
+Bury,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage.,Deal {Damage:diff()} damage.
+Byrdonis Egg,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Can be hatched at a [gold]Rest Site[/gold].,Can be hatched at a [gold]Rest Site[/gold].
+Byrd Swoop,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage.,Deal {Damage:diff()} damage.
+Calamity,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you play an Attack, add a random Attack into your [gold]Hand[/gold].","Whenever you play an Attack, add a random Attack into your [gold]Hand[/gold]."
+Calcify,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Osty's[/gold] attacks deal {CalcifyPower:diff()} additional damage.,[gold]Osty's[/gold] attacks deal {CalcifyPower:diff()} additional damage.
+Calculated Gamble,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Discard your [gold]Hand[/gold],
+then draw that many cards.","Discard your [gold]Hand[/gold],
+then draw that many cards."
+Call of the Void,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, add {Cards:diff()} random {Cards:plural:card|cards} into your [gold]Hand[/gold]. {Cards:plural:It gains|They gain} [gold]Ethereal[/gold].","At the start of your turn, add {Cards:diff()} random {Cards:plural:card|cards} into your [gold]Hand[/gold]. {Cards:plural:It gains|They gain} [gold]Ethereal[/gold]."
+Caltrops,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you are attacked, deal {ThornsPower:diff()} damage back.","Whenever you are attacked, deal {ThornsPower:diff()} damage back."
+Capacitor,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {Repeat:diff()} Orb Slots.,Gain {Repeat:diff()} Orb Slots.
+Capture Spirit,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Enemy loses {Damage:diff()} HP.
+Add {Cards:diff()} [gold]{Cards:plural:Soul|Souls}[/gold] into your [gold]Draw Pile[/gold].","Enemy loses {Damage:diff()} HP.
+Add {Cards:diff()} [gold]{Cards:plural:Soul|Souls}[/gold] into your [gold]Draw Pile[/gold]."
+Cascade,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Play the top X{IfUpgraded:show:+1} cards of your [gold]Draw Pile[/gold].,Play the top X{IfUpgraded:show:+1} cards of your [gold]Draw Pile[/gold].
+Catastrophe,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Play {Cards:diff()} random {Cards:plural:card|cards} from your [gold]Draw Pile[/gold].,Play {Cards:diff()} random {Cards:plural:card|cards} from your [gold]Draw Pile[/gold].
+Celestial Might,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage {Repeat:diff()} {Repeat:plural:time|times}.,Deal {Damage:diff()} damage {Repeat:diff()} {Repeat:plural:time|times}.
+Chaos,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Channel[/gold] {Repeat:diff()} random {Repeat:plural:Orb|Orbs}.,[gold]Channel[/gold] {Repeat:diff()} random {Repeat:plural:Orb|Orbs}.
+CHARGE!!,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Choose {Cards:diff()} {Cards:plural:card|cards} in your [gold]Draw Pile[/gold] to [gold]Transform[/gold] into
+[gold]{Cards:plural:{IfUpgraded:show:Minion Strike+|Minion Strike}[/gold]|{IfUpgraded:show:Minion Strikes+|Minion Strikes}[/gold]}.","Choose {Cards:diff()} {Cards:plural:card|cards} in your [gold]Draw Pile[/gold] to [gold]Transform[/gold] into
+[gold]{Cards:plural:{IfUpgraded:show:Minion Strike+|Minion Strike}[/gold]|{IfUpgraded:show:Minion Strikes+|Minion Strikes}[/gold]}."
+Charge Battery,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Next turn, gain {Energy:energyIcons()}.","Gain {Block:diff()} [gold]Block[/gold].
+Next turn, gain {Energy:energyIcons()}."
+Child of the Stars,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you spend {singleStarIcon}, gain {BlockForStars:diff()} [gold]Block[/gold] for each {singleStarIcon} spent.","Whenever you spend {singleStarIcon}, gain {BlockForStars:diff()} [gold]Block[/gold] for each {singleStarIcon} spent."
+Chill,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Channel[/gold] 1 [gold]Frost[/gold] for each enemy.,[gold]Channel[/gold] 1 [gold]Frost[/gold] for each enemy.
+Cinder,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+[gold]Exhaust[/gold] the top card of your [gold]Draw Pile[/gold].","Deal {Damage:diff()} damage.
+[gold]Exhaust[/gold] the top card of your [gold]Draw Pile[/gold]."
+Clash,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Can only be played if every card in your [gold]Hand[/gold] is an Attack.
+Deal {Damage:diff()} damage.","Can only be played if every card in your [gold]Hand[/gold] is an Attack.
+Deal {Damage:diff()} damage."
+Claw,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Increase the damage of ALL Claw cards by {Increase:diff()} this combat.","Deal {Damage:diff()} damage.
+Increase the damage of ALL Claw cards by {Increase:diff()} this combat."
+Cleanse,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Summon[/gold] {Summon:diff()}.
+[gold]Exhaust[/gold] 1 card from your [gold]Draw Pile[/gold].","[gold]Summon[/gold] {Summon:diff()}.
+[gold]Exhaust[/gold] 1 card from your [gold]Draw Pile[/gold]."
+Cloak and Dagger,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Add {Cards:diff()} [gold]{Cards:plural:Shiv|Shivs}[/gold] into your [gold]Hand[/gold].","Gain {Block:diff()} [gold]Block[/gold].
+Add {Cards:diff()} [gold]{Cards:plural:Shiv|Shivs}[/gold] into your [gold]Hand[/gold]."
+Cloak of Stars,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,1,Gain {Block:diff()} [gold]Block[/gold].,Gain {Block:diff()} [gold]Block[/gold].
+Clumsy,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,,
+Cold Snap,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+[gold]Channel[/gold] 1 [gold]Frost[/gold].","Deal {Damage:diff()} damage.
+[gold]Channel[/gold] 1 [gold]Frost[/gold]."
+Collision Course,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Add a [gold]Debris[/gold] into your [gold]Hand[/gold].","Deal {Damage:diff()} damage.
+Add a [gold]Debris[/gold] into your [gold]Hand[/gold]."
+Colossus,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+You receive 50% less damage from [gold]Vulnerable[/gold] enemies this turn.","Gain {Block:diff()} [gold]Block[/gold].
+You receive 50% less damage from [gold]Vulnerable[/gold] enemies this turn."
+Comet,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,5,"Deal {Damage:diff()} damage.
+Apply {WeakPower:diff()} [gold]Weak[/gold].
+Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].","Deal {Damage:diff()} damage.
+Apply {WeakPower:diff()} [gold]Weak[/gold].
+Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]."
+Compact,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+[gold]Transform[/gold] all Status cards in your [gold]Hand[/gold] into [gold]{IfUpgraded:show:Fuel+|Fuel}[/gold].","Gain {Block:diff()} [gold]Block[/gold].
+[gold]Transform[/gold] all Status cards in your [gold]Hand[/gold] into [gold]{IfUpgraded:show:Fuel+|Fuel}[/gold]."
+Compile Driver,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Draw 1 card for each unique Orb you have.{InCombat:
+(Draw {CalculatedCards:diff()} {CalculatedCards:plural:card|cards})|}","Deal {Damage:diff()} damage.
+Draw 1 card for each unique Orb you have.{InCombat:
+(Draw {CalculatedCards:diff()} {CalculatedCards:plural:card|cards})|}"
+Conflagration,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {CalculatedDamage:diff()} damage to ALL enemies.
+Deals {ExtraDamage:diff()} additional damage for each other Attack you've played this turn.","Deal {CalculatedDamage:diff()} damage to ALL enemies.
+Deals {ExtraDamage:diff()} additional damage for each other Attack you've played this turn."
+Conqueror,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Forge[/gold] {Forge:diff()}.
+[gold]Sovereign Blade[/gold] deals double damage to the enemy this turn.","[gold]Forge[/gold] {Forge:diff()}.
+[gold]Sovereign Blade[/gold] deals double damage to the enemy this turn."
+Consuming Shadow,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Channel[/gold] {Repeat:diff()} [gold]Dark[/gold].
+At the end of your turn, [gold]Evoke[/gold] your leftmost Orb.","[gold]Channel[/gold] {Repeat:diff()} [gold]Dark[/gold].
+At the end of your turn, [gold]Evoke[/gold] your leftmost Orb."
+Convergence,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Next turn,
+gain {Energy:energyIcons()} and {Stars:starIcons()}.
+[gold]Retain[/gold] your [gold]Hand[/gold] this turn.","Next turn,
+gain {Energy:energyIcons()} and {Stars:starIcons()}.
+[gold]Retain[/gold] your [gold]Hand[/gold] this turn."
+Coolant,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, gain {CoolantPower:diff()} [gold]Block[/gold] for each unique Orb you have.","At the start of your turn, gain {CoolantPower:diff()} [gold]Block[/gold] for each unique Orb you have."
+Coolheaded,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Channel[/gold] 1 [gold]Frost[/gold].
+Draw {Cards:diff()} {Cards:plural:card|cards}.","[gold]Channel[/gold] 1 [gold]Frost[/gold].
+Draw {Cards:diff()} {Cards:plural:card|cards}."
+Coordinate,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Give another player {StrengthPower:diff()} [gold]Strength[/gold] this turn.,Give another player {StrengthPower:diff()} [gold]Strength[/gold] this turn.
+Corrosive Wave,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you draw a card this turn, apply {CorrosiveWave:diff()} [gold]Poison[/gold] to ALL enemies.","Whenever you draw a card this turn, apply {CorrosiveWave:diff()} [gold]Poison[/gold] to ALL enemies."
+Corruption,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Skills cost 0 {energyPrefix:energyIcons(1)}.
+Whenever you play a Skill, [gold]Exhaust[/gold] it.","Skills cost 0 {energyPrefix:energyIcons(1)}.
+Whenever you play a Skill, [gold]Exhaust[/gold] it."
+Cosmic Indifference,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Put a card from your [gold]Discard Pile[/gold] on top of your [gold]Draw Pile[/gold].","Gain {Block:diff()} [gold]Block[/gold].
+Put a card from your [gold]Discard Pile[/gold] on top of your [gold]Draw Pile[/gold]."
+Countdown,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, apply {CountdownPower:diff()} [gold]Doom[/gold] to a random enemy.","At the start of your turn, apply {CountdownPower:diff()} [gold]Doom[/gold] to a random enemy."
+Crash Landing,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage to ALL enemies.
+Fill your [gold]Hand[/gold] with [gold]Debris[/gold].","Deal {Damage:diff()} damage to ALL enemies.
+Fill your [gold]Hand[/gold] with [gold]Debris[/gold]."
+Creative AI,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, add a random Power into your [gold]Hand[/gold].","At the start of your turn, add a random Power into your [gold]Hand[/gold]."
+Crescent Spear,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,1,"Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for ALL your cards that have a {singleStarIcon} cost.","Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for ALL your cards that have a {singleStarIcon} cost."
+Crimson Mantle,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, lose 1 HP and gain {CrimsonMantlePower:diff()} [gold]Block[/gold].","At the start of your turn, lose 1 HP and gain {CrimsonMantlePower:diff()} [gold]Block[/gold]."
+Cruelty,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Vulnerable[/gold] enemies take an additional {CrueltyPower:diff()}% damage.,[gold]Vulnerable[/gold] enemies take an additional {CrueltyPower:diff()}% damage.
+Crush Under,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage to ALL enemies. All enemies lose {StrengthLoss:diff()} [gold]Strength[/gold] this turn.,Deal {Damage:diff()} damage to ALL enemies. All enemies lose {StrengthLoss:diff()} [gold]Strength[/gold] this turn.
+Curse of the Bell,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,,
+Dagger Spray,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage to ALL enemies twice.,Deal {Damage:diff()} damage to ALL enemies twice.
+Dagger Throw,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Draw 1 card.
+Discard 1 card.","Deal {Damage:diff()} damage.
+Draw 1 card.
+Discard 1 card."
+Danse Macabre,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you play a card that costs {Energy:energyIcons()} or more, gain {DanseMacabrePower:diff()} [gold]Block[/gold].","Whenever you play a card that costs {Energy:energyIcons()} or more, gain {DanseMacabrePower:diff()} [gold]Block[/gold]."
+Dark Embrace,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever a card is [gold]Exhausted[/gold],
+draw 1 card.","Whenever a card is [gold]Exhausted[/gold],
+draw 1 card."
+Darkness,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Channel[/gold] 1 [gold]Dark[/gold].
+Trigger the passive ability of all [gold]Dark[/gold] Orbs{IfUpgraded:show: twice|}.","[gold]Channel[/gold] 1 [gold]Dark[/gold].
+Trigger the passive ability of all [gold]Dark[/gold] Orbs{IfUpgraded:show: twice|}."
+Dark Shackles,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Enemy loses {StrengthLoss:diff()} [gold]Strength[/gold] this turn.,Enemy loses {StrengthLoss:diff()} [gold]Strength[/gold] this turn.
+Dash,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Deal {Damage:diff()} damage.","Gain {Block:diff()} [gold]Block[/gold].
+Deal {Damage:diff()} damage."
+Dazed,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,,
+Deadly Poison,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Apply {PoisonPower:diff()} [gold]Poison[/gold].,Apply {PoisonPower:diff()} [gold]Poison[/gold].
+Deathbringer,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Apply {DoomPower:diff()} [gold]Doom[/gold] and {WeakPower:diff()} [gold]Weak[/gold] to ALL enemies.,Apply {DoomPower:diff()} [gold]Doom[/gold] and {WeakPower:diff()} [gold]Weak[/gold] to ALL enemies.
+Death March,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for each card drawn during your turn.","Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for each card drawn during your turn."
+Death's Door,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+If you applied [gold]Doom[/gold] this turn, gain [gold]Block[/gold] {Repeat:diff()} additional {Repeat:plural:time|times}.","Gain {Block:diff()} [gold]Block[/gold].
+If you applied [gold]Doom[/gold] this turn, gain [gold]Block[/gold] {Repeat:diff()} additional {Repeat:plural:time|times}."
+Debilitate,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+[gold]Vulnerable[/gold] and [gold]Weak[/gold] are twice as effective against the enemy for the next {DebilitatePower:diff()} {DebilitatePower:plural:turn|turns}.","Deal {Damage:diff()} damage.
+[gold]Vulnerable[/gold] and [gold]Weak[/gold] are twice as effective against the enemy for the next {DebilitatePower:diff()} {DebilitatePower:plural:turn|turns}."
+Debris,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,,
+Debt,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the end of your turn, if this is in your [gold]Hand[/gold], lose {Gold:diff()} [gold]Gold[/gold].","At the end of your turn, if this is in your [gold]Hand[/gold], lose {Gold:diff()} [gold]Gold[/gold]."
+Decay,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the end of your turn, if this is in your [gold]Hand[/gold], take {Damage:diff()} damage.","At the end of your turn, if this is in your [gold]Hand[/gold], take {Damage:diff()} damage."
+"Decisions, Decisions",MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,6,"Draw {Cards:diff()} cards.
+Choose a Skill in your [gold]Hand[/gold] and play it {Repeat:diff()} times.","Draw {Cards:diff()} cards.
+Choose a Skill in your [gold]Hand[/gold] and play it {Repeat:diff()} times."
+Defend,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {Block:diff()} [gold]Block[/gold].,Gain {Block:diff()} [gold]Block[/gold].
+Defend,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {Block:diff()} [gold]Block[/gold].,Gain {Block:diff()} [gold]Block[/gold].
+Defend,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {Block:diff()} [gold]Block[/gold].,Gain {Block:diff()} [gold]Block[/gold].
+Defend,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {Block:diff()} [gold]Block[/gold].,Gain {Block:diff()} [gold]Block[/gold].
+Defend,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {Block:diff()} [gold]Block[/gold].,Gain {Block:diff()} [gold]Block[/gold].
+Defile,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage.,Deal {Damage:diff()} damage.
+Deflect,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {Block:diff()} [gold]Block[/gold].,Gain {Block:diff()} [gold]Block[/gold].
+Defragment,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {FocusPower:diff()} [gold]Focus[/gold].,Gain {FocusPower:diff()} [gold]Focus[/gold].
+Defy,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Apply {WeakPower:diff()} [gold]Weak[/gold].","Gain {Block:diff()} [gold]Block[/gold].
+Apply {WeakPower:diff()} [gold]Weak[/gold]."
+Delay,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Next turn,
+gain {Energy:energyIcons()}.","Gain {Block:diff()} [gold]Block[/gold].
+Next turn,
+gain {Energy:energyIcons()}."
+Demesne,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, gain {Energy:energyIcons()} and draw {Cards:diff()} additional {Cards:plural:card|cards}.","At the start of your turn, gain {Energy:energyIcons()} and draw {Cards:diff()} additional {Cards:plural:card|cards}."
+Demon Form,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, gain {StrengthPower:diff()} [gold]Strength[/gold].","At the start of your turn, gain {StrengthPower:diff()} [gold]Strength[/gold]."
+Demonic Shield,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Lose {HpLoss:diff()} HP.
+Give another player [gold]Block[/gold] equal to your [gold]Block[/gold].{InCombat:
+(Gives {CalculatedBlock:diff()} [gold]Block[/gold])|}","Lose {HpLoss:diff()} HP.
+Give another player [gold]Block[/gold] equal to your [gold]Block[/gold].{InCombat:
+(Gives {CalculatedBlock:diff()} [gold]Block[/gold])|}"
+Deprecated Card,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,This card has been removed from the game.,This card has been removed from the game.
+Devastate,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,4,Deal {Damage:diff()} damage.,Deal {Damage:diff()} damage.
+Devour Life,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you play a [gold]Soul[/gold], [gold]Summon[/gold] {DevourLifePower:diff()}.","Whenever you play a [gold]Soul[/gold], [gold]Summon[/gold] {DevourLifePower:diff()}."
+Dirge,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Summon[/gold] {Summon:diff()} X times.
+Add X [gold]{IfUpgraded:show:Souls+|Souls}[/gold] into your [gold]Draw Pile[/gold].","[gold]Summon[/gold] {Summon:diff()} X times.
+Add X [gold]{IfUpgraded:show:Souls+|Souls}[/gold] into your [gold]Draw Pile[/gold]."
+Discovery,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Choose 1 of 3 random cards to add into your [gold]Hand[/gold]. It costs 0 {energyPrefix:energyIcons(1)} this turn.,Choose 1 of 3 random cards to add into your [gold]Hand[/gold]. It costs 0 {energyPrefix:energyIcons(1)} this turn.
+Disintegration,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the end of your turn, take {DisintegrationPower:diff()} damage.","At the end of your turn, take {DisintegrationPower:diff()} damage."
+Dismantle,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+If the enemy is [gold]Vulnerable[/gold], hits twice.","Deal {Damage:diff()} damage.
+If the enemy is [gold]Vulnerable[/gold], hits twice."
+Distraction,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Add a random Skill into your [gold]Hand[/gold]. It's free to play this turn.,Add a random Skill into your [gold]Hand[/gold]. It's free to play this turn.
+Dodge and Roll,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Next turn, gain {Block:diff()} [gold]Block[/gold].","Gain {Block:diff()} [gold]Block[/gold].
+Next turn, gain {Block:diff()} [gold]Block[/gold]."
+Dominate,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {StrengthPerVulnerable:diff()} [gold]Strength[/gold] for each [gold]Vulnerable[/gold] on the enemy.,Gain {StrengthPerVulnerable:diff()} [gold]Strength[/gold] for each [gold]Vulnerable[/gold] on the enemy.
+Double Energy,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Double your Energy.,Double your Energy.
+Doubt,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the end of your turn, if this is in your [gold]Hand[/gold], gain {WeakPower:diff()} [gold]Weak[/gold].","At the end of your turn, if this is in your [gold]Hand[/gold], gain {WeakPower:diff()} [gold]Weak[/gold]."
+Drain Power,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+[gold]Upgrade[/gold] {Cards:diff()} random {Cards:plural:card|cards} in your [gold]Discard Pile[/gold].","Deal {Damage:diff()} damage.
+[gold]Upgrade[/gold] {Cards:diff()} random {Cards:plural:card|cards} in your [gold]Discard Pile[/gold]."
+Dramatic Entrance,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage to ALL enemies.,Deal {Damage:diff()} damage to ALL enemies.
+Dredge,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Put {Cards:diff()} {Cards:plural:card|cards} from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold].,Put {Cards:diff()} {Cards:plural:card|cards} from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold].
+Drum of Battle,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Draw {Cards:diff()} cards.
+At the start of your turn, [gold]Exhaust[/gold] the top card of your [gold]Draw Pile[/gold].","Draw {Cards:diff()} cards.
+At the start of your turn, [gold]Exhaust[/gold] the top card of your [gold]Draw Pile[/gold]."
+Dualcast,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Evoke[/gold] your rightmost Orb twice.,[gold]Evoke[/gold] your rightmost Orb twice.
+Dual Wield,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Choose an Attack or Power card. Add {IfUpgraded:show:{Cards} copies|a copy} of that card into your [gold]Hand[/gold].,Choose an Attack or Power card. Add {IfUpgraded:show:{Cards} copies|a copy} of that card into your [gold]Hand[/gold].
+Dying Star,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,3,Deal {Damage:diff()} damage to ALL enemies. ALL enemies lose {StrengthLoss:diff()} [gold]Strength[/gold] this turn.,Deal {Damage:diff()} damage to ALL enemies. ALL enemies lose {StrengthLoss:diff()} [gold]Strength[/gold] this turn.
+Echo Form,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,The first card you play each turn is played an extra time.,The first card you play each turn is played an extra time.
+Echoing Slash,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage to ALL enemies.
+Repeat this effect for each enemy killed.","Deal {Damage:diff()} damage to ALL enemies.
+Repeat this effect for each enemy killed."
+Eidolon,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Exhaust[/gold] your [gold]Hand[/gold].
+If 9 cards were [gold]Exhausted[/gold] this way, gain 1 [gold]Intangible[/gold].","[gold]Exhaust[/gold] your [gold]Hand[/gold].
+If 9 cards were [gold]Exhausted[/gold] this way, gain 1 [gold]Intangible[/gold]."
+End of Days,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Apply {DoomPower:diff()} [gold]Doom[/gold] to ALL enemies.
+Kill enemies with at least as much [gold]Doom[/gold] as HP.","Apply {DoomPower:diff()} [gold]Doom[/gold] to ALL enemies.
+Kill enemies with at least as much [gold]Doom[/gold] as HP."
+Energy Surge,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,ALL players gain {Energy:energyIcons()}.,ALL players gain {Energy:energyIcons()}.
+Enfeebling Touch,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Enemy loses {StrengthLoss:diff()} [gold]Strength[/gold] this turn.,Enemy loses {StrengthLoss:diff()} [gold]Strength[/gold] this turn.
+Enlightenment,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Reduce the cost of ALL cards in your [gold]Hand[/gold] to 1 this {IfUpgraded:show:combat|turn}.,Reduce the cost of ALL cards in your [gold]Hand[/gold] to 1 this {IfUpgraded:show:combat|turn}.
+Enthralled,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"If this is in your [gold]Hand[/gold], it must be played before other cards.","If this is in your [gold]Hand[/gold], it must be played before other cards."
+Entrench,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Double your [gold]Block[/gold].,Double your [gold]Block[/gold].
+Entropy,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, [gold]Transform[/gold] {Cards:diff()} {Cards:plural:card|cards} in your [gold]Hand[/gold].","At the start of your turn, [gold]Transform[/gold] {Cards:diff()} {Cards:plural:card|cards} in your [gold]Hand[/gold]."
+Envenom,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever an Attack deals unblocked damage, apply {EnvenomPower:diff()} [gold]Poison[/gold].","Whenever an Attack deals unblocked damage, apply {EnvenomPower:diff()} [gold]Poison[/gold]."
+Equilibrium,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+[gold]Retain[/gold] your [gold]Hand[/gold] this turn.","Gain {Block:diff()} [gold]Block[/gold].
+[gold]Retain[/gold] your [gold]Hand[/gold] this turn."
+Eradicate,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage X times.,Deal {Damage:diff()} damage X times.
+Escape Plan,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Draw 1 card.
+If you draw a Skill, gain {Block:diff()} [gold]Block[/gold].","Draw 1 card.
+If you draw a Skill, gain {Block:diff()} [gold]Block[/gold]."
+Eternal Armor,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {PlatingPower:diff()} [gold]Plating[/gold].,Gain {PlatingPower:diff()} [gold]Plating[/gold].
+Evil Eye,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Gain another {Block:diff()} [gold]Block[/gold] if you have [gold]Exhausted[/gold] a card this turn.","Gain {Block:diff()} [gold]Block[/gold].
+Gain another {Block:diff()} [gold]Block[/gold] if you have [gold]Exhausted[/gold] a card this turn."
+Expect a Fight,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {energyPrefix:energyIcons(1)} for each Attack in your [gold]Hand[/gold].{InCombat:
+(Gain {CalculatedEnergy:energyIcons()}.)|}","Gain {energyPrefix:energyIcons(1)} for each Attack in your [gold]Hand[/gold].{InCombat:
+(Gain {CalculatedEnergy:energyIcons()}.)|}"
+Expertise,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Draw cards until you have {Cards:diff()} in your [gold]Hand[/gold].,Draw cards until you have {Cards:diff()} in your [gold]Hand[/gold].
+Expose,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Remove all [gold]Artifact[/gold] and [gold]Block[/gold] from the enemy.
+Apply {Power:diff()} [gold]Vulnerable[/gold].","Remove all [gold]Artifact[/gold] and [gold]Block[/gold] from the enemy.
+Apply {Power:diff()} [gold]Vulnerable[/gold]."
+Exterminate,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage {Repeat:diff()} times to ALL enemies.,Deal {Damage:diff()} damage {Repeat:diff()} times to ALL enemies.
+Falling Star,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,2,"Deal {Damage:diff()} damage.
+Apply {WeakPower:diff()} [gold]Weak[/gold].
+Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].","Deal {Damage:diff()} damage.
+Apply {WeakPower:diff()} [gold]Weak[/gold].
+Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]."
+Fan of Knives,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Shivs[/gold] now hit ALL enemies.
+Add {Shivs:diff()} [gold]Shivs[/gold] into your [gold]Hand[/gold].","[gold]Shivs[/gold] now hit ALL enemies.
+Add {Shivs:diff()} [gold]Shivs[/gold] into your [gold]Hand[/gold]."
+Fasten,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain an additional {ExtraBlock:diff()} [gold]Block[/gold] from Defend cards.,Gain an additional {ExtraBlock:diff()} [gold]Block[/gold] from Defend cards.
+Fear,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].","Deal {Damage:diff()} damage.
+Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]."
+Feed,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+If [gold]Fatal[/gold], raise your Max HP by {MaxHp:diff()}.","Deal {Damage:diff()} damage.
+If [gold]Fatal[/gold], raise your Max HP by {MaxHp:diff()}."
+Feeding Frenzy,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {StrengthPower:diff()} [gold]Strength[/gold] this turn.,Gain {StrengthPower:diff()} [gold]Strength[/gold] this turn.
+Feel No Pain,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever a card is [gold]Exhausted[/gold], gain {Power:diff()} [gold]Block[/gold].","Whenever a card is [gold]Exhausted[/gold], gain {Power:diff()} [gold]Block[/gold]."
+Feral,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"The first {FeralPower:plural:time|{FeralPower:diff()} times} you play a
+0{energyPrefix:energyIcons(1)} Attack each turn,
+return it to your [gold]Hand[/gold].","The first {FeralPower:plural:time|{FeralPower:diff()} times} you play a
+0{energyPrefix:energyIcons(1)} Attack each turn,
+return it to your [gold]Hand[/gold]."
+Fetch,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Osty[/gold] deals {OstyDamage:diff()} damage.
+If this is the first time this card has been played this turn, draw {Cards:diff()} {Cards:plural:card|cards}.","[gold]Osty[/gold] deals {OstyDamage:diff()} damage.
+If this is the first time this card has been played this turn, draw {Cards:diff()} {Cards:plural:card|cards}."
+Fiend Fire,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Exhaust[/gold] your [gold]Hand[/gold].
+Deal {Damage:diff()} damage for each card [gold]Exhausted[/gold].","[gold]Exhaust[/gold] your [gold]Hand[/gold].
+Deal {Damage:diff()} damage for each card [gold]Exhausted[/gold]."
+Fight Me!,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage twice.
+Gain {StrengthPower:diff()} [gold]Strength[/gold].
+The enemy gains {EnemyStrength:diff()} [gold]Strength[/gold].","Deal {Damage:diff()} damage twice.
+Gain {StrengthPower:diff()} [gold]Strength[/gold].
+The enemy gains {EnemyStrength:diff()} [gold]Strength[/gold]."
+Fight Through,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Add 2 [gold]Wounds[/gold] into your [gold]Discard Pile[/gold].","Gain {Block:diff()} [gold]Block[/gold].
+Add 2 [gold]Wounds[/gold] into your [gold]Discard Pile[/gold]."
+Finesse,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Draw 1 card.","Gain {Block:diff()} [gold]Block[/gold].
+Draw 1 card."
+Finisher,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage for each Attack already played this turn.{InCombat:
+(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}","Deal {Damage:diff()} damage for each Attack already played this turn.{InCombat:
+(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}"
+Fisticuffs,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Gain [gold]Block[/gold] equal to damage dealt.","Deal {Damage:diff()} damage.
+Gain [gold]Block[/gold] equal to damage dealt."
+Flak Cannon,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Exhaust[/gold] ALL your [gold]Status[/gold] cards.
+Deal {Damage:diff()} damage to a random enemy for each card [gold]Exhausted[/gold].{InCombat:
+(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}","[gold]Exhaust[/gold] ALL your [gold]Status[/gold] cards.
+Deal {Damage:diff()} damage to a random enemy for each card [gold]Exhausted[/gold].{InCombat:
+(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}"
+Flame Barrier,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Whenever you are attacked this turn, deal {DamageBack:diff()} damage back.","Gain {Block:diff()} [gold]Block[/gold].
+Whenever you are attacked this turn, deal {DamageBack:diff()} damage back."
+Flanking,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,The enemy takes double damage from other players this turn.,The enemy takes double damage from other players this turn.
+Flash of Steel,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Draw 1 card.","Deal {Damage:diff()} damage.
+Draw 1 card."
+Flatten,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Osty[/gold] deals {OstyDamage:diff()} damage.
+This card costs 0 {energyPrefix:energyIcons(1)} if [gold]Osty[/gold] has attacked this turn.","[gold]Osty[/gold] deals {OstyDamage:diff()} damage.
+This card costs 0 {energyPrefix:energyIcons(1)} if [gold]Osty[/gold] has attacked this turn."
+Flechettes,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage for each Skill in your [gold]Hand[/gold].{InCombat:
+(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}","Deal {Damage:diff()} damage for each Skill in your [gold]Hand[/gold].{InCombat:
+(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}"
+Flick-Flack,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage to ALL enemies.,Deal {Damage:diff()} damage to ALL enemies.
+Focused Strike,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Gain {FocusPower:diff()} [gold]Focus[/gold] this turn.","Deal {Damage:diff()} damage.
+Gain {FocusPower:diff()} [gold]Focus[/gold] this turn."
+Follow Through,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage to ALL enemies.
+If the last card you played this turn was a Skill, apply {WeakPower:diff()} [gold]Weak[/gold] to ALL enemies.","Deal {Damage:diff()} damage to ALL enemies.
+If the last card you played this turn was a Skill, apply {WeakPower:diff()} [gold]Weak[/gold] to ALL enemies."
+Folly,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,,
+Footwork,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {DexterityPower:diff()} [gold]Dexterity[/gold].,Gain {DexterityPower:diff()} [gold]Dexterity[/gold].
+Forbidden Grimoire,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the end of combat, you may remove a card from your [gold]Deck[/gold].","At the end of combat, you may remove a card from your [gold]Deck[/gold]."
+Foregone Conclusion,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Next turn, put {Cards:diff()} cards from your [gold]Draw Pile[/gold] into your [gold]Hand[/gold].","Next turn, put {Cards:diff()} cards from your [gold]Draw Pile[/gold] into your [gold]Hand[/gold]."
+Forgotten Ritual,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"If you [gold]Exhausted[/gold] a card this turn, gain {Energy:energyIcons()}.","If you [gold]Exhausted[/gold] a card this turn, gain {Energy:energyIcons()}."
+Frantic Escape,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Get farther away.
+Increase [gold]Sandpit[/gold] by 1.
+Increase the cost of this card by 1.","Get farther away.
+Increase [gold]Sandpit[/gold] by 1.
+Increase the cost of this card by 1."
+Friendship,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Lose {StrengthPower:inverseDiff()} [gold]Strength[/gold].
+Gain {Energy:energyIcons()} at the start of each turn.","Lose {StrengthPower:inverseDiff()} [gold]Strength[/gold].
+Gain {Energy:energyIcons()} at the start of each turn."
+FTL,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+If you have played fewer than {PlayMax:diff()} cards this turn, draw 1 card.","Deal {Damage:diff()} damage.
+If you have played fewer than {PlayMax:diff()} cards this turn, draw 1 card."
+Fuel,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Energy:energyIcons()}.
+Draw {Cards:diff()} {Cards:plural:card|cards}.","Gain {Energy:energyIcons()}.
+Draw {Cards:diff()} {Cards:plural:card|cards}."
+Furnace,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, [gold]Forge[/gold] {Forge:diff()}.","At the start of your turn, [gold]Forge[/gold] {Forge:diff()}."
+Fusion,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Channel[/gold] 1 [gold]Plasma[/gold].,[gold]Channel[/gold] 1 [gold]Plasma[/gold].
+Gamma Blast,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,3,"Deal {Damage:diff()} damage.
+Apply {WeakPower:diff()} [gold]Weak[/gold].
+Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].","Deal {Damage:diff()} damage.
+Apply {WeakPower:diff()} [gold]Weak[/gold].
+Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]."
+Gang Up,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for each time another player has attacked the enemy this turn.","Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for each time another player has attacked the enemy this turn."
+Gather Light,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Gain {Stars:starIcons()}.","Gain {Block:diff()} [gold]Block[/gold].
+Gain {Stars:starIcons()}."
+Genesis,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, gain {StarsPerTurn:starIcons()}.","At the start of your turn, gain {StarsPerTurn:starIcons()}."
+Genetic Algorithm,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Permanently increase this card's [gold]Block[/gold] by {Increase:diff()}.","Gain {Block:diff()} [gold]Block[/gold].
+Permanently increase this card's [gold]Block[/gold] by {Increase:diff()}."
+Giant Rock,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage.,Deal {Damage:diff()} damage.
+Glacier,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+[gold]Channel[/gold] 2 [gold]Frost[/gold].","Gain {Block:diff()} [gold]Block[/gold].
+[gold]Channel[/gold] 2 [gold]Frost[/gold]."
+Glasswork,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+[gold]Channel[/gold] 1 [gold]Glass[/gold].","Gain {Block:diff()} [gold]Block[/gold].
+[gold]Channel[/gold] 1 [gold]Glass[/gold]."
+Glimmer,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Draw {Cards:diff()} {Cards:plural:card|cards}.
+Put {PutBack:diff()} {PutBack:plural:card|cards} from your [gold]Hand[/gold] on top of your [gold]Draw Pile[/gold].","Draw {Cards:diff()} {Cards:plural:card|cards}.
+Put {PutBack:diff()} {PutBack:plural:card|cards} from your [gold]Hand[/gold] on top of your [gold]Draw Pile[/gold]."
+Glimpse Beyond,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,ALL players add {Cards:diff()} [gold]{Cards:plural:Soul|Souls}[/gold] into their [gold]Draw Pile[/gold].,ALL players add {Cards:diff()} [gold]{Cards:plural:Soul|Souls}[/gold] into their [gold]Draw Pile[/gold].
+Glitterstream,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Next turn, gain {BlockNextTurn:diff()} [gold]Block[/gold].","Gain {Block:diff()} [gold]Block[/gold].
+Next turn, gain {BlockNextTurn:diff()} [gold]Block[/gold]."
+Glow,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Stars:starIcons()}.
+Draw {Cards:diff()} {Cards:plural:card|cards}.","Gain {Stars:starIcons()}.
+Draw {Cards:diff()} {Cards:plural:card|cards}."
+Go for the Eyes,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+If the enemy intends to attack, apply {WeakPower:diff()} [gold]Weak[/gold].","Deal {Damage:diff()} damage.
+If the enemy intends to attack, apply {WeakPower:diff()} [gold]Weak[/gold]."
+Gold Axe,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal damage equal to the number of cards played this combat.{InCombat:
+(Deals {CalculatedDamage:diff()} damage)|}","Deal damage equal to the number of cards played this combat.{InCombat:
+(Deals {CalculatedDamage:diff()} damage)|}"
+Grand Finale,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Can only be played if there are no cards in your [gold]Draw Pile[/gold]. Deal {Damage:diff()} damage to ALL enemies.,Can only be played if there are no cards in your [gold]Draw Pile[/gold]. Deal {Damage:diff()} damage to ALL enemies.
+Grapple,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Whenever you gain [gold]Block[/gold] this turn, deal {GrapplePower:diff()} damage to the enemy.","Deal {Damage:diff()} damage.
+Whenever you gain [gold]Block[/gold] this turn, deal {GrapplePower:diff()} damage to the enemy."
+Graveblast,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Put a card from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold].","Deal {Damage:diff()} damage.
+Put a card from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold]."
+Grave Warden,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Add a [gold]{IfUpgraded:show:Soul+|Soul}[/gold] into your [gold]Draw Pile[/gold].","Gain {Block:diff()} [gold]Block[/gold].
+Add a [gold]{IfUpgraded:show:Soul+|Soul}[/gold] into your [gold]Draw Pile[/gold]."
+Greed,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,,
+GUARDS!!!,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Transform[/gold] any number of cards in your [gold]Hand[/gold] into [gold]{IfUpgraded:show:Minion Sacrifice+|Minion Sacrifice}[/gold].,[gold]Transform[/gold] any number of cards in your [gold]Hand[/gold] into [gold]{IfUpgraded:show:Minion Sacrifice+|Minion Sacrifice}[/gold].
+Guiding Star,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,2,"Deal {Damage:diff()} damage.
+Next turn, draw {Cards:diff()} {Cards:plural:card|cards}.","Deal {Damage:diff()} damage.
+Next turn, draw {Cards:diff()} {Cards:plural:card|cards}."
+Guilty,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Removed from your [gold]Deck[/gold] after {Combats:diff()} {Combats:plural:combat|combats}.,Removed from your [gold]Deck[/gold] after {Combats:diff()} {Combats:plural:combat|combats}.
+Gunk Up,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage {Repeat:diff()} {Repeat:plural:time|times}.
+Add a [gold]Slimed[/gold] into your [gold]Discard Pile[/gold].","Deal {Damage:diff()} damage {Repeat:diff()} {Repeat:plural:time|times}.
+Add a [gold]Slimed[/gold] into your [gold]Discard Pile[/gold]."
+Hailstorm,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the end of your turn, if you have [gold]Frost[/gold], deal {HailstormPower:diff()} damage to ALL enemies.","At the end of your turn, if you have [gold]Frost[/gold], deal {HailstormPower:diff()} damage to ALL enemies."
+Hammer Time,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you [gold]Forge[/gold], all allies [gold]Forge[/gold] as well.","Whenever you [gold]Forge[/gold], all allies [gold]Forge[/gold] as well."
+Hand of Greed,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+If [gold]Fatal[/gold], gain {Gold:diff()} [gold]Gold[/gold].","Deal {Damage:diff()} damage.
+If [gold]Fatal[/gold], gain {Gold:diff()} [gold]Gold[/gold]."
+Hand Trick,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Add [gold]Sly[/gold] to a Skill in your [gold]Hand[/gold] this turn.","Gain {Block:diff()} [gold]Block[/gold].
+Add [gold]Sly[/gold] to a Skill in your [gold]Hand[/gold] this turn."
+Hang,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Double the damage ALL Hang cards deal to this enemy.","Deal {Damage:diff()} damage.
+Double the damage ALL Hang cards deal to this enemy."
+Haunt,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you play a [gold]Soul[/gold], a random enemy loses {HpLoss:diff()} HP.","Whenever you play a [gold]Soul[/gold], a random enemy loses {HpLoss:diff()} HP."
+Havoc,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Play the top card of your [gold]Draw Pile[/gold] and [gold]Exhaust[/gold] it.,Play the top card of your [gold]Draw Pile[/gold] and [gold]Exhaust[/gold] it.
+Haze,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Apply {PoisonPower:diff()} [gold]Poison[/gold] to ALL enemies.,Apply {PoisonPower:diff()} [gold]Poison[/gold] to ALL enemies.
+Headbutt,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Put a card from your [gold]Discard Pile[/gold] on top of your [gold]Draw Pile[/gold].","Deal {Damage:diff()} damage.
+Put a card from your [gold]Discard Pile[/gold] on top of your [gold]Draw Pile[/gold]."
+Heavenly Drill,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage X times.
+Double X if it's {Energy:diff()} or more.","Deal {Damage:diff()} damage X times.
+Double X if it's {Energy:diff()} or more."
+Hegemony,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Next turn, gain {Energy:energyIcons()}.","Deal {Damage:diff()} damage.
+Next turn, gain {Energy:energyIcons()}."
+Heirloom Hammer,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Choose a Colorless card in your [gold]Hand[/gold]. Add a copy of that card into your [gold]Hand[/gold].","Deal {Damage:diff()} damage.
+Choose a Colorless card in your [gold]Hand[/gold]. Add a copy of that card into your [gold]Hand[/gold]."
+Helix Drill,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage for each {energyPrefix:energyIcons(1)} previously spent this turn.{InCombat:
+(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}","Deal {Damage:diff()} damage for each {energyPrefix:energyIcons(1)} previously spent this turn.{InCombat:
+(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}"
+Hello World,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, add a random Common card into your [gold]Hand[/gold].","At the start of your turn, add a random Common card into your [gold]Hand[/gold]."
+Hellraiser,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you draw a card containing “Strike”, it is played against a random enemy.","Whenever you draw a card containing “Strike”, it is played against a random enemy."
+Hemokinesis,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Lose {HpLoss:diff()} HP.
+Deal {Damage:diff()} damage.","Lose {HpLoss:diff()} HP.
+Deal {Damage:diff()} damage."
+Hidden Cache,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Stars:starIcons()}.
+Next turn, gain {StarNextTurnPower:starIcons()}.","Gain {Stars:starIcons()}.
+Next turn, gain {StarNextTurnPower:starIcons()}."
+Hidden Daggers,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Discard {Cards:diff()} {Cards:plural:card|cards}.
+Add {Shivs:diff()} [gold]{Cards:plural:{IfUpgraded:show:Shiv+|Shiv}|{IfUpgraded:show:Shivs+|Shivs}}[/gold] into your [gold]Hand[/gold].","Discard {Cards:diff()} {Cards:plural:card|cards}.
+Add {Shivs:diff()} [gold]{Cards:plural:{IfUpgraded:show:Shiv+|Shiv}|{IfUpgraded:show:Shivs+|Shivs}}[/gold] into your [gold]Hand[/gold]."
+Hidden Gem,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,A random card in your [gold]Draw Pile[/gold] gains [gold]Replay[/gold] {Replay:diff()}.,A random card in your [gold]Draw Pile[/gold] gains [gold]Replay[/gold] {Replay:diff()}.
+High Five,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Osty[/gold] deals {OstyDamage:diff()} damage
+and applies {VulnerablePower:diff()} [gold]Vulnerable[/gold]
+to ALL enemies.","[gold]Osty[/gold] deals {OstyDamage:diff()} damage
+and applies {VulnerablePower:diff()} [gold]Vulnerable[/gold]
+to ALL enemies."
+Hologram,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Put a card from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold].","Gain {Block:diff()} [gold]Block[/gold].
+Put a card from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold]."
+Hotfix,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {FocusPower:diff()} [gold]Focus[/gold] this turn.,Gain {FocusPower:diff()} [gold]Focus[/gold] this turn.
+Howl from Beyond,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage to ALL enemies.
+At the start of your turn, plays from the [gold]Exhaust Pile[/gold].","Deal {Damage:diff()} damage to ALL enemies.
+At the start of your turn, plays from the [gold]Exhaust Pile[/gold]."
+Huddle Up,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,ALL allies draw {Cards:diff()} cards.,ALL allies draw {Cards:diff()} cards.
+Hyperbeam,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage to ALL enemies.
+Lose {FocusPower:diff()} [gold]Focus[/gold].","Deal {Damage:diff()} damage to ALL enemies.
+Lose {FocusPower:diff()} [gold]Focus[/gold]."
+I Am Invincible,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+At the end of your turn, if this is on top of your [gold]Draw Pile[/gold], play it.","Gain {Block:diff()} [gold]Block[/gold].
+At the end of your turn, if this is on top of your [gold]Draw Pile[/gold], play it."
+Ice Lance,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+[gold]Channel[/gold] {Repeat:diff()} [gold]Frost[/gold].","Deal {Damage:diff()} damage.
+[gold]Channel[/gold] {Repeat:diff()} [gold]Frost[/gold]."
+Ignition,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Another player [gold]Channels[/gold] [gold]Plasma[/gold].,Another player [gold]Channels[/gold] [gold]Plasma[/gold].
+Impatience,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"If you have no Attacks in your [gold]Hand[/gold], draw {Cards:diff()} cards.","If you have no Attacks in your [gold]Hand[/gold], draw {Cards:diff()} cards."
+Impervious,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {Block:diff()} [gold]Block[/gold].,Gain {Block:diff()} [gold]Block[/gold].
+Infection,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the end of your turn, if this is in your [gold]Hand[/gold], take {Damage:diff()} damage.","At the end of your turn, if this is in your [gold]Hand[/gold], take {Damage:diff()} damage."
+Infernal Blade,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Add a random Attack into your [gold]Hand[/gold]. It's free to play this turn.,Add a random Attack into your [gold]Hand[/gold]. It's free to play this turn.
+Inferno,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, lose 1 HP.
+Whenever you lose HP on your turn, deal {InfernoPower:diff()} damage to ALL enemies.","At the start of your turn, lose 1 HP.
+Whenever you lose HP on your turn, deal {InfernoPower:diff()} damage to ALL enemies."
+Infinite Blades,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, add 1 [gold]Shiv[/gold] into your [gold]Hand[/gold].","At the start of your turn, add 1 [gold]Shiv[/gold] into your [gold]Hand[/gold]."
+Inflame,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {StrengthPower:diff()} [gold]Strength[/gold].,Gain {StrengthPower:diff()} [gold]Strength[/gold].
+Injury,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,,
+Intercept,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Redirect all incoming attacks that would be dealt to another player this turn to you.","Gain {Block:diff()} [gold]Block[/gold].
+Redirect all incoming attacks that would be dealt to another player this turn to you."
+Invoke,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Next turn, [gold]Summon[/gold] {Summon:diff()} and gain {Energy:energyIcons()}.","Next turn, [gold]Summon[/gold] {Summon:diff()} and gain {Energy:energyIcons()}."
+Iron Wave,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Deal {Damage:diff()} damage.","Gain {Block:diff()} [gold]Block[/gold].
+Deal {Damage:diff()} damage."
+Iteration,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"The first time you draw a Status card each turn, draw {IterationPower:diff()} {IterationPower:plural:card|cards}.","The first time you draw a Status card each turn, draw {IterationPower:diff()} {IterationPower:plural:card|cards}."
+Jack of All Trades,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Add {Cards:diff()} random Colorless {Cards:plural:card|cards} into your [gold]Hand[/gold].,Add {Cards:diff()} random Colorless {Cards:plural:card|cards} into your [gold]Hand[/gold].
+Jackpot,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Add {Cards:diff()} random{IfUpgraded:show: [gold]Upgraded[/gold]} 0{energyPrefix:energyIcons(1)} {Cards:plural:card|cards} into your [gold]Hand[/gold].","Deal {Damage:diff()} damage.
+Add {Cards:diff()} random{IfUpgraded:show: [gold]Upgraded[/gold]} 0{energyPrefix:energyIcons(1)} {Cards:plural:card|cards} into your [gold]Hand[/gold]."
+Juggernaut,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you gain [gold]Block[/gold], deal {JuggernautPower:diff()} damage to a random enemy.","Whenever you gain [gold]Block[/gold], deal {JuggernautPower:diff()} damage to a random enemy."
+Juggling,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Add a copy of the third [gold]Attack[/gold] you play each turn into your [gold]Hand[/gold].,Add a copy of the third [gold]Attack[/gold] you play each turn into your [gold]Hand[/gold].
+Kingly Kick,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Whenever you draw this card, reduce its cost by 1.","Deal {Damage:diff()} damage.
+Whenever you draw this card, reduce its cost by 1."
+Kingly Punch,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Whenever you draw this card, increase its damage by {Increase:diff()} this combat.","Deal {Damage:diff()} damage.
+Whenever you draw this card, increase its damage by {Increase:diff()} this combat."
+Knife Trap,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"{IfUpgraded:show:[gold]Upgrade[/gold] and play|Play} every [gold]Shiv[/gold] in your [gold]Exhaust Pile[/gold] on the enemy.{InCombat:
+(Plays {CalculatedShivs:diff()} [gold]{CalculatedShivs:plural:Shiv|Shivs}[/gold])|}","{IfUpgraded:show:[gold]Upgrade[/gold] and play|Play} every [gold]Shiv[/gold] in your [gold]Exhaust Pile[/gold] on the enemy.{InCombat:
+(Plays {CalculatedShivs:diff()} [gold]{CalculatedShivs:plural:Shiv|Shivs}[/gold])|}"
+Knockdown,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+The enemy takes {IfUpgraded:show:triple|double} damage from other players this turn.","Deal {Damage:diff()} damage.
+The enemy takes {IfUpgraded:show:triple|double} damage from other players this turn."
+Knockout Blow,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+If this kills an enemy, gain {Stars:starIcons()}.","Deal {Damage:diff()} damage.
+If this kills an enemy, gain {Stars:starIcons()}."
+Know Thy Place,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Apply {WeakPower:diff()} [gold]Weak[/gold].
+Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].","Apply {WeakPower:diff()} [gold]Weak[/gold].
+Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]."
+Lantern Key,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Unlocks a special event in the next Act.,Unlocks a special event in the next Act.
+Largesse,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Another player adds 1 random{IfUpgraded:show: [gold]Upgraded[/gold]} Colorless card to their [gold]Hand[/gold].,Another player adds 1 random{IfUpgraded:show: [gold]Upgraded[/gold]} Colorless card to their [gold]Hand[/gold].
+Leading Strike,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Add {Shivs:diff()} [gold]Shiv[/gold] into your [gold]Hand[/gold].","Deal {Damage:diff()} damage.
+Add {Shivs:diff()} [gold]Shiv[/gold] into your [gold]Hand[/gold]."
+Leap,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {Block:diff()} [gold]Block[/gold].,Gain {Block:diff()} [gold]Block[/gold].
+Legion of Bone,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,ALL players [gold]Summon[/gold] {Summon:diff()}.,ALL players [gold]Summon[/gold] {Summon:diff()}.
+Leg Sweep,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Apply {WeakPower:diff()} [gold]Weak[/gold].
+Gain {Block:diff()} [gold]Block[/gold].","Apply {WeakPower:diff()} [gold]Weak[/gold].
+Gain {Block:diff()} [gold]Block[/gold]."
+Lethality,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,The first Attack each turn deals {LethalityPower:diff()}% additional damage.,The first Attack each turn deals {LethalityPower:diff()}% additional damage.
+Lift,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Give another player {Block:diff()} [gold]Block[/gold].,Give another player {Block:diff()} [gold]Block[/gold].
+Lightning Rod,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+At the start of the next {LightningRodPower:plural:turn|{:diff()} turns}, [gold]Channel[/gold] 1 [gold]Lightning[/gold].","Gain {Block:diff()} [gold]Block[/gold].
+At the start of the next {LightningRodPower:plural:turn|{:diff()} turns}, [gold]Channel[/gold] 1 [gold]Lightning[/gold]."
+Loop,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, trigger the passive ability of your rightmost Orb{IfUpgraded:show: 2 times}.","At the start of your turn, trigger the passive ability of your rightmost Orb{IfUpgraded:show: 2 times}."
+Luminesce,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {Energy:energyIcons()}.,Gain {Energy:energyIcons()}.
+Lunar Blast,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage for each Skill already played this turn.{InCombat:
+(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}","Deal {Damage:diff()} damage for each Skill already played this turn.{InCombat:
+(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}"
+Machine Learning,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, draw {Cards:diff()} additional {Cards:plural:card|cards}.","At the start of your turn, draw {Cards:diff()} additional {Cards:plural:card|cards}."
+Mad Science,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"{CardType:choose(Attack|Skill|Power):Deal {Damage:diff()} damage{Violence: {ViolenceHits:diff()} times|}.|Gain {Block:diff()} [gold]Block[/gold].|}{HasRider:{Sapping:
+Apply {SappingWeak:diff()} [gold]Weak[/gold].
+Apply {SappingVulnerable:diff()} [gold]Vulnerable[/gold].|}{Choking:
+Whenever you play a card this turn, the enemy loses {ChokingDamage:diff()} HP.|}{Energized:
+Gain {EnergizedEnergy:energyIcons()}.|}{Wisdom:
+Draw {WisdomCards:diff()} cards.|}{Chaos:
+Add a random card into your [gold]Hand[/gold]. It costs 0 {energyPrefix:energyIcons(1)} this turn.|}{Expertise:Gain {ExpertiseStrength:diff()} [gold]Strength[/gold].
+Gain {ExpertiseDexterity:diff()} [gold]Dexterity[/gold].|}{Curious:Powers cost {CuriousReduction:diff()} {energyPrefix:energyIcons(1)} less.|}{Improvement:At the end of combat, [gold]Upgrade[/gold] a random card.|}|{CardType:choose(Attack|Skill|Power):
+???|
+???|???}}","{CardType:choose(Attack|Skill|Power):Deal {Damage:diff()} damage{Violence: {ViolenceHits:diff()} times|}.|Gain {Block:diff()} [gold]Block[/gold].|}{HasRider:{Sapping:
+Apply {SappingWeak:diff()} [gold]Weak[/gold].
+Apply {SappingVulnerable:diff()} [gold]Vulnerable[/gold].|}{Choking:
+Whenever you play a card this turn, the enemy loses {ChokingDamage:diff()} HP.|}{Energized:
+Gain {EnergizedEnergy:energyIcons()}.|}{Wisdom:
+Draw {WisdomCards:diff()} cards.|}{Chaos:
+Add a random card into your [gold]Hand[/gold]. It costs 0 {energyPrefix:energyIcons(1)} this turn.|}{Expertise:Gain {ExpertiseStrength:diff()} [gold]Strength[/gold].
+Gain {ExpertiseDexterity:diff()} [gold]Dexterity[/gold].|}{Curious:Powers cost {CuriousReduction:diff()} {energyPrefix:energyIcons(1)} less.|}{Improvement:At the end of combat, [gold]Upgrade[/gold] a random card.|}|{CardType:choose(Attack|Skill|Power):
+???|
+???|???}}"
+Make It So,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Every {Cards:diff()} {Cards:plural:Skill|Skills} you play in a turn, put this into your [gold]Hand[/gold].","Deal {Damage:diff()} damage.
+Every {Cards:diff()} {Cards:plural:Skill|Skills} you play in a turn, put this into your [gold]Hand[/gold]."
+Malaise,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Enemy loses X{IfUpgraded:show:+1} [gold]Strength[/gold]. Apply X{IfUpgraded:show:+1} [gold]Weak[/gold].,Enemy loses X{IfUpgraded:show:+1} [gold]Strength[/gold]. Apply X{IfUpgraded:show:+1} [gold]Weak[/gold].
+Mangle,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Enemy loses {StrengthLoss:diff()} [gold]Strength[/gold] this turn.","Deal {Damage:diff()} damage.
+Enemy loses {StrengthLoss:diff()} [gold]Strength[/gold] this turn."
+Manifest Authority,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Add 1 random{IfUpgraded:show: [gold]Upgraded[/gold]} Colorless card into your [gold]Hand[/gold].","Gain {Block:diff()} [gold]Block[/gold].
+Add 1 random{IfUpgraded:show: [gold]Upgraded[/gold]} Colorless card into your [gold]Hand[/gold]."
+Master of Strategy,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Draw {Cards:diff()} cards.,Draw {Cards:diff()} cards.
+Master Planner,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"When you play a Skill, it gains [gold]Sly[/gold].","When you play a Skill, it gains [gold]Sly[/gold]."
+Maul,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage twice.
+Increase the damage of ALL Maul cards by {Increase:diff()} this combat.","Deal {Damage:diff()} damage twice.
+Increase the damage of ALL Maul cards by {Increase:diff()} this combat."
+Mayhem,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, play the top card of your [gold]Draw Pile[/gold].","At the start of your turn, play the top card of your [gold]Draw Pile[/gold]."
+Melancholy,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Reduce this card's cost by {Energy:energyIcons()} whenever ANYONE dies.","Gain {Block:diff()} [gold]Block[/gold].
+Reduce this card's cost by {Energy:energyIcons()} whenever ANYONE dies."
+Memento Mori,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for each card discarded this turn.","Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for each card discarded this turn."
+Metamorphosis,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Add {Cards:diff()} random Attacks into your [gold]Draw Pile[/gold]. They're free to play this combat.,Add {Cards:diff()} random Attacks into your [gold]Draw Pile[/gold]. They're free to play this combat.
+Meteor Shower,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,2,"Deal {Damage:diff()} damage to ALL enemies.
+Apply {WeakPower:diff()} [gold]Weak[/gold] and [gold]Vulnerable[/gold] to ALL enemies.","Deal {Damage:diff()} damage to ALL enemies.
+Apply {WeakPower:diff()} [gold]Weak[/gold] and [gold]Vulnerable[/gold] to ALL enemies."
+Meteor Strike,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+[gold]Channel[/gold] 3 [gold]Plasma[/gold].","Deal {Damage:diff()} damage.
+[gold]Channel[/gold] 3 [gold]Plasma[/gold]."
+Mimic,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain [gold]Block[/gold] equal to the [gold]Block[/gold] on another player.,Gain [gold]Block[/gold] equal to the [gold]Block[/gold] on another player.
+Mind Blast,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal damage equal to the number of cards in your [gold]Draw Pile[/gold].{InCombat:
+(Deals {CalculatedDamage:diff()} damage)|}","Deal damage equal to the number of cards in your [gold]Draw Pile[/gold].{InCombat:
+(Deals {CalculatedDamage:diff()} damage)|}"
+Mind Rot,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Draw {MindRotPower:diff()} fewer {MindRotPower:plural:card|cards} each turn.,Draw {MindRotPower:diff()} fewer {MindRotPower:plural:card|cards} each turn.
+Minion Dive Bomb,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage.,Deal {Damage:diff()} damage.
+Minion Sacrifice,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {Block:diff()} [gold]Block[/gold].,Gain {Block:diff()} [gold]Block[/gold].
+Minion Strike,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Draw {Cards:diff()} {Cards:plural:card|cards}.","Deal {Damage:diff()} damage.
+Draw {Cards:diff()} {Cards:plural:card|cards}."
+Mirage,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain [gold]Block[/gold] equal to [gold]Poison[/gold] on ALL enemies.{InCombat:
+(Gain {CalculatedBlock:diff()} [gold]Block[/gold])|}","Gain [gold]Block[/gold] equal to [gold]Poison[/gold] on ALL enemies.{InCombat:
+(Gain {CalculatedBlock:diff()} [gold]Block[/gold])|}"
+Misery,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Apply any debuffs on the enemy to ALL other enemies.","Deal {Damage:diff()} damage.
+Apply any debuffs on the enemy to ALL other enemies."
+Modded,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Repeat:diff()} Orb {Repeat:plural:Slot|Slots}.
+Draw {Cards:diff()} {Cards:plural:card|cards}. Increase this card's cost by 1.","Gain {Repeat:diff()} Orb {Repeat:plural:Slot|Slots}.
+Draw {Cards:diff()} {Cards:plural:card|cards}. Increase this card's cost by 1."
+Molten Fist,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Double the enemy's [gold]Vulnerable[/gold].","Deal {Damage:diff()} damage.
+Double the enemy's [gold]Vulnerable[/gold]."
+Momentum Strike,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Reduce this card's cost to 0 {energyPrefix:energyIcons(1)}.","Deal {Damage:diff()} damage.
+Reduce this card's cost to 0 {energyPrefix:energyIcons(1)}."
+Monarch's Gaze,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you attack an enemy, it loses {StrengthLoss:diff()} [gold]Strength[/gold] this turn.","Whenever you attack an enemy, it loses {StrengthLoss:diff()} [gold]Strength[/gold] this turn."
+Monologue,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you play a card this turn, gain {Power:diff()} [gold]Strength[/gold] this turn.","Whenever you play a card this turn, gain {Power:diff()} [gold]Strength[/gold] this turn."
+Multi-Cast,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Evoke[/gold] your rightmost Orb {IfUpgraded:show:X+1|X} times.,[gold]Evoke[/gold] your rightmost Orb {IfUpgraded:show:X+1|X} times.
+Murder,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for each card drawn this combat.","Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for each card drawn this combat."
+Necro Mastery,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Summon[/gold] {Summon:diff()}.
+Whenever [gold]Osty[/gold] loses HP,
+ALL enemies lose that much HP as well.","[gold]Summon[/gold] {Summon:diff()}.
+Whenever [gold]Osty[/gold] loses HP,
+ALL enemies lose that much HP as well."
+Negative Pulse,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Apply {DoomPower:diff()} [gold]Doom[/gold] to ALL enemies.","Gain {Block:diff()} [gold]Block[/gold].
+Apply {DoomPower:diff()} [gold]Doom[/gold] to ALL enemies."
+Neow's Fury,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Put {Cards:plural:a random card|{:diff()} random cards} from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold].","Deal {Damage:diff()} damage.
+Put {Cards:plural:a random card|{:diff()} random cards} from your [gold]Discard Pile[/gold] into your [gold]Hand[/gold]."
+Neurosurge,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Energy:energyIcons()}.
+Draw {Cards:diff()} {Cards:plural:card|cards}.
+At the start of your turn, apply {NeurosurgePower:diff()} [gold]Doom[/gold] to yourself.","Gain {Energy:energyIcons()}.
+Draw {Cards:diff()} {Cards:plural:card|cards}.
+At the start of your turn, apply {NeurosurgePower:diff()} [gold]Doom[/gold] to yourself."
+Neutralize,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Apply {WeakPower:diff()} [gold]Weak[/gold].","Deal {Damage:diff()} damage.
+Apply {WeakPower:diff()} [gold]Weak[/gold]."
+Neutron Aegis,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,5,Gain {PlatingPower:diff()} [gold]Plating[/gold].,Gain {PlatingPower:diff()} [gold]Plating[/gold].
+Nightmare,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Choose a card.
+Next turn, add 3 copies of that card into your [gold]Hand[/gold].","Choose a card.
+Next turn, add 3 copies of that card into your [gold]Hand[/gold]."
+No Escape,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Apply {CalculationBase:diff()} [gold]Doom[/gold], plus an additional {CalculationExtra:diff()} [gold]Doom[/gold] for every {DoomThreshold:diff()} [gold]Doom[/gold] already on this enemy.{IsTargeting:
+(Apply {CalculatedDoom:diff()} [gold]Doom[/gold])|}","Apply {CalculationBase:diff()} [gold]Doom[/gold], plus an additional {CalculationExtra:diff()} [gold]Doom[/gold] for every {DoomThreshold:diff()} [gold]Doom[/gold] already on this enemy.{IsTargeting:
+(Apply {CalculatedDoom:diff()} [gold]Doom[/gold])|}"
+Normality,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"You cannot play more than 3 cards this turn.{InCombat:
+({CalculatedCards:plural:{} card|{} cards} left)|}","You cannot play more than 3 cards this turn.{InCombat:
+({CalculatedCards:plural:{} card|{} cards} left)|}"
+Nostalgia,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,The first Attack or Skill you play each turn is placed on top of your [gold]Draw Pile[/gold].,The first Attack or Skill you play each turn is placed on top of your [gold]Draw Pile[/gold].
+Noxious Fumes,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, apply {PoisonPerTurn:diff()} [gold]Poison[/gold] to ALL enemies.","At the start of your turn, apply {PoisonPerTurn:diff()} [gold]Poison[/gold] to ALL enemies."
+Null,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Apply {WeakPower:diff()} [gold]Weak[/gold].
+[gold]Channel[/gold] 1 [gold]Dark[/gold].","Deal {Damage:diff()} damage.
+Apply {WeakPower:diff()} [gold]Weak[/gold].
+[gold]Channel[/gold] 1 [gold]Dark[/gold]."
+Oblivion,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you play a card this turn, apply {DoomPower:diff()} [gold]Doom[/gold] to the enemy.","Whenever you play a card this turn, apply {DoomPower:diff()} [gold]Doom[/gold] to the enemy."
+Offering,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Lose {HpLoss:diff()} HP.
+Gain {Energy:energyIcons()}.
+Draw {Cards:diff()} cards.","Lose {HpLoss:diff()} HP.
+Gain {Energy:energyIcons()}.
+Draw {Cards:diff()} cards."
+Omnislice,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Damage ALL other enemies equal to the damage dealt.","Deal {Damage:diff()} damage.
+Damage ALL other enemies equal to the damage dealt."
+One-Two Punch,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"This turn, your next {Attacks:cond:>1?{Attacks:diff()} Attacks are|Attack is} played an extra time.","This turn, your next {Attacks:cond:>1?{Attacks:diff()} Attacks are|Attack is} played an extra time."
+Orbit,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Every {energyPrefix:energyIcons(4)} you spend,
+gain {Energy:energyIcons()}.","Every {energyPrefix:energyIcons(4)} you spend,
+gain {Energy:energyIcons()}."
+Outbreak,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Every {Repeat:plural:time|{Repeat:diff()} times} you apply [gold]Poison[/gold], deal {OutbreakPower:diff()} damage to ALL enemies.","Every {Repeat:plural:time|{Repeat:diff()} times} you apply [gold]Poison[/gold], deal {OutbreakPower:diff()} damage to ALL enemies."
+Outmaneuver,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Next turn, gain {Energy:energyIcons()}.","Next turn, gain {Energy:energyIcons()}."
+Overclock,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Draw {Cards:diff()} cards.
+Add a [gold]Burn[/gold] into your [gold]Discard Pile[/gold].","Draw {Cards:diff()} cards.
+Add a [gold]Burn[/gold] into your [gold]Discard Pile[/gold]."
+Pact's End,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Can only be played if you have {Cards:diff()} or more {Cards:plural:card|cards} in your [gold]Exhaust Pile[/gold].
+Deal {Damage:diff()} damage to ALL enemies.","Can only be played if you have {Cards:diff()} or more {Cards:plural:card|cards} in your [gold]Exhaust Pile[/gold].
+Deal {Damage:diff()} damage to ALL enemies."
+Pagestorm,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you draw an [gold]Ethereal[/gold] card, draw {Cards:diff()} {Cards:plural:card|cards}.","Whenever you draw an [gold]Ethereal[/gold] card, draw {Cards:diff()} {Cards:plural:card|cards}."
+Pale Blue Dot,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"If you play {CardPlay} or more cards in a turn, draw {Cards:diff()} {Cards:plural:card|cards} at the start of your next turn.","If you play {CardPlay} or more cards in a turn, draw {Cards:diff()} {Cards:plural:card|cards} at the start of your next turn."
+Panache,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Every time you play 5 cards in a single turn, deal {PanacheDamage:diff()} damage to ALL enemies.","Every time you play 5 cards in a single turn, deal {PanacheDamage:diff()} damage to ALL enemies."
+Panic Button,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+You cannot gain [gold]Block[/gold] from cards for {Turns:diff()} {Turns:plural:turn|turns}.","Gain {Block:diff()} [gold]Block[/gold].
+You cannot gain [gold]Block[/gold] from cards for {Turns:diff()} {Turns:plural:turn|turns}."
+Parry,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you play [gold]Sovereign Blade[/gold], gain {ParryPower:diff()} [gold]Block[/gold].","Whenever you play [gold]Sovereign Blade[/gold], gain {ParryPower:diff()} [gold]Block[/gold]."
+Parse,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Draw {Cards:diff()} cards.,Draw {Cards:diff()} cards.
+Particle Wall,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,2,"Gain {Block:diff()} [gold]Block[/gold].
+Return this card to your [gold]Hand[/gold].","Gain {Block:diff()} [gold]Block[/gold].
+Return this card to your [gold]Hand[/gold]."
+Patter,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Gain {VigorPower:diff()} [gold]Vigor[/gold].","Gain {Block:diff()} [gold]Block[/gold].
+Gain {VigorPower:diff()} [gold]Vigor[/gold]."
+Peck,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage {Repeat:diff()} times.,Deal {Damage:diff()} damage {Repeat:diff()} times.
+Perfected Strike,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for ALL your cards containing “Strike”.","Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for ALL your cards containing “Strike”."
+Phantom Blades,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Shivs[/gold] gain [gold]Retain[/gold].
+The first [gold]Shiv[/gold] you play each turn deals {PhantomBladesPower:diff()} additional damage.","[gold]Shivs[/gold] gain [gold]Retain[/gold].
+The first [gold]Shiv[/gold] you play each turn deals {PhantomBladesPower:diff()} additional damage."
+Photon Cut,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Draw {Cards:diff()} {Cards:plural:card|cards}.
+Put 1 card from your [gold]Hand[/gold] on top of your [gold]Draw Pile[/gold].","Deal {Damage:diff()} damage.
+Draw {Cards:diff()} {Cards:plural:card|cards}.
+Put 1 card from your [gold]Hand[/gold] on top of your [gold]Draw Pile[/gold]."
+Piercing Wail,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,ALL enemies lose {StrengthLoss:diff()} [gold]Strength[/gold] this turn.,ALL enemies lose {StrengthLoss:diff()} [gold]Strength[/gold] this turn.
+Pillage,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Draw cards until you draw a non-Attack card.","Deal {Damage:diff()} damage.
+Draw cards until you draw a non-Attack card."
+Pillar of Creation,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you create a card, gain {Block:diff()} [gold]Block[/gold].","Whenever you create a card, gain {Block:diff()} [gold]Block[/gold]."
+Pinpoint,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Costs 1 less {energyPrefix:energyIcons(1)} for each Skill played this turn.","Deal {Damage:diff()} damage.
+Costs 1 less {energyPrefix:energyIcons(1)} for each Skill played this turn."
+Poisoned Stab,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Apply {PoisonPower:diff()} [gold]Poison[/gold].","Deal {Damage:diff()} damage.
+Apply {PoisonPower:diff()} [gold]Poison[/gold]."
+Poke,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Osty[/gold] deals {OstyDamage:diff()} damage.,[gold]Osty[/gold] deals {OstyDamage:diff()} damage.
+Pommel Strike,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Draw {Cards:diff()} {Cards:plural:card|cards}.","Deal {Damage:diff()} damage.
+Draw {Cards:diff()} {Cards:plural:card|cards}."
+Poor Sleep,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,,
+Pounce,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+The next Skill you play costs 0 {energyPrefix:energyIcons(1)}.","Deal {Damage:diff()} damage.
+The next Skill you play costs 0 {energyPrefix:energyIcons(1)}."
+Precise Cut,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:inverseDiff()} less damage for each other card in your [gold]Hand[/gold].","Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:inverseDiff()} less damage for each other card in your [gold]Hand[/gold]."
+Predator,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Next turn, draw 2 cards.","Deal {Damage:diff()} damage.
+Next turn, draw 2 cards."
+Prepared,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Draw {Cards:diff()} {Cards:plural:card|cards}.
+Discard {Cards:diff()} {Cards:plural:card|cards}.","Draw {Cards:diff()} {Cards:plural:card|cards}.
+Discard {Cards:diff()} {Cards:plural:card|cards}."
+Prep Time,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, gain {PrepTimePower:diff()} [gold]Vigor[/gold].","At the start of your turn, gain {PrepTimePower:diff()} [gold]Vigor[/gold]."
+Primal Force,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Transform all Attacks in your [gold]Hand[/gold] into [gold]{IfUpgraded:show:Giant Rock+|Giant Rock}[/gold].,Transform all Attacks in your [gold]Hand[/gold] into [gold]{IfUpgraded:show:Giant Rock+|Giant Rock}[/gold].
+Production,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {Energy:energyIcons()}.,Gain {Energy:energyIcons()}.
+Prolong,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Next turn, gain [gold]Block[/gold] equal to your current [gold]Block[/gold].","Next turn, gain [gold]Block[/gold] equal to your current [gold]Block[/gold]."
+Prophesize,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Draw {Cards:diff()} {Cards:plural:card|cards}.,Draw {Cards:diff()} {Cards:plural:card|cards}.
+Protector,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Osty[/gold] deals {CalculatedDamage:diff()} damage.
+Deals additional damage equal to [gold]Osty's[/gold] [gold]Max HP[/gold].","[gold]Osty[/gold] deals {CalculatedDamage:diff()} damage.
+Deals additional damage equal to [gold]Osty's[/gold] [gold]Max HP[/gold]."
+Prowess,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {StrengthPower:diff()} [gold]Strength[/gold].
+Gain {DexterityPower:diff()} [gold]Dexterity[/gold].","Gain {StrengthPower:diff()} [gold]Strength[/gold].
+Gain {DexterityPower:diff()} [gold]Dexterity[/gold]."
+Pull Aggro,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Summon[/gold] {Summon:diff()}.
+Gain {Block:diff()} [gold]Block[/gold].","[gold]Summon[/gold] {Summon:diff()}.
+Gain {Block:diff()} [gold]Block[/gold]."
+Pull from Below,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage for each [gold]Ethereal[/gold] card played this combat.{InCombat:
+(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}","Deal {Damage:diff()} damage for each [gold]Ethereal[/gold] card played this combat.{InCombat:
+(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}"
+Purity,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Exhaust up to {Cards:diff()} cards in your [gold]Hand[/gold].,Exhaust up to {Cards:diff()} cards in your [gold]Hand[/gold].
+Putrefy,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Apply {Power:diff()} [gold]Weak[/gold].
+Apply {Power:diff()} [gold]Vulnerable[/gold].","Apply {Power:diff()} [gold]Weak[/gold].
+Apply {Power:diff()} [gold]Vulnerable[/gold]."
+Pyre,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {Energy:energyIcons()} at the start of each turn.,Gain {Energy:energyIcons()} at the start of each turn.
+Quadcast,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Evoke[/gold] your rightmost Orb {Repeat:diff()} {Repeat:plural:time|times}.,[gold]Evoke[/gold] your rightmost Orb {Repeat:diff()} {Repeat:plural:time|times}.
+Quasar,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,2,Choose 1 of 3 random{IfUpgraded:show: [gold]Upgraded[/gold]|} Colorless cards to add into your [gold]Hand[/gold].,Choose 1 of 3 random{IfUpgraded:show: [gold]Upgraded[/gold]|} Colorless cards to add into your [gold]Hand[/gold].
+Radiate,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage to ALL enemies for each {Stars:starIcons()} gained this turn.{InCombat:
+(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}","Deal {Damage:diff()} damage to ALL enemies for each {Stars:starIcons()} gained this turn.{InCombat:
+(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}"
+Rage,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you play an Attack this turn, gain {Power:diff()} [gold]Block[/gold].","Whenever you play an Attack this turn, gain {Power:diff()} [gold]Block[/gold]."
+Rainbow,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Channel[/gold] 1 [gold]Lightning[/gold].
+[gold]Channel[/gold] 1 [gold]Frost[/gold].
+[gold]Channel[/gold] 1 [gold]Dark[/gold].","[gold]Channel[/gold] 1 [gold]Lightning[/gold].
+[gold]Channel[/gold] 1 [gold]Frost[/gold].
+[gold]Channel[/gold] 1 [gold]Dark[/gold]."
+Rally,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,ALL players gain {Block:diff()} [gold]Block[/gold].,ALL players gain {Block:diff()} [gold]Block[/gold].
+Rampage,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Increase this card's damage by {Increase:diff()} this combat.","Deal {Damage:diff()} damage.
+Increase this card's damage by {Increase:diff()} this combat."
+Rattle,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Osty[/gold] deals {OstyDamage:diff()} damage.
+Hits an additional time for each other time he has attacked this turn.{InCombat:
+(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}","[gold]Osty[/gold] deals {OstyDamage:diff()} damage.
+Hits an additional time for each other time he has attacked this turn.{InCombat:
+(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times})|}"
+Reanimate,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Summon[/gold] {Summon:diff()}.,[gold]Summon[/gold] {Summon:diff()}.
+Reap,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage.,Deal {Damage:diff()} damage.
+Reaper Form,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever Attacks deal damage, they also apply that much [gold]Doom[/gold].","Whenever Attacks deal damage, they also apply that much [gold]Doom[/gold]."
+Reave,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Add a [gold]{IfUpgraded:show:Soul+|Soul}[/gold] into your [gold]Draw Pile[/gold].","Deal {Damage:diff()} damage.
+Add a [gold]{IfUpgraded:show:Soul+|Soul}[/gold] into your [gold]Draw Pile[/gold]."
+Reboot,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Shuffle ALL your cards into your [gold]Draw Pile[/gold].
+Draw {Cards:diff()} {Cards:plural:card|cards}.","Shuffle ALL your cards into your [gold]Draw Pile[/gold].
+Draw {Cards:diff()} {Cards:plural:card|cards}."
+Rebound,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Put the next card you play this turn on top of your [gold]Draw Pile[/gold].","Deal {Damage:diff()} damage.
+Put the next card you play this turn on top of your [gold]Draw Pile[/gold]."
+Refine Blade,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Forge[/gold] {Forge:diff()}.
+Next turn, gain {Energy:energyIcons()}.","[gold]Forge[/gold] {Forge:diff()}.
+Next turn, gain {Energy:energyIcons()}."
+Reflect,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,3,"Gain {Block:diff()} [gold]Block[/gold].
+Blocked attack damage is reflected to your attacker this turn.","Gain {Block:diff()} [gold]Block[/gold].
+Blocked attack damage is reflected to your attacker this turn."
+Reflex,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Draw {Cards:diff()} cards.,Draw {Cards:diff()} cards.
+Refract,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage twice.
+[gold]Channel[/gold] {Repeat:diff()} [gold]Glass[/gold].","Deal {Damage:diff()} damage twice.
+[gold]Channel[/gold] {Repeat:diff()} [gold]Glass[/gold]."
+Regret,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the end of your turn, if this is in your [gold]Hand[/gold], lose 1 HP for each card in your [gold]Hand[/gold].","At the end of your turn, if this is in your [gold]Hand[/gold], lose 1 HP for each card in your [gold]Hand[/gold]."
+Relax,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Next turn, draw {Cards:diff()} {Cards:plural:card|cards} and gain {Energy:energyIcons()}.","Gain {Block:diff()} [gold]Block[/gold].
+Next turn, draw {Cards:diff()} {Cards:plural:card|cards} and gain {Energy:energyIcons()}."
+Rend,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for each unique debuff on the enemy.","Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for each unique debuff on the enemy."
+Resonance,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,3,Gain {StrengthPower:diff()} [gold]Strength[/gold]. ALL enemies lose 1 [gold]Strength[/gold].,Gain {StrengthPower:diff()} [gold]Strength[/gold]. ALL enemies lose 1 [gold]Strength[/gold].
+Restlessness,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"If your [gold]Hand[/gold] is empty, draw {Cards:diff()} cards and gain {Energy:energyIcons()}.","If your [gold]Hand[/gold] is empty, draw {Cards:diff()} cards and gain {Energy:energyIcons()}."
+Ricochet,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage to a random enemy {Repeat:diff()} times.,Deal {Damage:diff()} damage to a random enemy {Repeat:diff()} times.
+Right Hand Hand,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Osty[/gold] deals {OstyDamage:diff()} damage.
+Whenever you play a card that costs {Energy:energyIcons()} or more, return this to your [gold]Hand[/gold] from the [gold]Discard Pile[/gold].","[gold]Osty[/gold] deals {OstyDamage:diff()} damage.
+Whenever you play a card that costs {Energy:energyIcons()} or more, return this to your [gold]Hand[/gold] from the [gold]Discard Pile[/gold]."
+Rip and Tear,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage to a random enemy twice.,Deal {Damage:diff()} damage to a random enemy twice.
+Rocket Punch,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Draw {Cards:diff()} {Cards:plural:card|cards}.
+When a Status card is created, reduce this card's cost to 0 {energyPrefix:energyIcons(1)} this turn.","Deal {Damage:diff()} damage.
+Draw {Cards:diff()} {Cards:plural:card|cards}.
+When a Status card is created, reduce this card's cost to 0 {energyPrefix:energyIcons(1)} this turn."
+Rolling Boulder,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, deal {RollingBoulderPower:diff()} damage to ALL enemies and increase this damage by {IncrementAmount:diff()}.","At the start of your turn, deal {RollingBoulderPower:diff()} damage to ALL enemies and increase this damage by {IncrementAmount:diff()}."
+Royal Gamble,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,5,Gain {Stars:diff()} {singleStarIcon}.,Gain {Stars:diff()} {singleStarIcon}.
+Royalties,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the end of combat, gain {Gold:diff()} [gold]Gold[/gold].","At the end of combat, gain {Gold:diff()} [gold]Gold[/gold]."
+Rupture,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you lose HP on your turn, gain {StrengthPower:diff()} [gold]Strength[/gold].","Whenever you lose HP on your turn, gain {StrengthPower:diff()} [gold]Strength[/gold]."
+Sacrifice,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"If [gold]Osty[/gold] is alive, he dies and you gain [gold]Block[/gold] equal to double his Max HP.","If [gold]Osty[/gold] is alive, he dies and you gain [gold]Block[/gold] equal to double his Max HP."
+Salvo,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+[gold]Retain[/gold] your [gold]Hand[/gold] this turn.","Deal {Damage:diff()} damage.
+[gold]Retain[/gold] your [gold]Hand[/gold] this turn."
+Scavenge,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Exhaust[/gold] a card.
+Next turn, gain {Energy:energyIcons()}.","[gold]Exhaust[/gold] a card.
+Next turn, gain {Energy:energyIcons()}."
+Scourge,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Apply {DoomPower:diff()} [gold]Doom[/gold].
+Draw {Cards:diff()} {Cards:plural:card|cards}.","Apply {DoomPower:diff()} [gold]Doom[/gold].
+Draw {Cards:diff()} {Cards:plural:card|cards}."
+Scrape,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Draw {Cards:diff()} cards.
+Discard all cards drawn this way that do not cost 0 {energyPrefix:energyIcons(1)}.","Deal {Damage:diff()} damage.
+Draw {Cards:diff()} cards.
+Discard all cards drawn this way that do not cost 0 {energyPrefix:energyIcons(1)}."
+Scrawl,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Draw cards until your [gold]Hand[/gold] is full.,Draw cards until your [gold]Hand[/gold] is full.
+Sculpting Strike,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Add [gold]Ethereal[/gold] to a card in your [gold]Hand[/gold].","Deal {Damage:diff()} damage.
+Add [gold]Ethereal[/gold] to a card in your [gold]Hand[/gold]."
+Seance,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Transform a card in your [gold]Draw Pile[/gold] into [gold]{IfUpgraded:show:Soul+|Soul}[/gold].,Transform a card in your [gold]Draw Pile[/gold] into [gold]{IfUpgraded:show:Soul+|Soul}[/gold].
+Second Wind,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Exhaust[/gold] all non-Attack cards in your [gold]Hand[/gold]. Gain {Block:diff()} [gold]Block[/gold] for each card [gold]Exhausted[/gold].,[gold]Exhaust[/gold] all non-Attack cards in your [gold]Hand[/gold]. Gain {Block:diff()} [gold]Block[/gold] for each card [gold]Exhausted[/gold].
+Secret Technique,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Put a Skill from your [gold]Draw Pile[/gold] into your [gold]Hand[/gold].,Put a Skill from your [gold]Draw Pile[/gold] into your [gold]Hand[/gold].
+Secret Weapon,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Put an Attack from your [gold]Draw Pile[/gold] into your [gold]Hand[/gold].,Put an Attack from your [gold]Draw Pile[/gold] into your [gold]Hand[/gold].
+Seeker Strike,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Choose 1 of {Cards:diff()} cards in your [gold]Draw Pile[/gold] to add into your [gold]Hand[/gold].","Deal {Damage:diff()} damage.
+Choose 1 of {Cards:diff()} cards in your [gold]Draw Pile[/gold] to add into your [gold]Hand[/gold]."
+Seeking Edge,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Forge[/gold] {Forge:diff()}.
+[gold]Sovereign Blade[/gold] now deals damage to ALL enemies.","[gold]Forge[/gold] {Forge:diff()}.
+[gold]Sovereign Blade[/gold] now deals damage to ALL enemies."
+Sentry Mode,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, add {SentryModePower:diff()} [gold]Sweeping Gaze[/gold] into your [gold]Hand[/gold].","At the start of your turn, add {SentryModePower:diff()} [gold]Sweeping Gaze[/gold] into your [gold]Hand[/gold]."
+Serpent Form,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you play a card, deal {SerpentFormPower:diff()} damage to a random enemy.","Whenever you play a card, deal {SerpentFormPower:diff()} damage to a random enemy."
+Setup Strike,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Gain {StrengthPower:diff()} [gold]Strength[/gold] this turn.","Deal {Damage:diff()} damage.
+Gain {StrengthPower:diff()} [gold]Strength[/gold] this turn."
+Seven Stars,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,7,Deal {Damage:diff()} damage to ALL enemies {Repeat:plural:{} time|{} times}.,Deal {Damage:diff()} damage to ALL enemies {Repeat:plural:{} time|{} times}.
+Severance,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Add a [gold]Soul[/gold] into your [gold]Draw Pile[/gold], [gold]Hand[/gold], and [gold]Discard Pile[/gold].","Deal {Damage:diff()} damage.
+Add a [gold]Soul[/gold] into your [gold]Draw Pile[/gold], [gold]Hand[/gold], and [gold]Discard Pile[/gold]."
+Shadowmeld,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Double your [gold]Block[/gold] gain this turn.,Double your [gold]Block[/gold] gain this turn.
+Shadow Shield,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+[gold]Channel[/gold] 1 [gold]Dark[/gold].","Gain {Block:diff()} [gold]Block[/gold].
+[gold]Channel[/gold] 1 [gold]Dark[/gold]."
+Shadow Step,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Discard your [gold]Hand[/gold].
+Next turn, Attacks deal double damage.","Discard your [gold]Hand[/gold].
+Next turn, Attacks deal double damage."
+Shame,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the end of your turn, if this is in your [gold]Hand[/gold], gain {Frail:diff()} [gold]Frail[/gold].","At the end of your turn, if this is in your [gold]Hand[/gold], gain {Frail:diff()} [gold]Frail[/gold]."
+Shared Fate,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Lose {PlayerStrengthLoss:diff()} [gold]Strength[/gold].
+Enemy loses {EnemyStrengthLoss:diff()} [gold]Strength[/gold].","Lose {PlayerStrengthLoss:diff()} [gold]Strength[/gold].
+Enemy loses {EnemyStrengthLoss:diff()} [gold]Strength[/gold]."
+Shatter,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage to ALL enemies.
+[gold]Evoke[/gold] all of your Orbs.","Deal {Damage:diff()} damage to ALL enemies.
+[gold]Evoke[/gold] all of your Orbs."
+Shining Strike,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Gain {Stars:starIcons()}.
+Put this card on top of your [gold]Draw Pile[/gold].","Deal {Damage:diff()} damage.
+Gain {Stars:starIcons()}.
+Put this card on top of your [gold]Draw Pile[/gold]."
+Shiv,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage{FanOfKnivesAmount:cond:>0? to ALL enemies|}.,Deal {Damage:diff()} damage{FanOfKnivesAmount:cond:>0? to ALL enemies|}.
+Shockwave,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Apply {Power:diff()} [gold]Weak[/gold] and [gold]Vulnerable[/gold] to ALL enemies.,Apply {Power:diff()} [gold]Weak[/gold] and [gold]Vulnerable[/gold] to ALL enemies.
+Shroud,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you apply [gold]Doom[/gold], gain {Block:diff()} [gold]Block[/gold].","Whenever you apply [gold]Doom[/gold], gain {Block:diff()} [gold]Block[/gold]."
+Shrug It Off,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Draw {Cards:diff()} card.","Gain {Block:diff()} [gold]Block[/gold].
+Draw {Cards:diff()} card."
+Sic 'Em,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Osty[/gold] deals {OstyDamage:diff()} damage.
+Whenever [gold]Osty[/gold] hits this enemy this turn, [gold]Summon[/gold] {SicEmPower:diff()}.","[gold]Osty[/gold] deals {OstyDamage:diff()} damage.
+Whenever [gold]Osty[/gold] hits this enemy this turn, [gold]Summon[/gold] {SicEmPower:diff()}."
+Signal Boost,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,The next Power you play is played an additional time.,The next Power you play is played an additional time.
+Skewer,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage X times.,Deal {Damage:diff()} damage X times.
+Skim,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Draw {Cards:diff()} cards.,Draw {Cards:diff()} cards.
+Sleight of Flesh,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you apply a debuff to an enemy, they take {SleightOfFleshPower:diff()} damage.","Whenever you apply a debuff to an enemy, they take {SleightOfFleshPower:diff()} damage."
+Slice,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage.,Deal {Damage:diff()} damage.
+Slimed,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Draw 1 card.,Draw 1 card.
+Sloth,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,You cannot play more than {SlothPower:diff()} {SlothPower:plural:card|cards} each turn.,You cannot play more than {SlothPower:diff()} {SlothPower:plural:card|cards} each turn.
+Smokestack,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you create a Status, deal {SmokestackPower:diff()} damage to ALL enemies.","Whenever you create a Status, deal {SmokestackPower:diff()} damage to ALL enemies."
+Snakebite,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Apply {PoisonPower:diff()} [gold]Poison[/gold].,Apply {PoisonPower:diff()} [gold]Poison[/gold].
+Snap,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Osty[/gold] deals {OstyDamage:diff()} damage.
+Add [gold]Retain[/gold] to a card in your [gold]Hand[/gold].","[gold]Osty[/gold] deals {OstyDamage:diff()} damage.
+Add [gold]Retain[/gold] to a card in your [gold]Hand[/gold]."
+Sneaky,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever another player attacks an enemy, gain {SneakyPower:diff()} [gold]Block[/gold].","Whenever another player attacks an enemy, gain {SneakyPower:diff()} [gold]Block[/gold]."
+Solar Strike,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Gain {Stars:starIcons()}.","Deal {Damage:diff()} damage.
+Gain {Stars:starIcons()}."
+Soot,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,,
+Soul,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Draw {Cards:diff()} {Cards:plural:card|cards}.,Draw {Cards:diff()} {Cards:plural:card|cards}.
+Soul Storm,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for each [gold]Soul[/gold] in your [gold]Exhaust Pile[/gold].","Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for each [gold]Soul[/gold] in your [gold]Exhaust Pile[/gold]."
+Sovereign Blade,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage{SeekingEdgeAmount:cond:>0? to ALL enemies|}{Repeat:plural:| {} times}.,Deal {Damage:diff()} damage{SeekingEdgeAmount:cond:>0? to ALL enemies|}{Repeat:plural:| {} times}.
+Sow,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage to ALL enemies.,Deal {Damage:diff()} damage to ALL enemies.
+Spectrum Shift,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, add {Cards:diff()} random Colorless {Cards:plural:card|cards} into your [gold]Hand[/gold].","At the start of your turn, add {Cards:diff()} random Colorless {Cards:plural:card|cards} into your [gold]Hand[/gold]."
+Speedster,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you draw a card during your turn, deal {SpeedsterPower:diff()} damage to ALL enemies.","Whenever you draw a card during your turn, deal {SpeedsterPower:diff()} damage to ALL enemies."
+Spinner,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"{IfUpgraded:show:[gold]Channel[/gold] 1 [gold]Glass[/gold].
+|}At the start of your turn, [gold]Channel[/gold] 1 [gold]Glass[/gold].","{IfUpgraded:show:[gold]Channel[/gold] 1 [gold]Glass[/gold].
+|}At the start of your turn, [gold]Channel[/gold] 1 [gold]Glass[/gold]."
+Spirit of Ash,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you play an [gold]Ethereal[/gold] card, gain {BlockOnExhaust:diff()} [gold]Block[/gold].","Whenever you play an [gold]Ethereal[/gold] card, gain {BlockOnExhaust:diff()} [gold]Block[/gold]."
+Spite,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+If you lost HP this turn, draw {Cards:diff()} {Cards:plural:card|cards}.","Deal {Damage:diff()} damage.
+If you lost HP this turn, draw {Cards:diff()} {Cards:plural:card|cards}."
+Splash,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Choose 1 of 3 random{IfUpgraded:show: [gold]Upgraded[/gold]} Attacks from another character to add into your [gold]Hand[/gold]. It's free to play this turn.,Choose 1 of 3 random{IfUpgraded:show: [gold]Upgraded[/gold]} Attacks from another character to add into your [gold]Hand[/gold]. It's free to play this turn.
+Spoils Map,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Marks a site of {Gold:diff()} extra [gold]Gold[/gold] in the next Act.,Marks a site of {Gold:diff()} extra [gold]Gold[/gold] in the next Act.
+Spoils of Battle,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Forge[/gold] {Forge:diff()}.,[gold]Forge[/gold] {Forge:diff()}.
+Spore Mind,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,,
+Spur,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Summon[/gold] {Summon:diff()}.
+[gold]Osty[/gold] heals {Heal:diff()} HP.","[gold]Summon[/gold] {Summon:diff()}.
+[gold]Osty[/gold] heals {Heal:diff()} HP."
+Squash,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].","Deal {Damage:diff()} damage.
+Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]."
+Squeeze,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Osty[/gold] deals {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for ALL your other [gold]Osty[/gold] Attacks.","[gold]Osty[/gold] deals {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for ALL your other [gold]Osty[/gold] Attacks."
+Stack,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain [gold]Block[/gold] equal to the number of cards in your [gold]Discard Pile[/gold]{IfUpgraded:show: +{CalculationBase}|}.{InCombat:
+(Gain {CalculatedBlock:diff()} [gold]Block[/gold].)|}","Gain [gold]Block[/gold] equal to the number of cards in your [gold]Discard Pile[/gold]{IfUpgraded:show: +{CalculationBase}|}.{InCombat:
+(Gain {CalculatedBlock:diff()} [gold]Block[/gold].)|}"
+Stampede,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the end of your turn, {Power:diff()} random {Power:plural:Attack in your [gold]Hand[/gold] is played against a random enemy.|Attacks in your [gold]Hand[/gold] are played against random enemies.}","At the end of your turn, {Power:diff()} random {Power:plural:Attack in your [gold]Hand[/gold] is played against a random enemy.|Attacks in your [gold]Hand[/gold] are played against random enemies.}"
+Stardust,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage to a random enemy X times.,Deal {Damage:diff()} damage to a random enemy X times.
+Stoke,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Exhaust[/gold] your [gold]Hand[/gold].
+Draw a card for each card [gold]Exhausted[/gold].","[gold]Exhaust[/gold] your [gold]Hand[/gold].
+Draw a card for each card [gold]Exhausted[/gold]."
+Stomp,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage to ALL enemies.
+Costs 1 less {energyPrefix:energyIcons(1)} for each Attack played this turn.","Deal {Damage:diff()} damage to ALL enemies.
+Costs 1 less {energyPrefix:energyIcons(1)} for each Attack played this turn."
+Stone Armor,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {PlatingPower:diff()} [gold]Plating[/gold].,Gain {PlatingPower:diff()} [gold]Plating[/gold].
+Storm,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you play a Power, [gold]Channel[/gold] {StormPower:diff()} [gold]Lightning[/gold].","Whenever you play a Power, [gold]Channel[/gold] {StormPower:diff()} [gold]Lightning[/gold]."
+Storm of Steel,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Discard your [gold]Hand[/gold].
+Add 1 [gold]{IfUpgraded:show:Shiv+|Shiv}[/gold] into your [gold]Hand[/gold] for each card discarded.","Discard your [gold]Hand[/gold].
+Add 1 [gold]{IfUpgraded:show:Shiv+|Shiv}[/gold] into your [gold]Hand[/gold] for each card discarded."
+Strangle,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Whenever you play a card this turn, the enemy loses {StranglePower:diff()} HP.","Deal {Damage:diff()} damage.
+Whenever you play a card this turn, the enemy loses {StranglePower:diff()} HP."
+Stratagem,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you shuffle your [gold]Draw Pile[/gold], choose a card from it to put into your [gold]Hand[/gold].","Whenever you shuffle your [gold]Draw Pile[/gold], choose a card from it to put into your [gold]Hand[/gold]."
+Strike,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage.,Deal {Damage:diff()} damage.
+Strike,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage.,Deal {Damage:diff()} damage.
+Strike,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage.,Deal {Damage:diff()} damage.
+Strike,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage.,Deal {Damage:diff()} damage.
+Strike,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage.,Deal {Damage:diff()} damage.
+Subroutine,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you play a Power, gain {energyPrefix:energyIcons(1)}.","Whenever you play a Power, gain {energyPrefix:energyIcons(1)}."
+Sucker Punch,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Apply {WeakPower:diff()} [gold]Weak[/gold].","Deal {Damage:diff()} damage.
+Apply {WeakPower:diff()} [gold]Weak[/gold]."
+Summon Forth,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Forge[/gold] {Forge:diff()}.
+Put [gold]Sovereign Blade[/gold] into your [gold]Hand[/gold] from anywhere.","[gold]Forge[/gold] {Forge:diff()}.
+Put [gold]Sovereign Blade[/gold] into your [gold]Hand[/gold] from anywhere."
+Sunder,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+If this kills an enemy, gain {Energy:energyIcons()}.","Deal {Damage:diff()} damage.
+If this kills an enemy, gain {Energy:energyIcons()}."
+Supercritical,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {Energy:energyIcons()}.,Gain {Energy:energyIcons()}.
+Supermassive,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for each card you created this combat.","Deal {CalculatedDamage:diff()} damage.
+Deals {ExtraDamage:diff()} additional damage for each card you created this combat."
+Suppress,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Apply {WeakPower:diff()} [gold]Weak[/gold].","Deal {Damage:diff()} damage.
+Apply {WeakPower:diff()} [gold]Weak[/gold]."
+Survivor,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Discard 1 card.","Gain {Block:diff()} [gold]Block[/gold].
+Discard 1 card."
+Sweeping Beam,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage to ALL enemies.
+Draw {Cards:diff()} {Cards:plural:card|cards}.","Deal {Damage:diff()} damage to ALL enemies.
+Draw {Cards:diff()} {Cards:plural:card|cards}."
+Sweeping Gaze,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Osty[/gold] deals {OstyDamage:diff()} damage to a random enemy.,[gold]Osty[/gold] deals {OstyDamage:diff()} damage to a random enemy.
+Sword Boomerang,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage to a random enemy {Repeat:diff()} times.,Deal {Damage:diff()} damage to a random enemy {Repeat:diff()} times.
+Sword Sage,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Increase the cost of [gold]Sovereign Blade[/gold] by 1. [gold]Sovereign Blade[/gold] now hits an additional time.,Increase the cost of [gold]Sovereign Blade[/gold] by 1. [gold]Sovereign Blade[/gold] now hits an additional time.
+Synchronize,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {CalculationExtra:diff()} [gold]Focus[/gold] this turn for each unique Orb you have.{InCombat:
+(Gain {CalculatedFocus:diff()} [gold]Focus[/gold])|}","Gain {CalculationExtra:diff()} [gold]Focus[/gold] this turn for each unique Orb you have.{InCombat:
+(Gain {CalculatedFocus:diff()} [gold]Focus[/gold])|}"
+Synthesis,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+The next Power you play costs 0 {energyPrefix:energyIcons(1)}.","Deal {Damage:diff()} damage.
+The next Power you play costs 0 {energyPrefix:energyIcons(1)}."
+Tactician,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {Energy:energyIcons()}.,Gain {Energy:energyIcons()}.
+Tag Team,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+The next Attack another player plays on the enemy is played an extra time.","Deal {Damage:diff()} damage.
+The next Attack another player plays on the enemy is played an extra time."
+Tank,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Take double damage from enemies.
+Allies take half damage from enemies.","Take double damage from enemies.
+Allies take half damage from enemies."
+Taunt,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].","Gain {Block:diff()} [gold]Block[/gold].
+Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold]."
+Tear Asunder,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Hits an additional time for each time you lost HP this combat.{InCombat:
+(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times}.)|}","Deal {Damage:diff()} damage.
+Hits an additional time for each time you lost HP this combat.{InCombat:
+(Hits {CalculatedHits:diff()} {CalculatedHits:plural:time|times}.)|}"
+Tempest,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Channel[/gold] {IfUpgraded:show:X+1|X} [gold]Lightning[/gold].,[gold]Channel[/gold] {IfUpgraded:show:X+1|X} [gold]Lightning[/gold].
+Terraforming,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {VigorPower:diff()} [gold]Vigor[/gold].,Gain {VigorPower:diff()} [gold]Vigor[/gold].
+Tesla Coil,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Trigger all [gold]Lightning[/gold] against the enemy.","Deal {Damage:diff()} damage.
+Trigger all [gold]Lightning[/gold] against the enemy."
+The Bomb,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the end of {Turns:diff()} {Turns:plural:turn|turns}, deal {BombDamage:diff()} damage to ALL enemies.","At the end of {Turns:diff()} {Turns:plural:turn|turns}, deal {BombDamage:diff()} damage to ALL enemies."
+The Gambit,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+If you take unblocked attack damage this combat, die.","Gain {Block:diff()} [gold]Block[/gold].
+If you take unblocked attack damage this combat, die."
+The Hunt,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+If [gold]Fatal[/gold], gain an additional card reward.","Deal {Damage:diff()} damage.
+If [gold]Fatal[/gold], gain an additional card reward."
+The Scythe,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Permanently increase this card's damage by {Increase:diff()}.","Deal {Damage:diff()} damage.
+Permanently increase this card's damage by {Increase:diff()}."
+The Sealed Throne,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,3,"Whenever you play a card, gain {singleStarIcon}.","Whenever you play a card, gain {singleStarIcon}."
+The Smith,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,4,[gold]Forge[/gold] {Forge:diff()}.,[gold]Forge[/gold] {Forge:diff()}.
+Thinking Ahead,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Draw {Cards:diff()} {Cards:plural:card|cards}.
+Put 1 card from your [gold]Hand[/gold] on top of your [gold]Draw Pile[/gold].","Draw {Cards:diff()} {Cards:plural:card|cards}.
+Put 1 card from your [gold]Hand[/gold] on top of your [gold]Draw Pile[/gold]."
+Thrash,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage twice.
+[gold]Exhaust[/gold] a random Attack in your [gold]Hand[/gold] and add its damage to this card.","Deal {Damage:diff()} damage twice.
+[gold]Exhaust[/gold] a random Attack in your [gold]Hand[/gold] and add its damage to this card."
+Thrumming Hatchet,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+At the start of your next turn, return this to your [gold]Hand[/gold].","Deal {Damage:diff()} damage.
+At the start of your next turn, return this to your [gold]Hand[/gold]."
+Thunder,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you [gold]Evoke Lightning[/gold], deal {ThunderPower:diff()} damage to each enemy hit.","Whenever you [gold]Evoke Lightning[/gold], deal {ThunderPower:diff()} damage to each enemy hit."
+Thunderclap,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage and apply {VulnerablePower:diff()} [gold]Vulnerable[/gold] to ALL enemies.,Deal {Damage:diff()} damage and apply {VulnerablePower:diff()} [gold]Vulnerable[/gold] to ALL enemies.
+Time's Up,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal damage equal to the enemy's [gold]Doom[/gold].{IsTargeting:
+(Deals {CalculatedDamage:diff()} damage)|}","Deal damage equal to the enemy's [gold]Doom[/gold].{IsTargeting:
+(Deals {CalculatedDamage:diff()} damage)|}"
+Tools of the Trade,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, draw 1 card and discard 1 card.","At the start of your turn, draw 1 card and discard 1 card."
+Toric Toughness,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Gain {Block:diff()} [gold]Block[/gold] at the start of the next {Turns:diff()} {Turns:plural:turn|turns}.","Gain {Block:diff()} [gold]Block[/gold].
+Gain {Block:diff()} [gold]Block[/gold] at the start of the next {Turns:diff()} {Turns:plural:turn|turns}."
+Toxic,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the end of your turn, if this is in your [gold]Hand[/gold], take {Damage:diff()} damage.","At the end of your turn, if this is in your [gold]Hand[/gold], take {Damage:diff()} damage."
+Tracking,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Weak[/gold] enemies take double damage from Attacks.,[gold]Weak[/gold] enemies take double damage from Attacks.
+Transfigure,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Add [gold]Replay[/gold] to a card in your [gold]Hand[/gold].
+It costs an extra {Energy:energyIcons()}.","Add [gold]Replay[/gold] to a card in your [gold]Hand[/gold].
+It costs an extra {Energy:energyIcons()}."
+Trash to Treasure,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you create a Status card, [gold]Channel[/gold] 1 random Orb.","Whenever you create a Status card, [gold]Channel[/gold] 1 random Orb."
+Tremble,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].,Apply {VulnerablePower:diff()} [gold]Vulnerable[/gold].
+True Grit,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+[gold]Exhaust[/gold] 1 card{IfUpgraded:show:| at random}.","Gain {Block:diff()} [gold]Block[/gold].
+[gold]Exhaust[/gold] 1 card{IfUpgraded:show:| at random}."
+TURBO,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Energy:energyIcons()}.
+Add a [gold]Void[/gold] into your [gold]Discard Pile[/gold].","Gain {Energy:energyIcons()}.
+Add a [gold]Void[/gold] into your [gold]Discard Pile[/gold]."
+Twin Strike,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage twice.,Deal {Damage:diff()} damage twice.
+Tyranny,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the start of your turn, draw 1 card and [gold]Exhaust[/gold] 1 card from your [gold]Hand[/gold].","At the start of your turn, draw 1 card and [gold]Exhaust[/gold] 1 card from your [gold]Hand[/gold]."
+Ultimate Defend,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {Block:diff()} [gold]Block[/gold].,Gain {Block:diff()} [gold]Block[/gold].
+Ultimate Strike,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage.,Deal {Damage:diff()} damage.
+Undeath,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {Block:diff()} [gold]Block[/gold].
+Add a copy of this card into your [gold]Discard Pile[/gold].","Gain {Block:diff()} [gold]Block[/gold].
+Add a copy of this card into your [gold]Discard Pile[/gold]."
+Unleash,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Osty[/gold] deals {CalculatedDamage:diff()} damage.
+Deals additional damage equal to [gold]Osty's[/gold] current HP.","[gold]Osty[/gold] deals {CalculatedDamage:diff()} damage.
+Deals additional damage equal to [gold]Osty's[/gold] current HP."
+Unmovable,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"The first time you gain [gold]Block[/gold] from a card each turn, double the amount gained.","The first time you gain [gold]Block[/gold] from a card each turn, double the amount gained."
+Unrelenting,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+The next Attack you play costs 0 {energyPrefix:energyIcons(1)}.","Deal {Damage:diff()} damage.
+The next Attack you play costs 0 {energyPrefix:energyIcons(1)}."
+Untouchable,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {Block:diff()} [gold]Block[/gold].,Gain {Block:diff()} [gold]Block[/gold].
+Up My Sleeve,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Add {Cards:diff()} [gold]{Cards:plural:Shiv|Shivs}[/gold] into your [gold]Hand[/gold].
+Reduce this card's cost by 1.","Add {Cards:diff()} [gold]{Cards:plural:Shiv|Shivs}[/gold] into your [gold]Hand[/gold].
+Reduce this card's cost by 1."
+Uppercut,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+Apply {Power:diff()} [gold]Weak[/gold].
+Apply {Power:diff()} [gold]Vulnerable[/gold].","Deal {Damage:diff()} damage.
+Apply {Power:diff()} [gold]Weak[/gold].
+Apply {Power:diff()} [gold]Vulnerable[/gold]."
+Uproar,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage twice.
+Play a random Attack from your [gold]Draw Pile[/gold].","Deal {Damage:diff()} damage twice.
+Play a random Attack from your [gold]Draw Pile[/gold]."
+Veilpiercer,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+The next [gold]Ethereal[/gold] card you play costs 0 {energyPrefix:energyIcons(1)}.","Deal {Damage:diff()} damage.
+The next [gold]Ethereal[/gold] card you play costs 0 {energyPrefix:energyIcons(1)}."
+Venerate,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {Stars:starIcons()}.,Gain {Stars:starIcons()}.
+Vicious,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you apply [gold]Vulnerable[/gold], draw {Cards:diff()} {Cards:plural:card|cards}.","Whenever you apply [gold]Vulnerable[/gold], draw {Cards:diff()} {Cards:plural:card|cards}."
+Void,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Whenever you draw this card, lose {Energy:energyIcons()}.","Whenever you draw this card, lose {Energy:energyIcons()}."
+Void Form,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"End your turn.
+The first {VoidFormPower:plural:card|{VoidFormPower:diff()} cards} you play each turn {VoidFormPower:plural:is|are} free to play.","End your turn.
+The first {VoidFormPower:plural:card|{VoidFormPower:diff()} cards} you play each turn {VoidFormPower:plural:is|are} free to play."
+Volley,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage to a random enemy X times.,Deal {Damage:diff()} damage to a random enemy X times.
+Voltaic,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"[gold]Channel Lightning[/gold] equal to the [gold]Lightning[/gold] already [gold]Channeled[/gold] this combat.{InCombat:
+([gold]Channel[/gold] {CalculatedChannels:diff()} [gold]Lightning[/gold])|}","[gold]Channel Lightning[/gold] equal to the [gold]Lightning[/gold] already [gold]Channeled[/gold] this combat.{InCombat:
+([gold]Channel[/gold] {CalculatedChannels:diff()} [gold]Lightning[/gold])|}"
+Waste Away,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {WasteAwayPower:diff()} less {energyPrefix:energyIcons(1)} per turn.,Gain {WasteAwayPower:diff()} less {energyPrefix:energyIcons(1)} per turn.
+Well-Laid Plans,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"At the end of your turn, [gold]Retain[/gold] up to {RetainAmount:diff()} {RetainAmount:plural:card|cards}.","At the end of your turn, [gold]Retain[/gold] up to {RetainAmount:diff()} {RetainAmount:plural:card|cards}."
+Whirlwind,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Deal {Damage:diff()} damage to ALL enemies X times.,Deal {Damage:diff()} damage to ALL enemies X times.
+Whistle,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+[gold]Stun[/gold] the enemy.","Deal {Damage:diff()} damage.
+[gold]Stun[/gold] the enemy."
+White Noise,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Add a random Power into your [gold]Hand[/gold]. It's free to play this turn.,Add a random Power into your [gold]Hand[/gold]. It's free to play this turn.
+Wish,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Put a card from your [gold]Draw Pile[/gold] into your [gold]Hand[/gold].,Put a card from your [gold]Draw Pile[/gold] into your [gold]Hand[/gold].
+Wisp,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,Gain {Energy:energyIcons()}.,Gain {Energy:energyIcons()}.
+Wound,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,,
+Wraith Form,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Gain {IntangiblePower:diff()} [gold]Intangible[/gold].
+At the start of your turn, lose {WraithFormPower:diff()} [gold]Dexterity[/gold].","Gain {IntangiblePower:diff()} [gold]Intangible[/gold].
+At the start of your turn, lose {WraithFormPower:diff()} [gold]Dexterity[/gold]."
+Writhe,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,,
+Wrought in War,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,"Deal {Damage:diff()} damage.
+[gold]Forge[/gold] {Forge:diff()}.","Deal {Damage:diff()} damage.
+[gold]Forge[/gold] {Forge:diff()}."
+Zap,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,,[gold]Channel[/gold] 1 [gold]Lightning[/gold].,[gold]Channel[/gold] 1 [gold]Lightning[/gold].
+Mock Attack Card,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,0,,
+Mock Curse Card,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,0,,
+Mock Power Card,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,0,,
+Mock Quest Card,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,0,,
+Mock Skill Card,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,0,,
+Mock Status Card,MegaCrit.Sts2.Core.Entities.Cards.CardEnergyCost,0,,

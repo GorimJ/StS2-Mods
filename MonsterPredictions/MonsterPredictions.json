@@ -1,0 +1,13 @@
+{
+    "id": "MonsterPredictions",
+    "name": "Monster Predictions",
+    "author": "Gorim",
+    "description": "Shows the next two predetermined actions for monsters, accounting for expiring debuffs like Weak.",
+    "version": "1.0.0",
+    "has_pck": false,
+    "has_dll": true,
+    "dependencies": [
+        "BaseLib"
+    ],
+    "affects_gameplay": false
+}

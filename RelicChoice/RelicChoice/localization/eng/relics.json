@@ -1,0 +1,20 @@
+{
+    "RELICCHOICE-BRONZE_TICKET.title": "Bronze Ticket",
+    "RELICCHOICE-BRONZE_TICKET.flavor": "A relic that shifts to match the one who holds it.",
+    "RELICCHOICE-BRONZE_TICKET.description": "Upon pickup, gain a relic based on your class: [red]Red Skull[/red], [green]Snecko Skull[/green], [purple]Bone Flute[/purple], [orange]Fencing Manual[/orange], or [blue]Data Disk[/blue].",
+    "RELICCHOICE-SILVER_TICKET.title": "Silver Ticket",
+    "RELICCHOICE-SILVER_TICKET.flavor": "A relic that shifts to match the one who holds it.",
+    "RELICCHOICE-SILVER_TICKET.description": "Upon pickup, gain a relic based on your class: [red]Paper Phrog[/red], [green]Tingsha[/green], [purple]Book Repair Knife[/purple], [orange]Galactic Dust[/orange], or [blue]Gold-Plated Cables[/blue].",
+    "RELICCHOICE-SHINY_SILVER_TICKET.title": "Shiny Silver Ticket",
+    "RELICCHOICE-SHINY_SILVER_TICKET.flavor": "A relic that shifts to match the one who holds it.",
+    "RELICCHOICE-SHINY_SILVER_TICKET.description": "Upon pickup, gain a relic based on your class: [red]Self-Forming Clay[/red], [green]Twisted Funnel[/green], [purple]Funerary Mask[/purple], [orange]Regalite[/orange], or [blue]Symbiotic Virus[/blue].",
+    "RELICCHOICE-GOLDEN_TICKET.title": "Golden Ticket",
+    "RELICCHOICE-GOLDEN_TICKET.flavor": "A relic that shifts to match the one who holds it.",
+    "RELICCHOICE-GOLDEN_TICKET.description": "Upon pickup, gain a relic based on your class: [red]Charon's Ashes[/red], [green]Helical Dart[/green], [purple]Big Hat[/purple], [orange]Lunar Pastry[/orange], or [blue]Emotion Chip[/blue].",
+    "RELICCHOICE-SHINY_GOLDEN_TICKET.title": "Shiny Golden Ticket",
+    "RELICCHOICE-SHINY_GOLDEN_TICKET.flavor": "A relic that shifts to match the one who holds it.",
+    "RELICCHOICE-SHINY_GOLDEN_TICKET.description": "Upon pickup, gain a relic based on your class: [red]Demon Tongue[/red], [green]Paper Krane[/green], [purple]Bookmark[/purple], [orange]Mini Regent[/orange], or [blue]Power Cell[/blue].",
+    "RELICCHOICE-PREMIUM_GOLDEN_TICKET.title": "Premium Golden Ticket",
+    "RELICCHOICE-PREMIUM_GOLDEN_TICKET.flavor": "A relic that shifts to match the one who holds it.",
+    "RELICCHOICE-PREMIUM_GOLDEN_TICKET.description": "Upon pickup, gain a relic based on your class: [red]Ruined Helmet[/red], [green]Tough Bandages[/green], [purple]Ivory Tile[/purple], [orange]Orange Dough[/orange], or [blue]Metronome[/blue]."
+}

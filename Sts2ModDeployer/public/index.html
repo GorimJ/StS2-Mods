@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StS2 Mod Deployer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="public/style.css">
+</head>
+
+<body>
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div class="glass-container">
+        <header>
+            <h1>Mod Deployer <span class="badge">v1.0</span></h1>
+            <p>Select the mods you want active. Deployed mods load seamlessly into Slay the Spire 2.</p>
+        </header>
+
+        <main>
+            <div id="loading" class="loading">Scanning for mods...</div>
+            <div id="mod-list" class="mod-list hidden">
+                <!-- Mod cards will be injected here -->
+            </div>
+        </main>
+
+        <footer>
+            <button id="deploy-btn" class="btn primary-btn disabled" disabled>Apply Changes</button>
+            <div id="status-message" class="status-message"></div>
+        </footer>
+    </div>
+
+    <script src="public/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+using MegaCrit.Sts2.Core.Logging;
+using MegaCrit.Sts2.Core.Multiplayer.Serialization;
+using MegaCrit.Sts2.Core.Multiplayer.Transport;
+using MegaCrit.Sts2.Core.Runs;
+
+namespace MegaCrit.Sts2.Core.Multiplayer.Messages.Game;
+
+        [BaseLib.Utils.Pool(typeof(MegaCrit.Sts2.Core.Models.RelicPools.SharedRelicPool))]
+    public class TreasureChestOpenedMessage : INetMessage, IPacketSerializable, IRunLocationTargetedMessage
+{
+	public bool ShouldBroadcast => true;
+
+	public NetTransferMode Mode => NetTransferMode.Reliable;
+
+	public LogLevel LogLevel => LogLevel.Debug;
+
+	public RunLocation Location { get; set; }
+
+	public void Serialize(PacketWriter writer)
+	{
+		writer.Write(Location);
+	}
+
+	public void Deserialize(PacketReader reader)
+	{
+		Location = reader.Read<RunLocation>();
+	}
+}

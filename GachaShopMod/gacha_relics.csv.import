@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://ddve5boksrlak"
+
+[deps]
+
+files=["res://gacha_relics.RelicClassName.translation", "res://gacha_relics.DropWeight.translation", "res://gacha_relics.AllowAttacks.translation", "res://gacha_relics.AllowSkills.translation", "res://gacha_relics.AllowPowers.translation", "res://gacha_relics.AllowTargetAny.translation", "res://gacha_relics.AllowTargetSelf.translation", "res://gacha_relics.BaseAmount.translation", "res://gacha_relics.AllowRarityStarter.translation", "res://gacha_relics.AllowRarityCommon.translation", "res://gacha_relics.AllowRarityUncommon.translation", "res://gacha_relics.AllowRarityRare.translation", "res://gacha_relics.AllowExhaust.translation", "res://gacha_relics.AllowNonExhaust.translation"]
+
+source_file="res://gacha_relics.csv"
+dest_files=["res://gacha_relics.RelicClassName.translation", "res://gacha_relics.DropWeight.translation", "res://gacha_relics.AllowAttacks.translation", "res://gacha_relics.AllowSkills.translation", "res://gacha_relics.AllowPowers.translation", "res://gacha_relics.AllowTargetAny.translation", "res://gacha_relics.AllowTargetSelf.translation", "res://gacha_relics.BaseAmount.translation", "res://gacha_relics.AllowRarityStarter.translation", "res://gacha_relics.AllowRarityCommon.translation", "res://gacha_relics.AllowRarityUncommon.translation", "res://gacha_relics.AllowRarityRare.translation", "res://gacha_relics.AllowExhaust.translation", "res://gacha_relics.AllowNonExhaust.translation"]
+
+[params]
+
+compress=true
+delimiter=0

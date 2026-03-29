@@ -1,0 +1,23 @@
+﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>true</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GodotPath>C:\Users\Gorim\.gemini\antigravity\Slay the Spire 2 Modding\Godot_v4.5.1-stable_mono_win64\Godot_v4.5.1-stable_mono_win64.exe</GodotPath>
+    <SteamLibraryPath>A:\SteamLibrary\steamapps</SteamLibraryPath>
+    <Sts2Path>$(SteamLibraryPath)\common\Slay the Spire 2</Sts2Path>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>$(Sts2Path)\data_sts2_windows_x86_64\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="sts2">
+      <HintPath>$(Sts2Path)\data_sts2_windows_x86_64\sts2.dll</HintPath>
+    </Reference>
+    <Reference Include="BaseLib">
+      <HintPath>$(Sts2Path)\mods\BaseLib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,8 @@
+{
+    "MULTIPLAYERPOTIONS-SUMMON_POTION.title": "Army in a Can",
+    "MULTIPLAYERPOTIONS-SUMMON_POTION.description": "Lose 15% of your HP ([red]{Amount}[/red]), then each player Summons [green]{Summon}[/green].",
+    "MULTIPLAYERPOTIONS-RAGE_POTION.title": "Rage Potion",
+    "MULTIPLAYERPOTIONS-RAGE_POTION.description": "Whenever you play an Attack this turn, each player gains {Block} Block.",
+    "MULTIPLAYERPOTIONS-TEAM_ORBIT_POTION.title": "Team Orbit Potion",
+    "MULTIPLAYERPOTIONS-TEAM_ORBIT_POTION.description": "Choose any player. For this turn, whenever they spend 4 Energy, [green]EVERY[/green] player gains 1 Energy."
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Gacha Shop Experimental",
+  "pck_name": "GachaShopMod",
+  "version": "1.0.0",
+  "author": "Antigravity",
+  "description": "Adds a Gacha Machine to the shop for random powerful enchantments.",
+  "dependencies": [
+    "BaseLib"
+  ]
+}
