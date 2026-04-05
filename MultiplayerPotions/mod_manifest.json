@@ -1,7 +1,13 @@
 {
-  "pck_name": "MultiplayerPotions",
-  "name": "The Watcher",
-  "author": "ModAuthor",
-  "description": "Port of The Watcher into Slay the Spire 2",
-  "version": "v1.0"
+  "id": "MultiplayerPotions",
+  "name": "Multiplayer Potions",
+  "version": "1.0.0",
+  "author": "Antigravity",
+  "description": "Potion sharing and multiplayer potion fixes.",
+  "has_pck": true,
+  "has_dll": true,
+  "dependencies": [
+    "BaseLib"
+  ],
+  "affects_gameplay": true
 }

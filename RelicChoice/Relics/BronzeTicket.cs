@@ -15,6 +15,10 @@ namespace RelicChoice.Relics;
     public class BronzeTicket : CustomRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Common;
+    public override bool HasUponPickupEffect => true;
+    public override string PackedIconPath => "res://images/atlases/relic_atlas.sprites/relicchoice-bronze_ticket.tres";
+    protected override string PackedIconOutlinePath => "res://images/atlases/relic_outline_atlas.sprites/relicchoice-bronze_ticket.tres";
+    protected override string BigIconPath => "res://images/Bronze_Ticket.png";
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips
     {
@@ -32,7 +36,7 @@ namespace RelicChoice.Relics;
         }
     }
 
-    public BronzeTicket() : base(true) { }
+    public BronzeTicket() : base(RelicChoiceConfig.Instance.EnableRainbowRelics) { }
 
     public override async Task AfterObtained()
     {

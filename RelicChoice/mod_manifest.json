@@ -1,7 +1,13 @@
 {
-  "pck_name": "RelicChoice",
+  "id": "RelicChoice",
   "name": "Relic Choice",
-  "author": "ModAuthor",
-  "description": "Multiplayer fix and relic additions. Port of Relic Choice into Slay the Spire 2",
-  "version": "v1.0"
+  "version": "1.0.0",
+  "author": "Antigravity",
+  "description": "Multiplayer fix and relic additions.",
+  "has_pck": true,
+  "has_dll": true,
+  "dependencies": [
+    "BaseLib"
+  ],
+  "affects_gameplay": true
 }

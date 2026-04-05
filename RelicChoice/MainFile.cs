@@ -19,21 +19,9 @@ public partial class MainFile : Node
         // Load Mod Configuration
         RelicChoiceConfig.Load();
 
-        // Register Rainbow Relics
-        if (RelicChoiceConfig.Instance.EnableRainbowRelics)
-        {
-            new Relics.BronzeTicket();
-            new Relics.SilverTicket();
-            new Relics.ShinySilverTicket();
-            new Relics.GoldenTicket();
-            new Relics.ShinyGoldenTicket();
-            new Relics.PremiumGoldenTicket();
-            Logger.Info("Rainbow Relics registered.");
-        }
-        else
-        {
-            Logger.Info("Rainbow Relics registration skipped by user config.");
-        }
+        Logger.Info(RelicChoiceConfig.Instance.EnableRainbowRelics
+            ? "Rainbow Relics enabled."
+            : "Rainbow Relics disabled by config.");
 
         Logger.Info("RelicChoice initialized and patches applied!");
     }
