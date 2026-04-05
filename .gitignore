@@ -22,10 +22,16 @@ tmp_parse_out.txt
 Buxom Mod Port/
 BuxomMod.jar
 
-# Gemini-generated tooling (not mods, may be rebuilt)
+# Gemini-generated tooling (not mods)
 Scanner/
 Sts2CardExtractor/
-Sts2ModDeployer/
+
+# Deployer build artifacts (not source)
+Sts2ModDeployer/dist/
+Sts2ModDeployer/build/
+Sts2ModDeployer/mods/
+Sts2ModDeployer/__pycache__/
+Sts2ModDeployer/*.spec
 
 # Reference code for porting work (read-only, not our mods)
 reference_*/
