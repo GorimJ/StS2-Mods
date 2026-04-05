@@ -1,0 +1,1 @@
+using Godot; using MegaCrit.Sts2.Core.Modding; namespace BuxomModPort; [ModInitializer(nameof(Initialize))] public partial class MainFile : Node { internal const string ModId = "BuxomModPort"; public static void Initialize() { HarmonyLib.Harmony harmony = new(ModId); harmony.PatchAll(); } }

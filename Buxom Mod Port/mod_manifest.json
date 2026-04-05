@@ -1,0 +1,13 @@
+{
+    "id":  "BuxomModPort",
+    "name":  "Buxom Mod Port (Mischievous Maid)",
+    "version":  "1.0.0",
+    "author":  "Gorim",
+    "description":  "Port of the BuxomMod Character from StS1",
+    "dependencies":  [
+                         "BaseLib"
+                     ],
+    "has_dll":  true,
+    "has_pck":  true,
+    "affects_gameplay":  true
+}
