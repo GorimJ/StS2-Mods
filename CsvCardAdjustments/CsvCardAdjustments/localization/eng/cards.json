@@ -1,0 +1,16 @@
+{
+    "BODYGUARD.description": "[gold]Summon[/gold] {Summon:diff()}.{IfUpgraded:show:\nHeal [gold]Osty[/gold] for 2.|}",
+    "CONQUEROR.description": "[gold]Forge[/gold] {Forge:diff()}.\n[gold]Sovereign Blade[/gold] deals double damage to {IfUpgraded:show:ALL enemies|the enemy} this turn.",
+    "SNAKEBITE.description": "At the end of your turn, if this is in your [gold]Hand[/gold], gain {IfUpgraded:show:2|1} [gold]Poison[/gold].\nApply {PoisonPower:diff()} [gold]Poison[/gold].",
+    "FRIENDSHIP.description": "{IfUpgraded:show:[gold]Innate[/gold].\n|}Lose {StrengthPower:inverseDiff()} [gold]Strength[/gold].\nGain {Energy:energyIcons()} at the start of each turn.",
+    "SEVERANCE.description": "Deal {Damage:diff()} damage.\nAdd a [gold]Soul[/gold] into your [gold]Draw Pile[/gold], [gold]Hand[/gold], {IfUpgraded:show: [gold]Discard Pile[/gold], and [gold]Exhaust Pile[/gold].|and [gold]Discard Pile[/gold].}",
+    "CLEANSE.description": "[gold]Summon[/gold] {Summon:diff()}.\n[gold]Exhaust[/gold] {IfUpgraded:show:up to 2 cards from your [gold]Draw Pile[/gold].|1 card from your [gold]Draw Pile[/gold].}",
+    "PARRY.description": "Whenever you play [gold]Sovereign Blade[/gold], gain [gold]Block[/gold] equal to {IfUpgraded:show:40%|20%} of its attack.",
+    "HEIRLOOM_HAMMER.description": "Deal {Damage:diff()} damage.\nChoose a Colorless card in your [gold]Hand[/gold]. {IfUpgraded:show:[gold]Upgrade[/gold] it and a|A}dd a copy of that card into your [gold]Hand[/gold].",
+    "THE_SMITH.description": "[gold]Forge[/gold] {IfUpgraded:show:25|15}.\n[gold]Upgrade[/gold] all copies of [gold]Sovereign Blade[/gold] in your deck and combat.",
+    "FOREGONE_CONCLUSION.description": "{IfUpgraded:show:[gold]Retain[/gold].\n|}Next turn, [gold]Seek[/gold] {Cards:diff()} cards.",
+    "FEED.description": "Deal {Damage:diff()} damage. If Fatal, ALL players gain {MaxHp:diff()} [gold]Max HP[/gold].",
+    "HAND_OF_GREED.description": "Deal {Damage:diff()} damage. If Fatal, ALL players gain {Gold:diff()} [gold]Gold[/gold].",
+    "THE_HUNT.description": "Deal {Damage:diff()} damage. If Fatal, ALL players gain a Card Reward",
+    "LARGESSE.description": "Choose 1 of 3 {IfUpgraded:show:[gold]upgraded[/gold] |}Colorless cards. Give the chosen card to target player."
+}

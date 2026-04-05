@@ -1,0 +1,13 @@
+{
+  "id": "CsvCardAdjustments",
+  "name": "Card Adjustments",
+  "version": "1.0",
+  "author": "Antigravity",
+  "description": "Overrides card stats dynamically via Harmony.",
+  "has_pck": true,
+  "has_dll": true,
+  "dependencies": [
+    "BaseLib"
+  ],
+  "affects_gameplay": true
+}

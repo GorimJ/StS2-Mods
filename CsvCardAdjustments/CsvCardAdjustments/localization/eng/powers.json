@@ -1,0 +1,8 @@
+{
+    "PARRY_POWER.name": "Parry",
+    "PARRY_POWER.smartDescription": "Whenever you play [gold]Sovereign Blade[/gold], gain {Amount}% of its attack as Block.",
+    "POWER.PARRY_POWER.name": "Parry",
+    "POWER.PARRY_POWER.smartDescription": "Whenever you play [gold]Sovereign Blade[/gold], gain {Amount}% of its attack as Block.",
+    "MY_TAG_TEAM_POWER.name": "Tag Team",
+    "MY_TAG_TEAM_POWER.smartDescription": "The next {charges} Attacks played by other players are played twice."
+}

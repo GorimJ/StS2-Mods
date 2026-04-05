@@ -17,3 +17,28 @@ decompile/
 decompile_out/
 *.tmp
 tmp_parse_out.txt
+
+# Buxom Mod Port — separate project, not stable
+Buxom Mod Port/
+BuxomMod.jar
+
+# Reference code for porting work (read-only, not our mods)
+reference_*/
+MeiLinModPck/
+MeiLinMod.zip
+MeiLin_DLL.txt
+
+# Java decompiler tool
+cfr.jar
+
+# Backup snapshots (superseded by git tags)
+*_Backup_Stable/
+*_StableBackup/
+
+# Scratch / dev files
+.agents/
+.claude/
+test.exe
+test2.exe
+BaseLib_types.txt
+PatchErrorLog.txt
