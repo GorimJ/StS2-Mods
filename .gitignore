@@ -18,11 +18,8 @@ decompile_out/
 *.tmp
 tmp_parse_out.txt
 
-# Buxom Mod Port build artifacts & dev files
-Buxom Mod Port/.godot/
-Buxom Mod Port/bin/
-Buxom Mod Port/obj/
-Buxom Mod Port/read_pck.py
+# Buxom Mod Port — separate git project (private mod)
+Buxom Mod Port/
 BuxomMod.jar
 
 # Gemini-generated tooling (not mods)
