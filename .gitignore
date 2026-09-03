@@ -53,3 +53,12 @@ test.exe
 test2.exe
 BaseLib_types.txt
 PatchErrorLog.txt
+
+# Fresh decompiles (regenerate with ilspycmd; see README_STATUS.md)
+decompile_v0107/
+decompile_baselib_345/
+
+# Claude build-runner scratch
+_runner/
+GachaShopMod/build_output/
+BuxomModPort_temp.pck

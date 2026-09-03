@@ -22,19 +22,19 @@ using MegaCrit.Sts2.Core.Nodes.Vfx;
 namespace GachaShopMod.Relics;
 
         [BaseLib.Utils.Pool(typeof(MegaCrit.Sts2.Core.Models.RelicPools.SharedRelicPool))]
-    public class FavoredGachaBallRelic : CustomRelicModel
+    public class InkyGachaBallRelic : CustomRelicModel
 {
     public override RelicRarity Rarity => RelicRarity.Event;
     public override bool HasUponPickupEffect => true;
-    public override string PackedIconPath => "res://Images/FavoredGachaBall.png";
-    protected override string BigIconPath => "res://Images/FavoredGachaBall.png";
-    protected override string PackedIconOutlinePath => "res://Images/FavoredGachaBall.png";
+    public override string PackedIconPath => "res://Images/InkyGachaBall.png";
+    protected override string BigIconPath => "res://Images/InkyGachaBall.png";
+    protected override string PackedIconOutlinePath => "res://Images/InkyGachaBall.png";
     
-    public FavoredGachaBallRelic() : base(true) { }
+    public InkyGachaBallRelic() : base(true) { }
 
     public override async Task AfterObtained()
     {
-        EnchantmentModel enchantment = ModelDb.Enchantment<Favored>();
+        EnchantmentModel enchantment = ModelDb.Enchantment<Inky>();
         List<CardModel> cards = PileType.Deck.GetPile(base.Owner).Cards.Where((CardModel c) => 
             enchantment.CanEnchant(c) && c.Type != CardType.Skill && c.Type != CardType.Power).ToList();
             
@@ -47,7 +47,7 @@ namespace GachaShopMod.Relics;
 
         if (chosenCard != null)
         {
-            CardCmd.Enchant<Favored>(chosenCard, 1m);
+            CardCmd.Enchant<Inky>(chosenCard, 1m);
             NCardEnchantVfx nCardEnchantVfx = NCardEnchantVfx.Create(chosenCard);
             if (nCardEnchantVfx != null)
             {

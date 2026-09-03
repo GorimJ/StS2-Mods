@@ -28,52 +28,28 @@ using MegaCrit.Sts2.Core.GameActions;
 namespace RelicChoice.Patches;
 
 [HarmonyPatch(typeof(TreasureRoomRelicSynchronizer), nameof(TreasureRoomRelicSynchronizer.BeginRelicPicking))]
-        [BaseLib.Utils.Pool(typeof(MegaCrit.Sts2.Core.Models.RelicPools.SharedRelicPool))]
-    public class ExtraRelicSpawnPatch
+public class ExtraRelicSpawnPatch
 {
-    private static void Postfix(TreasureRoomRelicSynchronizer __instance, RelicGrabBag ____sharedGrabBag, Rng ____rng, IPlayerCollection ____playerCollection, ref List<RelicModel> ____currentRelics, ref List<int?> ____votes)
+    // v0.107.1: _votes is now List<PlayerVote> (was List<int?>); we no longer touch it.
+    private static void Postfix(TreasureRoomRelicSynchronizer __instance, RelicGrabBag ____sharedGrabBag, Rng ____rng, IPlayerCollection ____playerCollection, List<RelicModel> ____currentRelics)
     {
-        if (CombatRewardRelicChoicePatch.IsPickingCombatRelic)
-        {
-            ____currentRelics = new List<RelicModel>();
-            ____votes.Clear();
-            foreach (Player player in ____playerCollection.Players)
-            {
-                ____votes.Add(null);
-                IRunState state = player.RunState;
-                RelicRarity r = RelicFactory.RollRarity(____rng);
-                RelicModel i = ____sharedGrabBag.PullFromFront(r, state);
-                ____currentRelics.Add(i);
-            }
+        if (____currentRelics == null || ____currentRelics.Count == 0) return;
 
-            if (RunManager.Instance.IsSinglePlayerOrFakeMultiplayer && ____playerCollection.Players.Count > 1)
-            {
-                for (int i = 1; i < ____playerCollection.Players.Count; i++)
-                {
-                    ____votes[i] = ____rng.NextInt(____currentRelics.Count + 1);
-                }
-            }
-        }
+        var firstPlayer = ____playerCollection.Players[0];
+        IRunState runState = firstPlayer.RunState;
 
-        if (____currentRelics != null && ____currentRelics.Count > 0)
+        // Generate extra relics based on configuration.
+        for (int i = 0; i < RelicChoiceConfig.Instance.AdditionalRelics; i++)
         {
-            var firstPlayer = ____playerCollection.Players[0];
-            IRunState runState = firstPlayer.RunState;
-            
-            // Generate extra relics based on configuration.
-            for (int i = 0; i < RelicChoiceConfig.Instance.AdditionalRelics; i++)
-            {
-                RelicRarity rarity = RelicFactory.RollRarity(____rng);
-                RelicModel item = ____sharedGrabBag.PullFromFront(rarity, runState);
-                ____currentRelics.Add(item);
-            }
+            RelicRarity rarity = RelicFactory.RollRarity(____rng);
+            RelicModel item = ____sharedGrabBag.PullFromFront(rarity, runState) ?? RelicFactory.FallbackRelic;
+            ____currentRelics.Add(item);
         }
     }
 }
 
 [HarmonyPatch(typeof(NTreasureRoomRelicCollection), nameof(NTreasureRoomRelicCollection._Ready))]
-        [BaseLib.Utils.Pool(typeof(MegaCrit.Sts2.Core.Models.RelicPools.SharedRelicPool))]
-    public class ExtraRelicUIPatch_Ready
+public class ExtraRelicUIPatch_Ready
 {
     private static void Postfix(NTreasureRoomRelicCollection __instance, ref List<NTreasureRoomRelicHolder> ____multiplayerHolders)
     {
@@ -92,8 +68,7 @@ namespace RelicChoice.Patches;
 }
 
 [HarmonyPatch(typeof(NTreasureRoomRelicCollection), nameof(NTreasureRoomRelicCollection.InitializeRelics))]
-        [BaseLib.Utils.Pool(typeof(MegaCrit.Sts2.Core.Models.RelicPools.SharedRelicPool))]
-    public class ExtraRelicUIPatch_Initialize
+public class ExtraRelicUIPatch_Initialize
 {
     private static void Postfix(NTreasureRoomRelicCollection __instance, List<NTreasureRoomRelicHolder> ____holdersInUse)
     {
@@ -126,27 +101,38 @@ namespace RelicChoice.Patches;
 [HarmonyPatch]
 public static class CombatRewardRelicChoicePatch
 {
-    public static bool IsPickingCombatRelic = false;
     public static Dictionary<NRewardsScreen, RelicReward> PendingRelicClaims = new Dictionary<NRewardsScreen, RelicReward>();
     public static Dictionary<Player, bool> ReadyPlayers = new Dictionary<Player, bool>();
 
-    [HarmonyPatch(typeof(NRewardsScreen), nameof(NRewardsScreen.SetRewards))]
-    [HarmonyPrefix]
-    public static void SetRewards_Prefix(NRewardsScreen __instance, ref IEnumerable<Reward> rewards, IRunState ____runState)
+    // Sets whose relic reward we stripped, keyed by the set (shared list instance on the backend).
+    public static Dictionary<RewardsSet, RelicReward> StrippedSets = new Dictionary<RewardsSet, RelicReward>();
+
+    // v0.107.1: NRewardsScreen.SetRewards no longer exists; rewards live in RewardsSet.Rewards.
+    // Strip the relic reward here because WithRewardsFromRoom runs deterministically on every client for every
+    // player, so multiplayer reward-index sync stays consistent.
+    [HarmonyPatch(typeof(RewardsSet), nameof(RewardsSet.WithRewardsFromRoom))]
+    [HarmonyPostfix]
+    public static void WithRewardsFromRoom_Postfix(RewardsSet __instance, AbstractRoom room)
     {
         if (!RelicChoiceConfig.Instance.EnableAfterElites) return;
+        if (room == null || room.RoomType != RoomType.Elite) return;
 
-        if (____runState.CurrentRoom == null || ____runState.CurrentRoom.RoomType != RoomType.Elite) return;
-
-        var list = rewards.ToList();
-        var relicReward = list.OfType<RelicReward>().FirstOrDefault();
-
+        var relicReward = __instance.Rewards.OfType<RelicReward>().FirstOrDefault();
         if (relicReward != null)
         {
-            list.Remove(relicReward);
-            rewards = list;
+            __instance.Rewards.Remove(relicReward);
+            StrippedSets[__instance] = relicReward;
+        }
+    }
 
+    [HarmonyPatch(typeof(NRewardsScreen), nameof(NRewardsScreen._Ready))]
+    [HarmonyPostfix]
+    public static void Ready_Postfix(NRewardsScreen __instance, RewardsSet ____rewardsSet)
+    {
+        if (____rewardsSet != null && StrippedSets.TryGetValue(____rewardsSet, out var relicReward))
+        {
             PendingRelicClaims[__instance] = relicReward;
+            StrippedSets.Remove(____rewardsSet);
         }
     }
 

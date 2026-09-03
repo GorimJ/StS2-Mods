@@ -1,0 +1,20 @@
+{
+  "CHARACTERTEMPLATE-CHARACTER_TEMPLATE.title": "The Template",
+  "CHARACTERTEMPLATE-CHARACTER_TEMPLATE.titleObject": "The Template",
+  "CHARACTERTEMPLATE-CHARACTER_TEMPLATE.title_plural": "Templates",
+  "CHARACTERTEMPLATE-CHARACTER_TEMPLATE.description": "A placeholder character scaffold.\nReplace this text, the art and the starting deck to make your own character.",
+  "CHARACTERTEMPLATE-CHARACTER_TEMPLATE.pronounObject": "them",
+  "CHARACTERTEMPLATE-CHARACTER_TEMPLATE.pronounSubject": "they",
+  "CHARACTERTEMPLATE-CHARACTER_TEMPLATE.pronounPossessive": "theirs",
+  "CHARACTERTEMPLATE-CHARACTER_TEMPLATE.possessiveAdjective": "their",
+  "CHARACTERTEMPLATE-CHARACTER_TEMPLATE.goldMonologue": "So much gold... and nothing to spend it on.",
+  "CHARACTERTEMPLATE-CHARACTER_TEMPLATE.eventDeathPrevention": "Not yet. Not here.",
+  "CHARACTERTEMPLATE-CHARACTER_TEMPLATE.aromaPrinciple": "Curiosity",
+  "CHARACTERTEMPLATE-CHARACTER_TEMPLATE.cardsModifierTitle": "Template Cards",
+  "CHARACTERTEMPLATE-CHARACTER_TEMPLATE.cardsModifierDescription": "Template cards will now appear in rewards and shops.",
+  "CHARACTERTEMPLATE-CHARACTER_TEMPLATE.banter.alive.endTurnPing": "Your move.",
+  "CHARACTERTEMPLATE-CHARACTER_TEMPLATE.banter.dead.endTurnPing": "...",
+  "CHARACTERTEMPLATE-CHARACTER_TEMPLATE.blurb_1": "Placeholder blurb one.",
+  "CHARACTERTEMPLATE-CHARACTER_TEMPLATE.blurb_2": "Placeholder blurb two.",
+  "CHARACTERTEMPLATE-CHARACTER_TEMPLATE.blurb_3": "Placeholder blurb three."
+}

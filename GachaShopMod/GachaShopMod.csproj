@@ -31,7 +31,7 @@
       <HintPath>$(Sts2Path)\data_sts2_windows_x86_64\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="BaseLib">
-      <HintPath>..\BaseLib-StS2\.godot\mono\temp\bin\Debug\BaseLib.dll</HintPath>
+      <HintPath>$(Sts2Path)\mods\BaseLib.dll</HintPath>
     </Reference>
     <Reference Include="sts2">
       <HintPath>$(Sts2Path)\data_sts2_windows_x86_64\sts2.dll</HintPath>

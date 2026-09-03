@@ -232,7 +232,8 @@ namespace CsvCardAdjustments
             }, System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously);
         }
     }
-    [HarmonyPatch(typeof(Hook), "AfterCardRetained")]
+    // v0.107.1: Hook.AfterCardRetained no longer exists; patch disabled until a replacement hook is found.
+    // [HarmonyPatch(typeof(Hook), "AfterCardRetained")]
     public static class SnakebiteOnRetainedPatch
     {
         public static void Postfix(CombatState combatState, CardModel card, ref System.Threading.Tasks.Task __result)
@@ -297,7 +298,7 @@ namespace CsvCardAdjustments
             {
                 if (enemy.IsAlive)
                 {
-                    await MegaCrit.Sts2.Core.Commands.PowerCmd.Apply<MegaCrit.Sts2.Core.Models.Powers.ConquerorPower>(enemy, 1m, __instance.Owner.Creature, __instance);
+                    await MegaCrit.Sts2.Core.Commands.PowerCmd.Apply<MegaCrit.Sts2.Core.Models.Powers.ConquerorPower>(choiceContext, enemy, 1m, __instance.Owner.Creature, __instance);
                 }
             }
         }
@@ -387,10 +388,10 @@ namespace CsvCardAdjustments
                 .Execute(choiceContext);
             
             List<Soul> souls = Soul.Create(__instance.Owner, 4, __instance.CombatState).ToList();
-            var drawResult = await CardPileCmd.AddGeneratedCardToCombat(souls[0], PileType.Draw, addedByPlayer: true, CardPilePosition.Random);
-            var discardResult = await CardPileCmd.AddGeneratedCardToCombat(souls[1], PileType.Discard, addedByPlayer: true);
-            var handResult = await CardPileCmd.AddGeneratedCardToCombat(souls[2], PileType.Hand, addedByPlayer: true);
-            var exhaustResult = await CardPileCmd.AddGeneratedCardToCombat(souls[3], PileType.Exhaust, addedByPlayer: true);
+            var drawResult = await CardPileCmd.AddGeneratedCardToCombat(souls[0], PileType.Draw, __instance.Owner, CardPilePosition.Random);
+            var discardResult = await CardPileCmd.AddGeneratedCardToCombat(souls[1], PileType.Discard, __instance.Owner);
+            var handResult = await CardPileCmd.AddGeneratedCardToCombat(souls[2], PileType.Hand, __instance.Owner);
+            var exhaustResult = await CardPileCmd.AddGeneratedCardToCombat(souls[3], PileType.Exhaust, __instance.Owner);
             
             CardCmd.PreviewCardPileAdd(new[] { drawResult, discardResult, handResult, exhaustResult });
             MainFile.Logger.Info("[CsvCardAdjustments] Severance upgraded OnPlay: Generated extra Soul into Exhaust pile natively.");
@@ -474,11 +475,12 @@ namespace CsvCardAdjustments
             // Upgraded brings it to 50 via the OnUpgrade hook.
             decimal multiplier = __instance.CurrentUpgradeLevel > 0 ? 40m : 20m; 
             
-            await PowerCmd.Apply<ParryPower>(__instance.Owner.Creature, multiplier, __instance.Owner.Creature, __instance);
+            await PowerCmd.Apply<ParryPower>(choiceContext, __instance.Owner.Creature, multiplier, __instance.Owner.Creature, __instance);
         }
     }
 
-    [HarmonyPatch(typeof(ParryPower), "AfterSovereignBladePlayed")]
+    // v0.107.1: Parry was reworked (ParryPower is now a plain counter); patch disabled.
+    // [HarmonyPatch(typeof(ParryPower), "AfterSovereignBladePlayed")]
     public static class ParryPowerInterceptPatch
     {
         public static bool Prefix(ParryPower __instance, Creature dealer, IEnumerable<DamageResult> damageResults, ref System.Threading.Tasks.Task __result)
@@ -555,7 +557,7 @@ namespace CsvCardAdjustments
                         card.UpgradeInternal();
                         card.FinalizeUpgradeInternal();
                     }
-                    await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, addedByPlayer: true);
+                    await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, __instance.Owner);
                 }
                 MainFile.Logger.Info("[CsvCardAdjustments] Heirloom Hammer upgraded OnPlay: Upgraded selected source and clones.");
             }
@@ -707,7 +709,7 @@ namespace CsvCardAdjustments
                             {
                                 cr.AddExtraReward(player, new MegaCrit.Sts2.Core.Rewards.CardReward(MegaCrit.Sts2.Core.Runs.CardCreationOptions.ForRoom(player, cr.RoomType), 3, player));
                             }
-                            await PowerCmd.Apply<MegaCrit.Sts2.Core.Models.Powers.TheHuntPower>(player.Creature, 1m, player.Creature, __instance);
+                            await PowerCmd.Apply<MegaCrit.Sts2.Core.Models.Powers.TheHuntPower>(choiceContext, player.Creature, 1m, player.Creature, __instance);
                         }
                     }
                 }
@@ -772,7 +774,7 @@ namespace CsvCardAdjustments
                     chosenCard.Owner = allyPlayer;
                 }
 
-                await CardPileCmd.AddGeneratedCardToCombat(chosenCard, PileType.Hand, true, CardPilePosition.Random);
+                await CardPileCmd.AddGeneratedCardToCombat(chosenCard, PileType.Hand, __instance.Owner, CardPilePosition.Random);
             }
         }
     }

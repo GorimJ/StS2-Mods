@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0kmd3wk0pvnp"
-path="res://.godot/imported/FavoredGachaBall.png-e77a0b1ceca4df81fdc3017532c021c7.ctex"
+uid="uid://cn6od0q5tfrwf"
+path="res://.godot/imported/map_marker_char_name.png-ceeeb3a0e351fd568aac6ad59a63f421.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/FavoredGachaBall.png"
-dest_files=["res://.godot/imported/FavoredGachaBall.png-e77a0b1ceca4df81fdc3017532c021c7.ctex"]
+source_file="res://CharacterTemplate/images/charui/map_marker_char_name.png"
+dest_files=["res://.godot/imported/map_marker_char_name.png-ceeeb3a0e351fd568aac6ad59a63f421.ctex"]
 
 [params]
 

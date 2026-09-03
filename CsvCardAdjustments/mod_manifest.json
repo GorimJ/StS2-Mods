@@ -1,13 +1,17 @@
 {
   "id": "CsvCardAdjustments",
   "name": "Card Adjustments",
-  "version": "1.0",
-  "author": "Antigravity",
+  "version": "1.0.0",
+  "author": "Gorim",
   "description": "Overrides card stats dynamically via Harmony.",
   "has_pck": true,
   "has_dll": true,
   "dependencies": [
-    "BaseLib"
+    {
+      "id": "BaseLib",
+      "min_version": "3.4.5"
+    }
   ],
-  "affects_gameplay": true
+  "affects_gameplay": true,
+  "min_game_version": "0.107.1"
 }

@@ -15,6 +15,7 @@ public partial class MainFile : Node
         {
             GD.Print("\n\n--- NEW LAUNCH ---\nInitializing GachaShopMod...\n");
             // 1. Initialize Harmony for patches
+            BaseLib.Utils.CustomLocTableManager.Register("gachashopmod_ui");
             Harmony harmony = new(ModId);
             harmony.PatchAll();
             GD.Print($"{ModId} - Harmony Patches Applied.");
@@ -32,7 +33,7 @@ public partial class MainFile : Node
         new Relics.AdroitGachaBallRelic();
         new Relics.CloneGachaBallRelic();
         new Relics.CorruptedGachaBallRelic();
-        new Relics.FavoredGachaBallRelic();
+        new Relics.InkyGachaBallRelic();
         new Relics.GlamGachaBallRelic();
         new Relics.GoopyGachaBallRelic();
         new Relics.ImbuedGachaBallRelic();

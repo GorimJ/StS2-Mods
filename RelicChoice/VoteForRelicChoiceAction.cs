@@ -30,8 +30,7 @@ public struct NetVoteForRelicChoiceAction : INetAction, IPacketSerializable
     }
 }
 
-        [BaseLib.Utils.Pool(typeof(MegaCrit.Sts2.Core.Models.RelicPools.SharedRelicPool))]
-    public class VoteForRelicChoiceAction : GameAction
+public class VoteForRelicChoiceAction : GameAction
 {
     private Player _player;
 

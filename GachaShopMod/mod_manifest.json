@@ -2,12 +2,16 @@
   "id": "GachaShopMod",
   "name": "Gacha Shop Experimental",
   "version": "1.0.0",
-  "author": "Antigravity",
+  "author": "Gorim",
   "description": "Adds a Gacha Machine to the shop for random powerful enchantments.",
   "has_pck": true,
   "has_dll": true,
   "dependencies": [
-    "BaseLib"
+    {
+      "id": "BaseLib",
+      "min_version": "3.4.5"
+    }
   ],
-  "affects_gameplay": true
+  "affects_gameplay": true,
+  "min_game_version": "0.107.1"
 }

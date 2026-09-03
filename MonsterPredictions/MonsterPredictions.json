@@ -1,13 +1,17 @@
 {
-    "id": "MonsterPredictions",
-    "name": "Monster Predictions",
-    "author": "Gorim",
-    "description": "Shows the next two predetermined actions for monsters, accounting for expiring debuffs like Weak.",
-    "version": "1.0.0",
-    "has_pck": false,
-    "has_dll": true,
-    "dependencies": [
-        "BaseLib"
-    ],
-    "affects_gameplay": false
+  "id": "MonsterPredictions",
+  "name": "Monster Predictions",
+  "author": "Gorim",
+  "description": "Shows the next two predetermined actions for monsters, accounting for expiring debuffs like Weak.",
+  "version": "1.0.0",
+  "has_pck": false,
+  "has_dll": true,
+  "dependencies": [
+    {
+      "id": "BaseLib",
+      "min_version": "3.4.5"
+    }
+  ],
+  "affects_gameplay": false,
+  "min_game_version": "0.107.1"
 }

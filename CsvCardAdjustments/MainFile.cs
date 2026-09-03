@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Modding;
@@ -13,35 +14,24 @@ public partial class MainFile : Node
 
     public static void Initialize()
     {
-        try
+        Harmony harmony = new(ModId);
+        int ok = 0, failed = 0;
+        // Patch class-by-class so one card override that no longer matches the game build
+        // doesn't take the whole mod down.
+        foreach (var type in typeof(MainFile).Assembly.GetTypes())
         {
-            Harmony harmony = new(ModId);
-            harmony.PatchAll();
-        }
-        catch (System.Exception ex)
-        {
-            Logger.Info("FATAL HARMONY ERROR: " + ex.ToString());
-            System.IO.File.WriteAllText(@"C:\Users\Gorim\.gemini\antigravity\Slay the Spire 2 Modding\err.txt", ex.ToString() + "\n\n" + ex.InnerException?.ToString());
-        }
-
-        try
-        {
-            var tex = Godot.ResourceLoader.Load<Godot.Texture2D>("res://images/atlases/potion_atlas.png");
-            if (tex != null)
+            if (!type.GetCustomAttributes(typeof(HarmonyPatch), true).Any()) continue;
+            try
             {
-                var img = tex.GetImage();
-                string path = "potion_atlas_raw.png";
-                img.SavePng(path);
-                Logger.Info($"Successfully extracted full potion atlas to {path}!");
+                harmony.CreateClassProcessor(type).Patch();
+                ok++;
             }
-            else
+            catch (System.Exception ex)
             {
-                Logger.Info($"Failed to find res://images/atlases/potion_atlas.png");
+                failed++;
+                Logger.Error($"Skipped patch class {type.Name}: {ex.Message}");
             }
         }
-        catch (System.Exception ex)
-        {
-            Logger.Info($"Failed to extract full potion atlas: {ex}");
-        }
+        Logger.Info($"Applied {ok} patch classes, skipped {failed}.");
     }
 }

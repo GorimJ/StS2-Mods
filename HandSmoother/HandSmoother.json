@@ -1,13 +1,17 @@
 {
-    "id": "HandSmoother",
-    "name": "Hand Smoother",
-    "author": "Gorim",
-    "description": "Smooths opening hand draw ratio to match deck.",
-    "version": "1.0.0",
-    "has_pck": false,
-    "has_dll": true,
-    "dependencies": [
-        "BaseLib"
-    ],
-    "affects_gameplay": true
+  "id": "HandSmoother",
+  "name": "Hand Smoother",
+  "author": "Gorim",
+  "description": "Smooths opening hand draw ratio to match deck.",
+  "version": "1.0.0",
+  "has_pck": false,
+  "has_dll": true,
+  "dependencies": [
+    {
+      "id": "BaseLib",
+      "min_version": "3.4.5"
+    }
+  ],
+  "affects_gameplay": true,
+  "min_game_version": "0.107.1"
 }

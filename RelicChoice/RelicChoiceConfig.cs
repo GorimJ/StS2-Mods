@@ -6,8 +6,7 @@ using MegaCrit.Sts2.Core.Modding;
 
 namespace RelicChoice;
 
-        [BaseLib.Utils.Pool(typeof(MegaCrit.Sts2.Core.Models.RelicPools.SharedRelicPool))]
-    public class RelicChoiceConfig
+public class RelicChoiceConfig
 {
     private static readonly string ConfigPath = ProjectSettings.GlobalizePath("user://modded/RelicChoiceConfig.json");
     

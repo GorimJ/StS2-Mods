@@ -21,9 +21,12 @@ namespace MonsterPredictions
         {
             get 
             {
-                string exeDir = System.IO.Path.GetDirectoryName(Godot.OS.GetExecutablePath());
-                string modsDir = System.IO.Path.Combine(exeDir, "mods");
-                return System.IO.Path.Combine(modsDir, "MonsterPredictions_Config.json");
+                // v0.107.1: the game scans every .json in mods/ as a manifest, so keep the config out of there.
+                // Lives in %APPDATA%\SlayTheSpire2\modded\ alongside RelicChoiceConfig.json.
+                string path = Godot.ProjectSettings.GlobalizePath("user://modded/MonsterPredictions_Config.json");
+                string dir = System.IO.Path.GetDirectoryName(path);
+                if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) Directory.CreateDirectory(dir);
+                return path;
             }
         }
 

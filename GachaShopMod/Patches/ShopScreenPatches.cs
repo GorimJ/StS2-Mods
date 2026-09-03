@@ -46,7 +46,7 @@ public static class ShopScreenPatches
         gachaRect.MouseEntered += () => 
         {
             gachaRect.Scale = new Vector2(1.1f, 1.1f);
-            var titleStr = new MegaCrit.Sts2.Core.Localization.LocString("ui", "GACHA_MACHINE_TITLE");
+            var titleStr = new MegaCrit.Sts2.Core.Localization.LocString("gachashopmod_ui", "GACHA_MACHINE_TITLE");
             var titleTip = new MegaCrit.Sts2.Core.HoverTips.HoverTip(titleStr, "A shiny new gacha machine. Pull the lever [RB] and get a random enchantment ball. Price increases by 25 for this shop.", null);
             MegaCrit.Sts2.Core.Nodes.HoverTips.NHoverTipSet.CreateAndShow(gachaRect, titleTip, MegaCrit.Sts2.Core.HoverTips.HoverTipAlignment.Left);
         };
