@@ -1,0 +1,17 @@
+{
+  "id": "RelicChoice",
+  "name": "Relic Choice",
+  "version": "1.1.0",
+  "author": "Gorim",
+  "description": "Extra relic choices in treasure rooms, a relic pick after elites, and Ticket relics that turn into your character's own relics.",
+  "has_pck": true,
+  "has_dll": true,
+  "dependencies": [
+    {
+      "id": "BaseLib",
+      "min_version": "3.4.5"
+    }
+  ],
+  "affects_gameplay": true,
+  "min_game_version": "0.107.1"
+}
