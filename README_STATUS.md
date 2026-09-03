@@ -18,8 +18,9 @@ console (backtick) with 20-odd workshop mods also loaded:
 Committed as `2ea487e` on `main` (not pushed).
 
 ## Known rough edges / next steps
-1. **RelicChoice layout**: extra relic holders in the treasure room are centred on the
-   singleplayer holder's X, so the group sits left of screen centre. Cosmetic.
+1. **RelicChoice layout**: the treasure-room holders were sitting left of centre. Reworked
+   (02:09) to centre on the mean X of the vanilla multiplayer holders and reuse their
+   spacing; compiled and deployed but **not yet seen in-game** – check a treasure room.
 2. **RelicChoice tickets** pick class relics by `OrderBy(Id)` index; the descriptions name
    specific relics, which will drift as MegaCrit adds relics. Consider naming the relic
    explicitly per character instead of by index.

@@ -51,18 +51,26 @@ public class ExtraRelicSpawnPatch
 [HarmonyPatch(typeof(NTreasureRoomRelicCollection), nameof(NTreasureRoomRelicCollection._Ready))]
 public class ExtraRelicUIPatch_Ready
 {
+    // Layout of the vanilla multiplayer holders, captured before we add extras.
+    public static float CenterX = 0f;
+    public static float Spacing = 280f;
+
     private static void Postfix(NTreasureRoomRelicCollection __instance, ref List<NTreasureRoomRelicHolder> ____multiplayerHolders)
     {
+        if (____multiplayerHolders == null || ____multiplayerHolders.Count == 0) return;
+
+        var xs = ____multiplayerHolders.Select(h => h.Position.X).OrderBy(x => x).ToList();
+        CenterX = xs.Average();
+        if (xs.Count > 1) Spacing = (xs[xs.Count - 1] - xs[0]) / (xs.Count - 1);
+
         // Add additional holders for extra relics if needed.
-        if (____multiplayerHolders != null && ____multiplayerHolders.Count > 0)
+        int holdersToCreate = System.Math.Max(4, RelicChoiceConfig.Instance.AdditionalRelics);
+        var template = ____multiplayerHolders[0];
+        for (int i = 0; i < holdersToCreate; i++)
         {
-            int holdersToCreate = System.Math.Max(4, RelicChoiceConfig.Instance.AdditionalRelics);
-            var template = ____multiplayerHolders[0];
-            for (int i = 0; i < holdersToCreate; i++) {
-                var extraHolder = (NTreasureRoomRelicHolder)template.Duplicate();
-                template.GetParent().AddChild(extraHolder);
-                ____multiplayerHolders.Add(extraHolder);
-            }
+            var extraHolder = (NTreasureRoomRelicHolder)template.Duplicate();
+            template.GetParent().AddChild(extraHolder);
+            ____multiplayerHolders.Add(extraHolder);
         }
     }
 }
@@ -72,28 +80,19 @@ public class ExtraRelicUIPatch_Initialize
 {
     private static void Postfix(NTreasureRoomRelicCollection __instance, List<NTreasureRoomRelicHolder> ____holdersInUse)
     {
-        if (____holdersInUse != null && ____holdersInUse.Count > 0)
+        if (____holdersInUse == null || ____holdersInUse.Count == 0) return;
+
+        var visibleHolders = ____holdersInUse.Where(h => h.Visible).ToList();
+        if (visibleHolders.Count == 0) return;
+
+        // Re-centre the visible holders on the vanilla layout's centre, shrinking the gap when there are many.
+        float spacing = System.Math.Min(ExtraRelicUIPatch_Ready.Spacing, 1500f / System.Math.Max(1, visibleHolders.Count));
+        for (int i = 0; i < visibleHolders.Count; i++)
         {
-            var visibleHolders = new List<NTreasureRoomRelicHolder>();
-            foreach (var holder in ____holdersInUse)
-            {
-                if (holder.Visible) visibleHolders.Add(holder);
-            }
-
-            if (visibleHolders.Count > 0)
-            {
-                float centerX = __instance.SingleplayerRelicHolder.Position.X;
-                float spacing = 280f;
-
-                for (int i = 0; i < visibleHolders.Count; i++)
-                {
-                    var holder = visibleHolders[i];
-                    Vector2 pos = holder.Position;
-                    float offsetX = (i - (visibleHolders.Count - 1) / 2.0f) * spacing;
-                    pos.X = centerX + offsetX;
-                    holder.Position = pos;
-                }
-            }
+            var holder = visibleHolders[i];
+            Vector2 pos = holder.Position;
+            pos.X = ExtraRelicUIPatch_Ready.CenterX + (i - (visibleHolders.Count - 1) / 2.0f) * spacing;
+            holder.Position = pos;
         }
     }
 }
