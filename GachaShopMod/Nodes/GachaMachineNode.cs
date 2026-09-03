@@ -16,6 +16,7 @@ public partial class GachaMachineNode : Control
     private NMerchantRoom _shopRoom;
     private int currentCost = 75;
     private int costIncrement = 25;
+    private int _pullsThisShop = 0;
     private MegaCrit.Sts2.addons.mega_text.MegaLabel costLabel;
     
     public GachaMachineNode(NMerchantRoom room)
@@ -262,9 +263,14 @@ public partial class GachaMachineNode : Control
             allGachaRelics = GachaShopMod.Relics.GachaLootTable.Pool;
         }
         
-        // Use System.Random instead of RunState.Rng to avoid Multiplayer Deterministic Desyncs
-        var random = new System.Random();
-        var randomId = allGachaRelics[random.Next(allGachaRelics.Length)];
+        // Deterministic per run seed + player slot + floor + pull number, so every client (and a replay)
+        // rolls the same ball. Mirrors the game's own Rng(player, id, mixin) convention.
+        var runState = player.RunState;
+        uint mixin = (uint)(runState.TotalFloor * 101 + _pullsThisShop);
+        _pullsThisShop++;
+        var rng = new MegaCrit.Sts2.Core.Random.Rng(
+            (uint)((int)runState.Rng.Seed + runState.GetPlayerSlotIndex(player)) + mixin, "GachaShopMod");
+        var randomId = allGachaRelics[rng.NextInt(allGachaRelics.Length)];
         
         Type relicType = Type.GetType($"GachaShopMod.Relics.{randomId}");
         if (relicType != null)

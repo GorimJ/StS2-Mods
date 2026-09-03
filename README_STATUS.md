@@ -1,4 +1,4 @@
-# STS2Modding – status (overnight rework, 3 Sep 2026)
+# STS2Modding – status (3 Sep 2026)
 
 Game: **v0.107.1** (build 2026-06-18). BaseLib: **v3.4.5** (downloaded from GitHub releases
 into `mods\`). All of these were rebuilt against that pair, deployed to
@@ -15,7 +15,9 @@ console (backtick) with 20-odd workshop mods also loaded:
 | CharacterTemplate  | New – official template scaffold, see `CharacterTemplate/HOWTO_NEW_CHARACTER.md` | "The Template" in character select, starts a run, fights |
 | Buxom Mod Port     | Untouched (its own git repo). Needs porting onto the template layout.  | – |
 
-Committed as `2ea487e` on `main` (not pushed).
+Later the same day: RelicChoice 1.1.0 (tickets resolve per character, description names the exact relic;
+Gorim play-tested a full run OK), GachaShopMod pulls now seeded from run seed + player slot + floor + pull
+number, and **all mods migrated to the ModTemplate layout** (`mods\{Id}\` subfolders, NuGet BaseLib). Pushed to origin.
 
 ## Known rough edges / next steps
 1. **RelicChoice layout**: the treasure-room holders were sitting left of centre. Reworked
@@ -32,14 +34,10 @@ Committed as `2ea487e` on `main` (not pushed).
    beta branch may resolve it.
 5. **CsvCardAdjustments**: Parry override and Snakebite-on-retain are off. Old bugs in
    `bug_tracker.md` (Tag Team, Particle Wall/Afterlife targeting) untouched.
-6. `RelicChoice/` and `MultiplayerPotions/` still carry `decompiled_sts2/` +
-   `decompiled_baselib/` folders **in git** (stale, ~thousands of files). Delete and
-   `git rm` them; the fresh decompile lives in `decompile_v0107/` (ignored).
-7. `GachaShopMod_Backup_Stable/`, `MonsterPredictions_StableBackup/`, `MultiplayerPotions/`
-   are superseded – safe to delete.
-8. Migrate the other mods to the template layout (NuGet BaseLib, `mods\{Id}\` subfolder,
-   ModAnalyzers) when you next touch them; `CharacterTemplate/HOWTO_NEW_CHARACTER.md` §0
-   lists the differences.
+6. Done: stale decompiled_* folders, backup snapshots and MultiplayerPotions removed.
+7. GachaShopMod multiplayer: the pull RNG is now deterministic, but the flow (LoseGold →
+   RewardSynchronizer.SyncLocalGoldLost / SyncLocalObtainedRelic) is still untested with two clients.
+8. Done: every mod is on the template layout. Only the Buxom port still uses the old one.
 
 ## Tooling used tonight (all in-repo, git-ignored)
 * `_runner/` – `start_runner.bat` launches a PowerShell loop that executes
