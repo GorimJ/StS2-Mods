@@ -1,0 +1,15 @@
+{
+  "id": "SexFixes",
+  "name": "Lewd Events Expansion - Fixes",
+  "author": "Gorim",
+  "description": "Companion patches for xianyzm's Lewd Events Expansion (mod id Sex): shows relic/potion hover tips on event options that grant them, and wires up the unused second-drink page in Milk Giver. Does nothing if the Sex mod is not loaded.",
+  "version": "1.0.0",
+  "has_pck": false,
+  "has_dll": true,
+  "dependencies": [
+    { "id": "BaseLib", "min_version": "3.4.5" },
+    { "id": "Sex", "min_version": "0.0.9" }
+  ],
+  "affects_gameplay": false,
+  "min_game_version": "0.107.1"
+}

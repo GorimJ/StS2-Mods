@@ -51,3 +51,13 @@ number, and **all mods migrated to the ModTemplate layout** (`mods\{Id}\` subfol
 
 ## Workshop mod that was in `mods\`
 `NSFW-Event` (.json/.pck) was moved to `mods_disabled\` for testing and moved back at the end.
+
+## 2026-09-04 (overnight, Cowork)
+* **Workshop NSFW text work**: Lwed_spire_2's 199 changed keys translated into `%APPDATA%\SlayTheSpire2\localization_override\eng\`;
+  xianyzm's event pack ("Sex") English-polished, audited against its decompiled code, hidden costs/odds written into
+  option text, repacked as local `mods\Sex\` (overrides the delisted Workshop copy). Backup + final loc in `_runner\loc_work\`.
+* **SexFixes** (new, this repo): companion mod for the Sex pack — hover tips on relic/potion options and the unused
+  Milk Giver second-drink page, via one prefix on `EventModel.SetEventState`. Built clean, deployed, NOT yet seen in-game.
+* NSFW-Event parked (manifests renamed `.parked` in both `mods\` and workshop 3765802910) while Lwed's text is tested.
+* Ovelle White Edition is obsolete (main 0.53 has the CGs) — unsubscribe. Maoyu needs beta 0.111 — unsubscribed, waiting.
+* `docs/research-2026-09/` + `docs/BUXOM_BUILD_PLAN.md`: modding-scene survey (EN/CN, animation/AI) and the phased Buxom plan.
