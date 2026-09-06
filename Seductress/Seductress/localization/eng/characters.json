@@ -1,0 +1,20 @@
+{
+  "SEDUCTRESS-SEDUCTRESS.title": "The Seductress",
+  "SEDUCTRESS-SEDUCTRESS.titleObject": "The Seductress",
+  "SEDUCTRESS-SEDUCTRESS.title_plural": "Seductresses",
+  "SEDUCTRESS-SEDUCTRESS.description": "Engine spike build.\nHer health bar reads as Arousal, and filling it does not kill her.",
+  "SEDUCTRESS-SEDUCTRESS.pronounObject": "her",
+  "SEDUCTRESS-SEDUCTRESS.pronounSubject": "she",
+  "SEDUCTRESS-SEDUCTRESS.pronounPossessive": "hers",
+  "SEDUCTRESS-SEDUCTRESS.possessiveAdjective": "her",
+  "SEDUCTRESS-SEDUCTRESS.goldMonologue": "So much gold, and nothing here worth buying.",
+  "SEDUCTRESS-SEDUCTRESS.eventDeathPrevention": "Not finished with me yet.",
+  "SEDUCTRESS-SEDUCTRESS.aromaPrinciple": "Appetite",
+  "SEDUCTRESS-SEDUCTRESS.cardsModifierTitle": "Seductress Cards",
+  "SEDUCTRESS-SEDUCTRESS.cardsModifierDescription": "Seductress cards will now appear in rewards and shops.",
+  "SEDUCTRESS-SEDUCTRESS.banter.alive.endTurnPing": "Your turn.",
+  "SEDUCTRESS-SEDUCTRESS.banter.dead.endTurnPing": "...",
+  "SEDUCTRESS-SEDUCTRESS.blurb_1": "Spike build. Numbers are provisional.",
+  "SEDUCTRESS-SEDUCTRESS.blurb_2": "Arousal rises. It does not kill you.",
+  "SEDUCTRESS-SEDUCTRESS.blurb_3": "Five Lust ends the run."
+}

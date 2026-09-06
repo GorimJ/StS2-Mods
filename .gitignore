@@ -62,3 +62,6 @@ decompile_baselib_345/
 _runner/
 GachaShopMod/build_output/
 BuxomModPort_temp.pck
+
+# PoC character mod - contains sprites extracted from a third-party game, do not publish
+SpriteCharTest/
