@@ -18,7 +18,7 @@ public class Guard : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Guard",
-        "Gain {Block} [gold]Block[/gold].");
+        "Gain {Block:diff()} [gold]Block[/gold].");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

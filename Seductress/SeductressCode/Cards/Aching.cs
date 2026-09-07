@@ -25,7 +25,7 @@ public class Aching : LustCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Aching",
-        "Playable: gain {Energy:energyIcons()} this turn. Lose {HpLoss} HP.");
+        "Playable: gain {Energy:energyIcons()} this turn. Lose {HpLoss:diff()} HP.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

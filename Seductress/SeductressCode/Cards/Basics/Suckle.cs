@@ -32,7 +32,7 @@ public class Suckle : SeductressCard
     ];
 
     public override List<(string, string)>? Localization => new CardLoc(
-        "Suckle", "Mouth. Deal {Damage} damage. Gain {Block} [gold]Block[/gold].");
+        "Suckle", "Mouth. Deal {Damage:diff()} damage. Gain {Block:diff()} [gold]Block[/gold].");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

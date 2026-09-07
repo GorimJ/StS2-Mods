@@ -33,7 +33,7 @@ public class Ward : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Ward",
-        "Gain {Block} [gold]Block[/gold].\n{T1} Sigil: reflect 5 damage to attackers this turn.\n{T2} Sigils: gain {TierBlock} [gold]Block[/gold] instead.\n{T3} Sigils: reflect 10 instead.\n{T4} Sigils: repeats 1 time.");
+        "Gain {Block:diff()} [gold]Block[/gold].\n{T1} Sigil: reflect 5 damage to attackers this turn.\n{T2} Sigils: gain {TierBlock:diff()} [gold]Block[/gold] instead.\n{T3} Sigils: reflect 10 instead.\n{T4} Sigils: repeats 1 time.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

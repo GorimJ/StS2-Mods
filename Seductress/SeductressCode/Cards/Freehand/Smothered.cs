@@ -31,7 +31,7 @@ public class Smothered : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Smothered",
-        "Glazed. Deal {Damage} damage. Gain {Block} [gold]Block[/gold].\nGain {NextTurnBlock} [gold]Block[/gold] next turn.");
+        "Glazed. Deal {Damage:diff()} damage. Gain {Block:diff()} [gold]Block[/gold].\nGain {NextTurnBlock:diff()} [gold]Block[/gold] next turn.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

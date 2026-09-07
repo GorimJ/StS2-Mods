@@ -32,7 +32,7 @@ public class Grind : SeductressCard
     ];
 
     public override List<(string, string)>? Localization => new CardLoc(
-        "Grind", "Ass. Deal {Damage} damage. Gain [gold]Block[/gold] equal to the damage dealt. Lose {HpLoss} HP.");
+        "Grind", "Ass. Deal {Damage:diff()} damage. Gain [gold]Block[/gold] equal to the damage dealt. Lose {HpLoss:diff()} HP.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

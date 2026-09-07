@@ -28,7 +28,7 @@ public class Thighplay : SeductressCard
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(9m, ValueProp.Move)];
 
     public override List<(string, string)>? Localization => new CardLoc(
-        "Thighplay", "Glazed. Deal {Damage} damage.\nYour next Ass or Pussy card costs 1 less.");
+        "Thighplay", "Glazed. Deal {Damage:diff()} damage.\nYour next Ass or Pussy card costs 1 less.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

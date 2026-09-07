@@ -23,7 +23,7 @@ public class Restraint : SeductressCard
     protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(4m, ValueProp.Move)];
 
     public override List<(string, string)>? Localization => new CardLoc(
-        "Restraint", "While your HP is above half, gain {Block} [gold]Block[/gold] at the start of your turn.");
+        "Restraint", "While your HP is above half, gain {Block:diff()} [gold]Block[/gold] at the start of your turn.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

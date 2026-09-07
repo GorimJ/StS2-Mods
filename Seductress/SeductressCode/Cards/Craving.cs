@@ -22,7 +22,7 @@ public class Craving : LustCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Craving",
-        "Playable: draw {Cards}. Lose {HpLoss} HP.");
+        "Playable: draw {Cards:diff()}. Lose {HpLoss:diff()} HP.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

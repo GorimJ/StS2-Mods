@@ -36,7 +36,7 @@ public class LegLock : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Leg Lock",
-        "Gain {Block} [gold]Block[/gold]. Apply 1 [gold]Vulnerable[/gold] and 1 Leg-Locked.\n{T1} Sigil: also apply 1 [gold]Debilitate[/gold].\n{T2} Sigils: apply 2 Leg-Locked and 2 [gold]Vulnerable[/gold].\n{T3} Sigils: apply 2 [gold]Debilitate[/gold] instead.\n{T4} Sigils: apply all of it to ALL enemies.");
+        "Gain {Block:diff()} [gold]Block[/gold]. Apply 1 [gold]Vulnerable[/gold] and 1 Leg-Locked.\n{T1} Sigil: also apply 1 [gold]Debilitate[/gold].\n{T2} Sigils: apply 2 Leg-Locked and 2 [gold]Vulnerable[/gold].\n{T3} Sigils: apply 2 [gold]Debilitate[/gold] instead.\n{T4} Sigils: apply all of it to ALL enemies.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

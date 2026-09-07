@@ -36,7 +36,7 @@ public class RitualMark : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Ritual Mark",
-        "Your Pussy cards deal {Bonus} additional damage.\n{T1} Sigil: your Sigils deal 1 additional damage.\n{T2} Sigils: Pussy cards deal {TierBonus} instead.\n{T3} Sigils: Sigils deal 4 too.\n{T4} Sigils: both bonuses become +1 per Sigil.");
+        "Your Pussy cards deal {Bonus:diff()} additional damage.\n{T1} Sigil: your Sigils deal 1 additional damage.\n{T2} Sigils: Pussy cards deal {TierBonus:diff()} instead.\n{T3} Sigils: Sigils deal 4 too.\n{T4} Sigils: both bonuses become +1 per Sigil.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

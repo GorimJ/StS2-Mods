@@ -23,7 +23,7 @@ public class SecondWind : SeductressCard
     protected override IEnumerable<DynamicVar> CanonicalVars => [new HealVar(8m)];
 
     public override List<(string, string)>? Localization => new CardLoc(
-        "Second Wind", "Heal {Heal}.");
+        "Second Wind", "Heal {Heal:diff()}.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

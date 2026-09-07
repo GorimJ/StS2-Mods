@@ -26,7 +26,7 @@ public class ShowOff : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Show Off",
-        "Glazed. Gain 1 [gold]Vulnerable[/gold].\nDeal {Damage} damage to ALL enemies and apply 1 [gold]Vulnerable[/gold].");
+        "Glazed. Gain 1 [gold]Vulnerable[/gold].\nDeal {Damage:diff()} damage to ALL enemies and apply 1 [gold]Vulnerable[/gold].");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

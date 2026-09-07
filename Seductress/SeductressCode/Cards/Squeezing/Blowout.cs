@@ -24,7 +24,7 @@ public class Blowout : SeductressCard
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6m, ValueProp.Move)];
 
     public override List<(string, string)>? Localization => new CardLoc(
-        "Blowout", "Ass. This card loses 50% of your Ass instead of 10%.\nDeal {Damage} damage four times.");
+        "Blowout", "Ass. This card loses 50% of your Ass instead of 10%.\nDeal {Damage:diff()} damage four times.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

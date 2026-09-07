@@ -21,7 +21,7 @@ public class Pump : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Pump",
-        "Continuing. Deal {Damage} damage.");
+        "Continuing. Deal {Damage:diff()} damage.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

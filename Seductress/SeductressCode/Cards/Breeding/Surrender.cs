@@ -35,7 +35,7 @@ public class Surrender : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Surrender",
-        "Lose {HpLoss} HP. Draw 1, plus 1 per Climax this combat.\n{T1} Sigil: gain {Block} [gold]Block[/gold].\n{T2} Sigils: draw 2 plus per Climax.\n{T3} Sigils: gain {TierBlock} [gold]Block[/gold] instead.\n{T4} Sigils: lose no HP.");
+        "Lose {HpLoss:diff()} HP. Draw 1, plus 1 per Climax this combat.\n{T1} Sigil: gain {Block:diff()} [gold]Block[/gold].\n{T2} Sigils: draw 2 plus per Climax.\n{T3} Sigils: gain {TierBlock:diff()} [gold]Block[/gold] instead.\n{T4} Sigils: lose no HP.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

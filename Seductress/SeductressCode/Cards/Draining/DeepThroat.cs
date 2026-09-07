@@ -30,7 +30,7 @@ public class DeepThroat : SeductressCard
     ];
 
     public override List<(string, string)>? Localization => new CardLoc(
-        "Deep Throat", "Mouth. Deep Throat.\nDeal {Damage} damage. Lose {HpLoss} HP. Draw 1.");
+        "Deep Throat", "Mouth. Deep Throat.\nDeal {Damage:diff()} damage. Lose {HpLoss:diff()} HP. Draw 1.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

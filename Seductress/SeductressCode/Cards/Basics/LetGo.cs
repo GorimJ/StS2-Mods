@@ -25,7 +25,7 @@ public class LetGo : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Let Go",
-        "Lose {HpLoss} HP. Draw {Cards}.");
+        "Lose {HpLoss:diff()} HP. Draw {Cards:diff()}.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

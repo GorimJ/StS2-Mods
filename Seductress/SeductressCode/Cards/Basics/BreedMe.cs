@@ -40,7 +40,7 @@ public class BreedMe : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Breed Me!",
-        "Pussy. Deal {Damage} damage. Kills from this card give 5 ml extra.\n{T1} Sigil: intake from this card's kills is doubled.\n{T2} Sigils: deal {TierDamage} instead.\n{T3} Sigils: tripled instead.\n{T4} Sigils: repeats 2 times.");
+        "Pussy. Deal {Damage:diff()} damage. Kills from this card give 5 ml extra.\n{T1} Sigil: intake from this card's kills is doubled.\n{T2} Sigils: deal {TierDamage:diff()} instead.\n{T3} Sigils: tripled instead.\n{T4} Sigils: repeats 2 times.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

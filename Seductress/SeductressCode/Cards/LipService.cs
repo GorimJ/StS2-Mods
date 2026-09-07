@@ -22,7 +22,7 @@ public class LipService : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Lip Service",
-        "Mouth. Deal {Damage} damage.");
+        "Mouth. Deal {Damage:diff()} damage.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

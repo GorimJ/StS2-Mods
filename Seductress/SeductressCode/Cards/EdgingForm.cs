@@ -22,7 +22,7 @@ public class EdgingForm : SeductressCard
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Ml", 1m)];
 
     public override List<(string, string)>? Localization => new CardLoc(
-        "Edging Form", "Whenever you play an Attack, gain {Ml} ml in the hole that Attack used.");
+        "Edging Form", "Whenever you play an Attack, gain {Ml:diff()} ml in the hole that Attack used.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

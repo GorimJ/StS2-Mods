@@ -26,7 +26,7 @@ public class Abandon : SeductressCard
     protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(5)];
 
     public override List<(string, string)>? Localization => new CardLoc(
-        "Abandon", "Climax immediately. Draw {Cards}.");
+        "Abandon", "Climax immediately. Draw {Cards:diff()}.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

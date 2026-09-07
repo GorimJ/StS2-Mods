@@ -30,7 +30,7 @@ public class BallsDeep : SeductressCard
     ];
 
     public override List<(string, string)>? Localization => new CardLoc(
-        "Balls Deep", "Mouth. Deep Throat.\nDeal {Damage} damage. Lose {HpLoss} HP.\nPut a card from your discard pile on top of your draw pile. If it is a different Mouth card, put it into your hand instead.");
+        "Balls Deep", "Mouth. Deep Throat.\nDeal {Damage:diff()} damage. Lose {HpLoss:diff()} HP.\nPut a card from your discard pile on top of your draw pile. If it is a different Mouth card, put it into your hand instead.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

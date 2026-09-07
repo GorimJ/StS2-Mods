@@ -23,7 +23,7 @@ public class Afterglow : SeductressCard
     protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(15m, ValueProp.Move)];
 
     public override List<(string, string)>? Localization => new CardLoc(
-        "Afterglow", "Whenever you Climax, gain {Block} [gold]Block[/gold] and draw 2.");
+        "Afterglow", "Whenever you Climax, gain {Block:diff()} [gold]Block[/gold] and draw 2.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

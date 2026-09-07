@@ -38,7 +38,7 @@ public class Consummate : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Consummate",
-        "Exhaust a Sigil for this combat: gain {Energy:energyIcons()} and draw {Cards}.\n{T1} Sigil: gain {Block} [gold]Block[/gold].\n{T2} Sigils: gain {TierEnergy:energyIcons()} instead.\n{T3} Sigils: gain {TierBlock} [gold]Block[/gold] instead.\n{T4} Sigils: does not exhaust a Sigil.");
+        "Exhaust a Sigil for this combat: gain {Energy:energyIcons()} and draw {Cards:diff()}.\n{T1} Sigil: gain {Block:diff()} [gold]Block[/gold].\n{T2} Sigils: gain {TierEnergy:energyIcons()} instead.\n{T3} Sigils: gain {TierBlock:diff()} [gold]Block[/gold] instead.\n{T4} Sigils: does not exhaust a Sigil.");
 
     /// <summary>
     /// Unplayable with no Sigil left to spend — unless tier 4, where it no longer needs one.

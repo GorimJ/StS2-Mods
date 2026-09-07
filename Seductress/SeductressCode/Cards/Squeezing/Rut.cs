@@ -28,7 +28,7 @@ public class Rut : SeductressCard
     ];
 
     public override List<(string, string)>? Localization => new CardLoc(
-        "Rut", "Ass. Deal {Damage} damage three times. Lose {HpLoss} HP.");
+        "Rut", "Ass. Deal {Damage:diff()} damage three times. Lose {HpLoss:diff()} HP.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
