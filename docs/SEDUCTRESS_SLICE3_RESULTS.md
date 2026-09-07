@@ -141,6 +141,34 @@ final art. The tooltip *icon* is a plain texture and cannot be tinted the same w
 lightning-coloured. And the orb sync's shrink path (capacity dropping when a Sigil is exhausted) is
 **built but never run** — no testing this session.
 
+### [Claude-Code] Tiered damage numbers get no modifier preview
+
+`DamageVar.UpdateCardPreview` runs `Hook.ModifyDamage` over the registered `Damage` var only, so
+the number on a card folds in Strength, Weak and enchantments. The tier-swapped values —
+`{TierDamage}` on *Claim*, *Take Him In* and *Breed Me!* — are plain `DynamicVar`s, so they display
+raw.
+
+At 3+ Sigils with any damage modifier up, those cards therefore **display an unmodified tier number
+while dealing a modified one**. Purely cosmetic, but it reads exactly like a bug.
+
+Fixable by registering the tier values as `DamageVar`s rather than plain vars, which would give
+them their own preview. Not done — worth doing alongside whatever the design pass decides about
+tier text.
+
+### Open design notes from playtest — not acted on
+
+Both raised by Gorim in play; neither settled, so nothing was changed.
+
+* **Let Go may not belong in the starting deck.** Noted that it is a third non-basic card alongside
+  Breed Me! and Suckle. Consequence worth carrying into the design pass: cutting it leaves the
+  starting deck with **no self-damage at all**, which is the character's blood-magic axis — Climax
+  would become something that only happens *to* you until the first draft, the same gap §4's
+  two-class-card argument was written to close. The deck would drop to a clean 10, matching Ironclad.
+* **Suckle is too plain for a starter** and should engage a mechanic. It came out plain for a
+  structural reason: it is the Mouth half, Skills are untagged so it had to be an Attack, and every
+  mechanic Mouth engages with — Stomach, precum, the spend order, *Gulp* — is unbuilt. Gorim is
+  weighing precum, an Ass card despite earlier reservations, or a third starting card.
+
 ### [Claude-Code] Namespaces are flat
 
 Generated card files all declare `namespace Seductress.SeductressCode.Cards` regardless of which
