@@ -60,10 +60,17 @@ public class SigilOrb : CustomOrbModel
 
     public override bool IncludeInRandomPool => false;
 
+    /// <summary>
+    /// The variables are {Passive} and {Evoke}, and <b>only the smartDescription receives them</b> —
+    /// OrbModel.Description is documented as taking no variables, so a token there prints raw.
+    ///
+    /// Both lines describe the passive rather than the evoke: nothing in the pool evokes a Sigil,
+    /// and §7 rules evoking out as a core loop, so advertising it would be misleading.
+    /// </summary>
     public override List<(string, string)>? Localization => new OrbLoc(
         "Sigil",
-        "At the start of your turn, deal {PassiveAmount} damage to ALL enemies.",
-        "Deal {EvokeAmount} damage to ALL enemies.");
+        "At the start of your turn, deal damage to ALL enemies.",
+        "At the start of your turn, deal {Passive} damage to ALL enemies.");
 
     /// <summary>1, plus whatever <i>Ritual Mark</i> adds to the Sigil passive.</summary>
     public override decimal PassiveVal

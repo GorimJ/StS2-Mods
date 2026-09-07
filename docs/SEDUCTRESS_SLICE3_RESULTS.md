@@ -126,6 +126,16 @@ removes its orb immediately, which is what §7 means by losing the passive until
 has no finishing tag and falls through to Glazed — precisely the leak §6.3a describes, and now
 reproducible rather than hypothetical.
 
+**Confirmed in play** (`docs/spike-screenshots/slice3-sigil-orb-tooltip.png`): the orb renders pink
+with its count, the passive applies 1 at turn start, the 11-card starting deck is dealt with both
+class cards, and the scaffold grants exactly 1 Sigil.
+
+**Bug found and fixed in the same screenshot:** the orb tooltip printed `{EvokeAmount}` raw and
+described the evoke rather than the passive. Orb loc variables are `{Passive}` and `{Evoke}`, and
+**only the smartDescription receives them** — `OrbModel.Description` is documented as taking no
+variables, so a token there prints raw. Both lines now describe the passive, since nothing evokes a
+Sigil. Fixed and compiled; **not yet seen in game**, as the deploy needs a restart.
+
 **Caveats:** `Modulate` multiplies, so the tint darkens as well as colours — a placeholder, not
 final art. The tooltip *icon* is a plain texture and cannot be tinted the same way, so it stays
 lightning-coloured. And the orb sync's shrink path (capacity dropping when a Sigil is exhausted) is
