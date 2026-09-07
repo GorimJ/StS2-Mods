@@ -51,7 +51,12 @@ public abstract class SeductressCard(int cost, CardType type, CardRarity rarity,
 
     /// <summary>
     /// The Ass tag rule (design §6.1): an Ass-tagged attack loses a share of the current Ass and
-    /// converts it into <b>+1 damage per 10 ml lost, on every hit</b>.
+    /// converts it into <b>+1 damage per 1 ml lost, on every hit</b>.
+    ///
+    /// [Gorim 2026-09-07] One-to-one, not the "+1 per 10 ml" §6.1 currently states — 10 ml is
+    /// +1 Strength, 200 ml is +20. At 1:10 the bank never paid off, because Ass leaks per floor
+    /// *and* per Ass attack, so it rarely reaches the 100 ml where the old ratio produced its
+    /// first point.
     ///
     /// Applied as flat per-hit bonus damage rather than a real Strength stack. That is equivalent
     /// for this card — Strength adds to each hit too — and it cannot leak into the rest of the
@@ -69,7 +74,7 @@ public abstract class SeductressCard(int cost, CardType type, CardRarity rarity,
         var actual = milking ? (int)Math.Ceiling(notional / 2.0) : notional;
 
         reservoirs.Ass -= actual;
-        var bonus = notional / 10;
+        var bonus = notional;
         if (actual > 0)
         {
             MainFile.Logger.Info(

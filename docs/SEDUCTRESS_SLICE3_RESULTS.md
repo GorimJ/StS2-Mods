@@ -155,6 +155,37 @@ Fixable by registering the tier values as `DamageVar`s rather than plain vars, w
 them their own preview. Not done — worth doing alongside whatever the design pass decides about
 tier text.
 
+### [Gorim] The Ass rule converts 1 ml to 1 Strength, not 1 per 10 ml
+
+**[Gorim 2026-09-07]** §6.1 states "+1 Strength per 10 ml lost" and works it as 200 ml → +2.
+Changed to **one-to-one**: 10 ml is +1, 200 ml is +20.
+
+**Why.** At 1:10 the bank never paid off. Ass leaks per floor *and* per Ass-tagged attack, so it
+rarely reaches the 100 ml where the old ratio produced its very first point of Strength — the
+archetype's signature mechanic was inert for most of a run.
+
+**Consequence, accepted.** The 10× lands multiplied on the cards that change the drain percentage.
+At 200 ml Ass:
+
+| Card | Drain | Bonus | Result |
+|---|---|---|---|
+| Clench | 10% | +20 | 2 hits of 25 = 50 |
+| Rut | 10% | +20 | 3 hits of 26 = 78 |
+| Overflow | 20% | +40 | 41 to ALL |
+| Blowout | 50% | +100 | 4 hits of 106 = **424** |
+
+§7's worked examples put Blowout at 64 and Overflow at 5. **[Gorim] Left as is** — the bank is a
+long-term resource, spending half of it buys one turn, and the drain means it is not something you
+can do every fight.
+
+**Watch:** the reasoning rests on refill being slow. *Milking Grip* halves the drain and doubles
+Ass-tagged kill intake, so a committed Squeezing deck may recharge far faster than "not every
+fight" — which is the one thing that would undercut the argument. Worth watching rather than
+pre-empting.
+
+Also note *Milking Grip* now pays **full** Strength on **half** the drain, so at 200 ml it grants
++20 for 10 ml spent. Mild at 1:10; the archetype's best card at 1:1.
+
 ### Open design notes from playtest — not acted on
 
 Both raised by Gorim in play; neither settled, so nothing was changed.
