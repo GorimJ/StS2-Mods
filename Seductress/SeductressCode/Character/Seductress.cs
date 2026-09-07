@@ -28,12 +28,23 @@ public class Seductress : PlaceholderCharacterModel
     public override int StartingHp => 65;
 
     /// <summary>
-    /// [Gorim] Eleven cards: 4 Pump, 4 Guard, 1 Let Go, plus two class cards (design §4).
+    /// [Gorim] Eleven cards: 4 Pump, 4 Guard, 1 Seek Relief, plus two class cards (design §4).
     ///
     /// Two class cards rather than one, each demonstrating a different half of the mechanic —
     /// Breed Me! is the Pussy half and teaches intake, Suckle is the Mouth half. As previously
     /// designed the deck had no tagged card at all, so nothing routed anywhere until the first
     /// draft and the central mechanic was invisible for the opening floors.
+    ///
+    /// [Gorim 2026-09-07] Seek Relief takes Let Go's slot, settling the older question of whether
+    /// Let Go belonged here. Every run now opens with an on-demand Climax, so the cards that key
+    /// off one are live from floor 1 rather than waiting on a Rare draft.
+    ///
+    /// [Claude-Code] One teaching consequence worth carrying into the design pass: Let Go's 20 HP
+    /// was the deck's only self-damage, and the usual way a new player met a Climax was walking
+    /// into one with it. Seek Relief triggers a Climax on purpose but deliberately does <i>not</i>
+    /// heal, so the arousal reset — the half that makes Climax feel like a reprieve rather than a
+    /// cost — is no longer demonstrated by any starting card. It is now only ever seen by nearly
+    /// dying.
     ///
     /// The slice-2 Take Him In test scaffold is gone; Breed Me! replaces it properly.
     /// </summary>
@@ -47,7 +58,7 @@ public class Seductress : PlaceholderCharacterModel
         ModelDb.Card<Guard>(),
         ModelDb.Card<Guard>(),
         ModelDb.Card<Guard>(),
-        ModelDb.Card<LetGo>(),
+        ModelDb.Card<SeekRelief>(),
         ModelDb.Card<BreedMe>(),
         ModelDb.Card<Suckle>()
     ];

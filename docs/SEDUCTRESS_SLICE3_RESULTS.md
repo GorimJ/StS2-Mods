@@ -467,8 +467,16 @@ new Sensitive stack raises everything you take afterwards by 50%. It trades a pe
 you have left for tempo, and gets worse the more hurt you already are — a card you play early in a
 fight or not at all.
 
-Open, raised by Gorim and not acted on: whether Seek Relief should replace *Let Go* in the starting
-deck, which would also settle the older "cut Let Go" question.
+[Gorim 2026-09-07] **Seek Relief takes Let Go's slot in the starting deck**, settling the older
+"cut Let Go" question. Rarity dropped Rare -> Basic so it does not also appear as a draft. Let Go is
+now unreachable in play — kept as a file rather than deleted, since the decision took two sessions
+to reach and may reverse.
+
+[Claude-Code] Teaching consequence for the design pass: Let Go's 20 HP was the deck's only
+self-damage, and walking into a Climax with it was how a new player met the mechanic. Seek Relief
+triggers a Climax on purpose but deliberately does not heal — so the arousal reset, the half that
+makes a Climax feel like a reprieve rather than a cost, is no longer demonstrated by any starting
+card. It is now only ever seen by nearly dying.
 
 ## Still untested
 
@@ -482,3 +490,88 @@ Carried forward — none of these were reached before the session paused.
 5. **Spit's `{Portion}%` and Ritual Mark going Innate** on upgrade.
 6. **Everything above, deployed but never once seen in play**: the nine reworked card faces,
    Afterglow's engine, Seek Relief.
+
+---
+
+# Proposal — Ass threshold unlocks
+
+**Status: [Gorim]'s idea, recorded for discussion with Cowork. Nothing built.**
+
+## Correction to the Milking Grip figure above
+
+The "fixed point moves to exactly 200 ml" line in the playtest section is **wrong**, and Gorim
+caught it. Milking Grip does two things, not one — its own text reads *"Ass attacks lose half as
+much, but gain full Strength. Ass kills gain double intake."* I counted only the halved drain.
+
+Halved spend **and** doubled intake gives parity at `0.05 × B = 20`, i.e. **400 ml** — not 200.
+
+## What the excess leak actually does to that
+
+400 is the parity ignoring the floor leak. §6.4's rule that the bank above 200 bleeds **25% per
+floor** is a hard brake, and it changes the picture substantially. Settled bank by play pattern
+(kills per floor / Ass cards played per floor), simulated against `RunModel.ApplyLeak`:
+
+| kills / plays per floor | No Milking Grip | Milking Grip |
+|---|---|---|
+| 2 / 1 | 118 ml | 231 ml |
+| 3 / 1 | 177 ml | 273 ml |
+| 3 / 2 | 100 ml | 241 ml |
+| 3 / 3 | **68 ml** | 216 ml |
+| 4 / 3 | 90 ml | 248 ml |
+
+**[Claude-Code] The interesting column is the spread, not the average.** Without Milking Grip the
+bank swings from 177 down to 68 purely on how often you play your Ass cards — so *using the
+archetype is what stops you having a bank*. With Milking Grip the settled value barely moves
+(216–273 across every pattern), because the 25% excess leak dominates and clamps it.
+
+So Milking Grip is not simply "more Ass". It converts the bank from something you spend into
+something you hold, and that is why it reads as semi-mandatory: without it, an Ass deck that
+actually plays Ass cards settles around 70–100 ml and the tag rule pays 7–10 damage. Gorim's
+instinct that it is mandatory is correct, and stronger than a doubling would suggest.
+
+## The proposal — [Gorim]
+
+> "I'm tempted to have an unlock system for ass? Like, Pussy gets the pregnancies with spiky
+> benefits, Mouth gets the permanent slow benefits with accumulation, and ass gets cards as it hits
+> thresholds. Potentially you add milking grip to your deck for free when you hit 100ml?"
+
+Three axes, one per hole:
+
+| Hole | Progression shape |
+|---|---|
+| Pussy | Pregnancies — spiky, event-driven benefits |
+| Mouth | Permanent slow benefits, accumulating |
+| Ass | Cards granted on reaching bank thresholds |
+
+## [Claude-Code] Notes for the discussion
+
+**It fixes the right problem.** The complaint is not that Milking Grip is too strong, it is that a
+build depends on drafting one specific uncommon. Granting it at a threshold turns a draft
+dependency into a system reward without touching the card's numbers. That is the cheaper fix.
+
+**The threshold and the gate line up almost too neatly.** 100 ml is the unaided fixed point — the
+exact number an Ass deck cannot pass without Milking Grip — and Milking Grip is the thing that
+lets you pass it. Granting it *at* 100 means the system hands you the key at the moment you reach
+the lock. That is elegant, and it is also a reason to consider **removing Milking Grip from the
+draft pool** if it becomes a threshold reward: otherwise an early draft skips the progression
+entirely and the thresholds become decoration.
+
+**The one decision that makes or breaks it: high-water mark, or live value?** The Ass bank leaks
+every floor, so a threshold reached at 105 ml is lost by the next rest site. If unlocks un-grant
+when the bank falls, the system will yo-yo and feel punitive. Almost certainly it wants to track a
+**high-water mark** — reached once, kept for the run. That is one extra saved int alongside the
+existing reservoirs and would persist the same way.
+
+**Spacing wants to follow the reachable curve, not round numbers.** From the table, the natural
+rungs are roughly: 100 (unaided ceiling), then 200–250 (Milking Grip's clamped range), then
+anything above 250 as a genuine stretch. Thresholds at 100 / 200 / 300 would give three rungs where
+the third is reachable only by a deck built for it.
+
+**Asymmetry worth being deliberate about.** Sigils and Mouth accumulation are both permanent and
+only ever go up. The Ass bank is the only one of the three that falls. Unlocks driven off a
+high-water mark inherit the permanence of the other two while the *spendable* resource keeps its
+volatility — which is arguably the point, and keeps Ass distinct rather than making it a third
+counter that only rises.
+
+**Interaction to check:** the console command `reservoir ass 300` would trip every threshold at
+once. Fine for testing, worth remembering when reading a test run.

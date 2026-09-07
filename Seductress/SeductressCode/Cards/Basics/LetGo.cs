@@ -10,6 +10,12 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace Seductress.SeductressCode.Cards.Basics;
 
 /// <summary>
+/// NO LONGER IN THE STARTING DECK, and Basic rarity means nothing drafts it — so as of
+/// 2026-09-07 this card is unreachable in play.
+///
+/// [Gorim] Seek Relief took its slot. Kept rather than deleted because the decision to cut it was
+/// reached over two sessions and may yet reverse; if it stays cut, delete this file.
+///
 /// The self-damage starter. 1 in the deck, and the cheapest way to prove death interception
 /// catches the character's own cards: 20 HP a play will Climax you soon enough.
 /// </summary>

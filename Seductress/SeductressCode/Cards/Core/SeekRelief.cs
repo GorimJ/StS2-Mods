@@ -10,7 +10,10 @@ using Seductress.SeductressCode.Systems;
 namespace Seductress.SeductressCode.Cards;
 
 /// <summary>
-/// Core, Rare. Climax on purpose — the only card that does.
+/// Basic. Climax on purpose — the only card that does.
+///
+/// [Gorim 2026-09-07] Promoted from Rare into the starting deck in Let Go's slot, so Basic rather
+/// than Rare: it should not also turn up as a draft, and every run should open holding one.
 ///
 /// [Gorim 2026-09-07] Replaces <i>Abandon</i>, which was cut. Abandon paid a Lust card for its
 /// Climax, which made it a card a cautious deck could never justify: the whole point of wanting a
@@ -27,7 +30,7 @@ namespace Seductress.SeductressCode.Cards;
 /// </summary>
 public class SeekRelief : SeductressCard
 {
-    public SeekRelief() : base(0, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
+    public SeekRelief() : base(0, CardType.Skill, CardRarity.Basic, TargetType.Self) { }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
