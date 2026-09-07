@@ -59,22 +59,36 @@ public class Milk : SeductressCard
         new DynamicVar("T2", Sigils.Tier2),
         new DynamicVar("T3", Sigils.Tier3),
         new DynamicVar("T4", Sigils.Tier4),
-        new DamageVar(4m, ValueProp.Move),
+        new CalculationBaseVar(4m),
+        new ExtraDamageVar(1m),
+        new CalculatedDamageVar(ValueProp.Move).WithMultiplier(BonusCalc),
         new DynamicVar("TierDamage", 7m),
         new HealVar(2m)
     ];
 
+    /// <summary>
+    /// The tier-2 damage swap, live on the card face.
+    ///
+    /// [Claude-Code] Missed on the first pass: this card was written with a plain DamageVar, so it
+    /// carried exactly the bug Gorim found in slice 3 — at 3 Sigils it dealt 7 while the face read
+    /// 4. Same fix as the three tiered Pussy attacks.
+    ///
+    /// TieredPussyBonus also folds in Ritual Mark, which contributes nothing here because Milk is
+    /// untagged and Ritual Mark buffs Pussy cards. That is correct to the card list but worth a
+    /// ruling: Milk is Breeding's card in every sense except the tag, so a player holding Ritual
+    /// Mark may well expect it to apply.
+    /// </summary>
+    protected override decimal PreviewBonus() => TieredPussyBonus();
+
     public override List<(string, string)>? Localization => new CardLoc(
         "Milk",
-        "Deal {Damage:diff()} damage. Heal {Heal:diff()}.\n{T1} Sigil: draw 1.\n{T2} Sigils: deal {TierDamage:diff()} instead.\n{T3} Sigils: draw 2 instead.\n{T4} Sigils: does not Exhaust.");
+        "Deal {CalculatedDamage:diff()} damage. Heal {Heal:diff()}.\n{T1} Sigil: draw 1.\n{T2} Sigils: deal {TierDamage:diff()} instead.\n{T3} Sigils: draw 2 instead.\n{T4} Sigils: does not Exhaust.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
-        var damage = Sigils.At(Owner, Sigils.Tier2)
-            ? DynamicVars["TierDamage"].BaseValue
-            : DynamicVars.Damage.BaseValue;
+        var damage = DynamicVars.CalculatedDamage.Calculate(cardPlay.Target);
 
         await DamageCmd.Attack(damage).FromCard(this).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash").Execute(choiceContext);
