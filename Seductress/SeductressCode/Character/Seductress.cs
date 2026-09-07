@@ -3,6 +3,7 @@ using BaseLib.Utils.NodeFactories;
 using Seductress.SeductressCode.Cards;
 using Seductress.SeductressCode.Cards.Basics;
 using Seductress.SeductressCode.Extensions;
+using Seductress.SeductressCode.Relics;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Models;
@@ -26,22 +27,40 @@ public class Seductress : PlaceholderCharacterModel
     /// <summary>65 proposed in the design (Ironclad is 80); not yet confirmed.</summary>
     public override int StartingHp => 65;
 
+    /// <summary>
+    /// [Gorim] Eleven cards: 4 Pump, 4 Guard, 1 Let Go, plus two class cards (design §4).
+    ///
+    /// Two class cards rather than one, each demonstrating a different half of the mechanic —
+    /// Breed Me! is the Pussy half and teaches intake, Suckle is the Mouth half. As previously
+    /// designed the deck had no tagged card at all, so nothing routed anywhere until the first
+    /// draft and the central mechanic was invisible for the opening floors.
+    ///
+    /// The slice-2 Take Him In test scaffold is gone; Breed Me! replaces it properly.
+    /// </summary>
     public override IEnumerable<CardModel> StartingDeck =>
     [
         ModelDb.Card<Pump>(),
         ModelDb.Card<Pump>(),
         ModelDb.Card<Pump>(),
         ModelDb.Card<Pump>(),
-        ModelDb.Card<Pump>(),
         ModelDb.Card<Guard>(),
         ModelDb.Card<Guard>(),
         ModelDb.Card<Guard>(),
         ModelDb.Card<Guard>(),
-        ModelDb.Card<LetGo>()
+        ModelDb.Card<LetGo>(),
+        ModelDb.Card<BreedMe>(),
+        ModelDb.Card<Suckle>()
     ];
 
-    // Starting relic is out of spike scope; borrowing the Ironclad's keeps the run bootable.
-    public override IReadOnlyList<RelicModel> StartingRelics => [ModelDb.Relic<BurningBlood>()];
+    /// <summary>
+    /// Burning Blood stands in for the character's own starting relic, which is not designed yet.
+    /// Fertile Sign is TEST SCAFFOLDING and comes out with Conception — see SigilScaffold.
+    /// </summary>
+    public override IReadOnlyList<RelicModel> StartingRelics =>
+    [
+        ModelDb.Relic<BurningBlood>(),
+        ModelDb.Relic<SigilScaffold>()
+    ];
 
     public override CardPoolModel CardPool => ModelDb.CardPool<SeductressCardPool>();
     public override RelicPoolModel RelicPool => ModelDb.RelicPool<SeductressRelicPool>();

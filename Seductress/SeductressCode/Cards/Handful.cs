@@ -22,9 +22,11 @@ public class Handful : SeductressCard
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Innate, CardKeyword.Exhaust];
 
+    // Keyword lines are rendered automatically from CanonicalKeywords, above and below the body
+    // text. Naming them in the description as well prints them twice.
     public override List<(string, string)>? Localization => new CardLoc(
         "Handful",
-        "Innate. Deal {Damage} damage. Exhaust.");
+        "Deal {Damage} damage.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

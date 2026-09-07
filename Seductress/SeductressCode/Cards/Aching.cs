@@ -13,7 +13,7 @@ namespace Seductress.SeductressCode.Cards;
 /// A Lust card. Playable, gives a real benefit, and costs a large chunk of arousal.
 /// Five in the deck ends the run (not implemented in the spike — the counter is what matters here).
 /// </summary>
-public class Aching : SeductressCard
+public class Aching : LustCard
 {
     public Aching() : base(0, CardType.Curse, CardRarity.Curse, TargetType.Self) { }
 

@@ -1,0 +1,5 @@
+{
+  "OPTION_SEDUCTRESS_RELIEF.name": "Relief",
+  "OPTION_SEDUCTRESS_RELIEF.description": "Remove 1 Lust card from your deck. You do not heal.",
+  "OPTION_SEDUCTRESS_RELIEF.descriptionDisabled": "You have no Lust cards to remove."
+}

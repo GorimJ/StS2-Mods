@@ -77,7 +77,11 @@ public partial class ReservoirHud : Control
         _lines[1].Text = $"Ass     {r.Ass} / 200 ml";
         _lines[2].Text = $"Womb    {r.Womb} / 100 ml";
         _lines[3].Text = $"Glazed  {r.Glazed} ml";
-        _lines[4].Text = $"Stomach {r.Stomach} ml   Sigils {r.Sigils}";
+        var exhausted = climax.SigilsExhaustedThisCombat;
+        var sigils = exhausted > 0
+            ? $"Sigils {Sigils.Effective(_player)}/{r.Sigils} (-{exhausted} exhausted)"
+            : $"Sigils {r.Sigils}";
+        _lines[4].Text = $"Stomach {r.Stomach} ml   {sigils}";
         _lines[5].Text = $"Continuing: {climax.ContinuingHole}";
         _lines[6].Text = $"Climaxes {climax.ClimaxesThisCombat}  Sensitive {sensitive}  " +
                          $"Lust {ClimaxModel.LustCount(_player)}/{ClimaxModel.LustLimit}";

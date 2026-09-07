@@ -4,6 +4,7 @@ using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.addons.mega_text;
 
@@ -44,6 +45,12 @@ internal static class ArousalBar
     private static readonly AccessTools.FieldRef<NHealthBar, MegaLabel> LabelRef =
         AccessTools.FieldRefAccess<NHealthBar, MegaLabel>("_hpLabel");
 
+    private static readonly AccessTools.FieldRef<NHealthBar, Control> PoisonRef =
+        AccessTools.FieldRefAccess<NHealthBar, Control>("_poisonForeground");
+
+    private static readonly AccessTools.FieldRef<NHealthBar, Control> DoomRef =
+        AccessTools.FieldRefAccess<NHealthBar, Control>("_doomForeground");
+
     /// <summary>
     /// Only invert while the Seductress is the local player. Enemies invert too — an enemy's HP is
     /// their arousal, and they climax and pass out at the end of it (design §6.0) — so this asks the
@@ -78,6 +85,46 @@ internal static class ArousalBar
         fg.Visible = arousal > 0;
         fg.OffsetRight = width - maxWidth;
         fg.SelfModulate = ArousalColor;
+
+        ApplyInvertedForecasts(bar, creature, arousal, maxWidth);
+    }
+
+    /// <summary>
+    /// Risk 2a. Poison and Doom are positioned from CurrentHp, so on an inverted bar they sit in
+    /// the wrong place. Their meaning inverts cleanly: vanilla draws the slice of HP you are about
+    /// to lose at the right-hand end of the fill, and here the same effects are arousal you are
+    /// about to <i>gain</i>, so the segment extends rightward from the current arousal edge.
+    ///
+    /// This matters regardless of what the Seductress deck contains — enemies apply Poison to you
+    /// either way.
+    ///
+    /// Segments are positioned by both offsets rather than just OffsetRight, because vanilla only
+    /// sets OffsetLeft in its lethal branch and would otherwise leave a stale value behind.
+    /// </summary>
+    private static void ApplyInvertedForecasts(NHealthBar bar, Creature creature, int arousal, float maxWidth)
+    {
+        var poison = creature.GetPower<PoisonPower>()?.CalculateTotalDamageNextTurn() ?? 0;
+        var doom = creature.GetPowerAmount<DoomPower>();
+
+        Place(PoisonRef(bar), poison);
+        Place(DoomRef(bar), doom);
+        return;
+
+        void Place(Control segment, int amount)
+        {
+            if (amount <= 0 || creature.HpDisplay.IsInfinite())
+            {
+                segment.Visible = false;
+                return;
+            }
+            var from = Fraction(arousal) * maxWidth;
+            var to = Fraction(arousal + amount) * maxWidth;
+            segment.Visible = true;
+            segment.OffsetLeft = from;
+            segment.OffsetRight = to - maxWidth;
+        }
+
+        float Fraction(int value) => Math.Clamp((float)value / creature.MaxHp, 0f, 1f);
     }
 
     /// <summary>
