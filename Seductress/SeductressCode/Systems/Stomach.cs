@@ -77,28 +77,57 @@ public static class Stomach
             $" | precum banks {(PrecumBanks(r.Stomach) ? "yes" : "no")}");
     }
 
+    /// <summary>Default heal rate on a swallow: 1 HP per 2 ml, i.e. half the ml swallowed.</summary>
+    public const int DefaultHealPercent = 50;
+
     /// <summary>
-    /// The end-of-combat swallow (design §6.5). Cum banks; precum evaporates unless the 300 ml
-    /// milestone has turned it into cum.
+    /// A swallow (design §6.5). It <b>heals</b>, cum <b>banks</b>, and precum evaporates unless the
+    /// 300 ml milestone has turned it into cum.
     ///
-    /// [Gorim] This is the <b>default</b>, not something <i>Gulp</i> enables. Gulp buys the
-    /// timing, the heal and the Sensitive removal on top of a bank that was always going to happen.
+    /// [Gorim] This is the <b>default</b>, not something <i>Gulp</i> enables. Gulp buys the timing,
+    /// the Sensitive removal and — upgraded — a better rate, on top of a bank and a heal that were
+    /// always going to happen.
+    ///
+    /// [Gorim 2026-09-08] <b>Swallowing heals 1 HP per 2 ml, on cum <i>and</i> precum.</b> I had
+    /// built the default swallow to heal nothing, reading design §6.5 and register 110 — both of
+    /// which list "the heal" among the things <i>Gulp</i> buys. Register entry <b>33</b> says the
+    /// opposite: the Mouth "cashes out at end of combat — heal half the ml, bank the full amount".
+    /// Both entries are marked locked. This ruling settles it in favour of 33.
+    ///
+    /// [Claude-Code] It heals on the <b>total</b>, so precum — which banks nothing and evaporates —
+    /// still pays out in HP on its way out. That is the thing that makes precum generation worth a
+    /// card slot on its own rather than only as fuel for a spender.
+    ///
+    /// [Claude-Code] Rounds down, matching Indulge's reclamation and the per-floor leak. At an odd
+    /// ml you lose the half point.
     /// </summary>
-    public static async Task SwallowAll(Player player, string reason)
+    /// <param name="healPercent">
+    /// Share of the swallowed ml healed. 50 by default; <i>Gulp</i> passes its own, which its
+    /// upgrade raises to 100.
+    /// </param>
+    public static async Task SwallowAll(Player player, string reason, int healPercent = DefaultHealPercent)
     {
         var r = Reservoirs.Of(player.RunState);
         var banksPrecum = PrecumBanks(r.Stomach);
         var (cum, precum) = r.EmptyMouth();
 
+        var total = cum + precum;
         var banked = cum + (banksPrecum ? precum : 0);
         var lost = banksPrecum ? 0 : precum;
 
-        if (banked <= 0 && lost <= 0) return;
+        if (total <= 0) return;
 
-        if (lost > 0)
+        var heal = total * healPercent / 100;
+        if (heal > 0)
         {
-            MainFile.Logger.Info($"[Seductress] {reason}: {lost} ml precum evaporated (banks nothing)");
+            await CreatureCmd.Heal(player.Creature, heal);
         }
+
+        MainFile.Logger.Info(
+            $"[Seductress] {reason}: swallowed {total} ml ({cum} cum + {precum} precum) " +
+            $"-> healed {heal} ({healPercent}%)" +
+            (lost > 0 ? $", {lost} ml precum evaporated (banks nothing)" : ""));
+
         await Bank(player, banked);
     }
 

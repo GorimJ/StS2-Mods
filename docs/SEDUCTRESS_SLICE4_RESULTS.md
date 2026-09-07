@@ -328,6 +328,16 @@ The brief asked for these. Grouped by how much they matter.
   draftable plus 5 basics" while the table lists basics separately. With Milking Grip leaving the
   pool it is 35 offerable.
 
+### The register and §6.5 disagree on whether the default swallow heals
+
+**Found in play by [Gorim], 2026-09-08.** Design §6.5 and register **110** both list "the heal"
+among the things *Gulp* buys, which reads as: the default end-of-combat swallow banks but does not
+heal. Register **33** says the opposite — the Mouth "cashes out at end of combat — **heal half the
+ml**, bank the full amount". Both are marked locked.
+
+I built to §6.5. **[Gorim] has ruled in favour of 33:** swallowing heals **1 HP per 2 ml**, on cum
+*and* precum. See §8a.
+
 ### The decision register contradicts itself
 
 §12's **Locked** table still carries superseded rows at full strength, with no marking that a later
@@ -372,6 +382,34 @@ The brief's §3 heading also calls it "the Scoop rest site"; it is **Indulge** e
   §6.2a lets it fill real cum — but §6.2a also says the Mouth exception generates *precum*. As
   built it fills cum, which makes it a quiet Draining banking engine. One line either way; not
   changed without a ruling.
+
+---
+
+## 8a. Swallowing heals — [Gorim, 2026-09-08, found in play]
+
+> **A swallow heals 1 HP per 2 ml, counting cum and precum together.**
+
+Applies to every swallow, not only the end-of-combat one. Three consequences worth the design
+session's attention:
+
+* **Precum now pays out on its way out.** It banks nothing and evaporates, but it heals first — so
+  precum generation is worth a card slot on its own rather than only as fuel for a spender. This is
+  the largest indirect buff in the ruling.
+* ***Gulp* changes shape.** It no longer buys the heal, because the heal happens anyway. Base Gulp
+  is now pure tempo: it heals exactly what the bell would have healed, bought forward, plus the
+  Sensitive removal and the room to refill the Mouth. **Its upgrade is where the raw value is** —
+  100% instead of 50% — which is an unusual and rather good shape for a 0-cost Uncommon. It also
+  means the card had to stop healing on its own, or it would have paid twice.
+* **The 100 ml Stomach milestone got stronger than specified.** "The Mouth also swallows whenever
+  it reaches 50 ml" was written as pure throughput — [Claude-Cowork]'s note says it "takes nothing
+  away" and uncaps banking. With swallows healing, it is now **also a repeating 25 HP heal** on a
+  20 HP bar, every time the Mouth fills. That is a large amount of sustain to arrive from a
+  milestone that was described as neutral. Flagging rather than changing it: the rule is
+  consistent, but the milestone's power level is no longer what §6.5 assumed.
+
+[Gorim] has already noted 1-per-2 "is maybe high" — recorded as the current spec, not as settled.
+
+[Claude-Code] Rounds down, matching Indulge and the per-floor leak.
 
 ---
 

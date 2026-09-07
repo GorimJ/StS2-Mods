@@ -13,15 +13,15 @@ namespace Seductress.SeductressCode.Cards;
 /// <summary>
 /// Draining Uncommon. Swallow <b>now</b>.
 ///
-/// [Gorim] <b>Gulp does not enable banking.</b> The Mouth banks to the Stomach at the end of every
-/// combat by default (design §6.5) — what this card buys is the <b>timing</b>, the <b>heal</b> and
-/// the <b>Sensitive removal</b>. That was only ever implied, by §6.2a saying precum is the thing
-/// that evaporates, and the omission had already caused one misreading.
+/// [Gorim] <b>Gulp does not enable banking, and it does not enable the heal either.</b> The Mouth
+/// banks to the Stomach <i>and</i> heals half the ml at the end of every combat by default
+/// (design §6.5, and see Stomach.SwallowAll). What this card buys is the <b>timing</b>, the
+/// <b>Sensitive removal</b>, and — once upgraded — a <b>better rate</b>: all the ml instead of half.
 ///
-/// [Claude-Code] Two consequences of it being timing rather than permission, both real:
-/// emptying the Mouth mid-fight makes room to fill it again, so on a long fight Gulp is throughput
-/// as well as sustain — and the precum in your Mouth heals you here even though it would never
-/// have banked, because the heal is on the ml swallowed rather than on what reaches the Stomach.
+/// [Claude-Code] So an unupgraded Gulp is pure tempo. It heals exactly what the bell would have
+/// healed anyway; you are paying a card to have it now, and to empty the Mouth so it can refill.
+/// On a long fight that is throughput as much as sustain. The upgrade is where the raw value is,
+/// which is an unusual and rather good shape for a 0-cost Uncommon.
 /// </summary>
 public class Gulp : SeductressCard
 {
@@ -52,12 +52,9 @@ public class Gulp : SeductressCard
             return;
         }
 
-        var heal = (int)(total * DynamicVars["Portion"].BaseValue / 100m);
-        MainFile.Logger.Info(
-            $"[Seductress] Gulp: swallowing {total} ml ({r.Mouth} cum + {r.Precum} precum), healing {heal}");
-
-        await CreatureCmd.Heal(Owner.Creature, heal);
-        await Stomach.SwallowAll(Owner, "Gulp");
+        // The swallow itself heals, so this must not heal separately or it pays twice. What Gulp
+        // buys is the rate — its upgrade takes the swallow from half the ml to all of it.
+        await Stomach.SwallowAll(Owner, "Gulp", (int)DynamicVars["Portion"].BaseValue);
 
         if (total > DynamicVars["Threshold"].BaseValue &&
             Owner.Creature.GetPower<SensitivePower>() is { } sensitive)
