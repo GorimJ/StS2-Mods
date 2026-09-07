@@ -197,23 +197,21 @@ Vulnerable), which is on-convention and self-documenting but changes the design;
 vanilla presents a clause-adding upgrade, which I have not located — every reference card carries
 exactly one description key.
 
-### [Gorim] Ritual Mark's upgrade lifts the Sigil bonuses too
+### [Gorim] Ritual Mark's upgrade grants Innate, and moves no numbers
 
-§8's upgrade note is "+3 base", which moved only the Pussy numbers. That broke the parity the card
+§8's upgrade note is "+3 base", which moved only the Pussy numbers and broke the parity the card
 text depends on: at 5 Sigils it claimed *"Sigils deal 4 too"* while Pussy cards were on 7.
 
-**[Gorim 2026-09-07]** the upgrade lifts the Sigil side as well. All four numbers now move by +3,
-so the top rung matches again:
+Lifting the Sigil side as well fixed the parity but **[Gorim] made the upgrade far too strong** —
+four numbers raised on a Power that already scales with the run's Sigil count.
 
-| | Base | Upgraded |
-|---|---|---|
-| Pussy cards | 2 | 5 |
-| Pussy at 3 Sigils | 4 | 7 |
-| Sigils at 1 Sigil | 1 | 4 |
-| Sigils at 5 Sigils | 4 | 7 |
+**[Gorim 2026-09-07] The upgrade is now simply Innate.** No number changes at any tier, so the
+"too" parity holds at every upgrade level, and the upgrade is still meaningful: on a Power, getting
+the engine online turn one is worth more than a larger number on a card you might draw late.
 
-The two Sigil values were hard-coded ints and are now dynamic vars, so they both upgrade and
-display.
+The two Sigil values were hard-coded ints and are still now dynamic vars — not to upgrade, but so
+they render on the card at all. The description must not mention Innate; keyword lines render
+automatically from the card's keywords.
 
 ### [Claude-Code] Tiered damage numbers get no modifier preview
 

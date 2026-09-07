@@ -56,16 +56,19 @@ public class RitualMark : SeductressCard
     }
 
     /// <summary>
-    /// [Gorim 2026-09-07] The upgrade lifts the Sigil bonuses as well as the Pussy ones. §8's
-    /// upgrade note reads "+3 base", which moved only the Pussy side and broke the parity the word
-    /// "too" depends on — at 5 Sigils the card claimed "Sigils deal 4 too" while Pussy cards were
-    /// on 7. +3 across all four numbers keeps the top rung matching at 7 and 7.
+    /// [Gorim 2026-09-07] The upgrade grants <b>Innate</b> and touches no numbers.
+    ///
+    /// §8's "+3 base" moved only the Pussy side, which broke the parity the text depends on — at
+    /// 5 Sigils it read "Sigils deal 4 too" while Pussy cards were on 7. Lifting the Sigil side as
+    /// well fixed that but made the upgrade far too strong: it raised four numbers on a Power that
+    /// already scales with the run's Sigil count.
+    ///
+    /// Innate sidesteps both. It is a real upgrade on a Power — getting the engine online turn one
+    /// is worth more than a bigger number on a card you may draw late — and it leaves every tier
+    /// value alone, so the "too" parity holds at every upgrade level.
+    ///
+    /// The keyword line renders automatically from the card's keywords, so the description must
+    /// not mention Innate or it prints twice.
     /// </summary>
-    protected override void OnUpgrade()
-    {
-        DynamicVars["Bonus"].UpgradeValueBy(3m);
-        DynamicVars["TierBonus"].UpgradeValueBy(3m);
-        DynamicVars["SigilBonus"].UpgradeValueBy(3m);
-        DynamicVars["TierSigilBonus"].UpgradeValueBy(3m);
-    }
+    protected override void OnUpgrade() => CardCmd.ApplyKeyword(this, CardKeyword.Innate);
 }
