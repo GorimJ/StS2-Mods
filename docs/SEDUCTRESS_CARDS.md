@@ -1,8 +1,8 @@
-# The Seductress — card list v10 draft
+# The Seductress — card list v13 draft
 
-38 draftable cards plus 3 basics. Companion to `SEDUCTRESS_DESIGN.md` v1.9.
+38 draftable cards plus 5 basics. Companion to `SEDUCTRESS_DESIGN.md` v2.4.
 
-Changes from v9: a single **universal spend order** replaces per-card spend clauses (§2);
+Changes from v12: **Leg-Locked** added as a rules word; *Leg Lock* is Breeding's new Uncommon; *Ritual Mark* and *Rapture* rebuilt; *Ward* to Common. Changes from v11: Sigil thresholds **1 / 3 / 5 / 7** on a **fixed tier shape**; Breeding rewritten to it; the starting deck gains *Breed Me!* and *Suckle*. Changes from v10, all from the slice-2 playtest: *Consummate* costs **0**; *Breed Me!*'s Sigil multiplier **replaces** its +5 rather than compounding. Earlier changes from v9: a single **universal spend order** replaces per-card spend clauses (§2);
 **Freehand rebuilt** around structural roles rather than bigger numbers; *Scoop It Up* moved out
 of Core and into Draining; **Deep Throat** becomes a tag with reminder text carrying auto-swallow
 for the whole family; *Balls Deep* reworked into recursion. Earlier: the Mouth exception generates
@@ -122,13 +122,37 @@ simply a Power doing what Powers may do.
 
 ## 4. Basics — starting deck (not draftable)
 
-5 × Pump, 4 × Guard, 1 × Let Go.
+4 × Pump, 4 × Guard, 1 × Let Go, 1 × Breed Me!, 1 × Suckle. **Eleven cards.**
 
 | Card | Cost | Type | Text | Upgrade |
 |---|---|---|---|---|
 | **Pump** | 1 | Attack · *Continuing* | Deal **6** damage. | 9 damage |
 | **Guard** | 1 | Skill | Gain **5** Block. | 8 Block |
 | **Let Go** | 0 | Skill | Lose **20** HP. Draw **2**. | Draw 3 |
+| **Breed Me!** | 2 | Attack · *Pussy* | Deal **12** damage. Kills from this card give **5 ml** extra. *1 Sigil:* intake from this card's kills is **doubled**. *3 Sigils:* deal **16** instead. *5 Sigils:* **tripled** instead. *7 Sigils:* repeats **2** times. | 16 damage |
+| **Suckle** | 1 | Attack · *Mouth* | Deal **4** damage. Gain **5** Block. | 6 / 7 |
+
+**[decided] Two class cards, not one.** Ironclad's single Bash is the outlier — Silent, Defect and
+Watcher all start with two, and Watcher's pair is the model: each card demonstrates a different
+half of the mechanic. As designed this deck had **no tagged card at all**, so nothing routed
+anywhere until the first draft and the character's central mechanic was invisible for the opening
+floors.
+
+*Breed Me!* is the Pussy half. It teaches intake explicitly — the flat **5 ml** makes the reservoir
+move visibly on a kill rather than hoping you notice the HUD — and its tiers begin firing on your
+**first** Sigil. **Damage dropped 15 → 12** for the starter slot: 15 at 2 energy is well above
+Bash's 8 and Eruption's 9, and the card already carries more text than either.
+
+*Suckle* is the Mouth half, and the reason it is an Attack rather than a Skill is that **Skills are
+untagged by decision**. That constraint produced the better card: Draining's identity is staying
+high on the bar, so a Mouth attack that grants Block demonstrates the archetype's whole thesis in
+one line, with no rules exception.
+
+**Ass is the wrong starter.** Its rule spends a bank that starts empty and takes most of an act to
+fill, so an Ass starter is a plain attack with a dead clause for the entire opening.
+
+**[note] *Breed Me!* leaves the draftable pool**, since starters are not draftable. Breeding is a
+card short and wants a new Common — see §12.
 
 > **Continuing** — this card uses whichever hole your last Attack used this combat. If you have
 > not used one yet, it routes to **Glazed**. Resets each combat.
@@ -301,48 +325,85 @@ not the energy — which is why it is Uncommon at 1 rather than Rare at 2.
 
 ## 8. Breeding (Pussy) — 8 cards
 
-Finishers, Conception, and the Sigil payoff. **Sigil gating at 2 / 4 / 6** — three tiers rather
-than two, which fits a 4–6 Sigil run: tier one lands early, tier two mid-run, tier three only at
-the top end.
+Finishers, Conception, and the Sigil payoff. **Sigil gating at 1 / 3 / 5 / 7**, on the fixed tier
+shape from design §7.1:
+
+> **1** adds an effect · **3** grows the base · **5** grows the effect · **7** repeats, a number of
+> times equal to its cost. **0-cost cards lose their non-energy cost at 7** instead of repeating.
 
 | Card | Cost | Type | Rarity | Text | Upgrade |
 |---|---|---|---|---|---|
-| **Take Him In** | 1 | Attack · *Pussy* | Common | Deal **8** damage. *2 Sigils:* draw **1**. *4 Sigils:* draw **2** instead. *6 Sigils:* this costs **0**. | 11 damage |
-| **Breed Me!** | 2 | Attack · *Pussy* | Common | Deal **15** damage. Kills from this card give **5 ml** extra. *2 Sigils:* intake from this card's kills is **doubled**. *4 Sigils:* **tripled**. *6 Sigils:* and this hits **two more times**. | 19 damage |
-| **Surrender** | 0 | Skill | Common | Lose **10** HP. Draw **1**, plus **1** for each time you have Climaxed this combat. | Lose 8 HP |
-| **Claim** | 1 | Attack · *Pussy* | Uncommon | Deal **7** damage. Apply **1 Vulnerable**. Lose **2** HP. *2 Sigils:* deal **12** instead. *4 Sigils:* lose no HP and apply **1** more Vulnerable. *6 Sigils:* hits twice. | 10 / 16 |
-| **Ward** | 1 | Skill | Uncommon | Gain **6** Block. *2 Sigils:* gain **6** more. *4 Sigils:* reflect **5** damage to attackers this turn. *6 Sigils:* gain **10** more. | 9 base |
-| **Ritual Mark** | 2 | Power | Uncommon | Your Sigils **and your Pussy cards** deal **1** additional damage. | 2 |
-| **Consummate** | 2 | Skill | Rare | **Exhaust a Sigil** for this combat: gain **2** energy and draw **3**. | Draw 4 |
-| **Rapture** | 3 | Power | Rare | Whenever you Climax, gain **3** energy, **2 Strength** and **20** Block. | 3 Strength |
+| **Take Him In** | 1 | Attack · *Pussy* | Common | Deal **8** damage. *1:* draw **1**. *3:* deal **12** instead. *5:* draw **2** instead. *7:* repeats **1** time. | 11 damage |
+| **Surrender** | 0 | Skill | Common | Lose **10** HP. Draw **1**, plus **1** per Climax this combat. *1:* gain **5** Block. *3:* draw **2** plus per Climax. *5:* gain **10** Block instead. *7:* lose no HP. | Lose 8 HP |
+| **Ward** | 1 | Skill | Common | Gain **6** Block. *1:* reflect **5** damage to attackers this turn. *3:* gain **12** Block instead. *5:* reflect **10** instead. *7:* repeats **1** time. | 9 base |
+| **Claim** | 1 | Attack · *Pussy* | Uncommon | Deal **7** damage. Lose **2** HP. *1:* apply **1 Vulnerable**. *3:* deal **12** instead. *5:* apply **2 Vulnerable** instead. *7:* repeats **1** time. | 10 / 16 |
+| **Leg Lock** | 1 | Skill | Uncommon | Gain **6** Block. Apply **1 Vulnerable** and **1 Leg-Locked**. *1:* also apply **1 Debilitate**. *3:* apply **2 Leg-Locked** and **2 Vulnerable**. *5:* apply **2 Debilitate** instead. *7:* apply all of it to ALL enemies. | 9 Block |
+| **Ritual Mark** | 1 | Power | Uncommon | Your **Pussy** cards deal **2** additional damage. *1:* your Sigils deal **1** additional damage. *3:* Pussy cards deal **4** instead. *5:* Sigils deal **4** too. *7:* both bonuses become **+1 per Sigil**. | +3 base |
+| **Consummate** | 0 | Skill | Rare | **Exhaust a Sigil** for this combat: gain **2** energy and draw **3**. *1:* gain **10** Block. *3:* gain **3** energy instead. *5:* gain **20** Block instead. *7:* does not exhaust a Sigil. | Draw 4 |
+| **Rapture** | 3 | Power | Rare | Gain **10** Block. Whenever you Climax, gain **3** energy and **2 Strength**. *1:* also gain **10** Block whenever you Climax. *3:* this costs **1 less**. *5:* both Block values become **20**. *7:* **double** the energy gained. | 3 Strength |
 
-*Breed Me!*'s **+5 ml** is a kill reward rather than generation, so it does not break the Attacks-
-don't-generate rule. The Sigil clauses double or triple the card's **total** kill intake including
-that 5 — which is what makes the tiers read as a real escalation instead of a rounding difference.
+> **Leg-Locked** — while an enemy is Leg-Locked, its death routes its output to your **Pussy**,
+> whatever killed it. Counts down at the end of its turn.
 
-*Surrender* at 0 cost is a Climax-count payoff rather than a binary one. Before your first Climax
-it is a strictly worse *Let Go*; after three it is Draw 4 for free and 10 HP. That is the right
-shape for Breeding, where Climaxing repeatedly *is* the plan — it rewards the thing the archetype
-already wants to do rather than asking for a second condition.
+**Leg-Locked is a kill claim** — a claim staked on a kill that has not happened yet, which is why
+it counts down. It is a rules word rather than just this card's text, and it solves a problem the
+design has carried since §6.0. Routing keys off the *finishing card's* tag, so a kill delivered by Poison, a
+Sigil passive, reflect damage, or any untagged card falls through to Glazed (§6.4) — and Breeding,
+which needs Womb fill more than any other archetype, is exactly the deck most likely to kill things
+with something other than an attack. Leg-Locked lets you **commit the route in advance**, which is
+a decision rather than a correction.
 
-*Claim* now costs HP at base and stops costing it at **4 Sigils**. The tier is doing two jobs at
-once — a damage floor early, then a maintenance discount later — which is more interesting than
-another number going up, and it means the card gets *cheaper to play* as the run goes on rather
-than only bigger.
+It **overrides both** the finishing-card tag and the Glazed catch-all. Because it counts down like
+Debilitate, marking an enemy you then fail to kill is wasted — so the card asks you to read the
+fight, and stacking it is buying time rather than buying power.
 
-*Rapture* puts the energy **on the Climax**, not on play — so a Climax you cause on your own turn
-refunds 3 energy and a Climax the enemy causes on theirs gives you nothing but the Strength and
-Block. **[decided]** That asymmetry is the point: Climaxing is otherwise something that happens
-*to* you, and this is the card that makes choosing the moment worth real tempo. It also gives
-*Abandon* — 0 cost, Climax immediately, Draw 5 — a genuine combo partner. It is **not** free: the
-Climax is a fifth of the death clock and Lust is expensive to remove, so *Abandon* + *Rapture* is
-3 energy, 5 cards, 2 Strength and 20 Block bought with permanent run resource. That is the right
-price, and it is why the pair does not need watching — the cost is on the meta layer where the
-character's whole tension already lives.
+**Debilitate is vanilla and generic**, not Necrobinder-locked — a `PowerModel` with
+`StackType.Counter` that Vulnerable and Weak both query. **Its stacks are duration, not intensity**:
+the multiplier is `amount + (amount - 1)` applied once however many stacks are on, decrementing at
+the end of the owner's turn. So *Leg Lock*'s tier 3 buys two enemy turns of doubled Vulnerable, not
+double the doubling. It also only fires on powered attacks, so it never touches your own
+self-damage.
 
-Strength persists as vanilla Strength does; the **20** Block is ordinary Block and decays at end
-of turn. A permanent 20 per Climax would make Breeding unkillable in exactly the fights where it
-Climaxes most.
+**Every gated card now reads the same way****Every gated card now reads the same way**, so a Breeding deck holds one ladder rather than a
+dozen unrelated clauses. The scale lives in the shape; only the specifics differ.
+
+**Not every card is gated.** *Ritual Mark* and *Rapture* carry no tiers — *Ritual Mark* already
+scales with Sigils through its effect rather than through a threshold, and *Rapture* keys off
+Climax, which is the other axis. Forcing tiers onto them would add text without adding a decision.
+
+*Claim* loses the "at 4 Sigils, stop costing HP" clause it carried in v10. Removing a downside does
+not fit any rung of the ladder, and the shape is worth more than that one clause. The 2 HP now
+persists at every tier.
+
+**Powers repeat too.** `DuplicationPower` is vanilla and generic, so a repeated Power applies its
+buff twice — the only real exception is a non-stacking Barricade-style effect, and this pool has
+none. *Ritual Mark*'s `+1 per Sigil` and *Rapture*'s doubled energy are **choices**, taken because
+each is more interesting than doubling, not because doubling was unavailable. The rule stands as:
+**everything repeats at tier 4; 0-cost cards shed their non-energy cost instead.**
+
+*Ritual Mark* at 7 Sigils is **+7**, against the **+8** that plain doubling would give — so the
+scaling tier is a marginal downgrade at exactly the threshold that unlocks it, and only pulls ahead
+from 8 Sigils. Kept deliberately: converting a static buff into a scaling one is the fantasy, and
+7 Sigils is already past the run target, so the tier is aspirational either way.
+
+*Rapture*'s base Block moved off the Climax and onto **casting**, so the card does something the
+turn you play it rather than sitting inert until you happen to Climax — which matters on a 3-cost
+Rare. Tier 1 then puts Block back on the Climax as well, which is the "adds an effect" rung doing
+real work rather than bolting on a rider.
+
+*Consummate*'s tier 1 lands at exactly the moment the card becomes playable at all — you need a
+Sigil to exhaust — so its first Sigil both unlocks and improves it.
+
+*Rapture* puts the energy **on the Climax**, not on play, so a Climax you cause on your own turn
+refunds 3 energy and one the enemy causes gives you only the Strength and Block. That asymmetry is
+the point: Climaxing is otherwise something that happens *to* you, and this is the card that makes
+choosing the moment worth real tempo. It pairs with *Abandon* — 0 cost, Climax immediately, Draw 5
+— which is not free: the Climax is a third of the death clock and Lust is expensive to remove, so
+the pair is bought with permanent run resource. That is the right price, and it sits on the meta
+layer where the character's tension already lives.
+
+*Breed Me!* has moved to the **starting deck** (§4); *Ward* drops to Common to fill the gap, and
+*Leg Lock* is the new Uncommon. Rarity spread is 3 Common / 3 Uncommon / 2 Rare.
 
 ---
 
@@ -376,6 +437,7 @@ point, which is the most valuable thing an effect can do.
 
 | Group | Count |
 |---|---|
+| Basics (not draftable) | 5 |
 | Core | 4 |
 | Freehand (Glazed) | 5 |
 | Draining (Mouth) | 11 |
@@ -401,7 +463,17 @@ point, which is the most valuable thing an effect can do.
 - The intake rule is now by card type. Worth auditing every Power in the pool against it — Powers
   filling reservoirs is now legal, so *Throat Training* and *Full Term*, cut earlier for breaking
   the old rule, could legitimately come back.
-- Nothing punishes an enemy for being at low HP. An execute is still a gap in Breeding.
+- ~~An execute is a gap in Breeding.~~ **Closed — there was no gap.** Executes are close to absent
+  from StS by design: in a game where you kill everything anyway, an HP-threshold finisher mostly
+  saves a turn on something already dying. The closest vanilla analogue is Feed, a kill *reward*
+  rather than a threshold — and this character already pays for kills, because kills route intake.
+  *Breed Me!*'s +5 ml occupies that slot. An execute would be a second payoff on the same event.
+- **Leg-Locked may be strong enough to want a cost.** It converts any kill into Womb fill, which is
+  the character's whole progression track, for 1 energy on a card that also blocks. Watch whether
+  a Breeding deck simply opens every fight with it.
+- **Tier 4 (7 Sigils) is unbalanced on purpose and should not be tuned yet.** The 4–6 Sigils per
+  run target is unverified since the elite intake change, so nobody knows whether 7 is a stretch
+  goal or unreachable. 1 / 3 / 5 is safe either way.
 - *Handful* being Innate means every Glazed draft changes your turn-one routing whether you want
   it to or not. That is the interesting part, but it may be too loud in a focused Ass or Pussy
   deck that drafted the card purely as a cheap opener.

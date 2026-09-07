@@ -1,9 +1,14 @@
-# The Seductress — mechanical design v2.0
+# The Seductress — mechanical design v2.4
 
-Status: design draft, 2026-09-05. Personal-use mod, single-player only.
+Status: design draft, 2026-09-06. Personal-use mod, single-player only.
+**Engine spike complete** — see `SEDUCTRESS_SPIKE_RESULTS.md`. All four risks answered, none
+blocked. Nothing in this document had to change to fit the engine.
 
-Changes from v1.9: a **universal spend order** replaces per-card spend clauses; **Deep Throat**
-becomes a tag with reminder text carrying auto-swallow; Freehand rebuilt around structural roles.
+Changes from v2.3: **Leg-Locked** added as a rules word — it commits a kill's route in advance, overriding both the finishing-card tag and the Glazed catch-all. Changes from v2.2: Sigil thresholds move to **1 / 3 / 5 / 7** with a **fixed tier shape**;
+the starting deck gains **two class cards**. Changes from v2.1, all from the slice-2 build and playtest: §7.1 corrected to **2 / 4 / 6**
+(it still said 3 / 6 — a documentation error, the card list was always right); multi-enemy elites
+pay **15 ml each**, not 20; §6.3's reachability table recomputed and its conclusion weakened;
+**minions produce no intake**; *Breed Me!*'s multiplier replaces its +5 rather than compounding.
 
 Earlier (v1.8): intake rule redrawn by card type (Powers may generate); Sigil thresholds move to 2/4/6.
 
@@ -114,7 +119,14 @@ in flight. The cost is already real without it — **+1 Lust is a fifth of the r
 Sensitive compounds every remaining hit of the combat. Adding a tempo punishment on top taxed the
 same event three times.
 
-**Sensitive is +50% per stack**, applying to both arousal taken and Intake gained:
+**Sensitive is +50% per stack**, applying to both arousal taken and Intake gained. **[decided]**
+That includes **your own self-damage**, ignoring `ValueProp.Unpowered` — a deliberate departure
+from what `Unpowered` means everywhere else in the game, made because most of your arousal comes
+from your own cards and the arithmetic below is false without it. The consequence is a real one:
+*Let Go* at 3 stacks is 50 HP on a 65 HP character, so a starting card becomes a self-kill button
+late in a long fight. That is the character.
+
+
 
 - Two climaxes **halve your effective bar** (`1 + 0.5×2 = 2.0`); a third is nearly immediate.
 - One climax against a boss nearly pays a whole pregnancy: 60% × 1.5 = **90%**.
@@ -129,11 +141,39 @@ Sensitive clears at end of combat. Lust, Intake and Sigils do not.
 Playable. Each gives a real benefit and a large chunk of arousal. The card never kills you
 directly; it accelerates the loop that does.
 
-- **5 Lust in deck** ends the run. Removable at shops and by the usual removal events.
-- Shop removal becomes a **trade**, not a free good.
-- **At 4 Lust you cannot afford to climax.**
+- **[decided] Holding 3 Lust ends the run** — stated as a threshold, never as a count of
+  climaxes, because that ambiguity has now cost three separate revisions. You gain a card on
+  climaxes 1, 2 and 3; the fourth ends the run. Baseline is **3 climaxes per run**.
+- **At 2 Lust you cannot afford to climax** without a removal in hand.
+- **[decided] A Lust card enters the run deck, not the current combat.** Climaxing repeatedly
+  inside one fight is close to free *in that fight* — Sensitive is the in-combat punishment, Lust
+  is the between-combats one, and stacking both on the same event taxed it twice. Confirmed in
+  code: `AddCurseToDeck` adds to the master deck, so the card cannot be drawn until the next
+  combat shuffles it in. The lever, if this ever reads as too soft, is
+  `AddGeneratedCardToCombat(PileType.Discard)`.
 
 Draft: cost 0, +12 arousal, benefit around "+2 energy this turn" or "draw 3".
+
+### Relief — Lust removal at rest sites
+
+**[decided]** A `CustomRestSiteOption` that removes **1 Lust card** instead of healing. This is
+what makes a 3-card clock survivable rather than brutal, and it is the reason the clock could be
+tightened at all: **the cap and the availability of removal are two dials, and only one was being
+turned.** A single number cannot serve both act 1, where climaxes are accidents, and act 3, where
+Breeding wants them deliberately.
+
+**It is self-limiting through the resource it protects.** For this character HP *is* arousal, so
+giving up the heal means entering the next fight already aroused. No per-act cap is needed — the
+cost scales naturally with how dangerous the next floor is.
+
+It also gives the rest site a three-way decision where vanilla has two, and the archetypes want
+different things from it: Breeding takes relief and enters act 3 permanently under-rested;
+Draining almost never does, because staying high on the bar is its whole plan.
+
+**Watch:** three or four rest sites per act means ~10 potential removals a run, which would make a
+3-card clock meaningless if the opportunity cost turns out to be soft. If so, the fix is making
+relief cost something on top — max HP, or a Sensitive stack carried into the next fight — rather
+than limiting how often it appears.
 
 ---
 
@@ -215,9 +255,21 @@ have.
 | Source | Fill | |
 |---|---|---|
 | Normal enemy | 10 ml | |
-| Elite, multi-enemy | 20 ml each | |
+| Elite, multi-enemy | 15 ml each | |
 | Elite, single | 40 ml | × `(1 + 0.5 × Sensitive)` |
 | Boss | 60 ml | |
+| **Minion** | **0 ml** | |
+
+**[decided]** Multi-enemy elites pay **15 each**, not 20. Note the ordering still holds — a
+three-enemy elite (45) beats a solo one (40) — but the margin is 5 ml rather than 20, so the
+choice between elite types is now nearly neutral rather than clearly favouring crowds.
+
+**[decided] Minions produce no intake, and do not count toward encounter size.** An elite that
+summons adds stays a *solo* elite at 40 ml rather than being demoted to the multi rate. Without
+this, any summoner is an intake fountain: minions are cheap to kill and often respawn, so they
+would pay better per unit of effort than the enemy summoning them, and Breeding would want to farm
+adds rather than kill elites. Implemented against `Creature.IsSecondaryEnemy` — the game's own
+definition — rather than a hand-maintained list of monster ids.
 
 **[decided] Sensitive multipliers on intake round UP.** 5 ml at one stack is 7.5 → **8 ml**.
 Rounding in the player's favour stops attrition quietly undercutting the "should I Climax before
@@ -274,16 +326,52 @@ Each archetype still needs an **in-combat** identity that is not "fill my reserv
 Proportional leak means a reservoir drifts toward `gain ÷ leak`, but **pregnancy triggers on
 a peak, not on the drift level**. A single encounter delivers:
 
+Against a **100 ml** Womb, per kill, × `(1 + 0.5 × Sensitive)`, rounded up:
+
 | Encounter | 0 stacks | 1 stack | 2 stacks |
 |---|---|---|---|
-| Single elite | 40% | **60%** | **80%** |
-| Elite, 3 enemies | 60% | **90%** | **120%** |
-| Boss | 60% | **90%** | **120%** |
+| Single elite | 40 | 60 | 80 |
+| Elite, 3 enemies | 45 | **69** | 90 |
+| Boss | 60 | **90** | **120** |
 
-So **elites and bosses are the pregnancy moments**, and Sensitive is what converts them. An
-even-split deck drifts around 63% and conceives at elites and bosses. A committed Breeding
-deck (≈75% routing, 14.25%/floor, drift 142%) conceives from ordinary fights as well, roughly
-doubling the rate. Target: **1–2 pregnancies per act, 4–6 Sigils per run.**
+**[revised 2026-09-06, and weaker than it was.]** At the old 20 ml multi rate a three-enemy elite
+with one Sensitive stack delivered 90 and all but completed a pregnancy on its own. At 15 it
+delivers **69**. The consequence is worth stating plainly: **no encounter now conceives from empty
+except a boss at two Sensitive stacks.** Everything else requires a bank carried in.
+
+That is arguably the better shape — pregnancy becomes the reward for routing discipline across a
+whole act rather than for turning up at an elite — but it is a change, not a restatement.
+
+**The "1–2 pregnancies per act, 4–6 Sigils per run" target was derived from the old rate and no
+longer follows from anything.** It is now unverified. The instrumented run is what settles it, and
+until then no downstream number that depends on Sigil count — the 2 / 4 / 6 thresholds above all —
+should be treated as calibrated.
+
+**Limit on what the log can show:** overflow above 100 ml is currently discarded, since pregnancy
+is not implemented. Fill *rate* is measurable; the size of an overshoot is not.
+
+### 6.3a Leg-Locked — the kill claim
+
+**[decided]** A rules word, applied by cards:
+
+> **Leg-Locked** — while an enemy is Leg-Locked, its death routes its output to your **Pussy**,
+> whatever killed it. Counts down at the end of its turn.
+
+It is a **claim staked on a kill that has not happened yet**, which is why it expires: you are
+betting on finishing that enemy, not taxing it.
+
+**This closes a hole §6.0 has carried from the start.** Routing keys off the finishing card's tag,
+so a kill delivered by Poison, a Sigil passive, reflect damage or any untagged card falls through
+to Glazed (§6.4). Breeding needs Womb fill more than any other archetype and is also the deck most
+likely to kill things with something that is not an attack — the Sigil passive is literally
+start-of-turn AoE. Without Leg-Locked the archetype's own engine leaks its progression into Glazed.
+
+It **overrides both** the finishing-card tag and the Glazed catch-all. It counts down like
+Debilitate, so marking an enemy you then fail to kill is wasted — the card asks you to read the
+fight rather than being a free tax on every turn.
+
+**Watch:** it converts any kill into Womb fill for 1 energy on a card that also blocks. If a
+Breeding deck simply opens every fight with it, it wants a real cost.
 
 ### 6.4 Glazed — the catch-all
 
@@ -343,7 +431,7 @@ overlaps Defect's Lightning. Hitting everything is cleaner, and it makes "Sigils
 or "Sigils also apply Entranced" obvious build-around powers later.
 
 It also feeds the system that produced it. The multi-enemy elite is the best Conception source
-(20% each, ×1.5 with one Sensitive stack = 90% from three), and passive AoE is exactly what
+(15 ml each, ×1.5 with one Sensitive stack = 69 ml from three), and passive AoE is exactly what
 helps you close out three enemies at once.
 
 **[resolved]** The earlier worry that this hollows out a Breeding deck's attack cards does not
@@ -362,13 +450,63 @@ visuals and voice lines, not in a third overloaded noun.
 **[decided]** Sigil-aware cards read a base effect plus **threshold tiers**, not a per-Sigil
 multiplier:
 
-> **Ward** — Block 6.
-> *3 Sigils:* Block +6.
-> *6 Sigils:* and reflect damage.
+**[decided] Thresholds are 1 / 3 / 5 / 7.** Not 2 / 4 / 6, and not the 3 / 6 this section carried
+through v2.1.
 
-Thresholds at **3 and 6**, against a target of 4–6 Sigils per run. Tier 1 lands mid-run on
-most Breeding decks; tier 2 is aspirational and only a committed run reaches it. The card is
-still playable at zero Sigils, so it is never a dead draw in a non-Breeding deck.
+**The first Sigil must be a spike.** At 2 / 4 / 6 your *first pregnancy* — the achievement the
+entire character is built around — changed nothing on any card. Earning the signature mechanic and
+receiving a blank reward is the worst payoff curve available. At 1 / 3 / 5 the first Sigil turns on
+tier 1 across your whole Breeding deck at once.
+
+### The tier shape
+
+**[decided]** Every Sigil-aware card follows the same ladder, so "what does another Sigil get me"
+is answerable without reading four cards:
+
+| Tier | Sigils | What it does |
+|---|---|---|
+| 1 | **1** | **Adds an effect** — a rider the base card did not have |
+| 2 | **3** | **Stronger base** — the card's main number grows |
+| 3 | **5** | **Stronger effect** — the tier-1 rider grows |
+| 4 | **7** | **Repeats**, a number of times equal to its cost |
+
+A shared resource scale should carry a shared meaning. Before this, each Breeding card's tiers did
+something structurally unrelated — draw, damage, extra hits, Block, reflect — so a Breeding deck
+asked you to hold a dozen unconnected conditional clauses and a tier could be misread as raising
+damage when it did not.
+
+**Tier 4 applies to Powers too.** Repeating a Power is enormous; at 7 Sigils you *should* be
+wildly powerful, and a tier that rare has no reason to be modest.
+
+**Powers can repeat, and repeating is the default.** `DuplicationPower` is vanilla and generic —
+`ModifyCardPlayCount` returns `playCount + 1` for any card the owner plays, Powers included — so a
+repeated Power simply applies its buff twice. Tier 4 should ride that hook rather than being
+hand-rolled per card.
+
+**The real exception is a non-stacking effect**, Barricade-style, where applying it twice changes
+nothing. **Nothing in this pool is non-stacking**, so nothing here needs an exception on those
+grounds.
+
+*Ritual Mark*'s `+1 per Sigil` and *Rapture*'s doubled energy are therefore **design choices, not
+workarounds** — each was written because it is more interesting than doubling, not because
+doubling was impossible. A future Power can take the plain repeat.
+
+**Why the repeat count is the cost.** Expensive cards need *superlinear* value to justify their
+slot, so the payoff scales with what you paid. That makes tier 4 self-correcting: a card that
+reduced its own cost at tier 2 has already banked that value in energy and correctly repeats fewer
+times. The tier pays out against the card's **current** cost, so the ladder stays comparable across
+the whole group regardless of what the lower tiers did.
+
+**[decided] 0-cost cards lose their non-energy cost at tier 4** instead of repeating, since
+repeating zero times is nothing. *Consummate* stops exhausting a Sigil; *Surrender* stops costing
+HP. One rule, so any future 0-cost Pussy card already knows what its tier 4 is.
+
+**Tier 4 is provisional and the others are not.** The 4–6 Sigils per run target is currently
+unverified (see §6.3), so whether 7 is a stretch goal or unreachable is unknown. 1 / 3 / 5 is safe
+either way; the fourth tier should not be balanced against until the instrumented run reports a
+real pregnancy rate.
+
+Every card is still playable at zero Sigils, so none is a dead draw in a non-Breeding deck.
 
 This also removes the double-multiplier problem without capping anything: passives scale
 linearly with Sigil count, card effects step, and the two do not compound.
@@ -502,14 +640,31 @@ with GPT-SoVITS; same route for per-card lines later, and its `voice_manifest.js
 
 ## 10. Implementation risks
 
-1. **Death interception must catch every HP-loss path** — events, curses, self-damage,
-   Poison, Doom.
-2. **Inverted bar needs a Harmony patch** on `NHealthBar`. `HealthBarForecastRegistry` can
-   overlay `FromLeft` segments without patching, but not reverse the base fill.
+1. ~~**Death interception must catch every HP-loss path.**~~ **Retired.** `CustomSingletonModel`
+   receives the same `ShouldDie` / `AfterPreventingDeath` hook Lizard Tail and Fairy in a Bottle
+   use — no patching. Interception happens at the death hook rather than in damage bookkeeping, so
+   anything routing through `CreatureCmd.Kill` is covered, including events, curses, Poison and
+   Doom. Enemy damage, console `die` and the character's own self-damage all confirmed, and the
+   run still ends at the Lust limit. **Residual:** `Kill(force: true)` skips the hook by design;
+   nothing in vanilla calls it on the player outside a real game over, but that is a claim about
+   vanilla and this install runs 40+ workshop mods. First place to look if a death ever escapes.
+   **Also:** a preventer that does not restore HP hangs the combat —
+   `KillWithoutCheckingWinCondition` re-enters itself and throws after ten attempts. Healing to
+   full is load-bearing, which is also what §4 wants.
+2. ~~**Inverted bar needs a Harmony patch** on `NHealthBar`.~~ **Retired.** Three postfixes on
+   `RefreshForeground`, `RefreshText` and `RefreshMiddleground`; substituting `MaxHp - CurrentHp`
+   is the whole change. `HealthBarForecastRegistry` was confirmed unusable as predicted. Enemies
+   invert too. Gated on the local player being the Seductress, so nothing else is touched.
+   **Residual:** the vanilla trailing-damage middleground must be hidden from its *own* postfix —
+   `RefreshValues` calls it after the foreground and it sets `Visible = true` unconditionally.
+2a. **Poison and Doom bar overlays are still positioned from `CurrentHp`**, so they sit in the
+   wrong place on an inverted bar. Nearer-term than it sounds: enemies apply Poison to you whether
+   or not this character's own deck has any. Same fix method as risk 2.
 3. **Enemy "climax and pass out" must not break on-death triggers.**
 4. **Lust cards must not be launderable** by exhaust, purge or transform.
-5. **Sigils are uncapped permanents** — they need to survive save/load via
-   `ExtendedSaveTypes`, and their passives must not stack into something degenerate.
+5. **Sigils are uncapped permanents** — their passives must not stack into something degenerate.
+   The persistence half is **retired**: `ExtendedSaveTypes.RegisterSavedValue` rides the ordinary
+   run save, proven by reading `current_run.save` after the process exited and then resuming.
 6. HUD legibility — deferred to playtest by decision.
 7. Multiplayer out of scope; the rule still stands for the other mods here.
 
@@ -588,6 +743,22 @@ for now.
 | 57 | *Rapture* gives **3 energy on each Climax**, not on play — so a Climax you cause on your turn is worth real tempo and one the enemy causes is not. Rewards Climaxing on your own terms. Its Block is ordinary decaying Block, not permanent |
 | 58 | *Ritual Mark* buffs Sigils **and Pussy cards**, so it is a payoff for the archetype rather than only for the Sigil count |
 | 59 | **Climax does not end your turn.** Cut — it fires mid-card-resolution, so it would interrupt an in-flight queue, and +1 Lust plus +1 Sensitive is already sufficient cost |
+| 60 | **Holding 3 Lust ends the run.** Stated as a threshold, never as a count of climaxes. Baseline 3 climaxes per run |
+| 61 | **Rest-site relief** removes 1 Lust instead of healing. Self-limiting, because for this character HP is arousal — relief means entering the next fight already aroused. Pairs with the tightened cap: the cap and removal availability are two dials, not one |
+| 62 | **A Lust card enters the run deck, not the current combat.** Sensitive punishes the fight, Lust punishes the run; keeping them on separate layers is what makes both legible |
+| 63 | **Sensitive multiplies your own self-damage**, ignoring `ValueProp.Unpowered`. Deliberate departure from vanilla convention — §4's arithmetic is false without it |
+| 64 | **Custom card tags work as plain casts** — `(CardTag)1001` upward. The enum cannot be extended, but tags are behaviour-less metadata and nothing switches over them. The card list's tags stand as written |
+| 65 | **Minions produce no intake and do not count toward encounter size.** Prevents summoners becoming intake fountains that pay better than the elite summoning them |
+| 66 | **Multi-enemy elites pay 15 ml each, not 20.** Makes §6.3 materially weaker — no encounter conceives from empty except a 2-stack boss. Decided without data; the instrumented run is what tests it |
+| 67 | ***Breed Me!*'s Sigil multiplier replaces its +5** rather than compounding with it. The flat +5 applies only below tier 1 |
+| 68 | **§7.1 corrected to 2 / 4 / 6.** It read 3 / 6 through v2.1 — a documentation error; the card list was right from v9 |
+| 74 | **Leg-Locked** commits a kill's route to the Pussy in advance, overriding the finishing-card tag and the Glazed catch-all. Closes the hole where Poison, reflect and the Sigil passive leaked Breeding's own progression into Glazed |
+| 75 | **Powers repeat like anything else at tier 4** — `DuplicationPower`/`ModifyCardPlayCount` is vanilla and generic, and a repeated buff applies twice. The exception is a non-stacking (Barricade-style) effect, of which this pool has none. *Ritual Mark* and *Rapture* take bespoke tier 4s by choice, not necessity |
+| 70 | **Sigil thresholds are 1 / 3 / 5 / 7.** The first Sigil must be a spike — at 2/4/6 the first pregnancy changed nothing on any card |
+| 71 | **Fixed tier shape**: 1 adds an effect, 3 grows the base, 5 grows the effect, 7 repeats a number of times equal to cost. A shared scale must carry a shared meaning |
+| 72 | **0-cost cards lose their non-energy cost at tier 4** rather than repeating. Tier 4 applies to Powers as well as Attacks |
+| 73 | **The starting deck carries two class cards**, per Silent/Defect/Watcher rather than Ironclad: *Breed Me!* and a Mouth attack granting Block. Ass is the wrong starter — its bank starts empty |
+| 69 | ***Consummate* costs 0**, down from 2. At 2 its net energy was zero, making a Rare strictly worse than a vanilla Common. May want to be 1 once the Sigil passive exists |
 
 ### Proposed, not confirmed
 
@@ -606,3 +777,18 @@ for now.
 - Is 5 Lust right, or should it scale with ascension?
 - Does Squeezing's fullness buff need a cap, given it only leaks 5%?
 - What exactly does a Sigil's passive do, in v1's single type?
+- **[resolved] The starting deck carries two class cards.** See the card list §4. Ironclad's single
+  Bash is the outlier; Silent, Defect and Watcher all start with two, and Watcher's pair is the
+  closest analogue — each card demonstrates a different half of the mechanic. Here that is
+  *Breed Me!* (Pussy, the involved mechanic, and it teaches intake explicitly through its flat ml)
+  and a Mouth attack granting Block (the other long progression path, and the archetype whose
+  identity is staying high on the bar). **Ass is the wrong starter**: its rule spends a bank that
+  starts empty and takes most of an act to fill, so an Ass starter is a plain attack with a dead
+  clause for the whole opening. Because **Skills are untagged by decision**, the defensive starter
+  had to be an Attack that grants Block rather than a Skill — no rules exception needed.
+- ~~**Does the starting deck need a tagged card?**~~ Resolved above. As designed it had none — Pump is *Continuing*,
+  which defaults to Glazed with no tagged attack to inherit from — so nothing routes anywhere until
+  the first draft and the character's central mechanic is invisible for the opening floors. The
+  build has *Take Him In* in the starting deck as scaffolding. Adding one permanently means picking
+  a default archetype, which is a real statement about the character rather than a convenience.
+- ~~**Breeding's Sigil tiers do not read as a group.**~~ Resolved by the fixed tier shape in §7.1.
