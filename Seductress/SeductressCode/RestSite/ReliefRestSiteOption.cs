@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Localization;
 using Seductress.SeductressCode.Cards;
+using Seductress.SeductressCode.Extensions;
 using Seductress.SeductressCode.Systems;
 
 namespace Seductress.SeductressCode.RestSite;
@@ -22,6 +23,20 @@ namespace Seductress.SeductressCode.RestSite;
 public class ReliefRestSiteOption(Player owner) : CustomRestSiteOption(owner)
 {
     public override string OptionId => "SEDUCTRESS_RELIEF";
+
+    /// <summary>
+    /// REQUIRED, not decoration. RestSiteOption.Icon builds its path from OptionId, so without this
+    /// the game looks for res://images/ui/rest_site/option_seductress_relief.png, throws
+    /// AssetLoadException inside NRestSiteButton._Ready, and <b>the button never renders</b> — the
+    /// option is silently absent rather than broken-looking.
+    ///
+    /// This cost the whole of slice 2: Relief was never on screen and its opportunity cost was
+    /// never testable, while the results doc recorded it as working.
+    ///
+    /// Placeholder art from the template. Deliberately not a vanilla rest-site icon, which would
+    /// read as one of the existing options.
+    /// </summary>
+    public override string CustomIconPath => "relic.png".RelicImagePath();
 
     /// <summary>Greyed out but still hoverable when there is nothing to remove.</summary>
     public override bool IsEnabled => LustCards().Any();

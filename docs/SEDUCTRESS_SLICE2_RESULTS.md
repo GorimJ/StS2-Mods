@@ -23,8 +23,20 @@ It removes the *first* Lust card found rather than offering a choice. With only 
 no way to tell them apart in value, a selection screen would be a click with no decision in it.
 Worth revisiting if a third Lust card ever differentiates them.
 
-Greyed out but still hoverable when there is nothing to remove, matching how Smith behaves with no
-upgradable cards.
+**CORRECTION (2026-09-07): this never worked.** `RestSiteOption.Icon` builds its path from
+`OptionId`, so the game looked for `res://images/ui/rest_site/option_seductress_relief.png`, which
+does not exist. The resulting `AssetLoadException` fires inside `NRestSiteButton._Ready`, so the
+button never rendered — Relief was silently absent from every rest site, not greyed out.
+
+The claim below that it was "greyed but hoverable" was asserted, not observed; the option Gorim saw
+was vanilla's Dig from the Shovel relic. **Slice 2 therefore produced no evidence at all about
+Relief or its opportunity cost**, which was the question the slice existed to answer.
+
+Fixed by overriding `CustomRestSiteOption.CustomIconPath`, which exists for exactly this. See
+SLICE3_RESULTS.
+
+~~Greyed out but still hoverable when there is nothing to remove, matching how Smith behaves with no
+upgradable cards.~~
 
 ### 2. Per-floor leak
 
