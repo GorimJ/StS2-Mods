@@ -5,8 +5,9 @@ and `SEDUCTRESS_CARDS.md` **v13** §4 / §8. Game v0.107.1, BaseLib v3.4.5.
 
 Neither design doc has been edited.
 
-**Status: built, compiles clean, deployed. Not yet played** — no testing this session by Gorim's
-instruction.
+**Status: built, deployed and playtested.** Slice 3's mechanics are verified in play; six
+display and rule fixes found during that playtest are deployed but **not yet seen in game** — they
+went out after the run ended.
 
 **Attribution:** **[Gorim]** = his decision, settled. **[Claude-Cowork]** = the design session's,
 where Gorim said so explicitly. **[Claude-Code]** = this session's, needs his review.
