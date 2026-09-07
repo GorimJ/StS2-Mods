@@ -205,28 +205,44 @@ public class ClimaxModel : CustomSingletonModel
     }
 
     /// <summary>
-    /// The Climax itself, separated from the death hook so <i>Abandon</i> can trigger one on
-    /// purpose. Everything that reaches a Climax goes through here.
+    /// The Climax itself, separated from the death hook so a card can trigger one on purpose.
+    /// Everything that reaches a Climax goes through here.
+    ///
+    /// [Gorim 2026-09-07] The two costs are separable. <i>Seek Relief</i> takes the Sensitive and
+    /// the listener triggers while paying neither the heal nor the Lust card, which is what makes
+    /// a cautious deck able to turn on its Climax cards at all without spending the run's death
+    /// clock to do it.
+    ///
+    /// [Claude-Code] Note what dropping the heal actually means: arousal stays exactly where it
+    /// is, and the new Sensitive stack raises everything you take afterwards by 50%. So a Climax
+    /// without the reset is not free — it is a percentage cut to the bar you have left, taken now
+    /// and paid for the rest of the fight.
     /// </summary>
-    public async Task DoClimax(Creature creature)
+    /// <param name="heal">Reset arousal to 0. False for a Climax that only carries the cost.</param>
+    /// <param name="addLust">Add a permanent Lust card — the run's death clock.</param>
+    public async Task DoClimax(Creature creature, bool heal = true, bool addLust = true)
     {
         var player = creature.Player!;
 
         ClimaxesThisCombat++;
-        MainFile.Logger.Info($"[Seductress] CLIMAX #{ClimaxesThisCombat} — arousal reset, +1 Sensitive, +1 Lust");
+        var shape = (heal ? "arousal reset" : "NO reset") + ", +1 Sensitive, " + (addLust ? "+1 Lust" : "NO Lust");
+        MainFile.Logger.Info($"[Seductress] CLIMAX #{ClimaxesThisCombat} — {shape}");
 
         // 1. Arousal resets to 0 — i.e. HP back to full, since arousal is MaxHp - CurrentHp.
-        await CreatureCmd.Heal(creature, creature.MaxHp);
+        if (heal) await CreatureCmd.Heal(creature, creature.MaxHp);
 
-        // 2. +1 Sensitive for the rest of combat.
+        // 2. +1 Sensitive for the rest of combat. Never optional: this is the Climax.
         await PowerCmd.Apply<SensitivePower>(new ThrowingPlayerChoiceContext(), creature, 1m, creature, null);
 
         // 3. +1 Lust card, permanently. No exception for the first climax of a run.
         // Which of the two Lust cards is drawn from the run's Niche stream, so it stays seeded.
-        if (player.RunState.Rng.Niche.NextBool())
-            await CardPileCmd.AddCurseToDeck<Aching>(player);
-        else
-            await CardPileCmd.AddCurseToDeck<Craving>(player);
+        if (addLust)
+        {
+            if (player.RunState.Rng.Niche.NextBool())
+                await CardPileCmd.AddCurseToDeck<Aching>(player);
+            else
+                await CardPileCmd.AddCurseToDeck<Craving>(player);
+        }
 
         FloorLog.RecordClimax();
 

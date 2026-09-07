@@ -23,12 +23,18 @@ public class Rut : SeductressCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(6m, ValueProp.Move),
+        new CalculationBaseVar(6m),
+        new ExtraDamageVar(1m),
+        new CalculatedDamageVar(ValueProp.Move).WithMultiplier(BonusCalc),
         new HpLossVar(6m)
     ];
 
+
+    /// <summary>The live Ass bonus, so the card face shows what it will actually deal.</summary>
+    protected override decimal PreviewBonus() => AssNotional();
+
     public override List<(string, string)>? Localization => new CardLoc(
-        "Rut", "Ass. Deal {Damage:diff()} damage three times. Lose {HpLoss:diff()} HP.");
+        "Rut", "Ass. Deal {CalculatedDamage:diff()} damage three times. Lose {HpLoss:diff()} HP.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -38,12 +44,16 @@ public class Rut : SeductressCard
 
         for (var i = 0; i < hits; i++)
         {
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue + bonus).FromCard(this)
+            await DamageCmd.Attack(DynamicVars.CalculationBase.BaseValue + bonus).FromCard(this)
                 .Targeting(cardPlay.Target).WithHitFx("vfx/vfx_attack_slash").Execute(choiceContext);
         }
         await CreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.HpLoss.BaseValue,
             ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(2m);
+    protected override void OnUpgrade()
+    {
+        DynamicVars.CalculationBase.UpgradeValueBy(2m);
+        DynamicVars.CalculatedDamage.RecalculateForUpgradeOrEnchant();
+    }
 }

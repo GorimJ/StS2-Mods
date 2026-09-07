@@ -345,3 +345,140 @@ Console commands: `sigils <n>` (test scaffold), `card SEDUCTRESS-<CARD_ID>`, `ro
    slots, no empties. Playing *Consummate* should remove one orb. Landing a kill with the passive
    while the target is **not** Leg-Locked should bank to Glazed; Leg-Locking it first should bank
    to Womb.
+
+---
+
+# Playtest — 2026-09-07
+
+Act 1 attempt on the Seductress, preceded by a short cross-character check on the Regent. Testing
+paused mid-act-1 for work; everything below is built, compiled and deployed.
+
+## Verified working
+
+* **Relief removes a Lust card.** [Gorim] End to end, at a rest site, card actually leaves the
+  deck. The `CustomIconPath` fix from yesterday is confirmed by the button rendering its own label
+  and icon — `Reload()` writes the label only after the icon line it used to throw on, so "Relief"
+  instead of "Dig" is proof it got past it.
+* **Strength and Vulnerable update card numbers.** [Gorim] The `diff()` pass works.
+* **Sigil orb passive reads correctly and rises with Ritual Mark.** [Gorim]
+* **Cross-character isolation.** [Claude-Code, verified in play by Gorim] A full Regent run with
+  Seductress cards drafted in: no reservoirs filled, no intake, no arousal bar, death behaved
+  normally. Every player-facing system early-outs on the character check.
+  * Correction to an earlier claim of mine: I said card pools prevent Seductress cards reaching
+    other characters. That is true of ordinary rewards but **false as a blanket statement** —
+    Prismatic Gem and Sea Glass iterate `ModelDb.AllCharacters`, modded characters included. Gorim
+    found this by drawing a Clench on the Regent. Vanilla behaving as intended, not a leak.
+  * Still ungated, harmless: the `reservoir` / `sigils` console commands run on any character, and
+    every run of every character carries the reservoir keys in `current_run.save` at zero.
+
+## Bugs found and fixed
+
+### `Clench` was still on the old 1:10 Ass ratio — [Claude-Code, mine]
+
+Clench carried its own inline copy of the Ass rule instead of calling `SpendAssForDamage`. When the
+ratio changed to 1:1 yesterday I updated the shared rule and missed the copy. Caught in Gorim's log
+two lines apart:
+
+```
+SEDUCTRESS-RUT spent 5 ml Ass (+5 dmg/hit)
+Clench spent 4 ml Ass for +0 damage per hit
+```
+
+It also ignored Milking Grip's halved drain. Now routed through the shared rule like every other
+Ass card. Note this was the card I had told Gorim to run the 200 ml Ass test with.
+
+### Numbers computed in `OnPlay` never reached the card face — [Gorim, found in play]
+
+The Ass bonus, Ritual Mark and the tier-2 damage swap were all invisible until the card resolved.
+Gorim isolated it precisely: Strength updates, Vulnerable updates, these do not. That is exactly the
+boundary — `DamageVar` previews by running `Hook.ModifyDamage`, which is where Strength and
+Vulnerable live; anything computed inside `OnPlay` never touches that pipeline.
+
+This mattered more than cosmetics. **The Ass rule is a decision mechanic** — you are meant to look
+at the bank and choose whether to spend it — and it was asking for a decision against an invisible
+number.
+
+Fixed by moving nine cards onto `CalculatedDamageVar`, the machinery Body Slam and Perfected Strike
+use, so this is vanilla's own answer rather than something invented. Ass: Clench, Blowout, Grind,
+Overflow, Rut, Stuffed. Pussy: Breed Me!, Claim, Take Him In. Strength still layers on top, because
+`CalculatedDamageVar` runs `Hook.ModifyDamage` over the calculated total.
+
+Side benefit: the tiered Pussy cards now show **one live top-line number**. At 3 Sigils, Claim reads
+12 rather than 7 with a footnote saying it is really 12.
+
+## The Ass economy has a fixed point at 100 ml — [Gorim]
+
+> "It's essentially impossible to go above 100ml against normal enemies. Costs 10ml to play the
+> card to kill them, and you gain 10ml from them without a sensitive stack."
+
+This is the answer to the question slice 3 existed to ask, and it is structural rather than a
+tuning miss. Spend is a **percentage** (10% of the bank) and normal intake is a **flat** 10 ml, so
+they meet at exactly 100 and the bank cannot climb past it in steady state. The 5% floor leak pulls
+the real number below that.
+
+Observed curve, floors 1–6: `0 → 19 → 19 → 27 → 38 → 48 → 46`.
+
+**[Claude-Code] What makes this coherent rather than broken:** *Milking Grip* halves the drain while
+paying the full bonus, so under it the spend is 5% and the fixed point moves to **exactly 200 ml** —
+the design's stated Ass capacity. On these numbers the upper half of the bank is a Milking Grip
+unlock, and §6.1's 200 cap is reachable only with it. Whether that gate is intended is Gorim's call;
+if it is, the design is consistent and only the expectation needs writing down. If it is not, the
+lever is the spend percentage, not the 1:1 ratio.
+
+Elites (15/40), bosses (60) and Sensitive multipliers all spike above the fixed point during a
+fight, so this describes the steady state against normals, not a hard ceiling.
+
+## Design changes — all [Gorim]
+
+### *Afterglow* buffed
+
+> "Afterglow needs a buff. Likely a passive draw per turn based on sensitive stacks, probably even
+> energy too."
+
+Now: burst unchanged (15 Block, draw 2 on Climax), plus an engine — **each turn, draw 1 and gain
+1 Energy per stack of Sensitive**. Upgrade cuts the cost 1 → 0 instead of raising the Block.
+
+Rate is per stack, not per two stacks, and deliberately steep: at 3 Sensitive you are taking +150%
+arousal, so the payoff is meant to match the position rather than hedge it.
+
+[Claude-Code] The engine does **not** widen the trigger — Sensitive is only gained by Climaxing and
+clears at end of combat, so it is live under exactly the condition the burst always had. What
+changed is when the value lands: across the turns you spend rebuilding, rather than dumped on the
+turn you reset to zero arousal and need Block least. Also: a second copy only adds Block, since
+powers merge into one instance and the engine scales off Sensitive rather than the power's amount.
+
+Diverges from `SEDUCTRESS_CARDS.md` line 173.
+
+### *Abandon* cut, replaced by *Seek Relief*
+
+> "We could make abandon give a lust free, heal free climax... Probably draw 3 and exhaust. Actually
+> lets just cut abandon entirely and call this new card 'seek relief'."
+
+Abandon paid a Lust card for its Climax, which priced it out of exactly the decks that wanted it:
+the reason to want a Climax on demand is to switch on the cards that key off one, and paying the
+run's death clock to do that is not a trade a cautious deck can make.
+
+**Seek Relief** — 0 cost, Skill, Rare, Exhaust. Climax without the heal and without the Lust card.
+Draw 3 (was 5). `DoClimax` now takes `heal` and `addLust` flags; the Sensitive stack and the
+`IClimaxListener` triggers are never optional, because those are the Climax.
+
+[Claude-Code] The cost is real despite nothing visible being spent: arousal does not reset, and the
+new Sensitive stack raises everything you take afterwards by 50%. It trades a percentage of the bar
+you have left for tempo, and gets worse the more hurt you already are — a card you play early in a
+fight or not at all.
+
+Open, raised by Gorim and not acted on: whether Seek Relief should replace *Let Go* in the starting
+deck, which would also settle the older "cut Let Go" question.
+
+## Still untested
+
+Carried forward — none of these were reached before the session paused.
+
+1. **Tier-4 repeats.** `sigils 7`, Take Him In (plays twice), Breed Me! (three times).
+2. **The Ass rule at a full bank.** `reservoir ass 200`, then Blowout or Rut. Expect +20 tapering
+   +20, +18, +17, +15, +13. **Not Clench** — it was the broken one, though it is fixed now.
+3. **Consummate shrinking the orb count.**
+4. **A minion banking nothing.** No summoner encountered.
+5. **Spit's `{Portion}%` and Ritual Mark going Innate** on upgrade.
+6. **Everything above, deployed but never once seen in play**: the nine reworked card faces,
+   Afterglow's engine, Seek Relief.

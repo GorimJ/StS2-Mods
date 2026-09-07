@@ -27,18 +27,24 @@ public class Grind : SeductressCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(6m, ValueProp.Move),
+        new CalculationBaseVar(6m),
+        new ExtraDamageVar(1m),
+        new CalculatedDamageVar(ValueProp.Move).WithMultiplier(BonusCalc),
         new HpLossVar(2m)
     ];
 
+
+    /// <summary>The live Ass bonus, so the card face shows what it will actually deal.</summary>
+    protected override decimal PreviewBonus() => AssNotional();
+
     public override List<(string, string)>? Localization => new CardLoc(
-        "Grind", "Ass. Deal {Damage:diff()} damage. Gain [gold]Block[/gold] equal to the damage dealt. Lose {HpLoss:diff()} HP.");
+        "Grind", "Ass. Deal {CalculatedDamage:diff()} damage. Gain [gold]Block[/gold] equal to the damage dealt. Lose {HpLoss:diff()} HP.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         var bonus = SpendAssForDamage();
-        var damage = DynamicVars.Damage.BaseValue + bonus;
+        var damage = DynamicVars.CalculationBase.BaseValue + bonus;
         var hits = 1 + StretchBonusHits(true);
 
         for (var i = 0; i < hits; i++)
@@ -51,5 +57,9 @@ public class Grind : SeductressCard
             ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(2m);
+    protected override void OnUpgrade()
+    {
+        DynamicVars.CalculationBase.UpgradeValueBy(2m);
+        DynamicVars.CalculatedDamage.RecalculateForUpgradeOrEnchant();
+    }
 }

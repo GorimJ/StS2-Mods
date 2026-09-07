@@ -23,13 +23,19 @@ public class Stuffed : SeductressCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(12m, ValueProp.Move),
+        new CalculationBaseVar(12m),
+        new ExtraDamageVar(1m),
+        new CalculatedDamageVar(ValueProp.Move).WithMultiplier(BonusCalc),
         new HpLossVar(8m)
     ];
 
+
+    /// <summary>The live Ass bonus, so the card face shows what it will actually deal.</summary>
+    protected override decimal PreviewBonus() => AssNotional();
+
     public override List<(string, string)>? Localization => new CardLoc(
         "Stuffed",
-        "Ass. Deal {Damage:diff()} damage. Lose {HpLoss:diff()} HP.\nIf your HP is below half, hit one additional time.");
+        "Ass. Deal {CalculatedDamage:diff()} damage. Lose {HpLoss:diff()} HP.\nIf your HP is below half, hit one additional time.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -40,12 +46,16 @@ public class Stuffed : SeductressCard
 
         for (var i = 0; i < hits; i++)
         {
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue + bonus).FromCard(this)
+            await DamageCmd.Attack(DynamicVars.CalculationBase.BaseValue + bonus).FromCard(this)
                 .Targeting(cardPlay.Target).WithHitFx("vfx/vfx_attack_slash").Execute(choiceContext);
         }
         await CreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.HpLoss.BaseValue,
             ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(3m);
+    protected override void OnUpgrade()
+    {
+        DynamicVars.CalculationBase.UpgradeValueBy(3m);
+        DynamicVars.CalculatedDamage.RecalculateForUpgradeOrEnchant();
+    }
 }

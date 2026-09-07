@@ -34,21 +34,25 @@ public class BreedMe : SeductressCard
         new DynamicVar("T2", Sigils.Tier2),
         new DynamicVar("T3", Sigils.Tier3),
         new DynamicVar("T4", Sigils.Tier4),
-        new DamageVar(12m, ValueProp.Move),
+        new CalculationBaseVar(12m),
+        new ExtraDamageVar(1m),
+        new CalculatedDamageVar(ValueProp.Move).WithMultiplier(BonusCalc),
         new DynamicVar("TierDamage", 16m)
     ];
 
+
+    /// <summary>Ritual Mark and the tier-2 swap, live on the card face.</summary>
+    protected override decimal PreviewBonus() => TieredPussyBonus();
+
     public override List<(string, string)>? Localization => new CardLoc(
         "Breed Me!",
-        "Pussy. Deal {Damage:diff()} damage. Kills from this card give 5 ml extra.\n{T1} Sigil: intake from this card's kills is doubled.\n{T2} Sigils: deal {TierDamage:diff()} instead.\n{T3} Sigils: tripled instead.\n{T4} Sigils: repeats 2 times.");
+        "Pussy. Deal {CalculatedDamage:diff()} damage. Kills from this card give 5 ml extra.\n{T1} Sigil: intake from this card's kills is doubled.\n{T2} Sigils: deal {TierDamage:diff()} instead.\n{T3} Sigils: tripled instead.\n{T4} Sigils: repeats 2 times.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
-        var damage = (Sigils.At(Owner, Sigils.Tier2) ? DynamicVars["TierDamage"].BaseValue
-                                                     : DynamicVars.Damage.BaseValue)
-                     + RitualMarkBonus;
+        var damage = DynamicVars.CalculatedDamage.Calculate(cardPlay.Target);
 
         // The multiplier replaces the flat +5 rather than compounding — [Gorim], slice 2 D5.
         var multiplier = Sigils.At(Owner, Sigils.Tier3) ? 3 : Sigils.At(Owner, Sigils.Tier1) ? 2 : 1;
@@ -66,7 +70,8 @@ public class BreedMe : SeductressCard
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(4m);
+        DynamicVars.CalculationBase.UpgradeValueBy(4m);
+        DynamicVars.CalculatedDamage.RecalculateForUpgradeOrEnchant();
         DynamicVars["TierDamage"].UpgradeValueBy(4m);
     }
 }

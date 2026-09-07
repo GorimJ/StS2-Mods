@@ -124,6 +124,54 @@ public abstract class SeductressCard(int cost, CardType type, CardRarity rarity,
             ? Owner.Creature.GetPower<Powers.RitualMarkPower>()?.PussyBonus(Owner) ?? 0m
             : 0m;
 
+    /// <summary>
+    /// The Ass bonus this card <i>would</i> pay right now, without spending it. Preview only —
+    /// <see cref="SpendAssForDamage"/> is what actually moves the bank.
+    ///
+    /// Milking Grip halves the spend but pays the full bonus, so the preview ignores it.
+    /// </summary>
+    protected decimal AssNotional(double fraction = 0.10) =>
+        (int)Math.Ceiling(Reservoirs.Of(Owner.RunState).Ass * fraction);
+
+    /// <summary>
+    /// Ritual Mark, plus the tier-2 damage swap expressed as a delta over the printed base.
+    /// The three tiered Pussy attacks show one live top-line number rather than making the player
+    /// work out which of two printed damages is currently in force.
+    /// </summary>
+    protected decimal TieredPussyBonus()
+    {
+        var bonus = RitualMarkBonus;
+        if (Sigils.At(Owner, Sigils.Tier2))
+        {
+            bonus += DynamicVars["TierDamage"].BaseValue - DynamicVars.CalculationBase.BaseValue;
+        }
+        return bonus;
+    }
+
+    /// <summary>
+    /// Extra damage beyond the printed base that comes from run state the preview pipeline cannot
+    /// see by itself — the Ass bank, Ritual Mark, the tier-2 swap.
+    ///
+    /// [Gorim 2026-09-07, found in play] Ass and Pussy cards did not show these on the card face.
+    /// <c>DamageVar</c> only previews hook-driven modifiers — Strength, Vulnerable and friends —
+    /// so anything computed inside <c>OnPlay</c> is invisible until the card resolves. That is
+    /// fatal for the Ass rule in particular, which is a decision mechanic: you are meant to look
+    /// at the bank and choose, and you cannot choose against a number you cannot see.
+    ///
+    /// Routing it through <c>CalculatedDamageVar</c> — the machinery Body Slam and Perfected
+    /// Strike use — puts the number on the card, and Strength still layers on top, because
+    /// CalculatedDamageVar runs Hook.ModifyDamage over the calculated total.
+    /// </summary>
+    protected virtual decimal PreviewBonus() => 0m;
+
+    /// <summary>
+    /// The multiplier handed to every CalculatedDamageVar here. <c>CalculatedVar</c> rejects a
+    /// calc whose Target is an AbstractModel, so it has to stay static and reach the card through
+    /// its argument rather than closing over it.
+    /// </summary>
+    protected static readonly Func<CardModel, Creature?, decimal> BonusCalc =
+        static (card, _) => card is SeductressCard s ? s.PreviewBonus() : 0m;
+
     public override string CustomPortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".BigCardImagePath();
     public override string PortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
     public override string BetaPortraitPath => $"beta/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();

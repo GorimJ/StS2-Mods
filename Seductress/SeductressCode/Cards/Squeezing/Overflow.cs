@@ -26,18 +26,26 @@ public class Overflow : SeductressCard
 
     public override Hole Hole => Hole.Ass;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(1m, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [
+        new CalculationBaseVar(1m),
+        new ExtraDamageVar(1m),
+        new CalculatedDamageVar(ValueProp.Move).WithMultiplier(BonusCalc)
+    ];
+
+
+    /// <summary>The live Ass bonus, so the card face shows what it will actually deal.</summary>
+    protected override decimal PreviewBonus() => AssNotional(0.20);
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Overflow",
-        "Ass. Deal {Damage:diff()} damage to ALL enemies and apply 1 [gold]Vulnerable[/gold].\nThis card loses double the usual Ass.");
+        "Ass. Deal {CalculatedDamage:diff()} damage to ALL enemies and apply 1 [gold]Vulnerable[/gold].\nThis card loses double the usual Ass.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var bonus = SpendAssForDamage(0.20);
         var enemies = CombatState!.Enemies.Where(e => e.IsAlive).ToList();
 
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue + bonus).FromCard(this).TargetingAllOpponents(CombatState)
+        await DamageCmd.Attack(DynamicVars.CalculationBase.BaseValue + bonus).FromCard(this).TargetingAllOpponents(CombatState)
             .WithHitFx("vfx/vfx_attack_slash").SpawningHitVfxOnEachCreature().Execute(choiceContext);
         await PowerCmd.Apply<VulnerablePower>(choiceContext, enemies, 1m, Owner.Creature, this);
         if (_upgraded)

@@ -12,8 +12,13 @@ using Seductress.SeductressCode.Systems;
 namespace Seductress.SeductressCode.Cards;
 
 /// <summary>
-/// Squeezing's basic multi-hit. Carries the Ass tag rule: the attack spends 10% of the current
-/// Ass and converts it into damage for the duration of the hit (design §6.1).
+/// Squeezing's basic multi-hit, and the card most players meet the Ass rule through.
+///
+/// [Claude-Code 2026-09-07] This card used to carry its own inline copy of the Ass rule rather
+/// than calling <c>SpendAssForDamage</c>, and the copy was never updated when the ratio changed —
+/// so it was still paying the old +1 per 10 ml while every other Ass card paid 1:1, and it ignored
+/// Milking Grip's halved drain entirely. At a full 200 ml bank it gave +2 where it should give
+/// +20. Now it goes through the shared rule like the rest.
 /// </summary>
 public class Clench : SeductressCard
 {
@@ -23,31 +28,28 @@ public class Clench : SeductressCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(5m, ValueProp.Move),
+        new CalculationBaseVar(5m),
+        new ExtraDamageVar(1m),
+        new CalculatedDamageVar(ValueProp.Move).WithMultiplier(BonusCalc),
         new HpLossVar(4m)
     ];
 
+    /// <summary>The live Ass bonus, so the card face shows what it will actually deal.</summary>
+    protected override decimal PreviewBonus() => AssNotional();
+
     public override List<(string, string)>? Localization => new CardLoc(
         "Clench",
-        "Ass. Deal {Damage:diff()} damage twice. Lose {HpLoss:diff()} HP.");
+        "Ass. Deal {CalculatedDamage:diff()} damage twice. Lose {HpLoss:diff()} HP.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
-        // Ass tag rule: lose 10% of current Ass (rounded up), +1 Strength per 10 ml lost, for this
-        // attack only. Applied as flat bonus damage rather than a real Strength stack so it cannot
-        // leak into the rest of the turn.
-        var reservoirs = Reservoirs.Of(Owner.RunState);
-        var spent = (int)Math.Ceiling(reservoirs.Ass * 0.1);
-        reservoirs.Ass -= spent;
-        var bonus = spent / 10;
-        if (spent > 0)
-        {
-            MainFile.Logger.Info($"[Seductress] Clench spent {spent} ml Ass for +{bonus} damage per hit");
-        }
+        // Spend first, then deal: the bonus returned is the notional spend, which is exactly the
+        // number the card face was showing a moment ago.
+        var bonus = SpendAssForDamage();
+        var damage = DynamicVars.CalculationBase.BaseValue + bonus;
 
-        var damage = DynamicVars.Damage.BaseValue + bonus;
         for (var i = 0; i < 2; i++)
         {
             await DamageCmd.Attack(damage).FromCard(this).Targeting(cardPlay.Target)
@@ -59,5 +61,9 @@ public class Clench : SeductressCard
             ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
     }
 
-    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(2m);
+    protected override void OnUpgrade()
+    {
+        DynamicVars.CalculationBase.UpgradeValueBy(2m);
+        DynamicVars.CalculatedDamage.RecalculateForUpgradeOrEnchant();
+    }
 }
