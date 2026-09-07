@@ -178,13 +178,25 @@ At 200 ml Ass:
 long-term resource, spending half of it buys one turn, and the drain means it is not something you
 can do every fight.
 
-**Watch:** the reasoning rests on refill being slow. *Milking Grip* halves the drain and doubles
-Ass-tagged kill intake, so a committed Squeezing deck may recharge far faster than "not every
-fight" — which is the one thing that would undercut the argument. Worth watching rather than
-pre-empting.
+**On the economy** — an earlier draft of this note claimed *Milking Grip* might make refill fast
+enough to undercut the "not every fight" reasoning. **[Gorim] That was modelled wrong.** Drain
+scales with **attacks**; refill scales with **kills**. At 200 ml against a normal enemy:
 
-Also note *Milking Grip* now pays **full** Strength on **half** the drain, so at 200 ml it grants
-+20 for 10 ml spent. Mild at 1:10; the archetype's best card at 1:1.
+| | Spend / attack | Intake / kill | Net at 1 attack per kill | at 2 attacks per kill |
+|---|---|---|---|---|
+| No Milking Grip | 20 | 10 | −10 | −28 |
+| Milking Grip | 10 | 20 | +10 | ≈0 |
+
+So Milking Grip takes the archetype from bleeding to roughly break-even, and only gains when
+enemies die to a single attack. It is not a runaway.
+
+**The rule is self-limiting**, which supports leaving Blowout alone. Because the drain is a
+*percentage*, the absolute spend shrinks with the bank, so the Strength tapers within a fight
+without ever emptying it. From 200 ml with no kills: **+20, +18, +17, +15, +13**.
+
+**Still worth watching:** whether a Squeezing deck can reach 200 ml at all inside act 1, given the
+per-floor leak and the per-attack drain. [Gorim] expects not to engage with the mechanic in act 1
+under the old ratio; the 1:1 change is meant to fix exactly that, and is unverified.
 
 ### Open design notes from playtest — not acted on
 
