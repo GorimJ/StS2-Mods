@@ -174,6 +174,47 @@ The lesson is narrow and worth keeping: **an exception mid-`_Ready` leaves a nod
 initialised state, not an obviously broken one.** Reason about which assignments ran before the
 throw rather than assuming the node is absent or blank.
 
+### [Claude-Code] Three card upgrades are still invisible
+
+STS2 has **one description key per card and no upgraded variant**, so an upgrade can only be shown
+by moving a *number*, and that number has to be a dynamic var. Wording never changes.
+
+Four cards were written with a hidden `_upgraded` bool instead, making their upgrades invisible on
+the card face. *Spit* is fixed — its half-ml became a `{Portion}%` var, 50 upgrading to 100, so the
+change now shows and diffs.
+
+**Still invisible, because their upgrades add a clause rather than move a number:**
+
+| Card | Upgrade |
+|---|---|
+| Bat Eyelashes | also applies 1 Vulnerable |
+| Overflow | also applies 1 Weak |
+| No Gag Reflex | Deep Throat cards also draw 1 |
+
+Each works mechanically; none shows any difference on the upgraded card. Two ways out, both
+Gorim's call: make the upgrades numeric instead (Bat Eyelashes 1 → 2 Weak, Overflow 1 → 2
+Vulnerable), which is on-convention and self-documenting but changes the design; or find how
+vanilla presents a clause-adding upgrade, which I have not located — every reference card carries
+exactly one description key.
+
+### [Gorim] Ritual Mark's upgrade lifts the Sigil bonuses too
+
+§8's upgrade note is "+3 base", which moved only the Pussy numbers. That broke the parity the card
+text depends on: at 5 Sigils it claimed *"Sigils deal 4 too"* while Pussy cards were on 7.
+
+**[Gorim 2026-09-07]** the upgrade lifts the Sigil side as well. All four numbers now move by +3,
+so the top rung matches again:
+
+| | Base | Upgraded |
+|---|---|---|
+| Pussy cards | 2 | 5 |
+| Pussy at 3 Sigils | 4 | 7 |
+| Sigils at 1 Sigil | 1 | 4 |
+| Sigils at 5 Sigils | 4 | 7 |
+
+The two Sigil values were hard-coded ints and are now dynamic vars, so they both upgrade and
+display.
+
 ### [Claude-Code] Tiered damage numbers get no modifier preview
 
 `DamageVar.UpdateCardPreview` runs `Hook.ModifyDamage` over the registered `Damage` var only, so

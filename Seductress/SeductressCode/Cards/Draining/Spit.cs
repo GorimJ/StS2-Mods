@@ -21,13 +21,18 @@ namespace Seductress.SeductressCode.Cards;
 /// </summary>
 public class Spit : SeductressCard
 {
-    private bool _upgraded;
-
     public Spit() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies) { }
+
+    /// <summary>
+    /// The upgrade moves a number rather than flipping a hidden flag, so it is actually visible on
+    /// the card. STS2 has one description key per card and no upgraded variant, so a wording change
+    /// cannot be shown — an upgrade has to be expressed as a dynamic var or it is invisible.
+    /// </summary>
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Portion", 50m)];
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Spit",
-        "Empty your Mouth. Deal damage equal to half the ml to ALL enemies, and apply 1 [gold]Weak[/gold] and 1 [gold]Vulnerable[/gold] per 10 ml emptied.");
+        "Empty your Mouth. Deal damage equal to {Portion:diff()}% of the ml to ALL enemies, and apply 1 [gold]Weak[/gold] and 1 [gold]Vulnerable[/gold] per 10 ml emptied.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -36,7 +41,7 @@ public class Spit : SeductressCard
         r.Mouth = 0;
         if (ml <= 0) return;
 
-        var damage = _upgraded ? ml : ml / 2;
+        var damage = (int)(ml * DynamicVars["Portion"].BaseValue / 100m);
         var stacks = ml / 10;
         var enemies = CombatState!.Enemies.Where(e => e.IsAlive).ToList();
 
@@ -51,5 +56,5 @@ public class Spit : SeductressCard
         MainFile.Logger.Info($"[Seductress] Spit emptied {ml} ml for {damage} AoE and {stacks} stacks");
     }
 
-    protected override void OnUpgrade() => _upgraded = true;
+    protected override void OnUpgrade() => DynamicVars["Portion"].UpgradeValueBy(50m);
 }

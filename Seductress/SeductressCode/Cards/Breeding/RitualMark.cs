@@ -31,7 +31,9 @@ public class RitualMark : SeductressCard
         new DynamicVar("T3", Sigils.Tier3),
         new DynamicVar("T4", Sigils.Tier4),
         new DynamicVar("Bonus", 2m),
-        new DynamicVar("TierBonus", 4m)
+        new DynamicVar("TierBonus", 4m),
+        new DynamicVar("SigilBonus", 1m),
+        new DynamicVar("TierSigilBonus", 4m)
     ];
 
     public override List<(string, string)>? Localization => new CardLoc(
@@ -47,13 +49,23 @@ public class RitualMark : SeductressCard
             choiceContext, Owner.Creature, pussy, Owner.Creature, this);
         if (power is null) return;
 
-        power.SigilBonus = Sigils.At(Owner, Sigils.Tier3) ? 4 : Sigils.At(Owner, Sigils.Tier1) ? 1 : 0;
+        power.SigilBonus = Sigils.At(Owner, Sigils.Tier3) ? (int)DynamicVars["TierSigilBonus"].BaseValue
+                         : Sigils.At(Owner, Sigils.Tier1) ? (int)DynamicVars["SigilBonus"].BaseValue
+                         : 0;
         power.PerSigil = Sigils.At(Owner, Sigils.Tier4);
     }
 
+    /// <summary>
+    /// [Gorim 2026-09-07] The upgrade lifts the Sigil bonuses as well as the Pussy ones. §8's
+    /// upgrade note reads "+3 base", which moved only the Pussy side and broke the parity the word
+    /// "too" depends on — at 5 Sigils the card claimed "Sigils deal 4 too" while Pussy cards were
+    /// on 7. +3 across all four numbers keeps the top rung matching at 7 and 7.
+    /// </summary>
     protected override void OnUpgrade()
     {
         DynamicVars["Bonus"].UpgradeValueBy(3m);
         DynamicVars["TierBonus"].UpgradeValueBy(3m);
+        DynamicVars["SigilBonus"].UpgradeValueBy(3m);
+        DynamicVars["TierSigilBonus"].UpgradeValueBy(3m);
     }
 }
