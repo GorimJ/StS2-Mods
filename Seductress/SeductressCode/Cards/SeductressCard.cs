@@ -150,16 +150,18 @@ public abstract class SeductressCard(int cost, CardType type, CardRarity rarity,
     }
 
     /// <summary>
-    /// <i>Ritual Mark</i>: your <b>Pussy</b> and <b>Breasts</b> cards deal additional damage.
+    /// Whether <i>Ritual Mark</i> buffs this card: <b>Pussy</b> and <b>Breasts</b>.
     ///
     /// [Gorim 2026-09-08] Breasts added as a second category by default, not as a tier. The two
     /// halves of Breeding are the cards that feed the Womb and the cards that do not, and the
     /// archetype's Power should pay for both.
+    ///
+    /// [Claude-Code] The card only declares whether it qualifies; the bonus itself is applied by
+    /// <see cref="Powers.RitualMarkPower.ModifyDamageAdditive"/> on the vanilla damage hook, so it
+    /// previews on the card face for free and no card adds it by hand any more.
     /// </summary>
-    protected decimal RitualMarkBonus =>
-        Hole == Hole.Pussy || Tags.Contains(SeductressTags.Breasts)
-            ? Owner.Creature.GetPower<Powers.RitualMarkPower>()?.PussyBonus(Owner) ?? 0m
-            : 0m;
+    public bool IsRitualMarked =>
+        Hole == Hole.Pussy || Tags.Contains(SeductressTags.Breasts);
 
     /// <summary>
     /// The Ass bonus this card <i>would</i> pay right now, without spending it. Preview only —
@@ -176,13 +178,16 @@ public abstract class SeductressCard(int cost, CardType type, CardRarity rarity,
     }
 
     /// <summary>
-    /// Ritual Mark, plus the tier-2 damage swap expressed as a delta over the printed base.
-    /// The three tiered Pussy attacks show one live top-line number rather than making the player
-    /// work out which of two printed damages is currently in force.
+    /// The tier-2 damage swap, expressed as a delta over the printed base, so the three tiered
+    /// Pussy attacks show one live top-line number rather than making the player work out which of
+    /// two printed damages is currently in force.
+    ///
+    /// [Claude-Code] Ritual Mark used to be added here too. It now rides the vanilla damage hook
+    /// instead, so it previews on its own and adding it here as well would double it.
     /// </summary>
     protected decimal TieredPussyBonus()
     {
-        var bonus = RitualMarkBonus;
+        var bonus = 0m;
         if (Sigils.At(Owner, Sigils.Tier2))
         {
             bonus += DynamicVars["TierDamage"].BaseValue - DynamicVars.CalculationBase.BaseValue;

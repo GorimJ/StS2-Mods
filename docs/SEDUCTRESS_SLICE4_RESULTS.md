@@ -43,18 +43,21 @@ category rather than a special case.
 > **Breasts** — the subcategory of Breeding covering the cards that do **not** feed the Womb.
 > *Ritual Mark* buffs Pussy **and** Breasts, by default rather than as a tier.
 
-* `SeductressTags.Breasts` sits beside `DeepThroat` as a **category tag, not a hole tag**.
-* *Milk* carries it and is the first member. Adding a second costs one line.
-* `RitualMarkBonus` now reads `Hole == Pussy || Tags.Contains(Breasts)`.
+* `SeductressTags.Breasts` sits beside `DeepThroat`, and **Breasts pairs with the Skin hole**
+  exactly as Deep Throat pairs with Mouth — a category tag plus a real hole, not a tag outside the
+  routing system.
+* *Milk* is the first member: `Breasts · Skin`. Adding a second costs one line.
+* Ritual Mark's coverage is now a card property, `IsRitualMarked` = `Hole == Pussy ||
+  Tags.Contains(Breasts)`.
 * *Ritual Mark*'s text becomes "Your Pussy and Breasts cards deal N additional damage"; its tier-2
   line becomes "they deal N instead", so the tier-3 "Sigils deal 4 **too**" parity still holds.
 
-**[Claude-Code] Category, not hole, is the load-bearing part.** A hole tag would route kills and —
-much worse — would **set the Continuing mode every time it was played**. At Stage 3 that is three
-Milk shuffled in per turn, so a Breeding deck would have its own pregnancy flipping its routing
-away from Pussy several times a turn. Sitting beside Deep Throat rather than among the holes keeps
-Breasts a classification and leaves routing untouched. The consequence to know is that a Breasts
-card is untagged for routing, so its kills fall to whatever the Continuing mode already is.
+**[Gorim] Lactation drags a Breeding deck off its own routing, and that is the point.** Because
+Breasts is Skin, playing Milk routes its kills to Skin *and* sets the Continuing mode to Skin — at
+Stage 3, three times a turn. I had flagged that as a hazard and built around it; the ruling is that
+it is desirable. Multiple pregnancies are now reachable, and each one should make the next harder
+to reach. The mechanic fights itself, which is the same shape as Sensitive making the bar you are
+filling smaller.
 
 ### *Milk* inverted [Gorim, 2026-09-08]
 
@@ -71,13 +74,32 @@ sustain, less output, and still nothing that can prevent a one-shot. A Stage 3 c
 faster while contributing less to ending the fight, so the dilution cost bites harder and the
 argument for cashing out gets stronger.
 
-[Claude-Code] **One preview gap this creates.** The tier-2 swap now lands on the healing, and there
-is no calculated-heal var to hang it on the way `CalculatedDamageVar` carries the damage — so
-"heal 7 instead" is documentation on the tier line rather than a number the top line updates to.
-Damage previews correctly (it moves with Ritual Mark); healing does not. **This is now the only
-tier swap in the pool that does not show on the card face**, which is exactly the class of defect
-[Gorim] found in slice 3, so it is worth either a calculated-heal var or a deliberate decision to
-live with it.
+### [Gorim] Build the calculated-heal var — and it paid for itself twice
+
+The tier-2 swap moved onto the healing, which had no calculated var to hang it on. Building one
+turned out to remove more scaffolding than it added.
+
+**Ritual Mark now rides `ModifyDamageAdditive`**, the vanilla damage hook Strength uses, instead of
+being added by hand inside each card body. That is strictly better than the calculated-var
+workaround it replaces: a plain `DamageVar` runs `Hook.ModifyDamage` when it builds its preview, so
+**the buff previews itself on the card face for free**. Adding it in the card body — how it worked
+until now — put it in exactly the invisible class [Gorim] found in slice 3. Gated like Strength:
+owner must be the dealer, powered attacks only, so it never touches self-damage.
+
+That frees the generic calculated slot, so **Milk's heal takes it**: `CalculationBase 4` +
+`CalculationExtra 1` × a tier multiplier of 3, giving a live 4 or 7 on the card face. Damage is
+back to a plain `DamageVar(2)`.
+
+**Every tier swap in the pool now previews.** Claim, Take Him In and Breed Me! keep
+`CalculatedDamageVar` for their damage swap, with Ritual Mark removed from `TieredPussyBonus` so it
+cannot double-count.
+
+[Claude-Code] **Caught in passing:** rewriting Milk's description left three tokens (`{Heal}`,
+`{CalculatedDamage}`, `{TierHeal}`) pointing at vars that no longer existed. One unresolved token
+makes SmartFormat print the *entire* description raw, and it compiles clean — there is nothing to
+catch it but reading the card in game. I have added a check over all 46 card files comparing every
+`{Token}` in a description against the vars that card actually registers. **All 46 pass now**;
+worth re-running after any var-set edit.
 
 ---
 

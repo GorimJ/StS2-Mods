@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -20,8 +22,8 @@ namespace Seductress.SeductressCode.Cards;
 /// grows the <b>healing</b> rather than the damage. The tier shape is unchanged — rung 2 is still
 /// "grows the base" — it is the base that moved.
 ///
-/// [Gorim 2026-09-08] Tagged <b>Breasts</b>: the Breeding subcategory for cards that do not feed
-/// the Womb, which is what <i>Ritual Mark</i> now buffs alongside Pussy.
+/// [Gorim 2026-09-08] Tagged <b>Breasts · Skin</b>: the Breeding subcategory for cards that do not
+/// feed the Womb, which is what <i>Ritual Mark</i> now buffs alongside Pussy.
 ///
 /// [Claude-Cowork] <b>It heals; it must not Block.</b> That distinction is load-bearing. Healing
 /// cannot prevent a one-shot, so at Stage 3 — where you take +150% — you can top up to full every
@@ -35,10 +37,11 @@ namespace Seductress.SeductressCode.Cards;
 /// Sigils, and Milk's non-energy cost is Exhaust. So at the top of the ladder Milk stops
 /// exhausting and accumulates, from a rule that already existed.
 ///
-/// [Claude-Code] <b>Untagged for routing</b>, like <i>Spit</i>. Breasts is a category, not a hole,
-/// so this neither fills anything nor sets the Continuing mode — which matters, because at Stage 3
-/// three of these arrive per turn and a hole tag would flip a Breeding deck's routing away from
-/// Pussy several times a turn. A kill it lands routes by whatever the Continuing mode already is.
+/// [Gorim 2026-09-08] <b>Breasts is Skin</b>, the way Deep Throat is Mouth — a category tag paired
+/// with a real hole. So Milk routes its kills to Skin and sets the Continuing mode to Skin when
+/// played, and at Stage 3 that is three of them a turn dragging a Breeding deck off its own
+/// routing. That is <b>intended</b>: multiple pregnancies are now possible, and each one should
+/// make the next harder to reach.
 ///
 /// [Claude-Code] <b>Written in vanilla words.</b> SEDUCTRESS_CARDS.md §9a states this card as
 /// "Tease 4 pleasure. Soothe 2", which is the display lexicon from design §9a — but that converter
@@ -49,7 +52,28 @@ public class Milk : SeductressCard
 {
     public Milk() : base(0, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy) { }
 
+    /// <summary>
+    /// [Gorim 2026-09-08] <b>Breasts is Skin</b>, exactly as Deep Throat is Mouth: a category tag
+    /// paired with a real hole rather than sitting outside the routing system. So this both routes
+    /// its kills to Skin and sets the Continuing mode to Skin when played.
+    ///
+    /// [Gorim] Flipping a Breeding deck's routing away from Pussy while pregnant is <b>intended,
+    /// and arguably the point</b> — you can now become pregnant several times over, and it should
+    /// get harder the more pregnant you already are. Lactation actively fights the thing that
+    /// caused it.
+    /// </summary>
+    public override Hole Hole => Hole.Skin;
+
     protected override IEnumerable<CardTag> ExtraTags => [SeductressTags.Breasts];
+
+    /// <summary>
+    /// The tier-2 rung, as an extra multiplier over the printed base: 4 heal normally, 4 + 1x3 = 7
+    /// at three Sigils. Must be static — CalculatedVar rejects a calc whose target is a model.
+    /// </summary>
+    private static readonly Func<CardModel, Creature?, decimal> HealTierCalc =
+        static (card, _) => card is SeductressCard { Owner: not null } s && Sigils.At(s.Owner, Sigils.Tier2)
+            ? 3m
+            : 0m;
 
     /// <summary>
     /// Tier 4 sheds the non-energy cost, which here is Exhaust.
@@ -71,40 +95,30 @@ public class Milk : SeductressCard
         new DynamicVar("T2", Sigils.Tier2),
         new DynamicVar("T3", Sigils.Tier3),
         new DynamicVar("T4", Sigils.Tier4),
-        new HealVar(4m),
+        // The heal takes the generic calculated slot so its tier swap previews; the damage stays a
+        // plain DamageVar, because Ritual Mark now previews itself through the vanilla damage hook.
+        new CalculationBaseVar(4m),
+        new CalculationExtraVar(1m),
+        new CalculatedVar("CalculatedHeal").WithMultiplier(HealTierCalc),
+        // Display only, so the tier line can state its number. Every token in a description must
+        // resolve to a registered var — one unknown token makes SmartFormat print the whole
+        // description raw, which is how this card's text broke a moment ago.
         new DynamicVar("TierHeal", 7m),
-        new CalculationBaseVar(2m),
-        new ExtraDamageVar(1m),
-        new CalculatedDamageVar(ValueProp.Move).WithMultiplier(BonusCalc)
+        new DamageVar(2m, ValueProp.Move)
     ];
-
-    /// <summary>
-    /// Ritual Mark, live on the card face. Breasts is buffed alongside Pussy, so this card's damage
-    /// moves with the Power even though it carries no hole.
-    ///
-    /// [Claude-Code] The tier-2 swap is deliberately <b>not</b> in here, because the swap now lands
-    /// on the healing and there is no calculated-heal var to hang it on. So "heal {TierHeal}
-    /// instead" is documentation on the tier line rather than a number the top line updates to —
-    /// <b>the one place left in the pool where a tier swap does not preview.</b> Damage previews
-    /// correctly; healing does not.
-    /// </summary>
-    protected override decimal PreviewBonus() => RitualMarkBonus;
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Milk",
-        "Breasts. Heal {Heal:diff()}. Deal {CalculatedDamage:diff()} damage.\n{T1} Sigil: draw 1.\n{T2} Sigils: heal {TierHeal} instead.\n{T3} Sigils: draw 2 instead.\n{T4} Sigils: does not Exhaust.");
+        "Skin. Breasts.\nHeal {CalculatedHeal:diff()}. Deal {Damage:diff()} damage.\n{T1} Sigil: draw 1.\n{T2} Sigils: heal {TierHeal} instead.\n{T3} Sigils: draw 2 instead.\n{T4} Sigils: does not Exhaust.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
         // Heal first — it is what the card is for, and it is the order the card reads in.
-        var heal = Sigils.At(Owner, Sigils.Tier2)
-            ? DynamicVars["TierHeal"].BaseValue
-            : DynamicVars.Heal.BaseValue;
-        await CreatureCmd.Heal(Owner.Creature, heal);
+        await CreatureCmd.Heal(Owner.Creature, ((CalculatedVar)DynamicVars["CalculatedHeal"]).Calculate(null));
 
-        await DamageCmd.Attack(DynamicVars.CalculatedDamage.Calculate(cardPlay.Target))
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash").Execute(choiceContext);
 
