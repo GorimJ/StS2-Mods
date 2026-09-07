@@ -147,20 +147,32 @@ lightning-coloured. And the orb sync's shrink path (capacity dropping when a Sig
 `res://images/ui/rest_site/option_seductress_relief.png`, which does not exist. The resulting
 `AssetLoadException` fires inside `NRestSiteButton._Ready`.
 
-**It fails the texture without removing the node.** The button was present, hoverable and correctly
-disabled — showing "You have no Lust cards to remove." — but drawn blank, which is easy to miss
-beside three illustrated buttons.
+**It aborts `NRestSiteButton.Reload()` partway.** That method runs, in order:
+
+```csharp
+_icon.Texture = Option.Icon;               // throws here
+_label.SetTextAutoSize(Option.Title...);   // never runs
+if (!_option.IsEnabled) { grey shader }    // never runs
+```
+
+So the button kept the scene's **default label and art** ("Dig"), never greyed out, and yet behaved
+correctly — unclickable, with the right hover text — because `_isUnclickable` and the description
+are set outside `Reload`. One missing asset produced a button that looked like an unrelated vanilla
+option, looked enabled, and did nothing.
 
 `CustomRestSiteOption.CustomIconPath` exists for exactly this and was never overridden. Now points
 at the template's placeholder relic art, deliberately not a vanilla rest-site icon, which would
 read as one of the existing options.
 
-**A note on how this was diagnosed**, since it nearly went into the record wrong. On seeing the
-stack trace I concluded the button had never rendered at all and rewrote the slice 2 results to say
-Relief had never worked. Gorim then hovered it and got the correct disabled text. The exception was
-real and the fix is unchanged, but the conclusion drawn from it was not checked against what was
-actually on screen, and slice 2's original description turned out to be accurate. Both docs have
-been corrected back.
+**A note on how this was diagnosed**, since it went into the record wrong twice. From the stack
+trace alone the conclusion was "the button never rendered" — wrong. Corrected to "only the icon
+failed, the button drew blank" — also wrong; it was wearing the prefab's default face. Only reading
+`Reload()` line by line, against three observations from play (my hover text, a "Dig" label with no
+Shovel relic in the save, and a click that did nothing), gave the actual behaviour.
+
+The lesson is narrow and worth keeping: **an exception mid-`_Ready` leaves a node in a partially
+initialised state, not an obviously broken one.** Reason about which assignments ran before the
+throw rather than assuming the node is absent or blank.
 
 ### [Claude-Code] Tiered damage numbers get no modifier preview
 
