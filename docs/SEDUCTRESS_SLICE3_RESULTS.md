@@ -76,8 +76,12 @@ among the participants, i.e. at the end of the enemy's own turn. Same shape as `
   it banked nothing at all rather than 10 ml to the Womb.
 * Killing a Leg-Locked enemy with the Sigil passive — the no-card-source case the mechanic exists
   for — also confirmed by Gorim.
-* **Still untested:** a minion that is *also* Leg-Locked, which is the only place the two rules
-  meet.
+* **Minions beat Leg-Locked.** A `TOUGH_EGG` was Leg-Locked *and* died with Continuing set to Ass —
+  two separate reasons to bank something — and banked nothing. The log shows no `Leg-Locked claim`
+  line at all, so the minion check returned before Leg-Locked was consulted: the ordering is
+  correct, not merely producing the right total by coincidence.
+
+The full chain is verified end to end: **minion → Leg-Locked → finishing tag → Glazed.**
 
 **Testing note:** `fight OVICOPTER_NORMAL` jumps straight to a named encounter. Far better than
 re-rolling `room monster`, which took eighteen jumps to find a summoner and bled roughly half the
