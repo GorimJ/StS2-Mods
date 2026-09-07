@@ -97,6 +97,27 @@
                  Importance="high" />
     </Target>
     
+    <!--
+        Card text defects the compiler cannot see: a description token with no matching DynamicVar
+        (SmartFormat then prints the WHOLE description raw), and an unpaired colour tag. Both
+        compile clean and both only surface by looking at the card in game.
+
+        Runs before the copy, so a failure stops the mod reaching the game rather than deploying
+        broken text. Exit 1 is a real failure; any other non-zero means the checker could not run
+        (no python on this machine), which warns rather than blocking the build.
+    -->
+    <Target Name="CheckCardText" BeforeTargets="CopyToModsFolderOnBuild">
+        <Exec Command="python &quot;$(MSBuildProjectDirectory)/../tools/check_card_text.py&quot; &quot;$(MSBuildProjectDirectory)/SeductressCode/Cards&quot;"
+              ContinueOnError="true"
+              StandardOutputImportance="high">
+            <Output TaskParameter="ExitCode" PropertyName="CardTextCheckExit" />
+        </Exec>
+        <Error Condition="'$(CardTextCheckExit)' == '1'"
+               Text="Card text check failed - see the errors above. Fix the card, or update tools/check_card_text.py if the check is wrong." />
+        <Warning Condition="'$(CardTextCheckExit)' != '0' And '$(CardTextCheckExit)' != '1'"
+                 Text="Card text check did not run (exit $(CardTextCheckExit)) - is python on PATH? Card descriptions are unverified." />
+    </Target>
+
     <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
         <Message Text="Copying .dll .pdb and .json to mods folder." Importance="high" />
         <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
