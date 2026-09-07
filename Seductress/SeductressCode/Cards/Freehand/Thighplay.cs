@@ -16,19 +16,19 @@ using Seductress.SeductressCode.Systems;
 namespace Seductress.SeductressCode.Cards;
 
 /// <summary>
-/// Freehand. The bridge card: a Glazed attack that discounts your next Ass or Pussy card, so a
+/// Freehand. The bridge card: a Skin attack that discounts your next Ass or Pussy card, so a
 /// focused deck has a real reason to run one.
 /// </summary>
 public class Thighplay : SeductressCard
 {
     public Thighplay() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
 
-    public override Hole Hole => Hole.Glazed;
+    public override Hole Hole => Hole.Skin;
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(9m, ValueProp.Move)];
 
     public override List<(string, string)>? Localization => new CardLoc(
-        "Thighplay", "Glazed. Deal {Damage:diff()} damage.\nYour next Ass or Pussy card costs 1 less.");
+        "Thighplay", "Skin. Deal {Damage:diff()} damage.\nYour next Ass or Pussy card costs 1 less.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

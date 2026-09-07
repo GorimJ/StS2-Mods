@@ -11,8 +11,8 @@ public enum Hole
 {
     /// Untagged: cards that are not attacks, and attacks that expel rather than receive.
     None = 0,
-    /// Freehand — hands, breasts, thighs. Collects nothing; routes to the external Glazed pool.
-    Glazed,
+    /// Freehand — hands, breasts, thighs. Collects nothing; routes to the external Skin pool.
+    Skin,
     Mouth,
     Ass,
     Pussy
@@ -32,7 +32,7 @@ public enum Hole
 /// </summary>
 public static class SeductressTags
 {
-    public const CardTag Glazed = (CardTag)1001;
+    public const CardTag Skin = (CardTag)1001;
     public const CardTag Mouth = (CardTag)1002;
     public const CardTag Ass = (CardTag)1003;
     public const CardTag Pussy = (CardTag)1004;
@@ -42,7 +42,7 @@ public static class SeductressTags
 
     public static CardTag ToTag(this Hole hole) => hole switch
     {
-        Hole.Glazed => Glazed,
+        Hole.Skin => Skin,
         Hole.Mouth => Mouth,
         Hole.Ass => Ass,
         Hole.Pussy => Pussy,
@@ -51,7 +51,7 @@ public static class SeductressTags
 
     public static Hole ToHole(this CardTag tag) => tag switch
     {
-        Glazed => Hole.Glazed,
+        Skin => Hole.Skin,
         Mouth => Hole.Mouth,
         Ass => Hole.Ass,
         Pussy => Hole.Pussy,

@@ -31,7 +31,7 @@ public class Clench : SeductressCard
         new CalculationBaseVar(5m),
         new ExtraDamageVar(1m),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(BonusCalc),
-        new HpLossVar(4m)
+        new HpLossVar(2m)
     ];
 
     /// <summary>The live Ass bonus, so the card face shows what it will actually deal.</summary>

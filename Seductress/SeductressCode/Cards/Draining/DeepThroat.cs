@@ -26,7 +26,7 @@ public class DeepThroat : SeductressCard
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(16m, ValueProp.Move),
-        new HpLossVar(4m)
+        new HpLossVar(2m)
     ];
 
     public override List<(string, string)>? Localization => new CardLoc(

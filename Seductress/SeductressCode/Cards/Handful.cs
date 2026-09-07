@@ -11,12 +11,12 @@ using Seductress.SeductressCode.Systems;
 
 namespace Seductress.SeductressCode.Cards;
 
-/// <summary>Freehand. Collects nothing, so it hits harder — and drags Continuing to Glazed.</summary>
+/// <summary>Freehand. Collects nothing, so it hits harder — and drags Continuing to Skin.</summary>
 public class Handful : SeductressCard
 {
     public Handful() : base(0, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) { }
 
-    public override Hole Hole => Hole.Glazed;
+    public override Hole Hole => Hole.Skin;
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(11m, ValueProp.Move)];
 

@@ -26,7 +26,7 @@ public class Stuffed : SeductressCard
         new CalculationBaseVar(12m),
         new ExtraDamageVar(1m),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(BonusCalc),
-        new HpLossVar(8m)
+        new HpLossVar(3m)
     ];
 
 

@@ -30,7 +30,7 @@ public class Grind : SeductressCard
         new CalculationBaseVar(6m),
         new ExtraDamageVar(1m),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(BonusCalc),
-        new HpLossVar(2m)
+        new HpLossVar(1m)
     ];
 
 

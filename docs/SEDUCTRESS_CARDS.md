@@ -1,8 +1,8 @@
-# The Seductress — card list v13 draft
+# The Seductress — card list v24 draft
 
-38 draftable cards plus 5 basics. Companion to `SEDUCTRESS_DESIGN.md` v2.4.
+37 draftable cards plus 5 basics. Companion to `SEDUCTRESS_DESIGN.md` v3.9.
 
-Changes from v12: **Leg-Locked** added as a rules word; *Leg Lock* is Breeding's new Uncommon; *Ritual Mark* and *Rapture* rebuilt; *Ward* to Common. Changes from v11: Sigil thresholds **1 / 3 / 5 / 7** on a **fixed tier shape**; Breeding rewritten to it; the starting deck gains *Breed Me!* and *Suckle*. Changes from v10, all from the slice-2 playtest: *Consummate* costs **0**; *Breed Me!*'s Sigil multiplier **replaces** its +5 rather than compounding. Earlier changes from v9: a single **universal spend order** replaces per-card spend clauses (§2);
+Changes from v22: **Max HP is 20** (design §6.5) and every HP cost is rescaled. Changes from v20: ***Scoop It Up* cut** — its job is now the **Scoop** rest-site option (design §6.3c); all leak routes to Skin; birth wastes the whole Womb. Changes from v17: *Glazed* renamed **Skin**; **Milk** added as a generated card; pregnancy is a carried state (design §6.3b). Changes from v13: *Let Go* renamed **Seek Relief** with a new upgrade; *Abandon* replaced by **Forced Orgasm**; *Suckle* now generates **precum**; *Afterglow* gains an engine. Changes from v12: **Leg-Locked** added as a rules word; *Leg Lock* is Breeding's new Uncommon; *Ritual Mark* and *Rapture* rebuilt; *Ward* to Common. Changes from v11: Sigil thresholds **1 / 3 / 5 / 7** on a **fixed tier shape**; Breeding rewritten to it; the starting deck gains *Breed Me!* and *Suckle*. Changes from v10, all from the slice-2 playtest: *Consummate* costs **0**; *Breed Me!*'s Sigil multiplier **replaces** its +5 rather than compounding. Earlier changes from v9: a single **universal spend order** replaces per-card spend clauses (§2);
 **Freehand rebuilt** around structural roles rather than bigger numbers; *Scoop It Up* moved out
 of Core and into Draining; **Deep Throat** becomes a tag with reminder text carrying auto-swallow
 for the whole family; *Balls Deep* reworked into recursion. Earlier: the Mouth exception generates
@@ -14,21 +14,16 @@ tagged**; Squeezing rebuilt around **ass attacks spending the bank for Strength*
 
 ## 1. Naming rule
 
-All card text uses vanilla Slay the Spire terms. If a mechanic exists in the base game it keeps
-the base game's word; only new systems get new names. Lewd translation happens once, at the end.
+**If it exists in vanilla, it keeps the vanilla word.** Damage is damage, Block is Block, HP is
+HP. This document and the code are written entirely in those terms.
 
-| Written as | Means |
-|---|---|
-| **Deal X damage** | damage to an enemy |
-| **Lose X HP** | unblockable self-damage |
-| **Heal X** | HP restored |
-| **Gain X Block** | block |
+**[decided] The lewd vocabulary lives in a display-time converter**, specified in design §9a —
+Deal→Tease, damage to→pleasure from, Block→Poise, Heal→Soothe, HP→Arousal (inverted). Nothing here needs
+rewriting when it lands, and nothing here should anticipate it.
 
-**Calibration** (v0.107 decompile): Strike 1 / 6 damage / +3 · Defend 1 / 5 Block / +3 · Anger
-0 / 6 damage Common · Demon Form 3 Rare Power. Self-damage precedent: Bloodletting and Offering,
-`ValueProp.Unblockable | ValueProp.Unpowered`.
-
----
+Keeping both registers in the card text is what produced cards reading "Deal 6 damage" beside
+"gain 20 arousal", where no one could tell which words were rules terms. One register per layer
+fixes that permanently: vanilla words in the design, lewd words on the screen.
 
 ## 2. Holes and containers
 
@@ -39,7 +34,7 @@ the base game's word; only new systems get new names. Lewd translation happens o
 | **Mouth** | **Mouth** in combat, then **Stomach** | 50 ml → unbounded | Holds cum *and* precum. Empties every combat: cum swallows into the Stomach, precum evaporates |
 | **Pussy** | **Womb** | 100 ml | Leaks 10% of current per floor. 100 ml ⇒ pregnancy ⇒ Sigil |
 | **Ass** | **Ass** | 200 ml | Both hole and container. Leaks 5% (25% above 200) |
-| *(none)* | **Glazed** | — | External. Leaks 25% |
+| *(none)* | **Skin** | — | External. Leaks 25% |
 
 So the tag on a card names **the hole it uses**, and the hole determines **where the semen ends
 up**. *Womb* is no longer a tag — the tag is **Pussy**, and Womb is what it fills. *Stomach* is
@@ -65,16 +60,16 @@ Per enemy climax, routed by the finishing attack's tag, × `1 + 0.5 × Sensitive
 
 **[decided]** A card that says **"Spend X ml"** draws from your containers in a fixed order:
 
-> **Glazed → Mouth → Ass → Womb**
+> **Skin → Mouth → Ass → Womb**
 > *(skin, mouth, ass, pussy)*
 
 Reminder text on every spender; no card needs to restate it. Ass may still have dedicated
 spenders of its own — the Ass tag rule in §7 is a separate mechanism — but every generic spend
 follows this order.
 
-**The order is least-valuable-first, and that is what makes it interesting.** Glazed leaks 25% a
+**The order is least-valuable-first, and that is what makes it interesting.** Skin leaks 25% a
 floor and does nothing on its own. Mouth cycles out every combat anyway. Ass is a real bank. Womb
-is the run's progression track. So a generic spender is cheap for a Glazed-heavy deck and
+is the run's progression track. So a generic spender is cheap for a Skin-heavy deck and
 genuinely dangerous for a focused one: play *Wet Work* with nothing on your skin and no mouthful
 banked, and it eats your Ass — or worse, your Conception.
 
@@ -106,9 +101,6 @@ inflating Draining's permanent track, so the exception costs nothing structurall
 > **Spending order: precum first.** Anything that spends Mouth uses precum before cum, so a card
 > that generates precum is never wasted and your bankable cum is preserved for the swallow.
 
-*Scoop It Up* also survives, since it **transfers** Glazed into Mouth rather than creating
-anything — and what it moves is real cum, so it banks.
-
 This also retroactively legitimises *Edging Form*, which was flagged as a rule-break and is now
 simply a Power doing what Powers may do.
 
@@ -122,15 +114,19 @@ simply a Power doing what Powers may do.
 
 ## 4. Basics — starting deck (not draftable)
 
-4 × Pump, 4 × Guard, 1 × Let Go, 1 × Breed Me!, 1 × Suckle. **Eleven cards.**
+4 × Pump, 4 × Guard, 1 × Seek Relief, 1 × Breed Me!, 1 × Suckle. **Eleven cards.**
 
 | Card | Cost | Type | Text | Upgrade |
 |---|---|---|---|---|
 | **Pump** | 1 | Attack · *Continuing* | Deal **6** damage. | 9 damage |
 | **Guard** | 1 | Skill | Gain **5** Block. | 8 Block |
-| **Let Go** | 0 | Skill | Lose **20** HP. Draw **2**. | Draw 3 |
+| **Seek Relief** | 0 | Skill | Lose **9** HP. Draw **2**. | Lose 4 HP |
 | **Breed Me!** | 2 | Attack · *Pussy* | Deal **12** damage. Kills from this card give **5 ml** extra. *1 Sigil:* intake from this card's kills is **doubled**. *3 Sigils:* deal **16** instead. *5 Sigils:* **tripled** instead. *7 Sigils:* repeats **2** times. | 16 damage |
-| **Suckle** | 1 | Attack · *Mouth* | Deal **4** damage. Gain **5** Block. | 6 / 7 |
+| **Suckle** | 1 | Attack · *Mouth* | Deal **4** damage. Gain **5 ml precum**. If this kills, gain **5 ml** instead. | 10 ml |
+
+> **Max HP is 20** (design §6.5). Every HP cost below is rescaled against it — as though the bar
+> were 30–40 rather than by a clean ÷3.25, because this bar is meant to be swingy. Block and Max HP
+> are each worth roughly **4×** what they are in vanilla, since the bar is one life of four.
 
 **[decided] Two class cards, not one.** Ironclad's single Bash is the outlier — Silent, Defect and
 Watcher all start with two, and Watcher's pair is the model: each card demonstrates a different
@@ -144,9 +140,24 @@ move visibly on a kill rather than hoping you notice the HUD — and its tiers b
 Bash's 8 and Eruption's 9, and the card already carries more text than either.
 
 *Suckle* is the Mouth half, and the reason it is an Attack rather than a Skill is that **Skills are
-untagged by decision**. That constraint produced the better card: Draining's identity is staying
-high on the bar, so a Mouth attack that grants Block demonstrates the archetype's whole thesis in
-one line, with no rules exception.
+untagged by decision**.
+
+**[revised 2026-09-07] It grants precum, not Block.** As a Block card it was plain and taught
+nothing — Guard already covers defence, so the defensive slot was never the one going spare. What
+was missing was any starting card that showed the Mouth economy exists. Now it teaches the single
+most confusable rule in the character in one line: **precum normally, real cum on a kill.** The
+temporary resource and the banking resource, and the difference between them, demonstrated by the
+same card on two different outcomes.
+
+That makes both class starters intake teachers from opposite ends — *Breed Me!* shows a kill
+filling the Womb, *Suckle* shows the Mouth filling whether you kill or not, and only banking if you
+do. **[dependency] This makes precum load-bearing for the starting deck**, so it must be built
+before the deck is correct; see design §6.2a.
+
+*Seek Relief* (formerly *Let Go*) keeps the deck's self-damage axis, and its upgrade now **lowers
+the cost** — 20 HP to 10 — rather than drawing more. On a card whose whole function is paying HP
+for cards, cutting the price is the upgrade that changes how you play it; drawing a third card just
+made it a bigger version of the same gamble.
 
 **Ass is the wrong starter.** Its rule spends a bank that starts empty and takes most of an act to
 fill, so an Ass starter is a plain attack with a dead clause for the entire opening.
@@ -155,10 +166,10 @@ fill, so an Ass starter is a plain attack with a dead clause for the entire open
 card short and wants a new Common — see §12.
 
 > **Continuing** — this card uses whichever hole your last Attack used this combat. If you have
-> not used one yet, it routes to **Glazed**. Resets each combat.
+> not used one yet, it routes to **Skin**. Resets each combat.
 
-Because skills are untagged, only attacks set the mode. Turn-one Pumps go to Glazed until you
-lead with a tagged attack, which keeps Glazed live and makes your opening sequence a small
+Because skills are untagged, only attacks set the mode. Turn-one Pumps go to Skin until you
+lead with a tagged attack, which keeps Skin live and makes your opening sequence a small
 puzzle.
 
 ---
@@ -169,32 +180,62 @@ puzzle.
 |---|---|---|---|---|---|
 | **Second Wind** | 1 | Skill | Common | Heal **8**. | 12 |
 | **Bat Eyelashes** | 0 | Skill | Common | Apply **1 Weak** to ALL enemies. | Also 1 Vulnerable |
-| **Abandon** | 0 | Skill | Rare | **Climax immediately.** Draw **5**. | Draw 6 |
-| **Afterglow** | 1 | Power | Rare | Whenever you Climax, gain **15** Block and draw **2**. | 20 Block |
+| **Forced Orgasm** | 0 | Skill | Uncommon | **Climax** with no heal and no Lust card. Draw **2**. Gain **1** energy. **Exhaust.** | Draw 3 |
+| **Afterglow** | 1 | Power | Rare | Whenever you Climax, gain **15** Block and draw **2**. Each turn, draw **1** and gain **1** energy per stack of **Sensitive**. | Costs 0 |
 
 ---
 
-## 5a. Freehand (Glazed) — 5 cards
+**[revised 2026-09-07] *Afterglow* gains an engine.** The burst is unchanged; on top of it, each
+turn you draw 1 and gain 1 energy **per stack of Sensitive**, and the upgrade cuts the cost to 0
+rather than raising the Block.
+
+It does not widen the trigger — Sensitive is only gained by Climaxing and clears at end of combat,
+so the engine is live under exactly the condition the burst always had. What changed is **when the
+value lands**: across the turns you spend rebuilding, instead of dumped on the turn you reset to
+zero arousal and need Block least. The rate is per stack and deliberately steep, because at 3
+Sensitive you are taking +150% arousal and the payoff should match the position rather than hedge
+it.
+
+***Forced Orgasm* replaces *Abandon*.** Abandon paid a **Lust card** for its Climax, which priced
+it out of exactly the decks that wanted it: the reason to want a Climax on demand is to switch on
+the cards that key off one, and paying the run's death clock for that is not a trade a cautious
+deck can make. Forced Orgasm is Adrenaline at one rarity lower, paid for in Sensitive instead.
+
+**Nothing visible is spent, and the cost is still real.** Arousal does not reset, and the new
+Sensitive stack raises everything you take afterwards by 50% — so it trades a percentage of the bar
+you have left for tempo, and gets worse the more hurt you already are. A card you play early in a
+fight or not at all.
+
+**The Rapture line is the point, not a risk.** With *Rapture* out, Forced Orgasm is 0 cost for
+**4 energy**, 2 Strength, 20 Block and 2 cards. **[decided]** That is accepted: *Rapture* was
+near-dead without a Climax-on-demand card — a 3-cost Rare keyed off the one event you spend the
+whole run trying to avoid, so it only ever paid out when things were already going wrong. Forced
+Orgasm turns it from a card you hope to survive into a plan you draft toward. Taking the Uncommon
+first and hoping for the Rare is a normal shape for a build.
+
+---
+
+## 5a. Freehand (Skin) — 5 cards
 
 Hands, breasts, thighs, skin. No hole used, so nothing is collected. Rather than paying for that
 with raw damage, these now do things the tagged groups cannot.
 
 | Card | Cost | Type | Rarity | Text | Upgrade |
 |---|---|---|---|---|---|
-| **Handful** | 0 | Attack · *Glazed* | Common | **Innate.** Deal **11** damage. **Exhaust.** | 14 damage |
-| **Smothered** | 2 | Attack · *Glazed* | Common | Deal **5** damage. Gain **10** Block. Gain **5** Block next turn. | 7 / 13 / 7 |
-| **Thighplay** | 1 | Attack · *Glazed* | Uncommon | Deal **9** damage. Your next **Ass** or **Pussy** card costs **1 less**. | 12 damage |
-| **Show Off** | 0 | Attack · *Glazed* | Uncommon | Gain **1 Vulnerable**. Deal **10** damage to ALL enemies and apply **1 Vulnerable**. | 14 damage |
+| **Handful** | 0 | Attack · *Skin* | Common | **Innate.** Deal **11** damage. **Exhaust.** | 14 damage |
+| **Smothered** | 2 | Attack · *Skin* | Common | Deal **5** damage. Gain **10** Block. Gain **5** Block next turn. | 7 / 13 / 7 |
+| **Thighplay** | 1 | Attack · *Skin* | Uncommon | Deal **9** damage. Your next **Ass** or **Pussy** card costs **1 less**. | 12 damage |
+| **Show Off** | 0 | Attack · *Skin* | Uncommon | Gain **1 Vulnerable**. Deal **10** damage to ALL enemies and apply **1 Vulnerable**. | 14 damage |
 | **Wet Work** | 0 | Skill | Uncommon | **Spend 10 ml.** Gain **10** Block. | Spend 8 ml |
 
 **The group has an identity now.** Previously it was "the same cards but bigger", which is a
 weak reason to draft anything. Each of these does something structural instead:
 
 - *Handful* is a free opener, and being **Innate** means it is always in your first hand — which
-  drags your *Continuing* mode to Glazed on turn one. Playing it is tempo; holding it is routing.
+  drags your *Continuing* mode to Skin on turn one. Playing it is tempo; holding it is routing.
   That tension only exists because it is Innate, and it is the best thing about the card.
-- *Smothered* makes Glazed the defensive colour, which nothing else covers.
-- *Thighplay* is the bridge: a Glazed attack that discounts your next Ass or Pussy card, so a
+- *Smothered* makes Skin the defensive colour, which nothing else covers.
+- *Thighplay* is the bridge: a Skin attack that discounts your next Ass or Pussy card, so a
   focused deck has a real reason to run one.
 - *Show Off* buys AoE with self-Vulnerable, which fits the character's whole "escalation is a
   cost" premise rather than being generically strong.
@@ -223,9 +264,9 @@ bell — which is the actual reason to draft into it rather than just playing bi
 
 | Card | Cost | Type | Rarity | Text | Upgrade |
 |---|---|---|---|---|---|
-| **Throat Fuck** | 1 | Attack · *Mouth* · **Deep Throat** | Common | Deal **9** damage. Lose **3** HP. | 12 damage |
-| **Deep Throat** | 2 | Attack · *Mouth* · **Deep Throat** | Common | Deal **16** damage. Lose **4** HP. Draw **1**. | 20 damage |
-| **Balls Deep** | 1 | Attack · *Mouth* · **Deep Throat** | Uncommon | Deal **9** damage. Lose **3** HP. Put a card from your discard pile on top of your draw pile. If it is a different **Mouth** card, put it into your hand instead. | Deal 12 |
+| **Throat Fuck** | 1 | Attack · *Mouth* · **Deep Throat** | Common | Deal **9** damage. Lose **2** HP. | 12 damage |
+| **Deep Throat** | 2 | Attack · *Mouth* · **Deep Throat** | Common | Deal **16** damage. Lose **2** HP. Draw **1**. | 20 damage |
+| **Balls Deep** | 1 | Attack · *Mouth* · **Deep Throat** | Uncommon | Deal **9** damage. Lose **2** HP. Put a card from your discard pile on top of your draw pile. If it is a different **Mouth** card, put it into your hand instead. | Deal 12 |
 | **No Gag Reflex** | 1 | Power | Uncommon | **Deep Throat** cards cost **1 less** and no longer lose HP. | Also draw 1 on each |
 
 *Balls Deep* is now recursion rather than a damage spike, and the Mouth clause is a routing
@@ -244,7 +285,6 @@ the fastest line.
 |---|---|---|---|---|---|
 | **Lip Service** | 1 | Attack · *Mouth* | Common | Deal **7** damage. | 10 |
 | **Lick Pre-cum** | 1 | Skill | Common | Gain **5 ml precum**. Apply **1 Weak**. | 8 ml |
-| **Scoop It Up** | 1 | Skill | Uncommon | Empty your Glazed. Gain that much **Mouth**. | Costs 0 |
 | **Gulp** | 0 | Skill | Uncommon | Swallow now: Heal **half** your Mouth in ml and bank the cum into your Stomach, then empty it. If you swallowed more than **25 ml**, remove **1 Sensitive**. | Full ml |
 | **Spit** | 1 | Attack | Uncommon | Empty your Mouth. Deal damage equal to **half the ml** to ALL enemies, and apply **1 Weak and 1 Vulnerable per 10 ml** emptied. | Full ml |
 | **Restraint** | 2 | Power | Uncommon | While your HP is above half, gain **4** Block at the start of your turn. | 6 Block |
@@ -253,10 +293,12 @@ the fastest line.
 *Spit* is untagged despite being an attack — you are expelling, not receiving, so it fills
 nothing and never sets the Continuing mode.
 
-*Scoop It Up* sits here rather than in Core because, although it carries no **Mouth** tag, it only
-does anything for a Mouth deck. It is the seam between Freehand and Draining: Glazed collects
-nothing on its own, and this is the one card that makes it collect after the fact. What it moves
-is real cum, so it banks — unlike *Lick Pre-cum* and *Milked Dry*, which do not.
+***Scoop It Up* is cut from the pool.** With every reservoir's leak now landing on Skin (design
+§6.3c), a single card converting Skin into Mouth would have been close to mandatory in every deck —
+and a card nobody can skip is worse than no card at all. Its job moved to the rest site: **Indulge**
+replaces `HEAL` for this character, emptying Skin to Soothe 1 per ml and banking that ml to the
+**Stomach**. Draining still gets the Skin→Stomach pipeline; it now runs through the map rather than
+the deck, and every archetype feeds it.
 
 ---
 
@@ -277,10 +319,10 @@ that depletes across a fight and refills from kills routed back into it.
 
 | Card | Cost | Type | Rarity | Text | Upgrade |
 |---|---|---|---|---|---|
-| **Clench** | 1 | Attack · *Ass* | Common | Deal **5** damage twice. Lose **4** HP. | 7 twice |
-| **Stuffed** | 2 | Attack · *Ass* | Common | Deal **12** damage. Lose **8** HP. If your HP is below half, hit **one additional time**. | 15 damage |
-| **Grind** | 1 | Attack · *Ass* | Uncommon | Deal **6** damage. Gain Block equal to the damage dealt. Lose **2** HP. | 8 damage |
-| **Rut** | 2 | Attack · *Ass* | Uncommon | Deal **6** damage three times. Lose **6** HP. | 8 three times |
+| **Clench** | 1 | Attack · *Ass* | Common | Deal **5** damage twice. Lose **2** HP. | 7 twice |
+| **Stuffed** | 2 | Attack · *Ass* | Common | Deal **12** damage. Lose **3** HP. If your HP is below half, hit **one additional time**. | 15 damage |
+| **Grind** | 1 | Attack · *Ass* | Uncommon | Deal **6** damage. Gain Block equal to the damage dealt. Lose **1** HP. | 8 damage |
+| **Rut** | 2 | Attack · *Ass* | Uncommon | Deal **6** damage three times. Lose **3** HP. | 8 three times |
 | **Stretch My Hole Daddy** | 2 | Power | Uncommon | Attacks that cost you HP hit **one additional time**. | Costs 1 |
 | **Milking Grip** | 2 | Power | Uncommon | Ass-tagged attacks lose **5%** instead of 10%, but gain Strength **as though they had lost 10%**. Ass-tagged kills gain **double** intake. | Lose 3% |
 | **Overflow** | 1 | Attack · *Ass* | Uncommon | Deal **1** damage to ALL enemies and apply **Vulnerable**. This card loses **double** the usual Ass. | Also 1 Weak |
@@ -334,9 +376,9 @@ shape from design §7.1:
 | Card | Cost | Type | Rarity | Text | Upgrade |
 |---|---|---|---|---|---|
 | **Take Him In** | 1 | Attack · *Pussy* | Common | Deal **8** damage. *1:* draw **1**. *3:* deal **12** instead. *5:* draw **2** instead. *7:* repeats **1** time. | 11 damage |
-| **Surrender** | 0 | Skill | Common | Lose **10** HP. Draw **1**, plus **1** per Climax this combat. *1:* gain **5** Block. *3:* draw **2** plus per Climax. *5:* gain **10** Block instead. *7:* lose no HP. | Lose 8 HP |
+| **Surrender** | 0 | Skill | Common | Lose **4** HP. Draw **1**, plus **1** per Climax this combat. *1:* gain **5** Block. *3:* draw **2** plus per Climax. *5:* gain **10** Block instead. *7:* lose no HP. | Lose 3 HP |
 | **Ward** | 1 | Skill | Common | Gain **6** Block. *1:* reflect **5** damage to attackers this turn. *3:* gain **12** Block instead. *5:* reflect **10** instead. *7:* repeats **1** time. | 9 base |
-| **Claim** | 1 | Attack · *Pussy* | Uncommon | Deal **7** damage. Lose **2** HP. *1:* apply **1 Vulnerable**. *3:* deal **12** instead. *5:* apply **2 Vulnerable** instead. *7:* repeats **1** time. | 10 / 16 |
+| **Claim** | 1 | Attack · *Pussy* | Uncommon | Deal **7** damage. Lose **1** HP. *1:* apply **1 Vulnerable**. *3:* deal **12** instead. *5:* apply **2 Vulnerable** instead. *7:* repeats **1** time. | 10 / 16 |
 | **Leg Lock** | 1 | Skill | Uncommon | Gain **6** Block. Apply **1 Vulnerable** and **1 Leg-Locked**. *1:* also apply **1 Debilitate**. *3:* apply **2 Leg-Locked** and **2 Vulnerable**. *5:* apply **2 Debilitate** instead. *7:* apply all of it to ALL enemies. | 9 Block |
 | **Ritual Mark** | 1 | Power | Uncommon | Your **Pussy** cards deal **2** additional damage. *1:* your Sigils deal **1** additional damage. *3:* Pussy cards deal **4** instead. *5:* Sigils deal **4** too. *7:* both bonuses become **+1 per Sigil**. | +3 base |
 | **Consummate** | 0 | Skill | Rare | **Exhaust a Sigil** for this combat: gain **2** energy and draw **3**. *1:* gain **10** Block. *3:* gain **3** energy instead. *5:* gain **20** Block instead. *7:* does not exhaust a Sigil. | Draw 4 |
@@ -348,12 +390,12 @@ shape from design §7.1:
 **Leg-Locked is a kill claim** — a claim staked on a kill that has not happened yet, which is why
 it counts down. It is a rules word rather than just this card's text, and it solves a problem the
 design has carried since §6.0. Routing keys off the *finishing card's* tag, so a kill delivered by Poison, a
-Sigil passive, reflect damage, or any untagged card falls through to Glazed (§6.4) — and Breeding,
+Sigil passive, reflect damage, or any untagged card falls through to Skin (§6.4) — and Breeding,
 which needs Womb fill more than any other archetype, is exactly the deck most likely to kill things
 with something other than an attack. Leg-Locked lets you **commit the route in advance**, which is
 a decision rather than a correction.
 
-It **overrides both** the finishing-card tag and the Glazed catch-all. Because it counts down like
+It **overrides both** the finishing-card tag and the Skin catch-all. Because it counts down like
 Debilitate, marking an enemy you then fail to kill is wasted — so the card asks you to read the
 fight, and stacking it is buying time rather than buying power.
 
@@ -424,12 +466,39 @@ point, which is the most valuable thing an effect can do.
 
 ---
 
+## 9a. Milk — generated, not draftable
+
+Shuffled into your **combat draw pile** while **Lactating** — **N cards per turn**, where N is your
+pregnancy stage. Lactation begins with pregnancy and continues one combat past the birth (design
+§6.3b). Never enters the master deck. Not in any pool and not draftable.
+
+| Card | Cost | Type | Text | Upgrade |
+|---|---|---|---|---|
+| **Milk** | 0 | Attack | Tease **4** pleasure. Soothe **2**. **Exhaust.** *1:* draw **1**. *3:* Tease **7** instead. *5:* draw **2** instead. *7:* does not Exhaust. | — |
+
+It rides the standard Sigil ladder rather than inventing a scale, and the 0-cost tier-4 rule pays
+off unusually well here: a 0-cost card sheds its **non-energy** cost at 7 Sigils, and Milk's
+non-energy cost is **Exhaust**. At the top of the ladder Milk stops exhausting and starts piling
+up — producing faster than you can spend, from a rule that already existed.
+
+**Into the combat pile, never the master deck**, so nothing persists between fights. The pile is
+deliberately weaker than the hand: Milk competes with your real cards for draws, and at Stage 3
+that is three cards a turn, so a long fight becomes mostly Milk. The dilution is a cost, and it is
+one more thing arguing for cashing out.
+
+**It heals rather than Blocks, and that is what makes gestation a gamble.** Healing cannot prevent
+a one-shot: at Stage 3 you take **+150%**, so even topping up to full every turn you are raising
+the chance a single enemy intent kills you outright. The carried state is a rising probability of
+sudden death that no amount of sustain insures against — Block would have made it merely slow.
+
+---
+
 ## 10. Lust — 2 cards (not draftable)
 
 | Card | Cost | Type | Text |
 |---|---|---|---|
-| **Aching** | 0 | Curse | Playable: gain **2 energy** this turn. Lose **12** HP. |
-| **Craving** | 0 | Curse | Playable: draw **3**. Lose **12** HP. |
+| **Aching** | 0 | Curse | Playable: gain **2 energy** this turn. Lose **6** HP. |
+| **Craving** | 0 | Curse | Playable: draw **3**. Lose **6** HP. |
 
 ---
 
@@ -439,13 +508,14 @@ point, which is the most valuable thing an effect can do.
 |---|---|
 | Basics (not draftable) | 5 |
 | Core | 4 |
-| Freehand (Glazed) | 5 |
-| Draining (Mouth) | 11 |
+| Freehand (Skin) | 5 |
+| Draining (Mouth) | 10 |
 | Squeezing (Ass) | 8 |
 | Breeding (Pussy) | 8 |
 | Ancient | 1 |
+| Milk (generated) | 1 |
 | Lust (not draftable) | 2 |
-| **Total** | **38 draftable + 2** |
+| **Total** | **37 draftable + 2** |
 
 32 is a floor, not a ceiling.
 
@@ -474,7 +544,7 @@ point, which is the most valuable thing an effect can do.
 - **Tier 4 (7 Sigils) is unbalanced on purpose and should not be tuned yet.** The 4–6 Sigils per
   run target is unverified since the elite intake change, so nobody knows whether 7 is a stretch
   goal or unreachable. 1 / 3 / 5 is safe either way.
-- *Handful* being Innate means every Glazed draft changes your turn-one routing whether you want
+- *Handful* being Innate means every Skin draft changes your turn-one routing whether you want
   it to or not. That is the interesting part, but it may be too loud in a focused Ass or Pussy
   deck that drafted the card purely as a cheap opener.
 - The Deep Throat family is three cards. If *No Gag Reflex* feels weak, the fix is a fourth family

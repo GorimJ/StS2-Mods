@@ -28,7 +28,7 @@ public class Surrender : SeductressCard
         new DynamicVar("T2", Sigils.Tier2),
         new DynamicVar("T3", Sigils.Tier3),
         new DynamicVar("T4", Sigils.Tier4),
-        new HpLossVar(10m),
+        new HpLossVar(4m),
         new BlockVar(5m, ValueProp.Move),
         new DynamicVar("TierBlock", 10m)
     ];
@@ -56,5 +56,5 @@ public class Surrender : SeductressCard
         }
     }
 
-    protected override void OnUpgrade() => DynamicVars.HpLoss.UpgradeValueBy(-2m);
+    protected override void OnUpgrade() => DynamicVars.HpLoss.UpgradeValueBy(-1m);
 }

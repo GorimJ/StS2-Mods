@@ -20,13 +20,13 @@ public class ShowOff : SeductressCard
 {
     public ShowOff() : base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies) { }
 
-    public override Hole Hole => Hole.Glazed;
+    public override Hole Hole => Hole.Skin;
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(10m, ValueProp.Move)];
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Show Off",
-        "Glazed. Gain 1 [gold]Vulnerable[/gold].\nDeal {Damage:diff()} damage to ALL enemies and apply 1 [gold]Vulnerable[/gold].");
+        "Skin. Gain 1 [gold]Vulnerable[/gold].\nDeal {Damage:diff()} damage to ALL enemies and apply 1 [gold]Vulnerable[/gold].");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

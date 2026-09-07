@@ -18,9 +18,9 @@ namespace Seductress.SeductressCode.Powers;
 /// betting on finishing that enemy, not taxing it.
 ///
 /// <b>What it fixes.</b> Routing keys off the finishing card's tag, so a kill delivered by Poison,
-/// a Sigil passive, reflect damage or any untagged card falls through to Glazed — and Breeding,
+/// a Sigil passive, reflect damage or any untagged card falls through to Skin — and Breeding,
 /// which needs Womb fill most, is the deck most likely to kill with something that is not an
-/// attack. Without this the archetype's own engine leaks its progression into Glazed.
+/// attack. Without this the archetype's own engine leaks its progression into Skin.
 ///
 /// Same shape as <c>DebilitatePower</c>: a Counter that decrements in <c>AfterSideTurnEnd</c> when
 /// its owner is among the participants, i.e. at the end of the enemy's own turn.

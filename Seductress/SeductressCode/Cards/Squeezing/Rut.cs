@@ -26,7 +26,7 @@ public class Rut : SeductressCard
         new CalculationBaseVar(6m),
         new ExtraDamageVar(1m),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier(BonusCalc),
-        new HpLossVar(6m)
+        new HpLossVar(3m)
     ];
 
 

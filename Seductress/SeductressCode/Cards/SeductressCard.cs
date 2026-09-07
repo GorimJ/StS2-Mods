@@ -68,20 +68,51 @@ public abstract class SeductressCard(int cost, CardType type, CardRarity rarity,
     protected int SpendAssForDamage(double fraction = 0.10)
     {
         var reservoirs = Reservoirs.Of(Owner.RunState);
-        var milking = Owner.Creature.HasPower<Powers.MilkingGripPower>();
+        var milking = Owner.Creature.GetPower<Powers.MilkingGripPower>();
 
         var notional = (int)Math.Ceiling(reservoirs.Ass * fraction);
-        var actual = milking ? (int)Math.Ceiling(notional / 2.0) : notional;
+        var actual = milking is null ? notional : (int)Math.Ceiling(notional * milking.DrainShare);
 
-        reservoirs.Ass -= actual;
-        var bonus = notional;
-        if (actual > 0)
+        // The Plug: playing an Ass card pulls it and spills 10% on top of the card's own drain,
+        // and that spill grants Strength like any other ml lost (design §7.3).
+        var spill = 0;
+        if (reservoirs.PlugIn)
+        {
+            spill = (int)Math.Ceiling(reservoirs.Ass * Relics.Plug.SpillFraction);
+            reservoirs.PlugIn = false;
+        }
+
+        reservoirs.Ass -= actual + spill;
+        if (reservoirs.Ass < 0) reservoirs.Ass = 0;
+
+        var bonus = AssStrength(notional + spill);
+        if (actual + spill > 0)
         {
             MainFile.Logger.Info(
-                $"[Seductress] {Id.Entry} spent {actual} ml Ass (+{bonus} dmg/hit{(milking ? ", Milking Grip" : "")})");
+                $"[Seductress] {Id.Entry} spent {actual + spill} ml Ass (+{bonus} dmg/hit" +
+                (milking is not null ? $", Milking Grip x{milking.DrainShare:0.##}" : "") +
+                (spill > 0 ? $", Plug pulled spilling {spill}" : "") + ")");
         }
         return bonus;
     }
+
+    /// <summary>
+    /// The Ass Strength ratio: <b>+1 per 4 ml lost</b>.
+    ///
+    /// [Gorim 2026-09-07] Third setting of this number. §6.1 originally said +1 per 10 ml; slice 3
+    /// raised it to 1:1 because the bank never reached the 100 ml that produced a single point,
+    /// and 1:1 then made <i>Blowout</i> deal 424 at a full bank. 1:4 is tuned against where an Ass
+    /// deck actually settles <b>once Milking Grip is in play</b> — 200-270 ml — rather than
+    /// against the unaided fixed point.
+    ///
+    /// [Claude-Code] That makes it dependent on the threshold unlocks landing: at the unaided
+    /// 100 ml ceiling this pays +2 or +3, which is the inertness the change was made to fix.
+    ///
+    /// Rounds down, so a small bank pays nothing. The drain already rounds up, so both roundings
+    /// run against the player here — worth watching at low banks, where the mechanic is meant to
+    /// be weak but not literally free to ignore.
+    /// </summary>
+    protected static int AssStrength(int mlLost) => mlLost / 4;
 
     /// <summary>
     /// True when No Gag Reflex should cancel this card's HP cost. Deep Throat only.
@@ -130,8 +161,13 @@ public abstract class SeductressCard(int cost, CardType type, CardRarity rarity,
     ///
     /// Milking Grip halves the spend but pays the full bonus, so the preview ignores it.
     /// </summary>
-    protected decimal AssNotional(double fraction = 0.10) =>
-        (int)Math.Ceiling(Reservoirs.Of(Owner.RunState).Ass * fraction);
+    protected decimal AssNotional(double fraction = 0.10)
+    {
+        var r = Reservoirs.Of(Owner.RunState);
+        var notional = (int)Math.Ceiling(r.Ass * fraction);
+        var spill = r.PlugIn ? (int)Math.Ceiling(r.Ass * Relics.Plug.SpillFraction) : 0;
+        return AssStrength(notional + spill);
+    }
 
     /// <summary>
     /// Ritual Mark, plus the tier-2 damage swap expressed as a delta over the printed base.

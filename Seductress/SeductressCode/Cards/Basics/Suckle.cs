@@ -1,23 +1,34 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
-using Seductress.SeductressCode.Powers;
 using Seductress.SeductressCode.Systems;
 
 namespace Seductress.SeductressCode.Cards;
 
 /// <summary>
-/// Basic, Mouth half of the starting pair. An Attack rather than a Skill because Skills are
-/// untagged by decision — and that constraint produced the better card: Draining's identity is
-/// staying high on the bar, so a Mouth attack that grants Block states the archetype in one line.
+/// Basic, the Mouth half of the starting pair. An Attack rather than a Skill because Skills are
+/// untagged by decision.
+///
+/// [Gorim] <b>It grants precum, not Block.</b> As a Block card it was plain and taught nothing —
+/// Guard already covers defence, so the defensive slot was never the one going spare. What was
+/// missing was any starting card showing that the Mouth economy exists.
+///
+/// [Claude-Cowork] <b>The "instead" is the whole point of the card.</b> It teaches the single most
+/// confusable rule in the character on one line: precum normally, real cum on a kill. The
+/// temporary resource and the banking resource, and the difference between them, demonstrated by
+/// the same card on two outcomes of one play — so both class starters are intake teachers from
+/// opposite ends, <i>Breed Me!</i> showing a kill filling the Womb and this showing the Mouth
+/// filling whether you kill or not, and only banking if you do.
+///
+/// [Claude-Code] The kill's ordinary routed intake (10 ml to the Mouth for a normal enemy) lands
+/// on top of this and is a separate thing — so a Suckle kill actually banks 5 + 10. The card's own
+/// 5 ml is what changes kind; the routed intake was always real cum.
 /// </summary>
 public class Suckle : SeductressCard
 {
@@ -28,23 +39,36 @@ public class Suckle : SeductressCard
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(4m, ValueProp.Move),
-        new BlockVar(5m, ValueProp.Move)
+        new DynamicVar("Ml", 5m)
     ];
 
     public override List<(string, string)>? Localization => new CardLoc(
-        "Suckle", "Mouth. Deal {Damage:diff()} damage. Gain {Block:diff()} [gold]Block[/gold].");
+        "Suckle",
+        "Mouth. Deal {Damage:diff()} damage. Gain {Ml:diff()} ml precum. If this kills, gain {Ml:diff()} ml instead.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+        var target = cardPlay.Target;
+
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(target)
             .WithHitFx("vfx/vfx_attack_slash").Execute(choiceContext);
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
+
+        var ml = (int)DynamicVars["Ml"].BaseValue;
+        var r = Reservoirs.Of(Owner.RunState);
+
+        // Read the target after the attack resolves. A Climaxed enemy is no longer alive, which is
+        // the same test the intake routing uses.
+        var killed = !target.IsAlive;
+        var added = killed ? r.AddMouthCum(ml) : r.AddPrecum(ml);
+
+        MainFile.Logger.Info(
+            $"[Seductress] Suckle: +{added} ml {(killed ? "CUM (kill — banks at the bell)" : "precum (evaporates at the bell)")}" +
+            (added < ml ? $" — {ml - added} ml did not fit" : "") +
+            $" | mouth {r.Mouth}+{r.Precum}p");
+
+        if (killed) await Stomach.SwallowIfFull(Owner);
     }
 
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(2m);
-        DynamicVars.Block.UpgradeValueBy(2m);
-    }
+    protected override void OnUpgrade() => DynamicVars["Ml"].UpgradeValueBy(5m);
 }

@@ -19,7 +19,7 @@ public class Aching : LustCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new HpLossVar(12m),
+        new HpLossVar(6m),
         new EnergyVar(2)
     ];
 

@@ -29,7 +29,7 @@ public partial class ReservoirHud : Control
     private static readonly Color Ink = new(1f, 0.92f, 0.96f);
     private static readonly Color Panel = new(0.10f, 0.06f, 0.10f, 0.72f);
 
-    private readonly Label[] _lines = new Label[7];
+    private readonly Label[] _lines = new Label[8];
     private Player? _player;
 
     public void Initialize(Player player) => _player = player;
@@ -73,18 +73,26 @@ public partial class ReservoirHud : Control
         var climax = ClimaxModel.Instance;
         var sensitive = _player.Creature.GetPowerAmount<SensitivePower>();
 
-        _lines[0].Text = $"Mouth   {r.Mouth} / 50 ml";
-        _lines[1].Text = $"Ass     {r.Ass} / 200 ml";
-        _lines[2].Text = $"Womb    {r.Womb} / 100 ml";
-        _lines[3].Text = $"Glazed  {r.Glazed} ml";
+        // Precum is shown separately from cum even though they spend identically inside a combat,
+        // because the one thing the player has to know is which of the two survives the bell.
+        _lines[0].Text = $"Mouth   {r.Mouth} cum + {r.Precum} pre / 50 ml";
+        _lines[1].Text = $"Ass     {r.Ass} / 200 ml   (peak {r.AssHighWater})" +
+                         (r.PlugIn ? "  [PLUGGED]" : "");
+        _lines[2].Text = r.PregnancyStage > 0
+            ? $"Womb    {r.Womb} ml   Stage {r.PregnancyStage} ({r.WombLocked} locked)"
+            : $"Womb    {r.Womb} / 100 ml";
+        _lines[3].Text = $"Skin    {r.Skin} ml";
         var exhausted = climax.SigilsExhaustedThisCombat;
         var sigils = exhausted > 0
             ? $"Sigils {Sigils.Effective(_player)}/{r.Sigils} (-{exhausted} exhausted)"
             : $"Sigils {r.Sigils}";
-        _lines[4].Text = $"Stomach {r.Stomach} ml   {sigils}";
-        _lines[5].Text = $"Continuing: {climax.ContinuingHole}";
+        _lines[4].Text = $"Stomach {r.Stomach} ml (+{r.Stomach / 10} max HP)   {sigils}";
+        _lines[5].Text = $"Continuing: {climax.ContinuingHole}" +
+                         (r.LactatingStage > 0 ? $"   Lactating S{r.LactatingStage}" : "");
         _lines[6].Text = $"Climaxes {climax.ClimaxesThisCombat}  Sensitive {sensitive}  " +
                          $"Lust {ClimaxModel.LustCount(_player)}/{ClimaxModel.LustLimit}";
+        _lines[7].Text = $"HP {_player.Creature.CurrentHp}/{_player.Creature.MaxHp}  " +
+                         $"arousal {_player.Creature.MaxHp - _player.Creature.CurrentHp}";
     }
 }
 

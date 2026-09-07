@@ -15,12 +15,12 @@ using Seductress.SeductressCode.Systems;
 
 namespace Seductress.SeductressCode.Cards;
 
-/// <summary>Freehand. Makes Glazed the defensive colour, which nothing else covers.</summary>
+/// <summary>Freehand. Makes Skin the defensive colour, which nothing else covers.</summary>
 public class Smothered : SeductressCard
 {
     public Smothered() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) { }
 
-    public override Hole Hole => Hole.Glazed;
+    public override Hole Hole => Hole.Skin;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -31,7 +31,7 @@ public class Smothered : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Smothered",
-        "Glazed. Deal {Damage:diff()} damage. Gain {Block:diff()} [gold]Block[/gold].\nGain {NextTurnBlock:diff()} [gold]Block[/gold] next turn.");
+        "Skin. Deal {Damage:diff()} damage. Gain {Block:diff()} [gold]Block[/gold].\nGain {NextTurnBlock:diff()} [gold]Block[/gold] next turn.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

@@ -28,7 +28,7 @@ namespace Seductress.SeductressCode.Orbs;
 /// Fixed at 1 damage rather than the Glass Orb's decaying 4. <i>Ritual Mark</i> raises it.
 ///
 /// Damage is dealt with no card source, so a kill it lands has no finishing tag and falls to
-/// Glazed — which is exactly the leak §6.3a's Leg-Locked exists to close.
+/// Skin — which is exactly the leak §6.3a's Leg-Locked exists to close.
 /// </summary>
 public class SigilOrb : CustomOrbModel
 {

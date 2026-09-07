@@ -24,8 +24,22 @@ public class Seductress : PlaceholderCharacterModel
     public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Feminine;
 
-    /// <summary>65 proposed in the design (Ironclad is 80); not yet confirmed.</summary>
-    public override int StartingHp => 65;
+    /// <summary>
+    /// [Gorim] <b>Max HP is 20</b>, down from 65 (design §6.5).
+    ///
+    /// The bar is one life of four: 20 x 4 climaxes is ~80 effective, which is Ironclad's pool.
+    /// Within a single fight it is less, because Sensitive compounds — 20 + 13 + 10 + 8 is ~51 —
+    /// and that second number is the one that matters in a boss fight.
+    ///
+    /// [Gorim] <b>The character is not more fragile, she is more granular.</b> A Jaw Worm hitting
+    /// for 11 takes the same 14% of an 80 HP pool it takes from Ironclad. What changes is the
+    /// rhythm: the same total absorbed in four chunks with a Lust card owed at each boundary.
+    ///
+    /// [Gorim] <b>Only Max HP is worth 4x</b> — it is the only thing refilled four times. Block,
+    /// healing and damage are absolute and unchanged; HP <i>costs</i> scale inversely, which is
+    /// what §6.5's rescale table does.
+    /// </summary>
+    public override int StartingHp => 20;
 
     /// <summary>
     /// [Gorim] Eleven cards: 4 Pump, 4 Guard, 1 Seek Relief, plus two class cards (design §4).
@@ -35,16 +49,10 @@ public class Seductress : PlaceholderCharacterModel
     /// designed the deck had no tagged card at all, so nothing routed anywhere until the first
     /// draft and the central mechanic was invisible for the opening floors.
     ///
-    /// [Gorim 2026-09-07] Seek Relief takes Let Go's slot, settling the older question of whether
-    /// Let Go belonged here. Every run now opens with an on-demand Climax, so the cards that key
-    /// off one are live from floor 1 rather than waiting on a Rare draft.
-    ///
-    /// [Claude-Code] One teaching consequence worth carrying into the design pass: Let Go's 20 HP
-    /// was the deck's only self-damage, and the usual way a new player met a Climax was walking
-    /// into one with it. Seek Relief triggers a Climax on purpose but deliberately does <i>not</i>
-    /// heal, so the arousal reset — the half that makes Climax feel like a reprieve rather than a
-    /// cost — is no longer demonstrated by any starting card. It is now only ever seen by nearly
-    /// dying.
+    /// [Gorim] <i>Let Go</i> is <b>renamed Seek Relief</b> and stays in the deck, so the
+    /// self-damage axis is still taught by a starter. The slice-3 arrangement — where a card I had
+    /// called Seek Relief took Let Go's slot — is superseded: that card is now <i>Forced Orgasm</i>,
+    /// a draftable Uncommon, and the starting deck keeps its original shape.
     ///
     /// The slice-2 Take Him In test scaffold is gone; Breed Me! replaces it properly.
     /// </summary>
@@ -65,12 +73,23 @@ public class Seductress : PlaceholderCharacterModel
 
     /// <summary>
     /// Burning Blood stands in for the character's own starting relic, which is not designed yet.
-    /// Fertile Sign is TEST SCAFFOLDING and comes out with Conception — see SigilScaffold.
+    ///
+    /// [Claude-Code] <b>Fertile Sign is gone.</b> Its own removal condition was "delete when
+    /// Conception lands", and Conception has landed — but the reason to act on that now rather
+    /// than later is measurement: a free Sigil from floor 1 turns on tier 1 across the whole
+    /// Breeding deck before a single pregnancy, which is exactly the number this slice is meant to
+    /// report. The class and the <c>sigils</c> console command are kept for setting a count on
+    /// purpose.
+    ///
+    /// [Claude-Code] <b>Watch Burning Blood.</b> It heals 6 after every combat, which was 9% of a
+    /// 65 HP bar and is <b>30%</b> of a 20 HP one. Healing is absolute and unchanged by decision
+    /// (§6.5), so this is per the design rather than a bug — but it is now a very large per-combat
+    /// heal on a character whose whole tension is arousal accumulating between fights, and it
+    /// partly undoes what removing HEAL from the rest site was for.
     /// </summary>
     public override IReadOnlyList<RelicModel> StartingRelics =>
     [
-        ModelDb.Relic<BurningBlood>(),
-        ModelDb.Relic<SigilScaffold>()
+        ModelDb.Relic<BurningBlood>()
     ];
 
     public override CardPoolModel CardPool => ModelDb.CardPool<SeductressCardPool>();

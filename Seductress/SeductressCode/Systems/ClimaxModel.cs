@@ -53,9 +53,9 @@ public class ClimaxModel : CustomSingletonModel
 
     /// <summary>
     /// The hole the last tagged Attack used this combat. <i>Continuing</i> cards follow it.
-    /// Resets to Glazed each combat, so turn-one Pumps route to Glazed until you lead with a tag.
+    /// Resets to Skin each combat, so turn-one Pumps route to Skin until you lead with a tag.
     /// </summary>
-    public Hole ContinuingHole { get; private set; } = Hole.Glazed;
+    public Hole ContinuingHole { get; private set; } = Hole.Skin;
 
     /// <summary>How many times the player has Climaxed this combat. Also read by Surrender.</summary>
     public int ClimaxesThisCombat { get; private set; }
@@ -135,7 +135,7 @@ public class ClimaxModel : CustomSingletonModel
 
     public override Task BeforeCombatStart()
     {
-        ContinuingHole = Hole.Glazed;
+        ContinuingHole = Hole.Skin;
         ClimaxesThisCombat = 0;
         SigilsExhaustedThisCombat = 0;
         LastAttackPlayed = null;
@@ -152,7 +152,7 @@ public class ClimaxModel : CustomSingletonModel
     /// This must run <b>before</b> the card resolves, not after. A tagged attack that lands the
     /// killing blow triggers AfterDeath from inside its own resolution, so setting the mode
     /// afterwards routes the card's own kill by the <i>previous</i> tag — which is the common case
-    /// and the whole point of the tag. Found in play: a Deep Throat kill banked to Glazed.
+    /// and the whole point of the tag. Found in play: a Deep Throat kill banked to Skin.
     /// </summary>
     public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
@@ -291,7 +291,33 @@ public class ClimaxModel : CustomSingletonModel
     {
         if (side != CombatSide.Player) return;
         var me = MegaCrit.Sts2.Core.Context.LocalContext.GetMe(combatState);
-        if (me?.Character is Character.Seductress) await SyncSigilOrbs(me);
+        if (me?.Character is not Character.Seductress) return;
+
+        await SyncSigilOrbs(me);
+        await Pregnancy.ShuffleMilk(me);
+    }
+
+    /// <summary>
+    /// Combat-start grants that need the creature to exist: the Stomach's precum milestone and the
+    /// pregnancy Sensitive stack. Late rather than early so powers applied here are not wiped by
+    /// the ordinary combat setup.
+    /// </summary>
+    public override async Task BeforeCombatStartLate()
+    {
+        var me = MegaCrit.Sts2.Core.Context.LocalContext.GetMe(
+            MegaCrit.Sts2.Core.Runs.RunManager.Instance.DebugOnlyGetState());
+        if (me?.Character is not Character.Seductress) return;
+
+        var r = Reservoirs.Of(me.RunState);
+
+        var precum = Stomach.CombatStartPrecum(r.Stomach);
+        if (precum > 0)
+        {
+            var added = r.AddPrecum(precum);
+            MainFile.Logger.Info($"[Seductress] Stomach milestone: +{added} ml precum at combat start (Stomach {r.Stomach})");
+        }
+
+        await Pregnancy.ApplyCombatStartSensitive(me);
     }
 
     // ---------------------------------------------------------------- Intake
@@ -359,17 +385,26 @@ public class ClimaxModel : CustomSingletonModel
 
         // [Gorim] Precedence: minions bank nothing at all (that test already returned above);
         // then Leg-Locked, which overrides where intake goes but never whether it happens; then
-        // the finishing attack's tag; then the Glazed catch-all. Design §6.3a.
+        // the finishing attack's tag; then the Skin catch-all. Design §6.3a.
         var legLocked = creature.HasPower<Powers.LegLockedPower>();
         var hole = legLocked ? Hole.Pussy : ContinuingHole;
         if (legLocked) MainFile.Logger.Info("[Seductress] Leg-Locked claim: routing to Pussy");
         // Milking Grip: Ass-tagged kills gain double intake (design §7).
         if (hole == Hole.Ass && me.Creature.HasPower<Powers.MilkingGripPower>()) ml *= 2;
 
-        Reservoirs.Of(me.RunState).Add(hole, ml);
+        var res = Reservoirs.Of(me.RunState);
+        var before = res.Get(hole);
+        res.Add(hole, ml);
+        var landed = res.Get(hole) - before;
+
         FloorLog.RecordIntake(ml);
         MainFile.Logger.Info(
-            $"[Seductress] Intake {ml} ml -> {hole} (base {baseMl}, sensitive x{multiplier}, {me.RunState.CurrentRoom?.RoomType})");
-        return Task.CompletedTask;
+            $"[Seductress] Intake {ml} ml -> {hole} (base {baseMl}, sensitive x{multiplier}, " +
+            $"{me.RunState.CurrentRoom?.RoomType})" +
+            (landed < ml ? $" — {ml - landed} ml did not fit and is lost" : "") +
+            (hole == Hole.Ass && res.PlugIn ? " — BLOCKED, the Plug is in" : ""));
+
+        // The 100 ml Stomach milestone swallows a full Mouth mid-combat, which uncaps throughput.
+        return hole == Hole.Mouth ? Stomach.SwallowIfFull(me) : Task.CompletedTask;
     }
 }
