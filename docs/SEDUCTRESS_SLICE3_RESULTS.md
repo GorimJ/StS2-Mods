@@ -68,6 +68,21 @@ among the participants, i.e. at the end of the enemy's own turn. Same shape as `
 **[Gorim]** The minion rule wins outright: Leg-Locked overrides *where* intake goes, never
 *whether* it happens. A Leg-Locked minion banks nothing.
 
+**Verified in play 2026-09-07, both with counterfactuals:**
+
+* **Leg-Locked overrides the finishing tag.** Continuing mode was *Ass* (set by Stuffed) when a
+  Leg-Locked enemy died; it banked to Pussy. Without the claim it would have gone to the Ass bank.
+* **Minions bank nothing.** Continuing mode was *Pussy* (set by Breed Me!) when a `TOUGH_EGG` died;
+  it banked nothing at all rather than 10 ml to the Womb.
+* Killing a Leg-Locked enemy with the Sigil passive — the no-card-source case the mechanic exists
+  for — also confirmed by Gorim.
+* **Still untested:** a minion that is *also* Leg-Locked, which is the only place the two rules
+  meet.
+
+**Testing note:** `fight OVICOPTER_NORMAL` jumps straight to a named encounter. Far better than
+re-rolling `room monster`, which took eighteen jumps to find a summoner and bled roughly half the
+Womb to per-floor leak on the way.
+
 ### [Gorim] Leg Lock applies vanilla `DebilitatePower`
 
 **[verified]** generic, not Necrobinder-gated — a plain `PowerModel` referenced only by the vanilla
