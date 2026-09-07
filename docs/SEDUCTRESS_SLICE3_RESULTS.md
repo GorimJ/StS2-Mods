@@ -141,25 +141,26 @@ final art. The tooltip *icon* is a plain texture and cannot be tinted the same w
 lightning-coloured. And the orb sync's shrink path (capacity dropping when a Sigil is exhausted) is
 **built but never run** — no testing this session.
 
-### [Claude-Code] Relief never rendered — a missing icon removed the button entirely
+### [Claude-Code] Relief had no icon and drew blank
 
 `RestSiteOption.Icon` derives its path from `OptionId`, so Relief asked for
-`res://images/ui/rest_site/option_seductress_relief.png`. That does not exist, and the
-`AssetLoadException` is thrown inside `NRestSiteButton._Ready` — so the button was never created.
-The option was **silently absent from every rest site since slice 2**, not greyed out.
+`res://images/ui/rest_site/option_seductress_relief.png`, which does not exist. The resulting
+`AssetLoadException` fires inside `NRestSiteButton._Ready`.
+
+**It fails the texture without removing the node.** The button was present, hoverable and correctly
+disabled — showing "You have no Lust cards to remove." — but drawn blank, which is easy to miss
+beside three illustrated buttons.
 
 `CustomRestSiteOption.CustomIconPath` exists for exactly this and was never overridden. Now points
-at the template's placeholder relic art — deliberately not a vanilla rest-site icon, which would
+at the template's placeholder relic art, deliberately not a vanilla rest-site icon, which would
 read as one of the existing options.
 
-**Consequence for the record:** slice 2's headline deliverable was Relief, and its results doc
-described behaviour ("greyed out but still hoverable") that was asserted rather than observed. No
-evidence about Relief or its opportunity cost exists from any run so far. The slice 2 doc has been
-corrected rather than quietly amended.
-
-**Lesson worth keeping:** a missing asset in a Godot `_Ready` removes the node instead of drawing a
-broken one, so a mod feature can be entirely absent with no visible error. Anything added to a
-vanilla UI list needs its asset path checked against the log the first time it appears.
+**A note on how this was diagnosed**, since it nearly went into the record wrong. On seeing the
+stack trace I concluded the button had never rendered at all and rewrote the slice 2 results to say
+Relief had never worked. Gorim then hovered it and got the correct disabled text. The exception was
+real and the fix is unchanged, but the conclusion drawn from it was not checked against what was
+actually on screen, and slice 2's original description turned out to be accurate. Both docs have
+been corrected back.
 
 ### [Claude-Code] Tiered damage numbers get no modifier preview
 
