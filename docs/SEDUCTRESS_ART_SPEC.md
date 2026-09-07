@@ -68,9 +68,18 @@ is 12. Undirected is almost certainly enough.
 | **Mouth fill** | 3 | Mouth ml | **[Gorim]** Visible filling |
 | **Plug** | 2 | Plug relic | Low priority; also readable from the relic bar |
 
-**[open] Belly conflict.** Inflation and pregnancy both push the belly and can be simultaneous — a
-Stage 2 pregnancy at 350 ml Ass. Do the bands **add**, or does the layer take the **higher** of the
-two? Adding is more accurate and needs more art; taking the max is free.
+**[Gorim] Belly bands are additive, capped at 4, and neither source can reach the cap alone.**
+
+```
+pregnancy  = min(stage, 3)
+inflation  = min(floor((Ass - 200) / 100), 3)     # 100 ml over ≈ one stage
+belly band = min(pregnancy + inflation, 4)
+```
+
+So Stage 1 at 300 ml Ass reads as band 2; Stage 3 at 300 ml reads as band 4 and is capped there.
+**Five states: flat + 4.** Requiring both sources to reach the cap means the fullest belly in the
+game is only available to a player pushing both tracks at once, which is the right thing to reserve
+for.
 
 ### 1c. The dripping cum animation
 
@@ -172,7 +181,53 @@ are excluded and handled separately.
 
 ---
 
-## 6. Division of labour
+## 6. Production pipeline — cut, inpaint, rig, render
+
+**[Gorim]** The proposal is to take a static character, split it into a sprite, inpaint variants,
+and separate those into layers. **It works, with one step reordered — and the reorder changes the
+budget in §0 substantially.**
+
+**Do not inpaint whole images and diff them into layers.** Inpainting bleeds into surrounding
+pixels — lighting, colour, edges — so extracting a clean transparent overlay from a variant needs
+hand-masking, per variant, per frame. That is the step that would make this unworkable.
+
+**Instead, cut first and swap parts.**
+
+| Step | What | Notes |
+|---|---|---|
+| 1 | One static character, neutral pose | Commissioned or generated |
+| 2 | **Cut into parts** — head, torso, breasts, upper/lower arm, thigh, shin | Inpainting is *good* at the hard part: painting in what sits hidden behind an arm or the torso |
+| 3 | **Inpaint alternative parts** — pregnant torsos per band, breasts per stage, cum-covered variants | Per part, in a fixed pose. Not per frame |
+| 4 | **Rig and animate once** | Nested `Sprite2D` under an `AnimationPlayer`; no mesh deformation needed |
+| 5 | **Swap parts, render the rig to a sheet** | Batch, per state combination |
+| 6 | Ship the sheets | |
+
+**Why this matters more than the tier choice in §0.** Animation is authored **once** and reused
+across every state, so 240 sheets stops being 240 pieces of art and becomes a batch render. The
+cost becomes `1 rig + N part variants` — and the pose-matching tiers largely stop being a budget
+question at all.
+
+**Two constraints.**
+
+- **Ship frames, not the rig.** BaseLib's `CustomAnimation` resolves AnimationTree → AnimationPlayer
+  → **AnimatedSprite2D**, so a live cutout rig may not be drivable through it. Rendering to sheets
+  sidesteps that entirely. *Puppet to author, frames to ship.*
+- **Cutout animation has a look** — limbs rotate rather than redraw, so foreshortening and crossing
+  limbs are where it shows. That look is essentially StS1's, so it suits the target.
+
+**[Claude-Cowork] The render-to-sheet script is the piece worth automating**, and it is ordinary
+Godot tooling rather than art: walk the part-variant combinations, set the visible parts, step the
+AnimationPlayer frame by frame, capture the viewport, pack into a sheet with a matching
+`SpriteFrames` resource. Written once, it makes every later state addition free.
+
+**What this changes about commissioning.** The brief becomes *"one character, delivered as separable
+parts in a neutral pose, plus alternate parts for the listed states"* — rather than *"N animated
+sheets"*. That is a smaller, cheaper and far more common commission, and it keeps every future state
+in-house.
+
+---
+
+## 7. Division of labour
 
 **[Claude-Cowork]** The commission does not have to cover all of it, and the split is not obvious.
 
@@ -182,21 +237,20 @@ are excluded and handled separately.
 | Belly and breast bands — anatomy that must stay on-model | **UI icons.** Small, static, and design-led rather than art-led |
 | Climax, conception, birth | **Sheet assembly and Godot wiring** — mechanical, and needed whoever draws |
 
-**On learning it:** the highest-leverage skill here is not drawing. It is **assembly and rigging** —
-laying out sheets, keeping frame counts aligned across layers, and wiring several
-`AnimatedSprite2D` siblings so they play as one. That work is needed no matter who draws, it is the
-part a commission will not do for you, and it is a much shorter learning curve than figure drawing.
-Overlay authoring (drips, splatter) is the natural second step, because it is repetitive and
-forgiving.
+**On learning it:** the skill that matters is **rigging and rendering**, not drawing — steps 4 and
+5 above. That work exists whoever draws, no commission will do it, and it is a far shorter curve
+than figure drawing. Part cutting and inpainting (steps 2–3) is the natural second thing, because
+it is repetitive and forgiving.
 
 ---
 
-## 7. Open questions
+## 8. Open questions
 
-1. **Which pose-matching tier?** §0. Sets the budget more than any other choice.
-2. **Can the drip loop run free** rather than pose-matched? Collapses the most expensive layer.
-3. **Belly: add inflation and pregnancy, or take the higher?**
-4. **Are mode transitions directed** (12) or undirected (4)?
-5. **Cum bands: 4 or more**, and at what Skin values? The thresholds need the instrumented run.
-6. **Sigil orb art** — the tinted Lightning orb is a placeholder that darkens as it tints, and its
+1. **Does the §6 pipeline hold?** If it does, the pose-matching tier in §0 mostly stops being a
+   budget question and the commission gets much smaller.
+2. **Can the drip loop run free** rather than pose-matched? Still worth asking; it is the one layer
+   where a free loop may look *better*.
+3. **Are mode transitions directed** (12) or undirected (4)?
+4. **Cum bands: 4 or more**, and at what Skin values? The thresholds need the instrumented run.
+5. **Sigil orb art** — the tinted Lightning orb is a placeholder that darkens as it tints, and its
    tooltip icon cannot be tinted at all.

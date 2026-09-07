@@ -1,5 +1,10 @@
 # The Seductress — slice 4 results
 
+**Written for the design session.** [Gorim] does not read this file; anything he needs to act on
+personally goes to him in chat instead. So this is a report from the build to the design: what the
+code now actually does, where it diverges from the documents, and what the documents cannot
+currently be trusted on.
+
 Built against `SEDUCTRESS_DESIGN.md` **v3.10** and `SEDUCTRESS_CARDS.md` **v24**, both re-read in
 full. Follows `SEDUCTRESS_SLICE3_RESULTS.md`.
 
@@ -8,7 +13,26 @@ mine, in this session.
 
 Everything below compiles clean and is deployed. **None of it has been played.** This slice is
 larger than the three before it put together and it changes the character's core numbers, so treat
-every figure here as "built to spec", not "verified".
+every figure here as "built to spec", never as measured. **Nothing in this document is evidence
+about balance.** Designing on top of any number here means designing on top of an assumption.
+
+---
+
+## 0. What the design session needs to decide
+
+Collected from across the build. None of these are blocking — everything is built and running — but
+each is a place where the documents are silent, ambiguous, or describe something the engine cannot
+do, and where I picked a reading rather than leaving a hole.
+
+| # | Question | What the code does now |
+|---|---|---|
+| 1 | **Does *Ritual Mark* buff *Milk*?** Milk is untagged, and Ritual Mark buffs *Pussy cards* — so as written it does not. But Milk is Breeding's card in every sense except the tag, and a player holding both will expect it to apply. | No buff. Correct to the card list, probably wrong to the fiction. |
+| 2 | **What does *Edging Form* put in the Mouth — cum or precum?** It is a Power, so §6.2a lets it fill real cum; but §6.2a also says the Mouth exception generates *precum*. | Real cum, which quietly makes it a Draining banking engine. One line either way. |
+| 3 | **Is *Burning Blood* still the right placeholder?** It heals 6 after every combat: 9% of a 65 HP bar, **30%** of a 20 HP one. Healing is absolute and unchanged by decision, so this is per the design — but it is now a very large per-combat heal, and it partly undoes what removing `HEAL` from the rest site was for. | Unchanged. The starting relic is explicitly undesigned; it wants a number when it gets one. |
+| 4 | **Should the universal spend order be able to abort a *carried* pregnancy?** §6.3b makes spending below the threshold before the bell an intended way to *prevent* conception. It does not discuss spending below a stage you are already carrying. | It can. *Wet Work* on a clean skin and empty mouth will drop a stage, and the Sigils it would have paid are gone. |
+| 5 | **Should the Ass Strength ratio round in the player's favour?** The drain rounds up and the Strength rounds down, so both run against the player at every non-round bank. | Rounds down. At a 46 ml bank *Clench* pays 5 ml for +1. |
+| 6 | **Does *Suckle*'s text mislead?** A Suckle kill banks 5 + 10, not 5 — the card's own 5 ml changes kind, and the routed kill intake lands on top. | As specified. The number on screen is larger than the card implies. |
+| 7 | **The Womb's "100 ml capacity" (§6.2) versus uncapped stages (§6.3b).** These cannot both be true. | Uncapped. §6.3b wins, since staging is the newer and more specific rule. |
 
 ---
 
@@ -288,14 +312,17 @@ The brief's §3 heading also calls it "the Scoop rest site"; it is **Indulge** e
 
 ---
 
-## 10. What to test, in order
+## 10. What is unverified
 
-Everything below is unplayed. The first three are the ones that change other results if wrong.
+**[Gorim] gets this list in chat as a test order; it is here so the design session knows what
+cannot yet be designed against.** Everything below is unplayed, and the first three change other
+results if they are wrong.
 
 1. **Birth as a free action.** Does the rest site stay open after delivering? If not, everything
    about the delivery decision is different from the design.
 2. **Max HP 20 in a real fight.** The whole rescale rides on "not more fragile, more granular".
-   Log climaxes and reliefs per act; **[Gorim] reads the balance himself.**
+   Climaxes and reliefs per act are logged as instrumentation. **[Gorim] reads the balance himself
+   — no conclusion about it should be drawn here or in the design docs from this run.**
 3. **Removing `HEAL`.** The most uncertain change in the slice. How far Skin accumulation offsets
    it is not derivable at a desk. Watch Skin at every rest site and what Indulge returns.
    **[Gorim] Do not tune Indulge down on the strength of this run** — it has been nerfed twice
