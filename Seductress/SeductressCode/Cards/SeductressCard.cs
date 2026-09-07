@@ -149,9 +149,15 @@ public abstract class SeductressCard(int cost, CardType type, CardRarity rarity,
         return cost > 0 ? playCount + cost : playCount;
     }
 
-    /// <summary><i>Ritual Mark</i>: your Pussy cards deal additional damage.</summary>
+    /// <summary>
+    /// <i>Ritual Mark</i>: your <b>Pussy</b> and <b>Breasts</b> cards deal additional damage.
+    ///
+    /// [Gorim 2026-09-08] Breasts added as a second category by default, not as a tier. The two
+    /// halves of Breeding are the cards that feed the Womb and the cards that do not, and the
+    /// archetype's Power should pay for both.
+    /// </summary>
     protected decimal RitualMarkBonus =>
-        Hole == Hole.Pussy
+        Hole == Hole.Pussy || Tags.Contains(SeductressTags.Breasts)
             ? Owner.Creature.GetPower<Powers.RitualMarkPower>()?.PussyBonus(Owner) ?? 0m
             : 0m;
 

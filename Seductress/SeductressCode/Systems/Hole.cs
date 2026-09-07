@@ -40,6 +40,22 @@ public static class SeductressTags
     /// <summary>Marks the Deep Throat card family (design: a tag, not a card).</summary>
     public const CardTag DeepThroat = (CardTag)1010;
 
+    /// <summary>
+    /// [Gorim 2026-09-08] <b>Breasts</b> — a subcategory of Breeding covering the cards that do
+    /// <b>not</b> feed the Womb. <i>Ritual Mark</i> buffs it alongside Pussy.
+    ///
+    /// [Claude-Code] Deliberately a <b>category tag, not a hole tag</b>, which is the load-bearing
+    /// choice here. A hole tag would route kills and, worse, would <b>set the Continuing mode</b>
+    /// every time it was played — and at Stage 3 that is three Milk shuffled in per turn, so a
+    /// Breeding deck would have its routing flipped away from Pussy several times a turn by its
+    /// own pregnancy. Sitting beside the hole tags rather than among them keeps Breasts a
+    /// classification the way Deep Throat is, and leaves routing untouched.
+    ///
+    /// Consequence to be aware of: a Breasts card is untagged for routing, so its kills fall to
+    /// whatever the Continuing mode currently is.
+    /// </summary>
+    public const CardTag Breasts = (CardTag)1011;
+
     public static CardTag ToTag(this Hole hole) => hole switch
     {
         Hole.Skin => Skin,

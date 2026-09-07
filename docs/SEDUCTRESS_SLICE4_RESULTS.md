@@ -26,13 +26,58 @@ do, and where I picked a reading rather than leaving a hole.
 
 | # | Question | What the code does now |
 |---|---|---|
-| 1 | **Does *Ritual Mark* buff *Milk*?** Milk is untagged, and Ritual Mark buffs *Pussy cards* — so as written it does not. But Milk is Breeding's card in every sense except the tag, and a player holding both will expect it to apply. | No buff. Correct to the card list, probably wrong to the fiction. |
 | 2 | **What does *Edging Form* put in the Mouth — cum or precum?** It is a Power, so §6.2a lets it fill real cum; but §6.2a also says the Mouth exception generates *precum*. | Real cum, which quietly makes it a Draining banking engine. One line either way. |
 | 3 | **Is *Burning Blood* still the right placeholder?** It heals 6 after every combat: 9% of a 65 HP bar, **30%** of a 20 HP one. Healing is absolute and unchanged by decision, so this is per the design — but it is now a very large per-combat heal, and it partly undoes what removing `HEAL` from the rest site was for. | Unchanged. The starting relic is explicitly undesigned; it wants a number when it gets one. |
 | 4 | **Should the universal spend order be able to abort a *carried* pregnancy?** §6.3b makes spending below the threshold before the bell an intended way to *prevent* conception. It does not discuss spending below a stage you are already carrying. | It can. *Wet Work* on a clean skin and empty mouth will drop a stage, and the Sigils it would have paid are gone. |
 | 5 | **Should the Ass Strength ratio round in the player's favour?** The drain rounds up and the Strength rounds down, so both run against the player at every non-round bank. | Rounds down. At a 46 ml bank *Clench* pays 5 ml for +1. |
 | 6 | **Does *Suckle*'s text mislead?** A Suckle kill banks 5 + 10, not 5 — the card's own 5 ml changes kind, and the routed kill intake lands on top. | As specified. The number on screen is larger than the card implies. |
 | 7 | **The Womb's "100 ml capacity" (§6.2) versus uncapped stages (§6.3b).** These cannot both be true. | Uncapped. §6.3b wins, since staging is the newer and more specific rule. |
+
+---
+
+## 0a. Breasts — a new Breeding subcategory [Gorim, 2026-09-08]
+
+Raised by the §0 question about whether *Ritual Mark* should buff *Milk*, and settled by adding a
+category rather than a special case.
+
+> **Breasts** — the subcategory of Breeding covering the cards that do **not** feed the Womb.
+> *Ritual Mark* buffs Pussy **and** Breasts, by default rather than as a tier.
+
+* `SeductressTags.Breasts` sits beside `DeepThroat` as a **category tag, not a hole tag**.
+* *Milk* carries it and is the first member. Adding a second costs one line.
+* `RitualMarkBonus` now reads `Hole == Pussy || Tags.Contains(Breasts)`.
+* *Ritual Mark*'s text becomes "Your Pussy and Breasts cards deal N additional damage"; its tier-2
+  line becomes "they deal N instead", so the tier-3 "Sigils deal 4 **too**" parity still holds.
+
+**[Claude-Code] Category, not hole, is the load-bearing part.** A hole tag would route kills and —
+much worse — would **set the Continuing mode every time it was played**. At Stage 3 that is three
+Milk shuffled in per turn, so a Breeding deck would have its own pregnancy flipping its routing
+away from Pussy several times a turn. Sitting beside Deep Throat rather than among the holes keeps
+Breasts a classification and leaves routing untouched. The consequence to know is that a Breasts
+card is untagged for routing, so its kills fall to whatever the Continuing mode already is.
+
+### *Milk* inverted [Gorim, 2026-09-08]
+
+> **It is a heal card first and an attack second.**
+
+`0 cost. Attack · Breasts. Heal 4. Deal 2. Exhaust.`
+`1 Sigil: draw 1. · 3: heal 7 instead. · 5: draw 2 instead. · 7: does not Exhaust.`
+
+The card list's 4 damage / 2 heal is reversed, and **the 3-Sigil tier now grows the healing**. The
+tier shape is untouched — rung 2 is still "grows the base"; it is the base that moved.
+
+[Claude-Code] This sharpens §6.3b's "Milk heals, it does not Block" rather than softening it: more
+sustain, less output, and still nothing that can prevent a one-shot. A Stage 3 carry now tops up
+faster while contributing less to ending the fight, so the dilution cost bites harder and the
+argument for cashing out gets stronger.
+
+[Claude-Code] **One preview gap this creates.** The tier-2 swap now lands on the healing, and there
+is no calculated-heal var to hang it on the way `CalculatedDamageVar` carries the damage — so
+"heal 7 instead" is documentation on the tier line rather than a number the top line updates to.
+Damage previews correctly (it moves with Ritual Mark); healing does not. **This is now the only
+tier swap in the pool that does not show on the card face**, which is exactly the class of defect
+[Gorim] found in slice 3, so it is worth either a calculated-heal var or a deliberate decision to
+live with it.
 
 ---
 
@@ -234,6 +279,9 @@ The brief asked for these. Grouped by how much they matter.
   the *Blowout* commentary "loses 100 ml for +10 Strength, so four hits of 16 — 64 damage". Design
   §6.1 and decision 76 say **+1 per 4 ml**, which makes those 4 × 31 = 124. The whole of cards §7's
   arithmetic is on the superseded ratio. **Built to +1 per 4 ml.**
+* **Cards §9a and design §6.3b give Milk as 4 damage / 2 heal with the 3-Sigil tier on the
+  damage.** Superseded by [Gorim] on 2026-09-08 — see §0a. Built as 4 heal / 2 damage with the
+  tier on the healing, and tagged Breasts.
 * **Cards §9a and design §6.3b state Milk in the display lexicon** — "Tease 4 pleasure. Soothe 2" —
   which contradicts cards §1 and design §9a's own rule that documents and code keep the vanilla
   words, and the converter is explicitly not in this slice. **Built in vanilla words**; rendering
