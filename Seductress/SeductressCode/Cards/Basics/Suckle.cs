@@ -70,5 +70,14 @@ public class Suckle : SeductressCard
         if (killed) await Stomach.SwallowIfFull(Owner);
     }
 
-    protected override void OnUpgrade() => DynamicVars["Ml"].UpgradeValueBy(5m);
+    /// <summary>
+    /// [Gorim 2026-09-08] <b>The upgrade raises damage, not the ml.</b> Cards doc §4 says "10 ml",
+    /// which was written before swallowing healed — at 10 ml this floor-1 basic was generating
+    /// 5 HP of healing per play on a 20 HP bar, on top of being a Mouth filler.
+    ///
+    /// [Claude-Code] +3 matches what the other basics do (Pump 6 to 9, Guard 5 to 8) rather than
+    /// being tuned. If the card is still too strong, the lever is the base 5 ml — that is where its
+    /// power actually sits, since it pays every single play whether or not you kill.
+    /// </summary>
+    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(3m);
 }

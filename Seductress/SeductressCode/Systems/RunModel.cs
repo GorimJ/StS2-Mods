@@ -63,7 +63,7 @@ public class RunModel : CustomSingletonModel
     /// The bell. Three things resolve here, in this order:
     ///
     /// 1. <b>The swallow.</b> The Mouth banks its cum to the Stomach and its precum evaporates.
-    ///    [Gorim] This is the default, not something <i>Gulp</i> enables.
+    ///    [Gorim] Both are the default behaviour of a swallow, not card-enabled.
     /// 2. <b>Conception.</b> Checked on the end-of-combat Womb value, so spending it back down
     ///    before the bell prevents conception — intended agency (design §6.3b).
     /// 3. <b>The lactation tail</b> ends, unless step 2 just re-entered pregnancy.

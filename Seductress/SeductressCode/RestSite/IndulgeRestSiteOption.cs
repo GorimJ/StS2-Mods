@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using BaseLib.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Hooks;
 using MegaCrit.Sts2.Core.Localization;
 using Seductress.SeductressCode.Extensions;
 using Seductress.SeductressCode.Systems;
@@ -24,6 +25,12 @@ namespace Seductress.SeductressCode.RestSite;
 /// reclaimed at 67%, so <c>0.75 x 2/3 = 0.5</c> exactly. Cum banked directly is worth double cum
 /// leaked and reclaimed, which is what makes routing skill worth anything on the permanent track.
 /// Before both numbers existed, a Mouth deck banked the same total however badly it routed.
+///
+/// [Claude-Code] It fires the vanilla <b>rest-site heal hooks</b>, which is how relics that key
+/// off resting keep working: with HEAL removed, <i>Regal Pillow</i>, <i>Stone Humidifier</i> and
+/// <i>Night Terrors</i> would otherwise never trigger at all on this character. Done through the
+/// hook rather than by naming Regal Pillow, so anything else in vanilla or in another mod that
+/// modifies rest healing composes for free.
 ///
 /// [Gorim] <b>Do not tune this down further.</b> It has been nerfed twice already on the strength
 /// of a Stomach payoff that until this slice did not exist, and Relief dominates it on the health
@@ -69,12 +76,25 @@ public class IndulgeRestSiteOption(Player owner) : CustomRestSiteOption(owner)
         var recovered = Recovered(skin);
         r.Skin = 0;
 
+        // Route the heal through the vanilla rest-site hooks. Removing HEAL left every relic that
+        // keys off resting with nothing to fire on — Regal Pillow (+15 HP), Stone Humidifier
+        // (+Max HP) and Night Terrors are all dead weight on this character otherwise. Indulge is
+        // the heal option, so it is the one that should carry them.
+        var runState = Owner.RunState;
+        var healed = (int)Hook.ModifyRestSiteHealAmount(runState, Owner.Creature, recovered);
+
         MainFile.Logger.Info(
             $"[Seductress] Indulge: skin {skin} ml -> recovered {recovered} ml " +
-            $"({(Stomach.IndulgeIsClean(r.Stomach) ? "100%" : "67%")}), spilled {skin - recovered}");
+            $"({(Stomach.IndulgeIsClean(r.Stomach) ? "100%" : "67%")}), spilled {skin - recovered}" +
+            (healed != recovered ? $", healing {healed} after relics" : ""));
 
-        await CreatureCmd.Heal(Owner.Creature, recovered);
+        await CreatureCmd.Heal(Owner.Creature, healed);
+
+        // Banks the ml recovered, not the boosted HP. A relic that improves resting gives you
+        // health, not more cum — the two numbers deliberately diverge here.
         await Stomach.Bank(Owner, recovered);
+
+        await Hook.AfterRestSiteHeal(runState, Owner, isMimicked: false);
 
         FloorLog.RecordIndulge(skin, recovered);
         return true;

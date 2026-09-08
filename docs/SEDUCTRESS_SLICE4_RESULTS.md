@@ -11,7 +11,9 @@ full. Follows `SEDUCTRESS_SLICE3_RESULTS.md`.
 **Attribution.** [Gorim] = his decision · [Claude-Cowork] = the design session's · [Claude-Code] =
 mine, in this session.
 
-Everything below compiles clean and is deployed. **None of it has been played.** This slice is
+Everything below compiles clean and is deployed. **§1-§10 were written before any of it was
+played** — the first run is written up at the end, under "Playtest 2026-09-08", and it supersedes
+several statements here. Read that section before relying on anything in this one. This slice is
 larger than the three before it put together and it changes the character's core numbers, so treat
 every figure here as "built to spec", never as measured. **Nothing in this document is evidence
 about balance.** Designing on top of any number here means designing on top of an assumption.
@@ -452,3 +454,131 @@ full bank (**not** *Clench* — though it is fixed now), *Consummate* shrinking 
 minion banking nothing, and *Spit*'s `{Portion}%` and *Ritual Mark* going Innate on upgrade.
 
 Screenshots to `docs/spike-screenshots/` as files.
+
+---
+
+# Playtest — 2026-09-08, first slice-4 run
+
+Console-assisted run to floor ~25, act 1 into act 2. **This is the first evidence about slice 4;
+everything in §0 and §10 above was written before it.**
+
+## Verified working — all first try
+
+Nothing in this list needed a fix.
+
+* **Precum, end to end.** [Gorim] The 50 ml cap is on the combined total (45 + 10 fitted 5 and
+  reported the 5 that did not); *Suckle* gives precum on a normal hit and **cum on a kill**; precum
+  evaporates at the bell.
+* **Pregnancy, end to end.** Conception resolved **at the bell** rather than on crossing; Milk
+  shuffled in while carrying; birth granted the Sigil, emptied the Womb and wasted 0 because it was
+  delivered at exactly 100; the lactation tail armed correctly.
+* **Birth is a free action.** [Gorim] Clicked it, got the Sigil, **the rest site stayed open**. This
+  was the single most uncertain thing in the slice — `OnSelect` returning `false` was a read of the
+  vanilla code, not a verified fact. It is verified now.
+* **The Stomach and all four milestones.** +1 Max HP per 10 ml (258 ml → +25, on a 20 HP base);
+  the ×50 rungs paying 15 ml of precum at combat start; the 100 ml Gulp swallow firing mid-combat;
+  and **200 ml removing Indulge's spill** — 40 ml of Skin came back as 40, where it would have been
+  26.
+* **Leak → Skin at 75%, and the banded Ass leak.** At 230 ml the leak was **17** — `200 × 5%` plus
+  `30 × 25%` — and **12** reached the Skin. Both exactly as specified.
+* **Both Ass thresholds**, off the high-water mark, firing at 130 and 230 rather than the live
+  value. Milking Grip into the deck, the Plug granted and inserted.
+* **The Plug**, in full: +1 energy on Ass cards, 2 HP a floor, and the doubled drain paying doubled
+  Strength — Clench read **15** at a 200 ml bank where unplugged it reads 10.
+* **Inflation.** The bank reached 230. The pre-existing cap fixed this slice would have held it at
+  200 and hidden the entire Plug payoff.
+* **Breasts · Skin, and Ritual Mark on the damage hook.** [Gorim] Milk set the Continuing mode to
+  Skin, dragging routing off a Pussy card played two lines earlier — the self-interference working
+  as intended, unprompted. Ritual Mark's move onto `ModifyDamageAdditive` previewed correctly.
+* **Max HP halving.** Caught in the wild: 258 ml Stomach earned +25 on a 20 base, and the player
+  was on **47**, so an external +4 or +5 source arrived as +2.
+
+## Bugs found in play
+
+### *Milking Grip* drained a tenth instead of a half — [Gorim, found in play]
+
+```
+SEDUCTRESS-BLOWOUT spent 8 ml Ass (+20 dmg/hit, Milking Grip x0.1)
+```
+
+[Claude-Code] Mine, and a good lesson. I stored the drain **percentage in the power's `Amount`** —
+but `MilkingGripPower` is `PowerStackType.Single`, and a single-stack power normalises its amount to
+1. So 5 became 1, `1 ÷ 10 = 0.1`, and Ass attacks cost a tenth of what they should while still
+paying full Strength *and* Milking Grip's doubled intake. A Blowout that should have spent 40 ml
+spent 8, and with a 20 ml kill the bank **grew** on the card designed to empty it: 160 → 172.
+
+Fixed by holding the rate in a field the card sets, the same shape as `RitualMarkPower.SigilBonus`.
+Audited every other power: the only other single-stack powers are *No Gag Reflex* and *Stretch*, and
+neither reads `Amount`.
+
+**Worth generalising:** a `Single` power cannot carry a magnitude. Anything a card needs to hand a
+single-stack power belongs in a field.
+
+### *Restraint* and *Stuffed* did not partition the bar — [Gorim, found in play]
+
+Restraint fired above half and Stuffed below it, so **HP exactly half belonged to neither** and both
+archetypes' payoffs switched off on the same point. [Gorim] ruled Restraint takes the boundary, so
+it now fires at at-or-above half and every HP value belongs to exactly one.
+
+[Claude-Code] This predates slice 4; Max HP 20 only exposed it. One HP was 1.5% of a 65 HP bar and
+is 4.5% of 22, and the halfway point is now a number you land on. **Expect one or two more of this
+shape** — thresholds that were invisibly wrong at 65.
+
+### The `.pck` had been stale for a day — [Claude-Code, process]
+
+The two new rest-site options rendered as raw localization keys. `dotnet build` copies the DLL; the
+`.pck` carrying localization is packed and copied only by `dotnet publish`. I used `build` all slice
+— correct for compile checks — and verified only the DLL hash after each deploy, so I had positive
+confirmation the code was current while the assets sat a day behind.
+
+Only text was affected; every mechanic was live. **Fix: `publish` is what deploys, and verification
+covers both files.**
+
+## Relic interactions — checked exhaustively
+
+Every vanilla relic touching death prevention or rest sites was audited.
+
+* ***Lizard Tail* needs no fix, contrary to what both of us assumed.** `Hook.ShouldDie` polls
+  `ShouldDie` across all models first and only reaches `ShouldDieLate` if nobody prevented. Climax
+  uses the former and Lizard Tail the latter — so at 0–2 Lust the relic is never consulted and never
+  consumed, and at 3 Lust, where Climax steps aside, it catches you. It is inert exactly when it
+  should be and an extra life exactly when it should be, purely because Climax rides the vanilla
+  death hook.
+* ***Regal Pillow* was completely dead**, along with **Stone Humidifier** and **Night Terrors** —
+  all three key off rest-site healing, which no longer existed. **Fixed generally**: Indulge now
+  fires `Hook.ModifyRestSiteHealAmount` and `Hook.AfterRestSiteHeal`, so anything in vanilla or
+  another mod that modifies rest healing composes for free rather than being named individually.
+  The heal is boosted; the **ml banked is not** — a relic that improves resting gives you health,
+  not more cum.
+* **Everything else is fine.** Girya, Meat Cleaver, Miniature Tent, Pael's Growth, Pumpkin Candle
+  and Shovel all *add* a rest option rather than depending on Heal existing. One to watch: Miniature
+  Tent overrides `ShouldDisableRemainingRestSiteOptions`, so it may grey out Indulge, Relief and
+  Birth together — not a bug, but it interacts oddly with birth being a free action.
+
+## The number the slice existed to find
+
+> **[Gorim] Skin accumulates far faster than the design assumed.**
+
+At floor 25 the run was carrying **99 ml of Skin** with the 200 ml Stomach milestone active, i.e.
+100% reclamation. That is a **99 HP heal on a 47 HP bar**, plus 99 ml into the Stomach for roughly
+**+9 further Max HP**, sitting available at the next rest site. Skin does not leak, so it only rises.
+
+Design §6.3c calls this figure "not derivable at a desk" and dismisses an earlier estimate of ~15 ml
+a floor as too optimistic about how full reservoirs run. **On this evidence that estimate was too
+pessimistic**, and the 200 ml milestone removing the spill is doing much of the work — it turned a
+66 HP heal into a 99 HP one.
+
+[Claude-Code] Recording the measurement only. [Gorim] reads the balance, and the standing
+instruction not to tune Indulge down until the Stomach existed to weigh against it is now
+satisfiable for the first time.
+
+## Still untested after this run
+
+* The **spend order** (Skin → Mouth → Ass → Womb). *Wet Work* is now the only card that exercises
+  it, since *Gulp* was cut.
+* **300 ml Stomach** — precum banking as cum. The run reached 258.
+* **Swallowing healing**, **Sensitive removal on the Gulp milestone**, **Suckle's +3 damage
+  upgrade** and **Restraint's boundary** — all built after the game had launched, so none were in
+  the running build.
+* Tier-4 repeats, *Consummate* shrinking the orb count, a minion banking nothing, *Spit*'s
+  `{Portion}%` and *Ritual Mark* going Innate — all carried forward from slice 3, still untouched.

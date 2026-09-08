@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
+using Seductress.SeductressCode.Powers;
 
 namespace Seductress.SeductressCode.Systems;
 
@@ -31,7 +32,15 @@ public static class Stomach
     public static int CombatStartPrecum(int stomach) => stomach < 50 ? 0 : (stomach + 50) / 100 * 5;
 
     /// <summary>
-    /// 100 ml: the Mouth <b>also</b> swallows whenever it reaches 50 ml.
+    /// 100 ml — <b>Gulp</b>: the Mouth <b>also</b> swallows whenever it reaches 50 ml.
+    ///
+    /// [Gorim 2026-09-08] The name belongs to this milestone. There is no <i>Gulp</i> card — one
+    /// was built from cards doc §6 and has been cut, because the same idea does not want to exist
+    /// twice. The cut card's <b>Sensitive removal</b> came here with the name, on the same 25 ml
+    /// gate register 39 gave it.
+    ///
+    /// [Gorim] Possibly a touch strong as one rung. If so the lever is moving it to a higher
+    /// milestone rather than weakening it.
     ///
     /// Additive, not a trade — the end-of-combat swallow is unchanged. It uncaps throughput, so a
     /// long fight can bank 100-150 ml where the Mouth's 50 ml capacity previously capped it.
@@ -80,13 +89,15 @@ public static class Stomach
     /// <summary>Default heal rate on a swallow: 1 HP per 2 ml, i.e. half the ml swallowed.</summary>
     public const int DefaultHealPercent = 50;
 
+    /// <summary>A swallow this large removes a Sensitive, once the Gulp milestone is reached.</summary>
+    public const int SensitiveThreshold = 25;
+
     /// <summary>
     /// A swallow (design §6.5). It <b>heals</b>, cum <b>banks</b>, and precum evaporates unless the
     /// 300 ml milestone has turned it into cum.
     ///
-    /// [Gorim] This is the <b>default</b>, not something <i>Gulp</i> enables. Gulp buys the timing,
-    /// the Sensitive removal and — upgraded — a better rate, on top of a bank and a heal that were
-    /// always going to happen.
+    /// [Gorim] Banking and healing are the <b>default</b> behaviour of a swallow, not something a
+    /// card enables.
     ///
     /// [Gorim 2026-09-08] <b>Swallowing heals 1 HP per 2 ml, on cum <i>and</i> precum.</b> I had
     /// built the default swallow to heal nothing, reading design §6.5 and register 110 — both of
@@ -102,8 +113,9 @@ public static class Stomach
     /// ml you lose the half point.
     /// </summary>
     /// <param name="healPercent">
-    /// Share of the swallowed ml healed. 50 by default; <i>Gulp</i> passes its own, which its
-    /// upgrade raises to 100.
+    /// Share of the swallowed ml healed. 50 everywhere at present; the parameter is kept because
+    /// the 200 ml Indulge milestone shows the design does raise reclamation rates over the run,
+    /// and a Stomach rung that improved the swallow rate would land here.
     /// </param>
     public static async Task SwallowAll(Player player, string reason, int healPercent = DefaultHealPercent)
     {
@@ -123,23 +135,41 @@ public static class Stomach
             await CreatureCmd.Heal(player.Creature, heal);
         }
 
+        // [Gorim 2026-09-08] Sensitive removal moved here when the Gulp card was cut. Register 39
+        // put it "on Gulp, gated behind swallowing 25 ml" — Gulp is now the 100 ml Stomach
+        // milestone rather than a card, and the 25 ml gate carries over unchanged.
+        //
+        // [Claude-Code] It only ever bites on a mid-combat GULP swallow: Sensitive clears at the
+        // bell anyway, so removing one during the end-of-combat swallow changes nothing. That is
+        // the right shape — it makes the milestone's extra swallow the thing that does the work.
+        var removedSensitive = false;
+        if (SwallowsAtFifty(r.Stomach) && total > SensitiveThreshold &&
+            player.Creature.GetPower<Powers.SensitivePower>() is { } sensitive)
+        {
+            await PowerCmd.ModifyAmount(
+                new MegaCrit.Sts2.Core.GameActions.Multiplayer.ThrowingPlayerChoiceContext(),
+                sensitive, -1m, player.Creature, null);
+            removedSensitive = true;
+        }
+
         MainFile.Logger.Info(
             $"[Seductress] {reason}: swallowed {total} ml ({cum} cum + {precum} precum) " +
             $"-> healed {heal} ({healPercent}%)" +
+            (removedSensitive ? ", -1 Sensitive (Gulp)" : "") +
             (lost > 0 ? $", {lost} ml precum evaporated (banks nothing)" : ""));
 
         await Bank(player, banked);
     }
 
     /// <summary>
-    /// The 100 ml milestone's extra swallow. Fires whenever the Mouth is at or above 50 ml, which
-    /// with the 50 ml cap means exactly when it is full.
+    /// <b>Gulp</b> — the 100 ml milestone's extra swallow. Fires whenever the Mouth is at or above
+    /// 50 ml, which with the 50 ml cap means exactly when it is full.
     /// </summary>
     public static async Task SwallowIfFull(Player player)
     {
         var r = Reservoirs.Of(player.RunState);
         if (!SwallowsAtFifty(r.Stomach)) return;
         if (r.MouthTotal < ReservoirState.MouthCap) return;
-        await SwallowAll(player, "Mouth full");
+        await SwallowAll(player, "GULP (mouth full)");
     }
 }
