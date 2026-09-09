@@ -71,13 +71,18 @@ public class Suckle : SeductressCard
     }
 
     /// <summary>
-    /// [Gorim 2026-09-08] <b>The upgrade raises damage, not the ml.</b> Cards doc §4 says "10 ml",
-    /// which was written before swallowing healed — at 10 ml this floor-1 basic was generating
-    /// 5 HP of healing per play on a 20 HP bar, on top of being a Mouth filler.
+    /// [Gorim 2026-09-09] <b>The upgrade drops the cost to 0.</b> Third setting of this: cards doc
+    /// §4 says "10 ml", which I built; that was cut on 2026-09-08 because 10 ml became 5 HP of
+    /// healing per play once swallowing healed; +3 damage replaced it, and this replaces that —
+    /// "it is not worth it as a damage card".
     ///
-    /// [Claude-Code] +3 matches what the other basics do (Pump 6 to 9, Guard 5 to 8) rather than
-    /// being tuned. If the card is still too strong, the lever is the base 5 ml — that is where its
-    /// power actually sits, since it pays every single play whether or not you kill.
+    /// [Gorim] Base damage stays at 4. Raising it to 5 was considered and declined.
+    ///
+    /// [Claude-Code] At 0 cost this stops being an attack that happens to make precum and becomes
+    /// a free 5 ml every turn it is drawn — which, at the 1-per-2-ml swallow rate, is 2.5 HP of
+    /// sustain a turn for no energy. That is a real engine rather than a tempo bump, and it is
+    /// exactly what Draining wants, since the archetype's whole plan is staying high on the bar.
+    /// It self-limits on the 50 ml Mouth cap rather than on energy.
     /// </summary>
-    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(3m);
+    protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
 }

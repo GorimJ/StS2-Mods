@@ -572,6 +572,28 @@ pessimistic**, and the 200 ml milestone removing the spill is doing much of the 
 instruction not to tune Indulge down until the Stomach existed to weigh against it is now
 satisfiable for the first time.
 
+## *Suckle*'s upgrade, third setting — [Gorim, 2026-09-09]
+
+> **The upgrade drops the cost to 0.** "It is not worth it as a damage card."
+
+Cards doc §4 says the upgrade gives **10 ml**, which is what I built. That was cut on 2026-09-08
+once swallowing healed, because 10 ml became 5 HP of sustain per play on a 20 HP bar; **+3 damage**
+replaced it, and this replaces that.
+
+**Base damage stays at 4.** [Gorim] Raising it to 5 was considered and declined.
+
+[Claude-Code] The consequence is a change in kind, not degree. At 0 cost this stops being an attack
+that happens to make precum and becomes **a free 5 ml every turn it is drawn** — 2.5 HP of sustain
+a turn for no energy at the 1-per-2-ml swallow rate, on a card every run starts with. That is an
+engine rather than a tempo bump, and it is what Draining wants, since the archetype's plan is
+staying high on the bar. It self-limits on the 50 ml Mouth cap rather than on energy, which is the
+right limiter for a Mouth card but a soft one.
+
+**Cards doc §4 now disagrees with the build on this card twice over** — the upgrade, and Suckle's
+role generally. Worth reconciling when the doc next moves.
+
+---
+
 ## Still untested after this run
 
 * The **spend order** (Skin → Mouth → Ass → Womb). *Wet Work* is now the only card that exercises
