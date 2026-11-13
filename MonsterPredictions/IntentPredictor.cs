@@ -75,10 +75,10 @@ public static class IntentPredictor
             MonsterModel monster = __instance.Entity.Monster;
             var sm = monster.MoveStateMachine;
 
-            // Clone RNG
-            uint seed = monster.RunRng?.MonsterAi?.Seed ?? Rng.Chaotic.Seed;
-            int counter = monster.RunRng?.MonsterAi?.Counter ?? Rng.Chaotic.Counter;
-            Rng clonedRng = new Rng(seed, counter);
+            // Clone RNG. Game 0.111 removed Rng.Seed/Counter (seeds are ulong now);
+            // round-trip through the serialized state so the prediction uses an exact copy.
+            Rng sourceRng = monster.RunRng?.MonsterAi ?? Rng.Chaotic;
+            Rng clonedRng = new Rng(sourceRng.ToSerializable());
 
             MonsterState currentState = monster.NextMove;
             

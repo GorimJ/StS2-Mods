@@ -266,10 +266,11 @@ public partial class GachaMachineNode : Control
         // Deterministic per run seed + player slot + floor + pull number, so every client (and a replay)
         // rolls the same ball. Mirrors the game's own Rng(player, id, mixin) convention.
         var runState = player.RunState;
-        uint mixin = (uint)(runState.TotalFloor * 101 + _pullsThisShop);
+        // Game 0.111: run seeds are ulong and the Rng ctor takes (ulong, string).
+        ulong mixin = (ulong)(runState.TotalFloor * 101 + _pullsThisShop);
         _pullsThisShop++;
         var rng = new MegaCrit.Sts2.Core.Random.Rng(
-            (uint)((int)runState.Rng.Seed + runState.GetPlayerSlotIndex(player)) + mixin, "GachaShopMod");
+            runState.Rng.Seed + (ulong)runState.GetPlayerSlotIndex(player) + mixin, "GachaShopMod");
         var randomId = allGachaRelics[rng.NextInt(allGachaRelics.Length)];
         
         Type relicType = Type.GetType($"GachaShopMod.Relics.{randomId}");

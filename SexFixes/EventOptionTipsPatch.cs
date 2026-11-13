@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Characters;
 
 namespace SexFixes;
 
@@ -41,6 +42,35 @@ public static class EventOptionTipsPatch
         ["SECRET_ROOM.pages.INITIAL.options.JUST_RIGHT"] = "THICK_SEMEN_POTION",
     };
 
+    // Toy Box (added in Sex 0.1.0): the three toy options give a different relic per character,
+    // mirroring ToyBox.ActToyA/B/C. Index 0 = top (TOY_A), 1 = middle (TOY_B), 2 = bottom (TOY_C).
+    private const string ToyBoxOptionPrefix = "TOY_BOX.pages.INITIAL.options.TOY_";
+    private static readonly string[] ToyIronclad    = { "HYPNOSIS_EYE_MASK", "DAIRY_COW_SUIT", "LEWD_FOREPLAY" };
+    private static readonly string[] ToySilent      = { "CLITORIS_LEASH", "LEWD_YARN", "PORTABLE_LEWD_POISON" };
+    private static readonly string[] ToyDefect      = { "PLEASUREDELAY_PROGRAM", "WILD_SERVICE_PROGRAM", "DARK_ANAL_BEAD_STRING" };
+    private static readonly string[] ToyNecrobinder = { "SOUL_LUST_POISON", "LUST_HAND", "DESIRE_COLLAR" };
+    private static readonly string[] ToyRegent      = { "LUST_KING_SWORD", "FLATTER_PLUG_TAIL", "BEG_TO_MASTER" };
+    private static readonly string[] ToyOther       = { "ROPED_HYPNOSIS", "OVER_DRIVE_SEX_TOY", "ENDLESS_DESIRE" };
+
+    private static string? ToyBoxRelicFor(EventModel ev, string textKey)
+    {
+        if (!textKey.StartsWith(ToyBoxOptionPrefix, StringComparison.Ordinal) || textKey.Length != ToyBoxOptionPrefix.Length + 1) return null;
+        int slot = textKey[^1] - 'A';
+        if (slot < 0 || slot > 2) return null;
+        var character = ev.Owner?.Character;
+        if (character == null) return null;
+        string[] set = character switch
+        {
+            Ironclad => ToyIronclad,
+            Silent => ToySilent,
+            Defect => ToyDefect,
+            Necrobinder => ToyNecrobinder,
+            Regent => ToyRegent,
+            _ => ToyOther,
+        };
+        return set[slot];
+    }
+
     private const string MilkGiverSecondDrinkOption = "MILK_GIVER.pages.ALL.options.STILL_DRINKING";
     private const string MilkGiverSecondDrinkPage = "MILK_GIVER.pages.ALL.KEEP_DRINKING.description";
 
@@ -63,7 +93,8 @@ public static class EventOptionTipsPatch
                 if (option.TextKey == null) continue;
                 if (option.HoverTips != null && option.HoverTips.Any()) continue;
 
-                if (RelicByOption.TryGetValue(option.TextKey, out string? relicId))
+                string? relicId = ToyBoxRelicFor(__instance, option.TextKey);
+                if (relicId != null || RelicByOption.TryGetValue(option.TextKey, out relicId))
                 {
                     RelicModel? canonical = ModelDb.AllRelics.FirstOrDefault(r => r.Id.Entry == relicId);
                     if (canonical == null) continue;

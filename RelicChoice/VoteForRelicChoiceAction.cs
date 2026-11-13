@@ -74,11 +74,12 @@ public class VoteForRelicChoiceAction : GameAction
         }
 
         // Fetch live online players
-        // We use RunManager.Instance.RunLobby.ConnectedPlayerIds.Count to ensure we don't wait for dropped dead players.
+        // Count the lobby's players so we don't wait for dropped ones. Game 0.111 removed
+        // RunLobby.ConnectedPlayerIds; PlayerIds is its replacement (multiplayer path still untested).
         int requiredPlayers = _player.RunState.Players.Count;
         if (RunManager.Instance.RunLobby != null)
         {
-            requiredPlayers = RunManager.Instance.RunLobby.ConnectedPlayerIds.Count;
+            requiredPlayers = RunManager.Instance.RunLobby.PlayerIds.Count();
         }
 
         if (CombatRewardRelicChoicePatch.ReadyPlayers.Count >= requiredPlayers)

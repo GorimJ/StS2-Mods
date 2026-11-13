@@ -31,69 +31,82 @@ namespace RelicChoice.Patches;
 public class ExtraRelicSpawnPatch
 {
     // v0.107.1: _votes is now List<PlayerVote> (was List<int?>); we no longer touch it.
-    private static void Postfix(TreasureRoomRelicSynchronizer __instance, RelicGrabBag ____sharedGrabBag, Rng ____rng, IPlayerCollection ____playerCollection, List<RelicModel> ____currentRelics)
+    // v0.113.0: the synchronizer holds _runState directly (its _playerCollection field is gone).
+    private static void Postfix(TreasureRoomRelicSynchronizer __instance, RelicGrabBag ____sharedGrabBag, Rng ____rng, IRunState ____runState, List<RelicModel> ____currentRelics)
     {
         if (____currentRelics == null || ____currentRelics.Count == 0) return;
-
-        var firstPlayer = ____playerCollection.Players[0];
-        IRunState runState = firstPlayer.RunState;
 
         // Generate extra relics based on configuration.
         for (int i = 0; i < RelicChoiceConfig.Instance.AdditionalRelics; i++)
         {
             RelicRarity rarity = RelicFactory.RollRarity(____rng);
-            RelicModel item = ____sharedGrabBag.PullFromFront(rarity, runState) ?? RelicFactory.FallbackRelic;
+            RelicModel item = ____sharedGrabBag.PullFromFront(rarity, ____runState) ?? RelicFactory.FallbackRelic;
             ____currentRelics.Add(item);
         }
     }
 }
 
-[HarmonyPatch(typeof(NTreasureRoomRelicCollection), nameof(NTreasureRoomRelicCollection._Ready))]
-public class ExtraRelicUIPatch_Ready
-{
-    // Layout of the vanilla multiplayer holders, captured before we add extras.
-    public static float CenterX = 0f;
-    public static float Spacing = 280f;
-
-    private static void Postfix(NTreasureRoomRelicCollection __instance, ref List<NTreasureRoomRelicHolder> ____multiplayerHolders)
-    {
-        if (____multiplayerHolders == null || ____multiplayerHolders.Count == 0) return;
-
-        var xs = ____multiplayerHolders.Select(h => h.Position.X).OrderBy(x => x).ToList();
-        CenterX = xs.Average();
-        if (xs.Count > 1) Spacing = (xs[xs.Count - 1] - xs[0]) / (xs.Count - 1);
-
-        // Add additional holders for extra relics if needed.
-        int holdersToCreate = System.Math.Max(4, RelicChoiceConfig.Instance.AdditionalRelics);
-        var template = ____multiplayerHolders[0];
-        for (int i = 0; i < holdersToCreate; i++)
-        {
-            var extraHolder = (NTreasureRoomRelicHolder)template.Duplicate();
-            template.GetParent().AddChild(extraHolder);
-            ____multiplayerHolders.Add(extraHolder);
-        }
-    }
-}
-
+// v0.113.0: the treasure screen no longer has one pool of holders (_multiplayerHolders). It has one ready-made layout per
+// relic count (_holderLayouts[n - 1] is shown for n relics) and uses that layout's holders. With our extra relics the count
+// can exceed the layouts the scene ships, in which case vanilla shows nothing - so before InitializeRelics runs we build a
+// layout for the count we need, by copying the largest vanilla layout and adding holders to it.
 [HarmonyPatch(typeof(NTreasureRoomRelicCollection), nameof(NTreasureRoomRelicCollection.InitializeRelics))]
 public class ExtraRelicUIPatch_Initialize
 {
-    private static void Postfix(NTreasureRoomRelicCollection __instance, List<NTreasureRoomRelicHolder> ____holdersInUse)
+    // [Claude's choices, not yet approved by Gorim] at most 5 relics per row; rows as even as possible; shorter last row centred.
+    private const int MaxPerRow = 5;
+    private const float MaxRowWidth = 1500f;
+
+    private static void Prefix(NTreasureRoomRelicCollection __instance, List<Control> ____holderLayouts)
     {
-        if (____holdersInUse == null || ____holdersInUse.Count == 0) return;
+        int count = RunManager.Instance.TreasureRoomRelicSynchronizer.CurrentRelics?.Count ?? 0;
+        if (____holderLayouts == null || ____holderLayouts.Count == 0 || count <= ____holderLayouts.Count) return;
 
-        var visibleHolders = ____holdersInUse.Where(h => h.Visible).ToList();
-        if (visibleHolders.Count == 0) return;
+        Control template = ____holderLayouts[____holderLayouts.Count - 1];
+        Node parent = template.GetParent();
+        var templateHolders = template.GetChildren().OfType<NTreasureRoomRelicHolder>().ToList();
+        if (parent == null || templateHolders.Count == 0) return;
 
-        // Re-centre the visible holders on the vanilla layout's centre, shrinking the gap when there are many.
-        float spacing = System.Math.Min(ExtraRelicUIPatch_Ready.Spacing, 1500f / System.Math.Max(1, visibleHolders.Count));
-        for (int i = 0; i < visibleHolders.Count; i++)
+        // Centre and spacing of the largest vanilla layout.
+        var xs = templateHolders.Select(h => h.Position.X).Distinct().OrderBy(x => x).ToList();
+        float centerX = templateHolders.Average(h => h.Position.X);
+        float centerY = templateHolders.Average(h => h.Position.Y);
+        float spacing = xs.Count > 1 ? (xs[xs.Count - 1] - xs[0]) / (xs.Count - 1) : 280f;
+
+        int rows = (count + MaxPerRow - 1) / MaxPerRow;
+        int perRow = (count + rows - 1) / rows;
+        float colSpacing = System.Math.Min(spacing, MaxRowWidth / perRow);
+        float rowSpacing = spacing;
+
+        var layout = (Control)template.Duplicate();
+        layout.Name = "RelicChoiceLayout" + count;
+        layout.Visible = false;
+        parent.AddChild(layout);
+        var holders = layout.GetChildren().OfType<NTreasureRoomRelicHolder>().ToList();
+        while (holders.Count < count)
         {
-            var holder = visibleHolders[i];
-            Vector2 pos = holder.Position;
-            pos.X = ExtraRelicUIPatch_Ready.CenterX + (i - (visibleHolders.Count - 1) / 2.0f) * spacing;
-            holder.Position = pos;
+            var extra = (NTreasureRoomRelicHolder)holders[0].Duplicate();
+            layout.AddChild(extra);
+            holders.Add(extra);
         }
+        for (int i = 0; i < holders.Count; i++)
+        {
+            int row = i / perRow;
+            int inThisRow = System.Math.Min(perRow, holders.Count - row * perRow);
+            int col = i - row * perRow;
+            holders[i].Position = new Vector2(
+                centerX + (col - (inThisRow - 1) / 2.0f) * colSpacing,
+                centerY + (row - (rows - 1) / 2.0f) * rowSpacing);
+        }
+
+        // Vanilla picks the layout at index (count - 1); fill any gap below it with empty placeholders.
+        while (____holderLayouts.Count < count - 1)
+        {
+            var placeholder = new Control { Name = "RelicChoicePlaceholder" + (____holderLayouts.Count + 1), Visible = false };
+            parent.AddChild(placeholder);
+            ____holderLayouts.Add(placeholder);
+        }
+        ____holderLayouts.Add(layout);
     }
 }
 
