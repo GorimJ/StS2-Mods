@@ -49,12 +49,12 @@ public class Grind : SeductressCard
 
         for (var i = 0; i < hits; i++)
         {
-            await DamageCmd.Attack(damage).FromCard(this).Targeting(cardPlay.Target)
+            await DamageCmd.Attack(damage).FromCard(this, cardPlay).Targeting(cardPlay.Target)
                 .WithHitFx("vfx/vfx_attack_slash").Execute(choiceContext);
             await CreatureCmd.GainBlock(Owner.Creature, damage, ValueProp.Move, cardPlay);
         }
         await CreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.HpLoss.BaseValue,
-            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
+            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
     }
 
     protected override void OnUpgrade()

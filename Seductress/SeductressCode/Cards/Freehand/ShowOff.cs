@@ -32,7 +32,7 @@ public class ShowOff : SeductressCard
     {
         await PowerCmd.Apply<VulnerablePower>(choiceContext, Owner.Creature, 1m, Owner.Creature, this);
         var enemies = CombatState!.Enemies.Where(e => e.IsAlive).ToList();
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).TargetingAllOpponents(CombatState)
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).TargetingAllOpponents(CombatState)
             .WithHitFx("vfx/vfx_attack_slash").SpawningHitVfxOnEachCreature()
             .Execute(choiceContext);
         await PowerCmd.Apply<VulnerablePower>(choiceContext, enemies, 1m, Owner.Creature, this);

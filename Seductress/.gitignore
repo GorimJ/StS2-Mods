@@ -10,3 +10,5 @@ packages/
 .editorconfig
 *.user
 Directory.Build.props
+# NovelAI token - never commit (added by Claude for layercut, approved by Gorim 2026-10-19)
+NAI API token.txt

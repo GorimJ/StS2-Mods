@@ -28,6 +28,6 @@ public class Craving : LustCard
     {
         await CardPileCmd.Draw(choiceContext, DynamicVars["Cards"].BaseValue, Owner);
         await CreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.HpLoss.BaseValue,
-            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
+            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
     }
 }

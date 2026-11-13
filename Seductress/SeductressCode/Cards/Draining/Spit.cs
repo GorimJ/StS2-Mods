@@ -45,7 +45,7 @@ public class Spit : SeductressCard
         var stacks = ml / 10;
         var enemies = CombatState!.Enemies.Where(e => e.IsAlive).ToList();
 
-        await DamageCmd.Attack(damage).FromCard(this).TargetingAllOpponents(CombatState)
+        await DamageCmd.Attack(damage).FromCard(this, cardPlay).TargetingAllOpponents(CombatState)
             .WithHitFx("vfx/vfx_attack_slash").SpawningHitVfxOnEachCreature()
             .Execute(choiceContext);
         if (stacks > 0)

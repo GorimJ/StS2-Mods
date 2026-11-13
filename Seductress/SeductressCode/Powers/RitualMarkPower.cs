@@ -47,7 +47,7 @@ public class RitualMarkPower : SeductressPower
     /// powered attack, so it never touches the character's own self-damage.
     /// </summary>
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props,
-        Creature? dealer, CardModel? cardSource)
+        Creature? dealer, CardModel? cardSource, MegaCrit.Sts2.Core.Entities.Cards.CardPlay? cardPlay)
     {
         if (Owner != dealer) return 0m;
         if (!props.IsPoweredAttack()) return 0m;

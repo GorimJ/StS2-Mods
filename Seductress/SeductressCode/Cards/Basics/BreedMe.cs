@@ -59,7 +59,7 @@ public class BreedMe : SeductressCard
         ClimaxModel.Instance.SetKillIntakeBonus(5, multiplier);
         try
         {
-            await DamageCmd.Attack(damage).FromCard(this).Targeting(cardPlay.Target)
+            await DamageCmd.Attack(damage).FromCard(this, cardPlay).Targeting(cardPlay.Target)
                 .WithHitFx("vfx/vfx_attack_slash").Execute(choiceContext);
         }
         finally

@@ -1,14 +1,14 @@
-{
+﻿{
   "id": "Seductress",
   "name": "Seductress",
   "author": "Gorim",
   "description": "The Seductress - engine spike. Arousal bar, Climax on 0 HP, mod card tags, ml reservoirs.",
-  "version": "0.1.0",
-  "min_game_version": "0.107.0",
+  "version": "0.1.2",
+  "min_game_version": "0.113.0",
   "has_pck": true,
   "has_dll": true,
   "dependencies": [
-    {"id": "BaseLib", "min_version": "3.4.5"}
+    {"id": "BaseLib", "min_version": "3.4.8"}
   ],
   "affects_gameplay": true
 }

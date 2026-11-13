@@ -101,7 +101,7 @@ public class SigilOrb : CustomOrbModel
         var targets = CombatState.HittableEnemies.Where(e => e.IsHittable).ToList();
         if (targets.Count == 0) return;
 
-        Trigger();
+        ActivatePassive(); // 0.111: OrbModel.Trigger() renamed ActivatePassive()
         await CreatureCmd.Damage(choiceContext, targets, amount, ValueProp.Unpowered, Owner.Creature);
     }
 }

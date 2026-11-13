@@ -21,6 +21,16 @@ public class Seductress : PlaceholderCharacterModel
 
     public static readonly Color Color = new("d64f7e");
 
+    /// <summary>
+    /// [Gorim, 2026-11-13] Her own static render as the combat body, in a scene this mod owns.
+    ///
+    /// The placeholder default is the vanilla Ironclad scene by path, and a skin mod that replaces
+    /// that path (SkinChanger + an Ironclad skin) left her with no body at all. The rest site,
+    /// merchant and character-select visuals still borrow the Ironclad and can break the same way.
+    /// Still image only — the rigged model replaces this scene when it exists.
+    /// </summary>
+    public override string CustomVisualPath => $"{MainFile.ResPath}/scenes/seductress_visuals.tscn";
+
     public override Color NameColor => Color;
     public override CharacterGender Gender => CharacterGender.Feminine;
 

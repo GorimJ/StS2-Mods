@@ -42,7 +42,7 @@ public class Blowout : SeductressCard
 
         for (var i = 0; i < hits; i++)
         {
-            await DamageCmd.Attack(DynamicVars.CalculationBase.BaseValue + bonus).FromCard(this)
+            await DamageCmd.Attack(DynamicVars.CalculationBase.BaseValue + bonus).FromCard(this, cardPlay)
                 .Targeting(cardPlay.Target).WithHitFx("vfx/vfx_attack_slash").Execute(choiceContext);
         }
     }

@@ -46,7 +46,8 @@ public class Plug : SeductressRelic
     public override RelicRarity Rarity => RelicRarity.Common;
 
     /// <summary>Never in a reward pool — it arrives from the 200 ml Ass threshold (§6.1a).</summary>
-    public override bool IsAllowed(MegaCrit.Sts2.Core.Runs.IRunState runState) => false;
+    // Game 0.113: IsAllowed is no longer virtual; IsAllowedInternal is the hook it calls.
+    protected override bool IsAllowedInternal(MegaCrit.Sts2.Core.Runs.IRunState runState) => false;
 
     public override List<(string, string)>? Localization => new RelicLoc(
         "Plug",
@@ -73,7 +74,7 @@ public class Plug : SeductressRelic
             MainFile.Logger.Info("[Seductress] Plug re-inserted on entering a floor");
         }
         await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), Owner.Creature, 2m,
-            ValueProp.Unblockable | ValueProp.Unpowered, null, null);
+            ValueProp.Unblockable | ValueProp.Unpowered, dealer: null);
     }
 
     /// <summary>1 HP at the start of each of your turns, but only while it is actually in.</summary>
@@ -85,7 +86,7 @@ public class Plug : SeductressRelic
         if (!Reservoirs.Of(Owner.RunState).PlugIn) return;
 
         await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), Owner.Creature, 1m,
-            ValueProp.Unblockable | ValueProp.Unpowered, null, null);
+            ValueProp.Unblockable | ValueProp.Unpowered, dealer: null);
     }
 
     /// <summary>Ass-tagged cards cost 1 more while the plug is in.</summary>

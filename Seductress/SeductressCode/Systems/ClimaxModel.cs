@@ -353,7 +353,7 @@ public class ClimaxModel : CustomSingletonModel
     /// Enough to exercise routing, the Sensitive multiplier and the display.
     /// </summary>
     public override Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature,
-        bool wasRemovalPrevented, float deathAnimLength)
+        CardModel? source, bool wasRemovalPrevented, float deathAnimLength)   // 0.113 added `source` (unused here)
     {
         if (wasRemovalPrevented || !creature.IsMonster) return Task.CompletedTask;
 

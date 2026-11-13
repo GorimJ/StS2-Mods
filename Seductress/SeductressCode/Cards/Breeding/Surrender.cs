@@ -43,7 +43,7 @@ public class Surrender : SeductressCard
         if (!Sigils.At(Owner, Sigils.Tier4))
         {
             await CreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.HpLoss.BaseValue,
-                ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
+                ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
         }
 
         var baseDraw = Sigils.At(Owner, Sigils.Tier2) ? 2 : 1;

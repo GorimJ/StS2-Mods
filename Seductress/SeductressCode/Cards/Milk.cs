@@ -119,7 +119,7 @@ public class Milk : SeductressCard
         await CreatureCmd.Heal(Owner.Creature, ((CalculatedVar)DynamicVars["CalculatedHeal"]).Calculate(null));
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this).Targeting(cardPlay.Target)
+            .FromCard(this, cardPlay).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash").Execute(choiceContext);
 
         var draw = Sigils.At(Owner, Sigils.Tier3) ? 2 : Sigils.At(Owner, Sigils.Tier1) ? 1 : 0;

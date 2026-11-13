@@ -35,7 +35,7 @@ public class SensitivePower : SeductressPower
     /// Flagged in SEDUCTRESS_SPIKE_RESULTS.md as a decision.
     /// </summary>
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
-        Creature? dealer, CardModel? cardSource)
+        Creature? dealer, CardModel? cardSource, MegaCrit.Sts2.Core.Entities.Cards.CardPlay? cardPlay)
     {
         if (target != Owner) return 1m;
         return 1m + 0.5m * Amount;

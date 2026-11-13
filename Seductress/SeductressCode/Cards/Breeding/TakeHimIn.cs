@@ -47,7 +47,7 @@ public class TakeHimIn : SeductressCard
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
         var damage = DynamicVars.CalculatedDamage.Calculate(cardPlay.Target);
-        await DamageCmd.Attack(damage).FromCard(this).Targeting(cardPlay.Target)
+        await DamageCmd.Attack(damage).FromCard(this, cardPlay).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash").Execute(choiceContext);
 
         var draw = Sigils.At(Owner, Sigils.Tier3) ? 2 : Sigils.At(Owner, Sigils.Tier1) ? 1 : 0;

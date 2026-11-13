@@ -51,7 +51,7 @@ public class Claim : SeductressCard
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
         var damage = DynamicVars.CalculatedDamage.Calculate(cardPlay.Target);
-        await DamageCmd.Attack(damage).FromCard(this).Targeting(cardPlay.Target)
+        await DamageCmd.Attack(damage).FromCard(this, cardPlay).Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash").Execute(choiceContext);
 
         if (Sigils.At(Owner, Sigils.Tier1))
@@ -61,7 +61,7 @@ public class Claim : SeductressCard
         }
 
         await CreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.HpLoss.BaseValue,
-            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
+            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
     }
 
     protected override void OnUpgrade()

@@ -11,6 +11,8 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using Seductress.SeductressCode.Powers;
 using Seductress.SeductressCode.Systems;
+// Game 0.113 added its own MegaCrit StretchPower; this card means ours.
+using StretchPower = Seductress.SeductressCode.Powers.StretchPower;
 
 namespace Seductress.SeductressCode.Cards;
 

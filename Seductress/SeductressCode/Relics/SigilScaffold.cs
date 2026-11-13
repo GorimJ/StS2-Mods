@@ -33,7 +33,8 @@ public class SigilScaffold : SeductressRelic
     public override RelicRarity Rarity => RelicRarity.Starter;
 
     /// <summary>Never appears in any reward pool; it is only ever handed out at run start.</summary>
-    public override bool IsAllowed(IRunState runState) => false;
+    // Game 0.113: IsAllowed is no longer virtual; IsAllowedInternal is the hook it calls.
+    protected override bool IsAllowedInternal(IRunState runState) => false;
 
     public override List<(string, string)>? Localization => new RelicLoc(
         "Fertile Sign",

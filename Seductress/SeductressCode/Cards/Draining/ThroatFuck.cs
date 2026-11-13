@@ -38,14 +38,14 @@ public class ThroatFuck : SeductressCard
         var hits = 1 + StretchBonusHits(!SuppressHpLoss);
         for (var i = 0; i < hits; i++)
         {
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target)
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)
                 .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
         }
         if (!SuppressHpLoss)
         {
             await CreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.HpLoss.BaseValue,
-                ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
+                ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
         }
         if (Owner.Creature.GetPower<NoGagReflexPower>() is { DrawsOnDeepThroat: true })
         {
