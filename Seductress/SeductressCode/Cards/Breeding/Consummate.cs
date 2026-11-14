@@ -33,7 +33,9 @@ public class Consummate : SeductressCard
         new CardsVar(3),
         new BlockVar(10m, ValueProp.Move),
         new DynamicVar("TierBlock", 20m),
-        new DynamicVar("TierEnergy", 3m)
+        // [Claude, 2026-11-14] Must be an EnergyVar: energyIcons() rejects a plain DynamicVar, and one
+        // failed token made the game print the whole description raw.
+        new EnergyVar("TierEnergy", 3)
     ];
 
     public override List<(string, string)>? Localization => new CardLoc(
