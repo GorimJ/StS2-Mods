@@ -38,6 +38,9 @@ public static class FloorLog
 {
     private static FloorRecord? _current;
 
+    /// <summary>The floor being recorded right now, or null between floors. Read by SpireLinkExport.</summary>
+    public static FloorRecord? Current => _current;
+
     /// <summary>Total climaxes this run, across combats. Distinct from ClimaxModel's per-combat count.</summary>
     public static int ClimaxesThisRun { get; private set; }
 

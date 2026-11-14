@@ -1,0 +1,217 @@
+diff --git a/src/BridgeExtensions.cs b/src/BridgeExtensions.cs
+new file mode 100644
+index 0000000..597b1a6
+--- /dev/null
++++ b/src/BridgeExtensions.cs
+@@ -0,0 +1,91 @@
++using System.Reflection;
++using MegaCrit.Sts2.Core.DevConsole;
++using MegaCrit.Sts2.Core.Nodes.Debug;
++
++namespace SpireLink;
++
++// Local additions (not upstream), 2026-11-14:
++//
++//  1. POST /v1/console runs one dev-console command exactly as if it had been typed into the game's own console.
++//     Same loopback listener and bearer key as every other route.
++//
++//  2. state.mods carries state that other mods choose to publish. A mod opts in by having a public static class
++//     named SpireLinkExport with a public static parameterless Snapshot() method that returns a dictionary of
++//     JSON-friendly values. Found by name through reflection, so neither side references the other.
++public static partial class SpireLinkMod
++{
++    private const string ExportTypeName = "SpireLinkExport";
++    private const string ExportMethodName = "Snapshot";
++
++    private static List<(string Name, MethodInfo Snapshot)>? _modExports;
++    private static DevConsole? _ownConsole;
++
++    private static List<(string Name, MethodInfo Snapshot)> FindModExports()
++    {
++        var found = new List<(string, MethodInfo)>();
++        foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
++        {
++            if (assembly.IsDynamic || ReferenceEquals(assembly, typeof(SpireLinkMod).Assembly)) continue;
++            Type[] types;
++            try { types = assembly.GetTypes(); }
++            catch (ReflectionTypeLoadException ex) { types = ex.Types.Where(t => t != null).ToArray()!; }
++            catch { continue; }
++            foreach (var type in types)
++            {
++                if (type.Name != ExportTypeName || !type.IsAbstract || !type.IsSealed) continue; // static classes only
++                var method = type.GetMethod(ExportMethodName, BindingFlags.Public | BindingFlags.Static, Type.EmptyTypes);
++                if (method != null) found.Add((assembly.GetName().Name ?? type.FullName ?? ExportTypeName, method));
++            }
++        }
++        return found;
++    }
++
++    /// Main thread only. Null when no loaded mod publishes anything.
++    internal static Dictionary<string, object?>? CollectModState()
++    {
++        _modExports ??= FindModExports();
++        if (_modExports.Count == 0) return null;
++        var result = new Dictionary<string, object?>();
++        foreach (var (name, snapshot) in _modExports)
++        {
++            try { result[name] = snapshot.Invoke(null, null); }
++            catch (Exception ex)
++            {
++                var inner = ex is TargetInvocationException { InnerException: { } cause } ? cause : ex;
++                result[name] = new Dictionary<string, object?> { ["error"] = $"{inner.GetType().Name}: {inner.Message}" };
++            }
++        }
++        return result;
++    }
++
++    /// Main thread only.
++    internal static Dictionary<string, object?> RunConsoleCommand(string command)
++    {
++        // The game's own console, so history and the command set are the ones the player sees. It exists once the
++        // console node has been created; before that, a private instance with the same command discovery.
++        DevConsole? console = null;
++        string source = "game_console";
++        try
++        {
++            if (NDevConsole.InstanceOrNull is { } node)
++                console = typeof(NDevConsole).GetField("_devConsole", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(node) as DevConsole;
++        }
++        catch { console = null; }
++        if (console == null)
++        {
++            console = _ownConsole ??= new DevConsole(shouldAllowDebugCommands: true);
++            source = "private_console";
++        }
++        CmdResult outcome = console.ProcessCommand(command);
++        return new Dictionary<string, object?>
++        {
++            ["status"] = outcome.success ? "ok" : "failed",
++            ["success"] = outcome.success,
++            ["message"] = outcome.msg,
++            // A command that returns a task keeps running on the game's own schedule; observe again to see its effect.
++            ["still_running"] = outcome.task is { IsCompleted: false },
++            ["console"] = source,
++            ["command"] = command
++        };
++    }
++}
+diff --git a/src/BridgeGame.cs b/src/BridgeGame.cs
+index e0aed75..08a9892 100644
+--- a/src/BridgeGame.cs
++++ b/src/BridgeGame.cs
+@@ -108,6 +108,8 @@ public static partial class SpireLinkMod
+             && !RunManager.Instance.ActionExecutor.IsRunning
+             && RunManager.Instance.ActionExecutor.CurrentlyRunningAction is null);
+         state["engine"] = new Dictionary<string, object?> { ["action_queue_idle"] = engineIdle };
++        // Local addition: state other mods publish through a SpireLinkExport class. See BridgeExtensions.cs.
++        if (CollectModState() is { } modState) state["mods"] = modState;
+         if (state.TryGetValue("player", out var playerValue) && playerValue is Dictionary<string, object?> ps && player != null)
+         {
+             // Player.Deck is the persistent run deck. Combat piles are transient and
+diff --git a/src/BridgeKnowledge.cs b/src/BridgeKnowledge.cs
+index a689733..87797f1 100644
+--- a/src/BridgeKnowledge.cs
++++ b/src/BridgeKnowledge.cs
+@@ -148,10 +148,17 @@ public static partial class SpireLinkMod
+         {
+             var id = Text.Of(() => card.Id.Entry);
+             if (string.IsNullOrWhiteSpace(id)) continue;
+-            var baseVariant = BuildKnowledgeCardVariant(card, "base", keywordIdsByName);
+-            var upgraded = Cards.Upgraded(card);
+-            var upgradedVariant = upgraded == null ? null
+-                : BuildKnowledgeCardVariant(upgraded, "upgraded", keywordIdsByName);
++            // Local port: one card from another mod that throws must not take the whole catalog down.
++            Dictionary<string, object?> baseVariant;
++            try { baseVariant = BuildKnowledgeCardVariant(card, "base", keywordIdsByName); }
++            catch { continue; }
++            Dictionary<string, object?>? upgradedVariant = null;
++            try
++            {
++                var upgraded = Cards.Upgraded(card);
++                if (upgraded != null) upgradedVariant = BuildKnowledgeCardVariant(upgraded, "upgraded", keywordIdsByName);
++            }
++            catch { upgradedVariant = null; }
+             cardRows.Add(new Dictionary<string, object?>
+             {
+                 ["id"] = id,
+diff --git a/src/Link/Actions/RoomActions.cs b/src/Link/Actions/RoomActions.cs
+index 2f2c48d..703fcfa 100644
+--- a/src/Link/Actions/RoomActions.cs
++++ b/src/Link/Actions/RoomActions.cs
+@@ -127,7 +127,7 @@ internal static class RoomActions
+         {
+             case MerchantRoom merchant:
+                 if (NMerchantRoom.Instance?.Inventory?.IsOpen != true) return Outcome.Fail("Shop inventory is closed; use open_shop first");
+-                inventory = merchant.GetLocalInventory();
++                inventory = RunManager.Instance.MerchantSynchronizer.GetLocalInventory(); // v0.113 port
+                 break;
+             case EventRoom { CanonicalEvent: FakeMerchant } room when Events.Current(room) is FakeMerchant fake:
+                 // Before the fight the fake merchant's own inventory panel must be open; after it there is nothing to buy
+@@ -150,7 +150,7 @@ internal static class RoomActions
+         if (!entry.EnoughGold) return Outcome.Fail($"Not enough gold (need {entry.Cost}, have {ctx.Player.Gold})");
+ 
+         // The purchase runs on the game's own task; the next observation shows its result.
+-        _ = entry.OnTryPurchaseWrapper(inventory);
++        _ = ctx.Run.CurrentRoom is MerchantRoom ? RunManager.Instance.MerchantSynchronizer.PurchaseLocalEntry(entry) : entry.OnTryPurchaseUnsynchronized(inventory); // v0.113 port
+         return Outcome.Ok($"Purchasing item for {entry.Cost} gold");
+     }
+ 
+diff --git a/src/Link/Menus/TimelineMenu.cs b/src/Link/Menus/TimelineMenu.cs
+index b3af706..8ba62c8 100644
+--- a/src/Link/Menus/TimelineMenu.cs
++++ b/src/Link/Menus/TimelineMenu.cs
+@@ -113,7 +113,6 @@ internal static class TimelineMenu
+         IEnumerable<EpochModel?> models = screen switch
+         {
+             NUnlockCharacterScreen => new[] { Nodes.Field(screen, "_epoch") as EpochModel },
+-            NUnlockEpochScreen => Nodes.Field(screen, "_unlockedEpochs") as IEnumerable<EpochModel?> ?? Enumerable.Empty<EpochModel?>(),
+             NUnlockTimelineScreen => (Nodes.Field(screen, "_erasToUnlock") as IEnumerable<EpochSlotData> ?? Enumerable.Empty<EpochSlotData>()).Select(slot => slot?.Model),
+             _ => Enumerable.Empty<EpochModel?>()
+         };
+diff --git a/src/Link/State/Screens/Shop.cs b/src/Link/State/Screens/Shop.cs
+index 3907784..08ce377 100644
+--- a/src/Link/State/Screens/Shop.cs
++++ b/src/Link/State/Screens/Shop.cs
+@@ -32,7 +32,7 @@ internal static class ShopScreen
+         };
+ 
+         var items = new List<Dictionary<string, object?>>();
+-        var inventory = room.GetLocalInventory();
++        var inventory = MegaCrit.Sts2.Core.Runs.RunManager.Instance.MerchantSynchronizer.GetLocalInventory(); // v0.113 port
+         if (inventory != null)
+         {
+             foreach (var entry in inventory.CardEntries) items.Add(Card(entry, items.Count));
+diff --git a/src/SpireLinkMod.cs b/src/SpireLinkMod.cs
+index 37c789a..2149b86 100644
+--- a/src/SpireLinkMod.cs
++++ b/src/SpireLinkMod.cs
+@@ -552,6 +552,19 @@ public static partial class SpireLinkMod
+                     throw new ApiFailure(409, "stale_state", "Capture state is outdated");
+                 result = await Capture(snapshot, reason, "manual");
+             }
++            else if (context.Request.HttpMethod == "POST" && route == "/v1/console")
++            {
++                // Local addition: run one dev-console command on the main thread. See BridgeExtensions.cs.
++                using var body = await ReadBody(context.Request);
++                string command = RequiredString(body.RootElement, "command").Trim();
++                if (command.Length == 0 || command.Length > 512 || command.Contains('\n') || command.Contains('\r'))
++                    throw new ApiFailure(400, "invalid_command", "command must be one line of 1-512 characters");
++                using var deadline = CancellationTokenSource.CreateLinkedTokenSource(Stopping.Token);
++                deadline.CancelAfter(TimeSpan.FromSeconds(10));
++                var outcome = await RunOnMainThread(() => RunConsoleCommand(command), deadline.Token);
++                _journal?.Record("console_command", new { command, success = outcome["success"], message = outcome["message"] });
++                result = outcome;
++            }
+             else if (context.Request.HttpMethod == "GET" && route == "/v1/metrics") result = MetricsReport();
+             else if (context.Request.HttpMethod == "GET" && route == "/v1/events")
+             {
+@@ -584,7 +597,8 @@ public static partial class SpireLinkMod
+                     state_hash = "opaque_server_generated_sha256", legal_actions = "current_snapshot_candidates_rechecked_by_game",
+                     captures = "local_game_viewport_png_not_sent_to_model", model_decision_time = "client_reported_only",
+                     unsupported = new[] { "multiplayer", "full_card_effect_simulation", "save_editing" },
+-                    endpoints = new[] { "/v1/observe", "/v1/actions", "/v1/requests/{request_id}", "/v1/decisions", "/v1/captures", "/v1/metrics", "/v1/events", "/v1/knowledge/cards", "/v1/knowledge/keywords", "/v1/diagnostics", "/v1/recovery" } };
++                    endpoints = new[] { "/v1/observe", "/v1/actions", "/v1/requests/{request_id}", "/v1/decisions", "/v1/captures", "/v1/metrics", "/v1/events", "/v1/knowledge/cards", "/v1/knowledge/keywords", "/v1/diagnostics", "/v1/recovery", "/v1/console" },
++                    local_additions = new[] { "console_commands", "mod_state_exports" } };
+             else throw new ApiFailure(404, "not_found", "Unknown route or method");
+             await Respond(context.Response, status, result, route);
+         }
