@@ -134,6 +134,19 @@ index a689733..87797f1 100644
              cardRows.Add(new Dictionary<string, object?>
              {
                  ["id"] = id,
+diff --git a/src/BridgeProtocol.cs b/src/BridgeProtocol.cs
+index c7f4693..a1c1f14 100644
+--- a/src/BridgeProtocol.cs
++++ b/src/BridgeProtocol.cs
+@@ -157,7 +157,7 @@ public static class AgentProtocol
+                 // the game's own confirmation popup before changing a saved run.
+                 var allowedNames = screen switch
+                 {
+-                    "main" => new HashSet<string> { "singleplayer", "continue", "abandon_run", "quit" },
++                    "main" => new HashSet<string> { "singleplayer", "continue", "abandon_run", "timeline", "quit" }, // local: timeline added
+                     "singleplayer" => new HashSet<string> { "standard", "daily", "custom", "back" },
+                     "character_select" => new HashSet<string> { "confirm", "embark", "back" },
+                     "timeline" => new HashSet<string> { "back" },
 diff --git a/src/Link/Actions/RoomActions.cs b/src/Link/Actions/RoomActions.cs
 index 2f2c48d..703fcfa 100644
 --- a/src/Link/Actions/RoomActions.cs
@@ -182,10 +195,36 @@ index 3907784..08ce377 100644
          {
              foreach (var entry in inventory.CardEntries) items.Add(Card(entry, items.Count));
 diff --git a/src/SpireLinkMod.cs b/src/SpireLinkMod.cs
-index 37c789a..2149b86 100644
+index 37c789a..c9f5b55 100644
 --- a/src/SpireLinkMod.cs
 +++ b/src/SpireLinkMod.cs
-@@ -552,6 +552,19 @@ public static partial class SpireLinkMod
+@@ -496,9 +496,23 @@ public static partial class SpireLinkMod
+                 using var body = await ReadBody(context.Request);
+                 EnsureSession(body.RootElement);
+                 string id = RequiredString(body.RootElement, "request_id");
+-                if (id.Length > 128 || RequiredString(body.RootElement, "mode") != "reconcile")
+-                    throw new ApiFailure(400, "invalid_recovery", "Only mode=reconcile is supported; no forced unlock or mutation retry exists");
++                string recoveryMode = RequiredString(body.RootElement, "mode");
++                if (id.Length > 128 || recoveryMode is not ("reconcile" or "abandon_pending"))
++                    throw new ApiFailure(400, "invalid_recovery", "Supported modes: reconcile, abandon_pending (local addition). No mutation retry exists");
+                 long expected = RequiredLong(body.RootElement, "expected_version");
++                // Local addition: drop the latch left by an action whose effect was never observed (a no-op click, say),
++                // so the caller can act again without restarting the game. It changes nothing in the game itself.
++                if (recoveryMode == "abandon_pending")
++                {
++                    using var abandonDeadline = CancellationTokenSource.CreateLinkedTokenSource(Stopping.Token);
++                    abandonDeadline.CancelAfter(TimeSpan.FromSeconds(10));
++                    await RunOnMainThread(() =>
++                    {
++                        string? abandoned = _pendingRequestId;
++                        if (_pendingBeforeVersion != 0) ClearPending();
++                        _journal?.Record("recovery_abandon_pending", new { request_id = id, abandoned_request_id = abandoned, game_mutation = false });
++                    }, abandonDeadline.Token);
++                }
+                 var snapshot = await TimedSnapshot(timing);
+                 if (snapshot.Version != expected) throw new ApiFailure(409, "stale_state", "Observe the latest state before reconciliation");
+                 var diagnostics = BuildDiagnostics(snapshot);
+@@ -552,6 +566,19 @@ public static partial class SpireLinkMod
                      throw new ApiFailure(409, "stale_state", "Capture state is outdated");
                  result = await Capture(snapshot, reason, "manual");
              }
@@ -205,7 +244,7 @@ index 37c789a..2149b86 100644
              else if (context.Request.HttpMethod == "GET" && route == "/v1/metrics") result = MetricsReport();
              else if (context.Request.HttpMethod == "GET" && route == "/v1/events")
              {
-@@ -584,7 +597,8 @@ public static partial class SpireLinkMod
+@@ -584,7 +611,8 @@ public static partial class SpireLinkMod
                      state_hash = "opaque_server_generated_sha256", legal_actions = "current_snapshot_candidates_rechecked_by_game",
                      captures = "local_game_viewport_png_not_sent_to_model", model_decision_time = "client_reported_only",
                      unsupported = new[] { "multiplayer", "full_card_effect_simulation", "save_editing" },

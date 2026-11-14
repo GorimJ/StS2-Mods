@@ -29,9 +29,29 @@ dotnet build SpireLink.csproj -c Release -p:STS2GameDir="A:/SteamLibrary/steamap
 Copy `out/SpireLink.dll` to the game's `mods/SpireLink/` folder, next to `SpireLink.json` (a copy of the
 repo's `mod_manifest.json`).
 
+## Later additions
+
+- [Claude, 2026-11-14] The main menu now offers `timeline` as an action (upstream only shows it as an option).
+- [Claude, 2026-11-14] `POST /v1/recovery` accepts `mode: "abandon_pending"`. Spire Link refuses new actions after
+  one whose effect it never saw (a click that did nothing, say); this drops that latch without touching the game.
+  Found when a timeline "advance" with nothing to advance left it blocked until the game was restarted.
+
+## Tools
+
+- `tools/sts2.ps1` closes, launches or restarts the game through Steam and waits for the main menu. By default it
+  hands focus back to whatever window was in front.
+- `tools/spirelink_drive.py` is a small client: `st` (state and numbered actions), `act <n|label>`, `con <command>`,
+  `conraw <command>`, `raw <key...>`, `unstick`. It reads the key from Spire Link's own config and never prints it.
+
 ## Status
 
-[verified, 2026-11-14, in game] health, observe, card catalogue, playing an untargeted card, the `mods` section
-with Seductress state, and console commands (`help`, `reservoir`, `sigils`).
+[verified, 2026-11-14, in game] health, observe, card catalogue, the `mods` section with Seductress state, console
+commands, targeted and untargeted cards, end turn, potions, rewards, card rewards, map travel, shop purchases and
+card removal, rest site options (Smith, Indulge, Relief), treasure, events, an Ancient event, elite and boss fights,
+game over, main menu, continue, singleplayer, character select, embark, timeline open and back.
 
-Not tested: end turn, targeted attacks, shop purchase, timeline, rewards, map, events, rest sites.
+"Decision mechanics" in the state is an upstream experiment that only understands two vanilla cards (Strangle and
+Silent's Defend) and three powers, on one exact game build. Every other card of every character shows as unknown
+there. It is not something the rest of the API depends on.
+
+Not tested: daily and custom modes, multiplayer, abandon run, the `abandon_pending` recovery with a real latch.
