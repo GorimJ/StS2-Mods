@@ -38,7 +38,7 @@ public class Overflow : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Overflow",
-        "Ass. Deal {CalculatedDamage:diff()} damage to ALL enemies and apply 1 [gold]Vulnerable[/gold].\nThis card loses double the usual Ass.");
+        "Ass. Deal {CalculatedDamage:diff()} damage to ALL enemies and apply 1 [gold]Vulnerable[/gold]{IfUpgraded:show: and 1 [gold]Weak[/gold]|}.\nThis card loses double the usual Ass.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

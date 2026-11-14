@@ -1,8 +1,14 @@
-# The Seductress — mechanical design v3.10
+# The Seductress — mechanical design v3.11
 
 Status: design draft, 2026-09-07. Personal-use mod, single-player only.
 **Engine spike complete** — see `SEDUCTRESS_SPIKE_RESULTS.md`. All four risks answered, none
 blocked. Nothing in this document had to change to fit the engine.
+
+**[Claude, 2026-11-14] v3.11 reconciles this document with the build**, at [Gorim]'s request: the *Gulp*
+card is cut and its name and Sensitive removal moved to the 100 ml Stomach milestone; every swallow
+heals 1 HP per 2 ml, precum included; §8's pool table is replaced with the built counts; register rows
+111–116 record the rulings that were only in code comments and slice results. Older register rows are
+left as written and marked where superseded.
 
 Changes from v2.4, all from the slice-3 playtest: the Ass Strength ratio settles at **+1 per 4 ml
 lost**, tuned for the Milking Grip plateau rather than the unaided bank; **Ass threshold unlocks**
@@ -372,9 +378,10 @@ once, costs a slot and the energy up front, and cannot be spammed.
 - **On-kill bonuses are fine on any type** — they are already gated by the kill.
 
 **[decided] The Mouth exception generates precum, not cum.** Precum sits in the Mouth and is
-indistinguishable from cum *inside* a combat — spendable by *Gulp*, *Spit* and anything else that
-empties the Mouth, counting against the 50 ml cap. At the end of combat it evaporates: no heal, no
-Stomach.
+indistinguishable from cum *inside* a combat — spendable by *Spit* and anything else that
+empties the Mouth, counting against the 50 ml cap. At the end of combat it evaporates and does not
+reach the Stomach. **[Gorim, 2026-09-08] It does heal**: every swallow heals 1 HP per 2 ml, cum and
+precum together (register 111), so precum pays out on its way out.
 
 This is what makes the exception free. Mouth cards can manufacture the fuel they need to function
 without inflating Draining's permanent track, so the generation is bounded to the fight it happens
@@ -703,9 +710,11 @@ it is the archetype's entire progression.
 | **200 ml** | **Indulge stops spilling** — 100% reclamation |
 | **300 ml** | **Precum counts as cum** — it banks instead of evaporating |
 
-**[clarified] The Mouth banks to the Stomach at the end of every combat, by default.** *Gulp*
-does not enable banking — its "swallow **now**" buys the *timing*, the heal and the Sensitive
-removal. This was only ever implied, by §6.2a saying precum is the thing that evaporates, and the
+**[clarified] The Mouth banks to the Stomach at the end of every combat, by default.**
+**[Gorim, 2026-09-08] The *Gulp* card is cut** (register 112): the name belongs to the 100 ml milestone
+above, and a swallow of 25 ml or more removes 1 Sensitive once that milestone is reached. The card
+never enabled banking — its "swallow **now**" bought the *timing*, the heal and the Sensitive
+removal, and the heal now happens on every swallow anyway. This was only ever implied, by §6.2a saying precum is the thing that evaporates, and the
 omission has already caused one misreading.
 
 **100 ml is additive, not a trade.** The 50 ml swallow happens **in addition to** the end-of-combat
@@ -1006,17 +1015,25 @@ strictly stronger and should not be a common. Specced with the fourth archetype.
 
 ---
 
-## 8. Card pool — 35 cards for v1
+## 8. Card pool — 33 draftable cards as built
 
-Starting deck: 5 basic attack, 4 basic defend, 1 deliberate-climax card.
-Starting relic: reduce arousal by 6 after each combat.
+**[Claude, 2026-11-14]** The table below was the v1 plan (35 cards, nine of them Core) and no longer
+matched anything. It now shows what is built; `SEDUCTRESS_CARDS.md` v25 is the card-by-card record and
+lists the gaps in its §14.
+
+Starting deck (11): 4 × Pump, 4 × Guard, Seek Relief, Breed Me!, Suckle.
+Starting relic: reduce arousal by 6 after each combat, and halve Max HP from relics (§6.5).
+**The relic is not built** — the character still starts with Ironclad's *Burning Blood*. The halving itself is built, as a patch on Max HP gain.
 
 | Group | Count | Role |
 |---|---|---|
-| **Core** | 9 | Untagged attacks and Block; the neutral spine. Includes deliberate-climax cards and one or two Skin spenders. |
-| **Draining** (Mouth) | 8 | Low-arousal attacks, arousal reduction, Sensitive cleansing, Entranced application. |
-| **Squeezing** (Ass) | 8 | High-damage attacks with self-arousal; payoffs scaling on Ass fullness; Skin conversion. |
-| **Breeding** (Womb) | 8 | Finishers and executes; Sigil-count scaling; Sigil exhaust effects. |
+| **Core** | 4 | Heal, Weak, Climax on demand, and the Climax engine. The planned neutral spine of nine was never filled. |
+| **Freehand** (Skin) | 5 | No-hole attacks that do structural things instead of collecting; one generic spender. |
+| **Draining** (Mouth) | 9 | The Deep Throat family, precum generation, *Spit*, one above-half-HP payoff. |
+| **Squeezing** (Ass) | 7 | Multi-hit attacks that spend the bank for Strength. *Milking Grip* is the 100 ml reward, not draftable. |
+| **Breeding** (Pussy) | 8 | Sigil-tiered cards on the 1 / 3 / 5 / 7 ladder, Leg-Locked, Climax payoffs. |
+| **Ancient** | 1 | *Edging Form*. |
+| **Generated** | 1 | *Milk*, into the combat pile while Lactating. |
 | **Lust** | 2 | The curse cards (not draftable). |
 
 ---
@@ -1234,10 +1251,10 @@ kept at the time and guessing now would be worse than leaving it blank.
 | 36 | Pool size: **32 is a floor, not a ceiling** — cards may be added without cutting others |
 | 37 | Sensitive multipliers on intake **round up** |
 | 38 | Squeezing **reads its bank rather than spending it** — *Tight Fit* and *Ruinous* cut; *Overflow* spends a proportion, not a flat amount |
-| 39 | Sensitive removal sits on *Gulp*, gated behind swallowing 25 ml |
+| 39 | Sensitive removal sits on *Gulp*, gated behind swallowing 25 ml — **[superseded by 112: *Gulp* is now a Stomach milestone, same 25 ml gate]** |
 | 40 | **Holes ≠ containers.** Tags are Mouth / Ass / Pussy / Skin; containers are Mouth→Stomach, Womb, Ass, Skin |
 | 41 | **Only attacks carry tags** — skills never do, so only attacks set *Continuing* |
-| 42 | **Ass-tagged attacks lose 10% of the bank (rounded up) and gain +1 Strength per 10 ml lost** — the bank is ammunition, and the archetype wants multi-hit cards |
+| 42 | **Ass-tagged attacks lose 10% of the bank (rounded up) and gain +1 Strength per 10 ml lost** — the bank is ammunition, and the archetype wants multi-hit cards — **[ratio superseded by 76: +1 per 4 ml]** |
 | 43 | *Deep Throat* is a **card family** (vanilla `CardTag.Strike` pattern), so *No Gag Reflex* buffs a group rather than one card |
 | 44 | Intake rule is by **card type**: Powers may generate, Attacks and Skills may not — the issue was repeatability, not generation |
 | 45 | Sigil gating uses **2 / 4 / 6**, three tiers, not 3 / 6 |
@@ -1276,7 +1293,7 @@ kept at the time and guessing now would be worse than leaving it blank.
 | 106 | **HP costs rescale as though the bar were 30–40**, not by a clean ÷3.25 — the bar is meant to be swingy. 20→9, 12→6, 10→4, 8→3, 6→3, 4→2, 3→2, 2→1; Plug to 2/floor and 1/turn |
 | 107 | **The Stomach gives +1 Max HP per 10 ml banked** — ~20–25 Max HP an act, i.e. +80–100 effective, which is Draining's whole progression |
 | 108 | **[Gorim] Stomach milestones**: every ×50 grants +5 ml precum at combat start (cumulative); **100 ml** swaps end-of-combat swallowing for swallowing at 50 ml; **200 ml** removes Indulge's spillage; **300 ml** makes precum bank as cum |
-| 110 | **[clarified] The Mouth banks to the Stomach at the end of every combat by default.** *Gulp* buys timing, the heal and Sensitive removal — not the banking itself |
+| 110 | **[clarified] The Mouth banks to the Stomach at the end of every combat by default.** *Gulp* buys timing, the heal and Sensitive removal — not the banking itself — **[the card is cut; see 111, 112]** |
 | 109 | **Max HP from relics is halved**, carried on the starting relic — food relics would otherwise be worth 4× here and outclass every other pick |
 | 104 | **Removing a Lust card is worth a full heal regardless of current HP**, so Relief dominates Indulge on the health axis and Indulge's only edge is the Stomach. **Do not tune Indulge down further until the Stomach payoff exists** |
 | 97 | **The Seductress has no `HEAL`.** Her rest site offers **Indulge** (empty Skin: Soothe 1 per ml, bank it to the Stomach), **Relief** (remove a Lust card — the actual rest-equivalent) and Smith. Indulge is part Rest, part Smith. ***Scoop It Up* is cut from the pool**; leak-to-Skin would have made it mandatory, and a card nobody can skip is worse than no card |
@@ -1304,8 +1321,14 @@ kept at the time and guessing now would be worse than leaving it blank.
 | 70 | **Sigil thresholds are 1 / 3 / 5 / 7.** The first Sigil must be a spike — at 2/4/6 the first pregnancy changed nothing on any card |
 | 71 | **Fixed tier shape**: 1 adds an effect, 3 grows the base, 5 grows the effect, 7 repeats a number of times equal to cost. A shared scale must carry a shared meaning |
 | 72 | **0-cost cards lose their non-energy cost at tier 4** rather than repeating. Tier 4 applies to Powers as well as Attacks |
-| 73 | **The starting deck carries two class cards**, per Silent/Defect/Watcher rather than Ironclad: *Breed Me!* and a Mouth attack granting Block. Ass is the wrong starter — its bank starts empty |
+| 73 | **The starting deck carries two class cards**, per Silent/Defect/Watcher rather than Ironclad: *Breed Me!* and a Mouth attack granting Block. Ass is the wrong starter — its bank starts empty — **[the Mouth starter is *Suckle*, which grants precum rather than Block; see 115]** |
 | 69 | ***Consummate* costs 0**, down from 2. At 2 its net energy was zero, making a Rare strictly worse than a vanilla Common. May want to be 1 once the Sigil passive exists |
+| 111 | **[Gorim, 2026-09-08] Every swallow heals 1 HP per 2 ml, cum and precum together** — the end-of-combat swallow and the 50 ml one alike. Precum therefore heals on its way out though it banks nothing. [Gorim] noted the rate "is maybe high"; current spec, not settled |
+| 112 | **[Gorim, 2026-09-08] The *Gulp* card is cut.** The name belongs to the 100 ml Stomach milestone (the Mouth also swallows at 50 ml), and the Sensitive removal came with it: a swallow of 25 ml or more removes 1 Sensitive once the milestone is reached. The same idea did not want to exist twice |
+| 113 | **[Gorim, 2026-09-07] *Ritual Mark* upgrades to Innate** and changes no numbers; **[Gorim, 2026-09-08]** it buffs **Breasts** cards as well as Pussy |
+| 114 | **[Gorim, 2026-09-08] Breasts is a category tag paired with Skin**, as Deep Throat is paired with Mouth. *Milk* carries it, is **heal 4 / deal 2** with the 3-Sigil rung growing the heal, and drags *Continuing* to Skin — pregnancy is meant to fight the routing that caused it |
+| 115 | **[Gorim, 2026-09-09] *Suckle*'s upgrade is cost 0.** Third setting, after 10 ml and +3 damage. Base damage stays 4 |
+| 116 | **[Claude, 2026-11-14, from the build] The draft pool is 33 cards**: Core 4, Freehand 5, Draining 9, Squeezing 7, Breeding 8; 13 Common / 15 Uncommon / 5 Rare. Gaps are listed in the card list §14 |
 
 ### Proposed, not confirmed
 
@@ -1319,14 +1342,14 @@ kept at the time and guessing now would be worse than leaving it blank.
 ### Open
 
 - Resolve the Lust / Lust Sigil naming collision
-- Is 5 Lust right, or should it scale with ascension?
+- Is 3 Lust right (§5), or should it scale with ascension?
 - Does Squeezing's fullness buff need a cap, given it only leaks 5%?
 - What exactly does a Sigil's passive do, in v1's single type?
 - **[resolved] The starting deck carries two class cards.** See the card list §4. Ironclad's single
   Bash is the outlier; Silent, Defect and Watcher all start with two, and Watcher's pair is the
   closest analogue — each card demonstrates a different half of the mechanic. Here that is
   *Breed Me!* (Pussy, the involved mechanic, and it teaches intake explicitly through its flat ml)
-  and a Mouth attack granting Block (the other long progression path, and the archetype whose
+  and a Mouth attack — as built, *Suckle*, granting precum rather than Block (the other long progression path, and the archetype whose
   identity is staying high on the bar). **Ass is the wrong starter**: its rule spends a bank that
   starts empty and takes most of an act to fill, so an Ass starter is a plain attack with a dead
   clause for the whole opening. Because **Skills are untagged by decision**, the defensive starter

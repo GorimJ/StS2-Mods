@@ -26,7 +26,7 @@ public class LickPrecum : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Lick Pre-cum",
-        "Gain {Ml:diff()} ml precum. Apply 1 [gold]Weak[/gold].");
+        "Gain {Ml:diff()} ml precum. Apply 1 [gold]Weak[/gold] to ALL enemies.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

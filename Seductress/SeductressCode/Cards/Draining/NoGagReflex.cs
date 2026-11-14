@@ -23,7 +23,7 @@ public class NoGagReflex : SeductressCard
     public NoGagReflex() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self) { }
 
     public override List<(string, string)>? Localization => new CardLoc(
-        "No Gag Reflex", "Deep Throat cards cost 1 less and no longer lose HP.");
+        "No Gag Reflex", "Deep Throat cards cost 1 less and no longer lose HP.{IfUpgraded:show:\nWhenever you play one, draw 1.|}");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

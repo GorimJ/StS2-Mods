@@ -26,7 +26,7 @@ public class Handful : SeductressCard
     // text. Naming them in the description as well prints them twice.
     public override List<(string, string)>? Localization => new CardLoc(
         "Handful",
-        "Deal {Damage:diff()} damage.");
+        "Skin. Deal {Damage:diff()} damage.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

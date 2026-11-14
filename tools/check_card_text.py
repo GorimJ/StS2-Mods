@@ -46,7 +46,8 @@ IMPLICIT_VAR_NAMES = {
 }
 
 # Tokens the game supplies itself rather than the card registering them.
-ENGINE_PROVIDED = {"energyPrefix"}
+# IfUpgraded: CardModel adds it to every description, for {IfUpgraded:show:upgraded text|base text}.
+ENGINE_PROVIDED = {"energyPrefix", "IfUpgraded"}
 
 COLOUR_TAGS = ("gold", "blue", "red", "green", "purple")
 

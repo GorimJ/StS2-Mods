@@ -23,7 +23,7 @@ public class BatEyelashes : SeductressCard
     public BatEyelashes() : base(0, CardType.Skill, CardRarity.Common, TargetType.AllEnemies) { }
 
     public override List<(string, string)>? Localization => new CardLoc(
-        "Bat Eyelashes", "Apply 1 [gold]Weak[/gold] to ALL enemies.");
+        "Bat Eyelashes", "Apply 1 [gold]Weak[/gold]{IfUpgraded:show: and 1 [gold]Vulnerable[/gold]|} to ALL enemies.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

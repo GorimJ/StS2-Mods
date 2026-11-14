@@ -44,7 +44,7 @@ public class Suckle : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Suckle",
-        "Mouth. Deal {Damage:diff()} damage. Gain {Ml:diff()} ml precum. If this kills, gain {Ml:diff()} ml instead.");
+        "Mouth. Deal {Damage:diff()} damage. Gain {Ml:diff()} ml precum. If this kills, gain {Ml:diff()} ml of cum instead.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

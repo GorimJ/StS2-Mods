@@ -8,7 +8,9 @@ import json, os, re, sys, time, uuid, urllib.request, urllib.error
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 BASE = "http://127.0.0.1:15528"
-HERE = os.path.dirname(os.path.abspath(__file__))
+# Last observe/action dumps go to the temp folder, not next to this script in the repo.
+HERE = os.path.join(os.environ.get("TEMP", "."), "spirelink_drive")
+os.makedirs(HERE, exist_ok=True)
 _KEY = None
 
 
