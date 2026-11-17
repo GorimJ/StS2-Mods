@@ -1,35 +1,35 @@
 [gd_scene load_steps=35 format=3]
 
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/HAIR_back.png" id="t0"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/SKIRT_rear_left.png" id="t1"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/SKIRT_rear_right.png" id="t2"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/LEG_L_shin_foot.png" id="t3"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/LEG_R_shin_foot.png" id="t4"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/LEG_L_thigh.png" id="t5"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/LEG_R_thigh.png" id="t6"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/PELVIS_base.png" id="t7"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/BELLY_lower_torso_variant.png" id="t8"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/SKIRT_hip_wrap_left.png" id="t9"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/TORSO_upper.png" id="t10"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/ARM_R_upper.png" id="t11"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/ARM_L_upper.png" id="t12"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/HEAD_face_plus_front_hair.png" id="t13"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/HAIR_side_L.png" id="t14"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/HAIR_side_R.png" id="t15"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/BREASTS_plus_wrap_variant.png" id="t16"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/SLEEVE_L_back.png" id="t17"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/SLEEVE_R_back.png" id="t18"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/ARM_L_forearm_hand.png" id="t19"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/ARM_R_forearm_hand.png" id="t20"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/SLEEVE_L_front.png" id="t21"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/SLEEVE_R_front.png" id="t22"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/CLOTH_front_skirt_panel.png" id="t23"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/HIP_ornaments_left.png" id="t24"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/HIP_ornaments_right.png" id="t25"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/PROP_censer_and_chains.png" id="t26"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/FX_censer_smoke.png" id="t27"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/HAT_main.png" id="t28"]
-[ext_resource type="Texture2D" path="res://Seductress/images/character/parts/HAT_charm.png" id="t29"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/HAIR_back.png" id="t0"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/SKIRT_rear_left.png" id="t1"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/SKIRT_rear_right.png" id="t2"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/LEG_R_shin_foot.png" id="t3"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/LEG_R_thigh.png" id="t4"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/LEG_L_shin_foot.png" id="t5"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/LEG_L_thigh.png" id="t6"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/BELLY_lower_torso_variant.png" id="t7"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/TORSO_upper.png" id="t8"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/ARM_L_upper.png" id="t9"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/HEAD_face_plus_front_hair.png" id="t10"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/BREASTS_plus_wrap_variant.png" id="t11"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/HAIR_side_R.png" id="t12"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/HAIR_side_L.png" id="t13"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/SLEEVE_L.png" id="t14"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/SLEEVE_R.png" id="t15"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/ARM_L_forearm_hand.png" id="t16"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/ARM_R_forearm_hand.png" id="t17"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/ARM_R_hand.png" id="t18"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/FINGER_R_pinky.png" id="t19"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/FINGER_R_ring.png" id="t20"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/FINGER_R_middle.png" id="t21"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/FINGER_R_index.png" id="t22"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/CLOTH_front_skirt_panel.png" id="t23"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/HIP_ornaments_left.png" id="t24"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/HIP_ornaments_right.png" id="t25"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/PROP_censer_and_chains.png" id="t26"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/FX_censer_smoke.png" id="t27"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/HAT_main.png" id="t28"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/HAT_charm.png" id="t29"]
 
 [sub_resource type="Shader" id="sh_smoke"]
 code = "shader_type canvas_item;
@@ -63,367 +63,427 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -732), Vector2(0.8362, -732), Vector2(1.6633, -732), Vector2(2.4721, -732), Vector2(3.2539, -732), Vector2(4, -732), Vector2(4.7023, -732), Vector2(5.353, -732), Vector2(5.9452, -732), Vector2(6.4721, -732), Vector2(6.9282, -732), Vector2(7.3084, -732), Vector2(7.6085, -732), Vector2(7.8252, -732), Vector2(7.9562, -732), Vector2(8, -732), Vector2(7.9562, -732), Vector2(7.8252, -732), Vector2(7.6085, -732), Vector2(7.3084, -732), Vector2(6.9282, -732), Vector2(6.4721, -732), Vector2(5.9452, -732), Vector2(5.353, -732), Vector2(4.7023, -732), Vector2(4, -732), Vector2(3.2539, -732), Vector2(2.4721, -732), Vector2(1.6633, -732), Vector2(0.8362, -732), Vector2(0, -732), Vector2(-0.8362, -732), Vector2(-1.6633, -732), Vector2(-2.4721, -732), Vector2(-3.2539, -732), Vector2(-4, -732), Vector2(-4.7023, -732), Vector2(-5.353, -732), Vector2(-5.9452, -732), Vector2(-6.4721, -732), Vector2(-6.9282, -732), Vector2(-7.3084, -732), Vector2(-7.6085, -732), Vector2(-7.8252, -732), Vector2(-7.9562, -732), Vector2(-8, -732), Vector2(-7.9562, -732), Vector2(-7.8252, -732), Vector2(-7.6085, -732), Vector2(-7.3084, -732), Vector2(-6.9282, -732), Vector2(-6.4721, -732), Vector2(-5.9452, -732), Vector2(-5.353, -732), Vector2(-4.7023, -732), Vector2(-4, -732), Vector2(-3.2539, -732), Vector2(-2.4721, -732), Vector2(-1.6633, -732), Vector2(-0.8362, -732), Vector2(0, -732)]
+"values": [Vector2(10, -606), Vector2(10.6272, -606), Vector2(11.2475, -606), Vector2(11.8541, -606), Vector2(12.4404, -606), Vector2(13, -606), Vector2(13.5267, -606), Vector2(14.0148, -606), Vector2(14.4589, -606), Vector2(14.8541, -606), Vector2(15.1962, -606), Vector2(15.4813, -606), Vector2(15.7063, -606), Vector2(15.8689, -606), Vector2(15.9671, -606), Vector2(16, -606), Vector2(15.9671, -606), Vector2(15.8689, -606), Vector2(15.7063, -606), Vector2(15.4813, -606), Vector2(15.1962, -606), Vector2(14.8541, -606), Vector2(14.4589, -606), Vector2(14.0148, -606), Vector2(13.5267, -606), Vector2(13, -606), Vector2(12.4404, -606), Vector2(11.8541, -606), Vector2(11.2475, -606), Vector2(10.6272, -606), Vector2(10, -606), Vector2(9.3728, -606), Vector2(8.7525, -606), Vector2(8.1459, -606), Vector2(7.5596, -606), Vector2(7, -606), Vector2(6.4733, -606), Vector2(5.9852, -606), Vector2(5.5411, -606), Vector2(5.1459, -606), Vector2(4.8038, -606), Vector2(4.5187, -606), Vector2(4.2937, -606), Vector2(4.1311, -606), Vector2(4.0329, -606), Vector2(4, -606), Vector2(4.0329, -606), Vector2(4.1311, -606), Vector2(4.2937, -606), Vector2(4.5187, -606), Vector2(4.8038, -606), Vector2(5.1459, -606), Vector2(5.5411, -606), Vector2(5.9852, -606), Vector2(6.4733, -606), Vector2(7, -606), Vector2(7.5596, -606), Vector2(8.1459, -606), Vector2(8.7525, -606), Vector2(9.3728, -606), Vector2(10, -606)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Rig/HIPS/LEG_L_thigh:rotation")
+tracks/1/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0, 0.0014, 0.0028, 0.0041, 0.0054, 0.0067, 0.0078, 0.0089, 0.0099, 0.0108, 0.0115, 0.0122, 0.0127, 0.013, 0.0133, 0.0133, 0.0133, 0.013, 0.0127, 0.0122, 0.0115, 0.0108, 0.0099, 0.0089, 0.0078, 0.0067, 0.0054, 0.0041, 0.0028, 0.0014, 0, -0.0014, -0.0028, -0.0041, -0.0054, -0.0067, -0.0078, -0.0089, -0.0099, -0.0108, -0.0115, -0.0122, -0.0127, -0.013, -0.0133, -0.0133, -0.0133, -0.013, -0.0127, -0.0122, -0.0115, -0.0108, -0.0099, -0.0089, -0.0078, -0.0067, -0.0054, -0.0041, -0.0028, -0.0014, 0]
+"values": [Vector2(0, -10.0501), Vector2(0, -10.1315), Vector2(0, -10.2072), Vector2(0, -10.2738), Vector2(0, -10.3285), Vector2(0, -10.3687), Vector2(0, -10.3929), Vector2(0, -10.3999), Vector2(0, -10.3894), Vector2(0, -10.3619), Vector2(0, -10.3186), Vector2(0, -10.2614), Vector2(0, -10.1927), Vector2(0, -10.1156), Vector2(0, -10.0335), Vector2(0, -9.9499), Vector2(0, -9.8685), Vector2(0, -9.7928), Vector2(0, -9.7262), Vector2(0, -9.6715), Vector2(0, -9.6313), Vector2(0, -9.6071), Vector2(0, -9.6001), Vector2(0, -9.6106), Vector2(0, -9.6381), Vector2(0, -9.6814), Vector2(0, -9.7386), Vector2(0, -9.8073), Vector2(0, -9.8844), Vector2(0, -9.9665), Vector2(0, -10.0501), Vector2(0, -10.1315), Vector2(0, -10.2072), Vector2(0, -10.2738), Vector2(0, -10.3285), Vector2(0, -10.3687), Vector2(0, -10.3929), Vector2(0, -10.3999), Vector2(0, -10.3894), Vector2(0, -10.3619), Vector2(0, -10.3186), Vector2(0, -10.2614), Vector2(0, -10.1927), Vector2(0, -10.1156), Vector2(0, -10.0335), Vector2(0, -9.9499), Vector2(0, -9.8685), Vector2(0, -9.7928), Vector2(0, -9.7262), Vector2(0, -9.6715), Vector2(0, -9.6313), Vector2(0, -9.6071), Vector2(0, -9.6001), Vector2(0, -9.6106), Vector2(0, -9.6381), Vector2(0, -9.6814), Vector2(0, -9.7386), Vector2(0, -9.8073), Vector2(0, -9.8844), Vector2(0, -9.9665), Vector2(0, -10.0501)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Rig/HIPS/LEG_R_thigh:rotation")
+tracks/2/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0, 0.0014, 0.0028, 0.0042, 0.0056, 0.0068, 0.008, 0.0092, 0.0102, 0.0111, 0.0118, 0.0125, 0.013, 0.0134, 0.0136, 0.0137, 0.0136, 0.0134, 0.013, 0.0125, 0.0118, 0.0111, 0.0102, 0.0092, 0.008, 0.0068, 0.0056, 0.0042, 0.0028, 0.0014, 0, -0.0014, -0.0028, -0.0042, -0.0056, -0.0068, -0.008, -0.0092, -0.0102, -0.0111, -0.0118, -0.0125, -0.013, -0.0134, -0.0136, -0.0137, -0.0136, -0.0134, -0.013, -0.0125, -0.0118, -0.0111, -0.0102, -0.0092, -0.008, -0.0068, -0.0056, -0.0042, -0.0028, -0.0014, 0]
+"values": [Vector2(1, 1), Vector2(1, 1.0012), Vector2(1, 1.0024), Vector2(1, 1.0035), Vector2(1, 1.0045), Vector2(1, 1.0052), Vector2(1, 1.0057), Vector2(1, 1.006), Vector2(1, 1.006), Vector2(1, 1.0057), Vector2(1, 1.0052), Vector2(1, 1.0045), Vector2(1, 1.0035), Vector2(1, 1.0024), Vector2(1, 1.0012), Vector2(1, 1), Vector2(1, 0.9988), Vector2(1, 0.9976), Vector2(1, 0.9965), Vector2(1, 0.9955), Vector2(1, 0.9948), Vector2(1, 0.9943), Vector2(1, 0.994), Vector2(1, 0.994), Vector2(1, 0.9943), Vector2(1, 0.9948), Vector2(1, 0.9955), Vector2(1, 0.9965), Vector2(1, 0.9976), Vector2(1, 0.9988), Vector2(1, 1), Vector2(1, 1.0012), Vector2(1, 1.0024), Vector2(1, 1.0035), Vector2(1, 1.0045), Vector2(1, 1.0052), Vector2(1, 1.0057), Vector2(1, 1.006), Vector2(1, 1.006), Vector2(1, 1.0057), Vector2(1, 1.0052), Vector2(1, 1.0045), Vector2(1, 1.0035), Vector2(1, 1.0024), Vector2(1, 1.0012), Vector2(1, 1), Vector2(1, 0.9988), Vector2(1, 0.9976), Vector2(1, 0.9965), Vector2(1, 0.9955), Vector2(1, 0.9948), Vector2(1, 0.9943), Vector2(1, 0.994), Vector2(1, 0.994), Vector2(1, 0.9943), Vector2(1, 0.9948), Vector2(1, 0.9955), Vector2(1, 0.9965), Vector2(1, 0.9976), Vector2(1, 0.9988), Vector2(1, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant:rotation")
+tracks/3/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0, -0.001, -0.002, -0.003, -0.0039, -0.0048, -0.0056, -0.0064, -0.0071, -0.0078, -0.0083, -0.0088, -0.0091, -0.0094, -0.0095, -0.0096, -0.0095, -0.0094, -0.0091, -0.0088, -0.0083, -0.0078, -0.0071, -0.0064, -0.0056, -0.0048, -0.0039, -0.003, -0.002, -0.001, 0, 0.001, 0.002, 0.003, 0.0039, 0.0048, 0.0056, 0.0064, 0.0071, 0.0078, 0.0083, 0.0088, 0.0091, 0.0094, 0.0095, 0.0096, 0.0095, 0.0094, 0.0091, 0.0088, 0.0083, 0.0078, 0.0071, 0.0064, 0.0056, 0.0048, 0.0039, 0.003, 0.002, 0.001, 0]
+"values": [0, -0.0009, -0.0018, -0.0027, -0.0035, -0.0044, -0.0051, -0.0058, -0.0065, -0.0071, -0.0076, -0.008, -0.0083, -0.0085, -0.0087, -0.0087, -0.0087, -0.0085, -0.0083, -0.008, -0.0076, -0.0071, -0.0065, -0.0058, -0.0051, -0.0044, -0.0035, -0.0027, -0.0018, -0.0009, 0, 0.0009, 0.0018, 0.0027, 0.0035, 0.0044, 0.0051, 0.0058, 0.0065, 0.0071, 0.0076, 0.008, 0.0083, 0.0085, 0.0087, 0.0087, 0.0087, 0.0085, 0.0083, 0.008, 0.0076, 0.0071, 0.0065, 0.0058, 0.0051, 0.0044, 0.0035, 0.0027, 0.0018, 0.0009, 0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant:scale")
+tracks/4/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1.0021), Vector2(1, 1.0041), Vector2(1, 1.0059), Vector2(1, 1.0074), Vector2(1, 1.0087), Vector2(1, 1.0095), Vector2(1, 1.0099), Vector2(1, 1.0099), Vector2(1, 1.0095), Vector2(1, 1.0087), Vector2(1, 1.0074), Vector2(1, 1.0059), Vector2(1, 1.0041), Vector2(1, 1.0021), Vector2(1, 1), Vector2(1, 0.9979), Vector2(1, 0.9959), Vector2(1, 0.9941), Vector2(1, 0.9926), Vector2(1, 0.9913), Vector2(1, 0.9905), Vector2(1, 0.9901), Vector2(1, 0.9901), Vector2(1, 0.9905), Vector2(1, 0.9913), Vector2(1, 0.9926), Vector2(1, 0.9941), Vector2(1, 0.9959), Vector2(1, 0.9979), Vector2(1, 1), Vector2(1, 1.0021), Vector2(1, 1.0041), Vector2(1, 1.0059), Vector2(1, 1.0074), Vector2(1, 1.0087), Vector2(1, 1.0095), Vector2(1, 1.0099), Vector2(1, 1.0099), Vector2(1, 1.0095), Vector2(1, 1.0087), Vector2(1, 1.0074), Vector2(1, 1.0059), Vector2(1, 1.0041), Vector2(1, 1.0021), Vector2(1, 1), Vector2(1, 0.9979), Vector2(1, 0.9959), Vector2(1, 0.9941), Vector2(1, 0.9926), Vector2(1, 0.9913), Vector2(1, 0.9905), Vector2(1, 0.9901), Vector2(1, 0.9901), Vector2(1, 0.9905), Vector2(1, 0.9913), Vector2(1, 0.9926), Vector2(1, 0.9941), Vector2(1, 0.9959), Vector2(1, 0.9979), Vector2(1, 1)]
+"values": [Vector2(5, -115), Vector2(5, -115.1455), Vector2(5, -115.2847), Vector2(5, -115.4114), Vector2(5, -115.5202), Vector2(5, -115.6062), Vector2(5, -115.6657), Vector2(5, -115.6962), Vector2(5, -115.6962), Vector2(5, -115.6657), Vector2(5, -115.6062), Vector2(5, -115.5202), Vector2(5, -115.4114), Vector2(5, -115.2847), Vector2(5, -115.1455), Vector2(5, -115), Vector2(5, -114.8545), Vector2(5, -114.7153), Vector2(5, -114.5886), Vector2(5, -114.4798), Vector2(5, -114.3938), Vector2(5, -114.3343), Vector2(5, -114.3038), Vector2(5, -114.3038), Vector2(5, -114.3343), Vector2(5, -114.3938), Vector2(5, -114.4798), Vector2(5, -114.5886), Vector2(5, -114.7153), Vector2(5, -114.8545), Vector2(5, -115), Vector2(5, -115.1455), Vector2(5, -115.2847), Vector2(5, -115.4114), Vector2(5, -115.5202), Vector2(5, -115.6062), Vector2(5, -115.6657), Vector2(5, -115.6962), Vector2(5, -115.6962), Vector2(5, -115.6657), Vector2(5, -115.6062), Vector2(5, -115.5202), Vector2(5, -115.4114), Vector2(5, -115.2847), Vector2(5, -115.1455), Vector2(5, -115), Vector2(5, -114.8545), Vector2(5, -114.7153), Vector2(5, -114.5886), Vector2(5, -114.4798), Vector2(5, -114.3938), Vector2(5, -114.3343), Vector2(5, -114.3038), Vector2(5, -114.3038), Vector2(5, -114.3343), Vector2(5, -114.3938), Vector2(5, -114.4798), Vector2(5, -114.5886), Vector2(5, -114.7153), Vector2(5, -114.8545), Vector2(5, -115)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper:rotation")
+tracks/5/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/BREASTS_plus_wrap_variant:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [-0.0008, -0.0013, -0.0017, -0.0021, -0.0025, -0.0029, -0.0032, -0.0035, -0.0037, -0.0039, -0.0041, -0.0042, -0.0043, -0.0044, -0.0043, -0.0043, -0.0042, -0.004, -0.0038, -0.0036, -0.0033, -0.003, -0.0026, -0.0023, -0.0019, -0.0014, -0.001, -0.0005, -0.0001, 0.0004, 0.0008, 0.0013, 0.0017, 0.0021, 0.0025, 0.0029, 0.0032, 0.0035, 0.0037, 0.0039, 0.0041, 0.0042, 0.0043, 0.0044, 0.0043, 0.0043, 0.0042, 0.004, 0.0038, 0.0036, 0.0033, 0.003, 0.0026, 0.0023, 0.0019, 0.0014, 0.001, 0.0005, 0.0001, -0.0004, -0.0008]
+"values": [Vector2(-5, -43.362), Vector2(-5, -44.0173), Vector2(-5, -44.7155), Vector2(-5, -45.4261), Vector2(-5, -46.1181), Vector2(-5, -46.7613), Vector2(-5, -47.3275), Vector2(-5, -47.7919), Vector2(-5, -48.1343), Vector2(-5, -48.3398), Vector2(-5, -48.3993), Vector2(-5, -48.3102), Vector2(-5, -48.0764), Vector2(-5, -47.7082), Vector2(-5, -47.2216), Vector2(-5, -46.638), Vector2(-5, -45.9827), Vector2(-5, -45.2845), Vector2(-5, -44.5739), Vector2(-5, -43.8819), Vector2(-5, -43.2387), Vector2(-5, -42.6725), Vector2(-5, -42.2081), Vector2(-5, -41.8657), Vector2(-5, -41.6602), Vector2(-5, -41.6007), Vector2(-5, -41.6898), Vector2(-5, -41.9236), Vector2(-5, -42.2918), Vector2(-5, -42.7784), Vector2(-5, -43.362), Vector2(-5, -44.0173), Vector2(-5, -44.7155), Vector2(-5, -45.4261), Vector2(-5, -46.1181), Vector2(-5, -46.7613), Vector2(-5, -47.3275), Vector2(-5, -47.7919), Vector2(-5, -48.1343), Vector2(-5, -48.3398), Vector2(-5, -48.3993), Vector2(-5, -48.3102), Vector2(-5, -48.0764), Vector2(-5, -47.7082), Vector2(-5, -47.2216), Vector2(-5, -46.638), Vector2(-5, -45.9827), Vector2(-5, -45.2845), Vector2(-5, -44.5739), Vector2(-5, -43.8819), Vector2(-5, -43.2387), Vector2(-5, -42.6725), Vector2(-5, -42.2081), Vector2(-5, -41.8657), Vector2(-5, -41.6602), Vector2(-5, -41.6007), Vector2(-5, -41.6898), Vector2(-5, -41.9236), Vector2(-5, -42.2918), Vector2(-5, -42.7784), Vector2(-5, -43.362)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper:position")
+tracks/6/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/BREASTS_plus_wrap_variant:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-2, -100), Vector2(-2, -100.5406), Vector2(-2, -101.0575), Vector2(-2, -101.5282), Vector2(-2, -101.9322), Vector2(-2, -102.2517), Vector2(-2, -102.4727), Vector2(-2, -102.5858), Vector2(-2, -102.5858), Vector2(-2, -102.4727), Vector2(-2, -102.2517), Vector2(-2, -101.9322), Vector2(-2, -101.5282), Vector2(-2, -101.0575), Vector2(-2, -100.5406), Vector2(-2, -100), Vector2(-2, -99.4594), Vector2(-2, -98.9425), Vector2(-2, -98.4718), Vector2(-2, -98.0678), Vector2(-2, -97.7483), Vector2(-2, -97.5273), Vector2(-2, -97.4142), Vector2(-2, -97.4142), Vector2(-2, -97.5273), Vector2(-2, -97.7483), Vector2(-2, -98.0678), Vector2(-2, -98.4718), Vector2(-2, -98.9425), Vector2(-2, -99.4594), Vector2(-2, -100), Vector2(-2, -100.5406), Vector2(-2, -101.0575), Vector2(-2, -101.5282), Vector2(-2, -101.9322), Vector2(-2, -102.2517), Vector2(-2, -102.4727), Vector2(-2, -102.5858), Vector2(-2, -102.5858), Vector2(-2, -102.4727), Vector2(-2, -102.2517), Vector2(-2, -101.9322), Vector2(-2, -101.5282), Vector2(-2, -101.0575), Vector2(-2, -100.5406), Vector2(-2, -100), Vector2(-2, -99.4594), Vector2(-2, -98.9425), Vector2(-2, -98.4718), Vector2(-2, -98.0678), Vector2(-2, -97.7483), Vector2(-2, -97.5273), Vector2(-2, -97.4142), Vector2(-2, -97.4142), Vector2(-2, -97.5273), Vector2(-2, -97.7483), Vector2(-2, -98.0678), Vector2(-2, -98.4718), Vector2(-2, -98.9425), Vector2(-2, -99.4594), Vector2(-2, -100)]
+"values": [Vector2(0.998, 0.9923), Vector2(0.9997, 0.9954), Vector2(1.0013, 0.9987), Vector2(1.0029, 1.002), Vector2(1.0044, 1.0053), Vector2(1.0057, 1.0083), Vector2(1.0068, 1.011), Vector2(1.0075, 1.0131), Vector2(1.0079, 1.0147), Vector2(1.008, 1.0157), Vector2(1.0077, 1.016), Vector2(1.0071, 1.0156), Vector2(1.0062, 1.0145), Vector2(1.005, 1.0127), Vector2(1.0036, 1.0105), Vector2(1.002, 1.0077), Vector2(1.0003, 1.0046), Vector2(0.9987, 1.0013), Vector2(0.9971, 0.998), Vector2(0.9956, 0.9947), Vector2(0.9943, 0.9917), Vector2(0.9932, 0.989), Vector2(0.9925, 0.9869), Vector2(0.9921, 0.9853), Vector2(0.992, 0.9843), Vector2(0.9923, 0.984), Vector2(0.9929, 0.9844), Vector2(0.9938, 0.9855), Vector2(0.995, 0.9873), Vector2(0.9964, 0.9895), Vector2(0.998, 0.9923), Vector2(0.9997, 0.9954), Vector2(1.0013, 0.9987), Vector2(1.0029, 1.002), Vector2(1.0044, 1.0053), Vector2(1.0057, 1.0083), Vector2(1.0068, 1.011), Vector2(1.0075, 1.0131), Vector2(1.0079, 1.0147), Vector2(1.008, 1.0157), Vector2(1.0077, 1.016), Vector2(1.0071, 1.0156), Vector2(1.0062, 1.0145), Vector2(1.005, 1.0127), Vector2(1.0036, 1.0105), Vector2(1.002, 1.0077), Vector2(1.0003, 1.0046), Vector2(0.9987, 1.0013), Vector2(0.9971, 0.998), Vector2(0.9956, 0.9947), Vector2(0.9943, 0.9917), Vector2(0.9932, 0.989), Vector2(0.9925, 0.9869), Vector2(0.9921, 0.9853), Vector2(0.992, 0.9843), Vector2(0.9923, 0.984), Vector2(0.9929, 0.9844), Vector2(0.9938, 0.9855), Vector2(0.995, 0.9873), Vector2(0.9964, 0.9895), Vector2(0.998, 0.9923)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/BREASTS_plus_wrap_variant:position")
+tracks/7/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-8, -94.3374), Vector2(-8, -94.6998), Vector2(-8, -95.0754), Vector2(-8, -95.4476), Vector2(-8, -95.8003), Vector2(-8, -96.1181), Vector2(-8, -96.3869), Vector2(-8, -96.5952), Vector2(-8, -96.7337), Vector2(-8, -96.7964), Vector2(-8, -96.7807), Vector2(-8, -96.6871), Vector2(-8, -96.5198), Vector2(-8, -96.2861), Vector2(-8, -95.9961), Vector2(-8, -95.6626), Vector2(-8, -95.3002), Vector2(-8, -94.9246), Vector2(-8, -94.5524), Vector2(-8, -94.1997), Vector2(-8, -93.8819), Vector2(-8, -93.6131), Vector2(-8, -93.4048), Vector2(-8, -93.2663), Vector2(-8, -93.2036), Vector2(-8, -93.2193), Vector2(-8, -93.3129), Vector2(-8, -93.4802), Vector2(-8, -93.7139), Vector2(-8, -94.0039), Vector2(-8, -94.3374), Vector2(-8, -94.6998), Vector2(-8, -95.0754), Vector2(-8, -95.4476), Vector2(-8, -95.8003), Vector2(-8, -96.1181), Vector2(-8, -96.3869), Vector2(-8, -96.5952), Vector2(-8, -96.7337), Vector2(-8, -96.7964), Vector2(-8, -96.7807), Vector2(-8, -96.6871), Vector2(-8, -96.5198), Vector2(-8, -96.2861), Vector2(-8, -95.9961), Vector2(-8, -95.6626), Vector2(-8, -95.3002), Vector2(-8, -94.9246), Vector2(-8, -94.5524), Vector2(-8, -94.1997), Vector2(-8, -93.8819), Vector2(-8, -93.6131), Vector2(-8, -93.4048), Vector2(-8, -93.2663), Vector2(-8, -93.2036), Vector2(-8, -93.2193), Vector2(-8, -93.3129), Vector2(-8, -93.4802), Vector2(-8, -93.7139), Vector2(-8, -94.0039), Vector2(-8, -94.3374)]
+"values": [0.0027, 0.0035, 0.0044, 0.0051, 0.0058, 0.0065, 0.0071, 0.0076, 0.008, 0.0083, 0.0085, 0.0087, 0.0087, 0.0087, 0.0085, 0.0083, 0.008, 0.0076, 0.0071, 0.0065, 0.0058, 0.0051, 0.0044, 0.0035, 0.0027, 0.0018, 0.0009, 0, -0.0009, -0.0018, -0.0027, -0.0035, -0.0044, -0.0051, -0.0058, -0.0065, -0.0071, -0.0076, -0.008, -0.0083, -0.0085, -0.0087, -0.0087, -0.0087, -0.0085, -0.0083, -0.008, -0.0076, -0.0071, -0.0065, -0.0058, -0.0051, -0.0044, -0.0035, -0.0027, -0.0018, -0.0009, 0, 0.0009, 0.0018, 0.0027]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/BREASTS_plus_wrap_variant:scale")
+tracks/8/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.9981, 0.9956), Vector2(1.0002, 0.998), Vector2(1.0023, 1.0005), Vector2(1.0043, 1.003), Vector2(1.006, 1.0053), Vector2(1.0076, 1.0075), Vector2(1.0088, 1.0092), Vector2(1.0096, 1.0106), Vector2(1.01, 1.0116), Vector2(1.0099, 1.012), Vector2(1.0094, 1.0119), Vector2(1.0086, 1.0112), Vector2(1.0073, 1.0101), Vector2(1.0057, 1.0086), Vector2(1.0039, 1.0066), Vector2(1.0019, 1.0044), Vector2(0.9998, 1.002), Vector2(0.9977, 0.9995), Vector2(0.9957, 0.997), Vector2(0.994, 0.9947), Vector2(0.9924, 0.9925), Vector2(0.9912, 0.9908), Vector2(0.9904, 0.9894), Vector2(0.99, 0.9884), Vector2(0.9901, 0.988), Vector2(0.9906, 0.9881), Vector2(0.9914, 0.9888), Vector2(0.9927, 0.9899), Vector2(0.9943, 0.9914), Vector2(0.9961, 0.9934), Vector2(0.9981, 0.9956), Vector2(1.0002, 0.998), Vector2(1.0023, 1.0005), Vector2(1.0043, 1.003), Vector2(1.006, 1.0053), Vector2(1.0076, 1.0075), Vector2(1.0088, 1.0092), Vector2(1.0096, 1.0106), Vector2(1.01, 1.0116), Vector2(1.0099, 1.012), Vector2(1.0094, 1.0119), Vector2(1.0086, 1.0112), Vector2(1.0073, 1.0101), Vector2(1.0057, 1.0086), Vector2(1.0039, 1.0066), Vector2(1.0019, 1.0044), Vector2(0.9998, 1.002), Vector2(0.9977, 0.9995), Vector2(0.9957, 0.997), Vector2(0.994, 0.9947), Vector2(0.9924, 0.9925), Vector2(0.9912, 0.9908), Vector2(0.9904, 0.9894), Vector2(0.99, 0.9884), Vector2(0.9901, 0.988), Vector2(0.9906, 0.9881), Vector2(0.9914, 0.9888), Vector2(0.9927, 0.9899), Vector2(0.9943, 0.9914), Vector2(0.9961, 0.9934), Vector2(0.9981, 0.9956)]
+"values": [Vector2(-15, -162.8237), Vector2(-15, -162.878), Vector2(-15, -162.9376), Vector2(-15, -163), Vector2(-15, -163.0624), Vector2(-15, -163.122), Vector2(-15, -163.1763), Vector2(-15, -163.2229), Vector2(-15, -163.2598), Vector2(-15, -163.2853), Vector2(-15, -163.2984), Vector2(-15, -163.2984), Vector2(-15, -163.2853), Vector2(-15, -163.2598), Vector2(-15, -163.2229), Vector2(-15, -163.1763), Vector2(-15, -163.122), Vector2(-15, -163.0624), Vector2(-15, -163), Vector2(-15, -162.9376), Vector2(-15, -162.878), Vector2(-15, -162.8237), Vector2(-15, -162.7771), Vector2(-15, -162.7402), Vector2(-15, -162.7147), Vector2(-15, -162.7016), Vector2(-15, -162.7016), Vector2(-15, -162.7147), Vector2(-15, -162.7402), Vector2(-15, -162.7771), Vector2(-15, -162.8237), Vector2(-15, -162.878), Vector2(-15, -162.9376), Vector2(-15, -163), Vector2(-15, -163.0624), Vector2(-15, -163.122), Vector2(-15, -163.1763), Vector2(-15, -163.2229), Vector2(-15, -163.2598), Vector2(-15, -163.2853), Vector2(-15, -163.2984), Vector2(-15, -163.2984), Vector2(-15, -163.2853), Vector2(-15, -163.2598), Vector2(-15, -163.2229), Vector2(-15, -163.1763), Vector2(-15, -163.122), Vector2(-15, -163.0624), Vector2(-15, -163), Vector2(-15, -162.9376), Vector2(-15, -162.878), Vector2(-15, -162.8237), Vector2(-15, -162.7771), Vector2(-15, -162.7402), Vector2(-15, -162.7147), Vector2(-15, -162.7016), Vector2(-15, -162.7016), Vector2(-15, -162.7147), Vector2(-15, -162.7402), Vector2(-15, -162.7771), Vector2(-15, -162.8237)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair:rotation")
+tracks/9/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair/HAT_main:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0082, 0.0085, 0.0086, 0.0086, 0.0086, 0.0085, 0.0082, 0.0079, 0.0075, 0.007, 0.0064, 0.0058, 0.0051, 0.0043, 0.0035, 0.0027, 0.0018, 0.0009, 0, -0.0009, -0.0018, -0.0027, -0.0035, -0.0043, -0.0051, -0.0058, -0.0064, -0.007, -0.0075, -0.0079, -0.0082, -0.0085, -0.0086, -0.0086, -0.0086, -0.0085, -0.0082, -0.0079, -0.0075, -0.007, -0.0064, -0.0058, -0.0051, -0.0043, -0.0035, -0.0027, -0.0018, -0.0009, 0, 0.0009, 0.0018, 0.0027, 0.0035, 0.0043, 0.0051, 0.0058, 0.0064, 0.007, 0.0075, 0.0079, 0.0082]
+"values": [0.006, 0.0066, 0.0072, 0.0076, 0.008, 0.0084, 0.0086, 0.0087, 0.0087, 0.0087, 0.0085, 0.0082, 0.0079, 0.0075, 0.007, 0.0064, 0.0057, 0.005, 0.0042, 0.0034, 0.0025, 0.0016, 0.0007, -0.0002, -0.0011, -0.002, -0.0029, -0.0037, -0.0045, -0.0053, -0.006, -0.0066, -0.0072, -0.0076, -0.008, -0.0084, -0.0086, -0.0087, -0.0087, -0.0087, -0.0085, -0.0082, -0.0079, -0.0075, -0.007, -0.0064, -0.0057, -0.005, -0.0042, -0.0034, -0.0025, -0.0016, -0.0007, 0.0002, 0.0011, 0.002, 0.0029, 0.0037, 0.0045, 0.0053, 0.006]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair:position")
+tracks/10/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair/HAT_main/HAT_charm:rotation")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-8, -179.6473), Vector2(-8, -179.756), Vector2(-8, -179.8753), Vector2(-8, -180), Vector2(-8, -180.1247), Vector2(-8, -180.244), Vector2(-8, -180.3527), Vector2(-8, -180.4459), Vector2(-8, -180.5196), Vector2(-8, -180.5706), Vector2(-8, -180.5967), Vector2(-8, -180.5967), Vector2(-8, -180.5706), Vector2(-8, -180.5196), Vector2(-8, -180.4459), Vector2(-8, -180.3527), Vector2(-8, -180.244), Vector2(-8, -180.1247), Vector2(-8, -180), Vector2(-8, -179.8753), Vector2(-8, -179.756), Vector2(-8, -179.6473), Vector2(-8, -179.5541), Vector2(-8, -179.4804), Vector2(-8, -179.4294), Vector2(-8, -179.4033), Vector2(-8, -179.4033), Vector2(-8, -179.4294), Vector2(-8, -179.4804), Vector2(-8, -179.5541), Vector2(-8, -179.6473), Vector2(-8, -179.756), Vector2(-8, -179.8753), Vector2(-8, -180), Vector2(-8, -180.1247), Vector2(-8, -180.244), Vector2(-8, -180.3527), Vector2(-8, -180.4459), Vector2(-8, -180.5196), Vector2(-8, -180.5706), Vector2(-8, -180.5967), Vector2(-8, -180.5967), Vector2(-8, -180.5706), Vector2(-8, -180.5196), Vector2(-8, -180.4459), Vector2(-8, -180.3527), Vector2(-8, -180.244), Vector2(-8, -180.1247), Vector2(-8, -180), Vector2(-8, -179.8753), Vector2(-8, -179.756), Vector2(-8, -179.6473), Vector2(-8, -179.5541), Vector2(-8, -179.4804), Vector2(-8, -179.4294), Vector2(-8, -179.4033), Vector2(-8, -179.4033), Vector2(-8, -179.4294), Vector2(-8, -179.4804), Vector2(-8, -179.5541), Vector2(-8, -179.6473)]
+"values": [0.0232, 0.0439, 0.0622, 0.0762, 0.0846, 0.0862, 0.0808, 0.0687, 0.051, 0.0291, 0.0051, -0.019, -0.041, -0.059, -0.0715, -0.0774, -0.0763, -0.0687, -0.0554, -0.0379, -0.0182, 0.0018, 0.0199, 0.0342, 0.0432, 0.0459, 0.0421, 0.032, 0.0167, -0.0023, -0.0232, -0.0439, -0.0622, -0.0762, -0.0846, -0.0862, -0.0808, -0.0687, -0.051, -0.0291, -0.0051, 0.019, 0.041, 0.059, 0.0715, 0.0774, 0.0763, 0.0687, 0.0554, 0.0379, 0.0182, -0.0018, -0.0199, -0.0342, -0.0432, -0.0459, -0.0421, -0.032, -0.0167, 0.0023, 0.0232]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair/HAT_main:rotation")
+tracks/11/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair/HAIR_back:rotation")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0042, 0.0049, 0.0056, 0.0063, 0.0069, 0.0074, 0.0078, 0.0082, 0.0084, 0.0086, 0.0086, 0.0086, 0.0085, 0.0083, 0.008, 0.0076, 0.0071, 0.0065, 0.0059, 0.0052, 0.0045, 0.0037, 0.0028, 0.002, 0.0011, 0.0002, -0.0007, -0.0016, -0.0025, -0.0033, -0.0042, -0.0049, -0.0056, -0.0063, -0.0069, -0.0074, -0.0078, -0.0082, -0.0084, -0.0086, -0.0086, -0.0086, -0.0085, -0.0083, -0.008, -0.0076, -0.0071, -0.0065, -0.0059, -0.0052, -0.0045, -0.0037, -0.0028, -0.002, -0.0011, -0.0002, 0.0007, 0.0016, 0.0025, 0.0033, 0.0042]
+"values": [0.0059, 0.007, 0.008, 0.0089, 0.0097, 0.0105, 0.0111, 0.0115, 0.0119, 0.0121, 0.0122, 0.0122, 0.012, 0.0117, 0.0113, 0.0107, 0.01, 0.0092, 0.0084, 0.0074, 0.0063, 0.0052, 0.004, 0.0028, 0.0015, 0.0003, -0.001, -0.0023, -0.0035, -0.0047, -0.0059, -0.007, -0.008, -0.0089, -0.0097, -0.0105, -0.0111, -0.0115, -0.0119, -0.0121, -0.0122, -0.0122, -0.012, -0.0117, -0.0113, -0.0107, -0.01, -0.0092, -0.0084, -0.0074, -0.0063, -0.0052, -0.004, -0.0028, -0.0015, -0.0003, 0.001, 0.0023, 0.0035, 0.0047, 0.0059]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair/HAT_main/HAT_charm:rotation")
+tracks/12/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair/HAIR_back:scale")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0228, 0.0427, 0.0603, 0.0738, 0.0817, 0.0833, 0.078, 0.0664, 0.0493, 0.0282, 0.005, -0.0183, -0.0395, -0.0569, -0.0689, -0.0746, -0.0737, -0.0664, -0.0536, -0.0368, -0.0178, 0.0013, 0.0187, 0.0324, 0.0411, 0.0437, 0.04, 0.0304, 0.0156, -0.0027, -0.0228, -0.0427, -0.0603, -0.0738, -0.0817, -0.0833, -0.078, -0.0664, -0.0493, -0.0282, -0.005, 0.0183, 0.0395, 0.0569, 0.0689, 0.0746, 0.0737, 0.0664, 0.0536, 0.0368, 0.0178, -0.0013, -0.0187, -0.0324, -0.0411, -0.0437, -0.04, -0.0304, -0.0156, 0.0027, 0.0228]
+"values": [Vector2(1, 0.9973), Vector2(1, 0.9979), Vector2(1, 0.9987), Vector2(1, 0.9995), Vector2(1, 1.0003), Vector2(1, 1.0012), Vector2(1, 1.0019), Vector2(1, 1.0026), Vector2(1, 1.0032), Vector2(1, 1.0036), Vector2(1, 1.0039), Vector2(1, 1.004), Vector2(1, 1.0039), Vector2(1, 1.0037), Vector2(1, 1.0033), Vector2(1, 1.0027), Vector2(1, 1.0021), Vector2(1, 1.0013), Vector2(1, 1.0005), Vector2(1, 0.9997), Vector2(1, 0.9988), Vector2(1, 0.9981), Vector2(1, 0.9974), Vector2(1, 0.9968), Vector2(1, 0.9964), Vector2(1, 0.9961), Vector2(1, 0.996), Vector2(1, 0.9961), Vector2(1, 0.9963), Vector2(1, 0.9967), Vector2(1, 0.9973), Vector2(1, 0.9979), Vector2(1, 0.9987), Vector2(1, 0.9995), Vector2(1, 1.0003), Vector2(1, 1.0012), Vector2(1, 1.0019), Vector2(1, 1.0026), Vector2(1, 1.0032), Vector2(1, 1.0036), Vector2(1, 1.0039), Vector2(1, 1.004), Vector2(1, 1.0039), Vector2(1, 1.0037), Vector2(1, 1.0033), Vector2(1, 1.0027), Vector2(1, 1.0021), Vector2(1, 1.0013), Vector2(1, 1.0005), Vector2(1, 0.9997), Vector2(1, 0.9988), Vector2(1, 0.9981), Vector2(1, 0.9974), Vector2(1, 0.9968), Vector2(1, 0.9964), Vector2(1, 0.9961), Vector2(1, 0.996), Vector2(1, 0.9961), Vector2(1, 0.9963), Vector2(1, 0.9967), Vector2(1, 0.9973)]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair/HAIR_back:rotation")
+tracks/13/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair/HAIR_side_L:rotation")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0013, 0.0024, 0.0035, 0.0045, 0.0055, 0.0064, 0.0072, 0.008, 0.0087, 0.0093, 0.0097, 0.0101, 0.0104, 0.0105, 0.0106, 0.0105, 0.0103, 0.01, 0.0096, 0.009, 0.0084, 0.0077, 0.0069, 0.006, 0.0051, 0.0041, 0.0031, 0.002, 0.0009, -0.0002, -0.0013, -0.0024, -0.0035, -0.0045, -0.0055, -0.0064, -0.0072, -0.008, -0.0087, -0.0093, -0.0097, -0.0101, -0.0104, -0.0105, -0.0106, -0.0105, -0.0103, -0.01, -0.0096, -0.009, -0.0084, -0.0077, -0.0069, -0.006, -0.0051, -0.0041, -0.0031, -0.002, -0.0009, 0.0002, 0.0013]
+"values": [0.0142, 0.0157, 0.0169, 0.0177, 0.0181, 0.0182, 0.018, 0.0175, 0.0167, 0.0157, 0.0145, 0.0132, 0.0119, 0.0105, 0.0091, 0.0077, 0.0065, 0.0053, 0.0043, 0.0033, 0.0025, 0.0018, 0.0011, 0.0006, 0, -0.0006, -0.0011, -0.0018, -0.0025, -0.0033, -0.0043, -0.0053, -0.0065, -0.0077, -0.0091, -0.0105, -0.0119, -0.0132, -0.0145, -0.0157, -0.0167, -0.0175, -0.018, -0.0182, -0.0181, -0.0177, -0.0169, -0.0157, -0.0142, -0.0124, -0.0103, -0.0079, -0.0054, -0.0027, 0, 0.0027, 0.0054, 0.0079, 0.0103, 0.0124, 0.0142]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair/HAIR_back:scale")
+tracks/14/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair/HAIR_side_R:rotation")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 0.9959), Vector2(1, 0.9969), Vector2(1, 0.998), Vector2(1, 0.9992), Vector2(1, 1.0005), Vector2(1, 1.0017), Vector2(1, 1.0029), Vector2(1, 1.0039), Vector2(1, 1.0048), Vector2(1, 1.0054), Vector2(1, 1.0058), Vector2(1, 1.006), Vector2(1, 1.0059), Vector2(1, 1.0055), Vector2(1, 1.0049), Vector2(1, 1.0041), Vector2(1, 1.0031), Vector2(1, 1.002), Vector2(1, 1.0008), Vector2(1, 0.9995), Vector2(1, 0.9983), Vector2(1, 0.9971), Vector2(1, 0.9961), Vector2(1, 0.9952), Vector2(1, 0.9946), Vector2(1, 0.9942), Vector2(1, 0.994), Vector2(1, 0.9941), Vector2(1, 0.9945), Vector2(1, 0.9951), Vector2(1, 0.9959), Vector2(1, 0.9969), Vector2(1, 0.998), Vector2(1, 0.9992), Vector2(1, 1.0005), Vector2(1, 1.0017), Vector2(1, 1.0029), Vector2(1, 1.0039), Vector2(1, 1.0048), Vector2(1, 1.0054), Vector2(1, 1.0058), Vector2(1, 1.006), Vector2(1, 1.0059), Vector2(1, 1.0055), Vector2(1, 1.0049), Vector2(1, 1.0041), Vector2(1, 1.0031), Vector2(1, 1.002), Vector2(1, 1.0008), Vector2(1, 0.9995), Vector2(1, 0.9983), Vector2(1, 0.9971), Vector2(1, 0.9961), Vector2(1, 0.9952), Vector2(1, 0.9946), Vector2(1, 0.9942), Vector2(1, 0.994), Vector2(1, 0.9941), Vector2(1, 0.9945), Vector2(1, 0.9951), Vector2(1, 0.9959)]
+"values": [0.015, 0.0151, 0.015, 0.0146, 0.014, 0.0132, 0.0123, 0.0113, 0.0103, 0.0093, 0.0083, 0.0074, 0.0066, 0.0058, 0.0052, 0.0047, 0.0042, 0.0039, 0.0035, 0.0032, 0.0029, 0.0025, 0.002, 0.0015, 0.0008, -0.0001, -0.0011, -0.0022, -0.0036, -0.005, -0.0065, -0.0081, -0.0098, -0.0114, -0.0129, -0.0143, -0.0156, -0.0166, -0.0173, -0.0178, -0.0179, -0.0176, -0.017, -0.0161, -0.0148, -0.0131, -0.0112, -0.0091, -0.0068, -0.0043, -0.0018, 0.0007, 0.0032, 0.0055, 0.0077, 0.0097, 0.0113, 0.0127, 0.0138, 0.0146, 0.015]
 }
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair/HAIR_side_L:rotation")
+tracks/15/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper:rotation")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0026, 0.0045, 0.0061, 0.0074, 0.0086, 0.0095, 0.0102, 0.0107, 0.011, 0.0112, 0.0112, 0.0112, 0.0111, 0.0109, 0.0108, 0.0107, 0.0106, 0.0105, 0.0105, 0.0105, 0.0106, 0.0106, 0.0107, 0.0106, 0.0105, 0.0103, 0.0099, 0.0094, 0.0086, 0.0077, 0.0065, 0.0051, 0.0035, 0.0017, -0.0003, -0.0024, -0.0046, -0.0068, -0.009, -0.0112, -0.0132, -0.0151, -0.0167, -0.0181, -0.0191, -0.0198, -0.0201, -0.0201, -0.0197, -0.0189, -0.0177, -0.0163, -0.0146, -0.0126, -0.0105, -0.0083, -0.006, -0.0037, -0.0015, 0.0006, 0.0026]
+"values": [-0.0027, -0.0009, 0.0009, 0.0027, 0.0044, 0.0058, 0.0071, 0.008, 0.0085, 0.0087, 0.0085, 0.008, 0.0071, 0.0058, 0.0044, 0.0027, 0.0009, -0.0009, -0.0027, -0.0044, -0.0058, -0.0071, -0.008, -0.0085, -0.0087, -0.0085, -0.008, -0.0071, -0.0058, -0.0044, -0.0027, -0.0009, 0.0009, 0.0027, 0.0044, 0.0058, 0.0071, 0.008, 0.0085, 0.0087, 0.0085, 0.008, 0.0071, 0.0058, 0.0044, 0.0027, 0.0009, -0.0009, -0.0027, -0.0044, -0.0058, -0.0071, -0.008, -0.0085, -0.0087, -0.0085, -0.008, -0.0071, -0.0058, -0.0044, -0.0027]
 }
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair/HAIR_side_R:rotation")
+tracks/16/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper/ARM_L_forearm_hand:rotation")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0072, 0.0079, 0.0084, 0.0087, 0.0088, 0.0089, 0.0089, 0.0088, 0.0087, 0.0086, 0.0086, 0.0086, 0.0086, 0.0087, 0.0089, 0.0091, 0.0094, 0.0096, 0.0099, 0.01, 0.0101, 0.01, 0.0098, 0.0094, 0.0088, 0.008, 0.0069, 0.0056, 0.0041, 0.0024, 0.0005, -0.0015, -0.0036, -0.0057, -0.0078, -0.0099, -0.0118, -0.0136, -0.0151, -0.0164, -0.0173, -0.0179, -0.0182, -0.0181, -0.0177, -0.0169, -0.0158, -0.0144, -0.0128, -0.011, -0.0091, -0.0071, -0.005, -0.003, -0.0011, 0.0008, 0.0025, 0.004, 0.0053, 0.0063, 0.0072]
+"values": [-0.0071, -0.0058, -0.0044, -0.0027, -0.0009, 0.0009, 0.0027, 0.0044, 0.0058, 0.0071, 0.008, 0.0085, 0.0087, 0.0085, 0.008, 0.0071, 0.0058, 0.0044, 0.0027, 0.0009, -0.0009, -0.0027, -0.0044, -0.0058, -0.0071, -0.008, -0.0085, -0.0087, -0.0085, -0.008, -0.0071, -0.0058, -0.0044, -0.0027, -0.0009, 0.0009, 0.0027, 0.0044, 0.0058, 0.0071, 0.008, 0.0085, 0.0087, 0.0085, 0.008, 0.0071, 0.0058, 0.0044, 0.0027, 0.0009, -0.0009, -0.0027, -0.0044, -0.0058, -0.0071, -0.008, -0.0085, -0.0087, -0.0085, -0.008, -0.0071]
 }
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper:rotation")
+tracks/17/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper/SLEEVE_L:rotation")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [-0.0033, -0.0011, 0.0011, 0.0033, 0.0053, 0.0071, 0.0085, 0.0096, 0.0103, 0.0106, 0.0103, 0.0096, 0.0085, 0.0071, 0.0053, 0.0033, 0.0011, -0.0011, -0.0033, -0.0053, -0.0071, -0.0085, -0.0096, -0.0103, -0.0106, -0.0103, -0.0096, -0.0085, -0.0071, -0.0053, -0.0033, -0.0011, 0.0011, 0.0033, 0.0053, 0.0071, 0.0085, 0.0096, 0.0103, 0.0106, 0.0103, 0.0096, 0.0085, 0.0071, 0.0053, 0.0033, 0.0011, -0.0011, -0.0033, -0.0053, -0.0071, -0.0085, -0.0096, -0.0103, -0.0106, -0.0103, -0.0096, -0.0085, -0.0071, -0.0053, -0.0033]
+"values": [-0.012, -0.0103, -0.0078, -0.0049, -0.0015, 0.0022, 0.0061, 0.01, 0.0137, 0.0171, 0.0201, 0.0224, 0.0241, 0.025, 0.025, 0.0242, 0.0226, 0.0202, 0.0171, 0.0134, 0.0093, 0.0049, 0.0004, -0.0041, -0.0084, -0.0123, -0.0157, -0.0185, -0.0205, -0.0218, -0.0223, -0.0219, -0.0208, -0.019, -0.0166, -0.0137, -0.0105, -0.0071, -0.0036, -0.0003, 0.0027, 0.0054, 0.0075, 0.009, 0.0099, 0.0101, 0.0096, 0.0085, 0.0068, 0.0047, 0.0022, -0.0005, -0.0033, -0.006, -0.0084, -0.0105, -0.0121, -0.0131, -0.0134, -0.0131, -0.012]
 }
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper/ARM_L_forearm_hand:rotation")
+tracks/18/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper/ARM_L_forearm_hand/PROP_censer_and_chains:rotation")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [-0.007, -0.0058, -0.0043, -0.0027, -0.0009, 0.0009, 0.0027, 0.0043, 0.0058, 0.007, 0.0079, 0.0085, 0.0086, 0.0085, 0.0079, 0.007, 0.0058, 0.0043, 0.0027, 0.0009, -0.0009, -0.0027, -0.0043, -0.0058, -0.007, -0.0079, -0.0085, -0.0086, -0.0085, -0.0079, -0.007, -0.0058, -0.0043, -0.0027, -0.0009, 0.0009, 0.0027, 0.0043, 0.0058, 0.007, 0.0079, 0.0085, 0.0086, 0.0085, 0.0079, 0.007, 0.0058, 0.0043, 0.0027, 0.0009, -0.0009, -0.0027, -0.0043, -0.0058, -0.007, -0.0079, -0.0085, -0.0086, -0.0085, -0.0079, -0.007]
+"values": [0.0267, 0.0351, 0.0399, 0.0405, 0.0368, 0.0289, 0.0174, 0.0035, -0.0117, -0.0267, -0.0403, -0.0511, -0.0581, -0.0607, -0.0588, -0.0524, -0.0423, -0.0294, -0.0149, -0.0003, 0.0131, 0.024, 0.0315, 0.0349, 0.0339, 0.0289, 0.0203, 0.0092, -0.0033, -0.0157, -0.0267, -0.0351, -0.0399, -0.0405, -0.0368, -0.0289, -0.0174, -0.0035, 0.0117, 0.0267, 0.0403, 0.0511, 0.0581, 0.0607, 0.0588, 0.0524, 0.0423, 0.0294, 0.0149, 0.0003, -0.0131, -0.024, -0.0315, -0.0349, -0.0339, -0.0289, -0.0203, -0.0092, 0.0033, 0.0157, 0.0267]
 }
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper/ARM_L_forearm_hand/PROP_censer_and_chains:rotation")
+tracks/19/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper:rotation")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0254, 0.0334, 0.0381, 0.0387, 0.0352, 0.0277, 0.0169, 0.0037, -0.0107, -0.025, -0.0379, -0.0481, -0.0548, -0.0573, -0.0554, -0.0493, -0.0397, -0.0274, -0.0137, 0.0002, 0.0129, 0.0233, 0.0304, 0.0336, 0.0326, 0.0277, 0.0195, 0.0089, -0.003, -0.0149, -0.0254, -0.0334, -0.0381, -0.0387, -0.0352, -0.0277, -0.0169, -0.0037, 0.0107, 0.025, 0.0379, 0.0481, 0.0548, 0.0573, 0.0554, 0.0493, 0.0397, 0.0274, 0.0137, -0.0002, -0.0129, -0.0233, -0.0304, -0.0336, -0.0326, -0.0277, -0.0195, -0.0089, 0.003, 0.0149, 0.0254]
+"values": [0.0027, 0.0009, -0.0009, -0.0027, -0.0044, -0.0058, -0.0071, -0.008, -0.0085, -0.0087, -0.0085, -0.008, -0.0071, -0.0058, -0.0044, -0.0027, -0.0009, 0.0009, 0.0027, 0.0044, 0.0058, 0.0071, 0.008, 0.0085, 0.0087, 0.0085, 0.008, 0.0071, 0.0058, 0.0044, 0.0027, 0.0009, -0.0009, -0.0027, -0.0044, -0.0058, -0.0071, -0.008, -0.0085, -0.0087, -0.0085, -0.008, -0.0071, -0.0058, -0.0044, -0.0027, -0.0009, 0.0009, 0.0027, 0.0044, 0.0058, 0.0071, 0.008, 0.0085, 0.0087, 0.0085, 0.008, 0.0071, 0.0058, 0.0044, 0.0027]
 }
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper:rotation")
+tracks/20/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/ARM_R_forearm_hand:rotation")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.003, 0.001, -0.001, -0.003, -0.0048, -0.0064, -0.0078, -0.0088, -0.0094, -0.0096, -0.0094, -0.0088, -0.0078, -0.0064, -0.0048, -0.003, -0.001, 0.001, 0.003, 0.0048, 0.0064, 0.0078, 0.0088, 0.0094, 0.0096, 0.0094, 0.0088, 0.0078, 0.0064, 0.0048, 0.003, 0.001, -0.001, -0.003, -0.0048, -0.0064, -0.0078, -0.0088, -0.0094, -0.0096, -0.0094, -0.0088, -0.0078, -0.0064, -0.0048, -0.003, -0.001, 0.001, 0.003, 0.0048, 0.0064, 0.0078, 0.0088, 0.0094, 0.0096, 0.0094, 0.0088, 0.0078, 0.0064, 0.0048, 0.003]
+"values": [-0.0069, -0.0103, -0.0139, -0.0175, -0.0212, -0.0246, -0.0279, -0.0308, -0.0332, -0.0351, -0.0364, -0.037, -0.0368, -0.036, -0.0344, -0.0321, -0.0291, -0.0255, -0.0215, -0.017, -0.0122, -0.0073, -0.0024, 0.0025, 0.0072, 0.0115, 0.0155, 0.0189, 0.0218, 0.0242, 0.0259, 0.027, 0.0276, 0.0276, 0.0272, 0.0264, 0.0252, 0.0239, 0.0223, 0.0208, 0.0192, 0.0177, 0.0163, 0.015, 0.014, 0.0131, 0.0124, 0.0118, 0.0114, 0.0109, 0.0105, 0.0099, 0.0092, 0.0083, 0.0072, 0.0057, 0.0038, 0.0017, -0.0009, -0.0038, -0.0069]
 }
 tracks/21/type = "value"
 tracks/21/imported = false
 tracks/21/enabled = true
-tracks/21/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/ARM_R_forearm_hand:rotation")
+tracks/21/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/ARM_R_forearm_hand/ARM_R_hand:rotation")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0069, 0.0061, 0.005, 0.0037, 0.0022, 0.0006, -0.001, -0.0025, -0.004, -0.0053, -0.0063, -0.0071, -0.0075, -0.0077, -0.0075, -0.0069, -0.0061, -0.005, -0.0037, -0.0022, -0.0006, 0.001, 0.0025, 0.004, 0.0053, 0.0063, 0.0071, 0.0075, 0.0077, 0.0075, 0.0069, 0.0061, 0.005, 0.0037, 0.0022, 0.0006, -0.001, -0.0025, -0.004, -0.0053, -0.0063, -0.0071, -0.0075, -0.0077, -0.0075, -0.0069, -0.0061, -0.005, -0.0037, -0.0022, -0.0006, 0.001, 0.0025, 0.004, 0.0053, 0.0063, 0.0071, 0.0075, 0.0077, 0.0075, 0.0069]
+"values": [-0.0372, -0.0412, -0.0449, -0.0479, -0.0504, -0.052, -0.0528, -0.0526, -0.0514, -0.0493, -0.0461, -0.042, -0.0369, -0.0312, -0.0247, -0.0178, -0.0105, -0.0031, 0.0043, 0.0115, 0.0184, 0.0248, 0.0305, 0.0355, 0.0396, 0.0429, 0.0452, 0.0466, 0.0471, 0.0468, 0.0458, 0.0441, 0.0419, 0.0393, 0.0364, 0.0333, 0.0302, 0.0271, 0.0241, 0.0213, 0.0188, 0.0164, 0.0144, 0.0125, 0.0108, 0.0092, 0.0076, 0.006, 0.0043, 0.0024, 0.0003, -0.0022, -0.005, -0.0082, -0.0117, -0.0155, -0.0197, -0.024, -0.0284, -0.0329, -0.0372]
 }
 tracks/22/type = "value"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("Rig/HIPS/SKIRT_rear_left:rotation")
+tracks/22/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/ARM_R_forearm_hand/ARM_R_hand/FINGER_R_index:rotation")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0, 0.0009, 0.0018, 0.0027, 0.0035, 0.0043, 0.0051, 0.0058, 0.0064, 0.007, 0.0075, 0.0079, 0.0082, 0.0085, 0.0086, 0.0086, 0.0086, 0.0085, 0.0082, 0.0079, 0.0075, 0.007, 0.0064, 0.0058, 0.0051, 0.0043, 0.0035, 0.0027, 0.0018, 0.0009, 0, -0.0009, -0.0018, -0.0027, -0.0035, -0.0043, -0.0051, -0.0058, -0.0064, -0.007, -0.0075, -0.0079, -0.0082, -0.0085, -0.0086, -0.0086, -0.0086, -0.0085, -0.0082, -0.0079, -0.0075, -0.007, -0.0064, -0.0058, -0.0051, -0.0043, -0.0035, -0.0027, -0.0018, -0.0009, 0]
+"values": [-0.0723, -0.074, -0.0745, -0.0734, -0.071, -0.0671, -0.0617, -0.0551, -0.0472, -0.0383, -0.0286, -0.0183, -0.0077, 0.0031, 0.0136, 0.0238, 0.0332, 0.0418, 0.0493, 0.0557, 0.0607, 0.0644, 0.0668, 0.0678, 0.0676, 0.0662, 0.0638, 0.0606, 0.0567, 0.0524, 0.0477, 0.0429, 0.0382, 0.0336, 0.0293, 0.0254, 0.0219, 0.0188, 0.0161, 0.0137, 0.0116, 0.0096, 0.0077, 0.0056, 0.0034, 0.0009, -0.0021, -0.0055, -0.0095, -0.014, -0.0191, -0.0246, -0.0305, -0.0367, -0.043, -0.0492, -0.0551, -0.0606, -0.0654, -0.0694, -0.0723]
 }
 tracks/23/type = "value"
 tracks/23/imported = false
 tracks/23/enabled = true
-tracks/23/path = NodePath("Rig/HIPS/SKIRT_rear_right:rotation")
+tracks/23/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/ARM_R_forearm_hand/ARM_R_hand/FINGER_R_middle:rotation")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0037, 0.0044, 0.005, 0.0056, 0.0061, 0.0066, 0.0069, 0.0073, 0.0075, 0.0076, 0.0077, 0.0077, 0.0075, 0.0074, 0.0071, 0.0067, 0.0063, 0.0058, 0.0053, 0.0046, 0.004, 0.0033, 0.0025, 0.0018, 0.001, 0.0002, -0.0006, -0.0014, -0.0022, -0.003, -0.0037, -0.0044, -0.005, -0.0056, -0.0061, -0.0066, -0.0069, -0.0073, -0.0075, -0.0076, -0.0077, -0.0077, -0.0075, -0.0074, -0.0071, -0.0067, -0.0063, -0.0058, -0.0053, -0.0046, -0.004, -0.0033, -0.0025, -0.0018, -0.001, -0.0002, 0.0006, 0.0014, 0.0022, 0.003, 0.0037]
+"values": [-0.0884, -0.0853, -0.0805, -0.0741, -0.066, -0.0565, -0.0456, -0.0338, -0.0211, -0.008, 0.0053, 0.0185, 0.0313, 0.0433, 0.0544, 0.0642, 0.0726, 0.0794, 0.0845, 0.0879, 0.0897, 0.0898, 0.0883, 0.0855, 0.0814, 0.0764, 0.0706, 0.0643, 0.0576, 0.0509, 0.0442, 0.0378, 0.0317, 0.0261, 0.0209, 0.0163, 0.0122, 0.0085, 0.0051, 0.0019, -0.0012, -0.0044, -0.0078, -0.0114, -0.0155, -0.02, -0.025, -0.0305, -0.0365, -0.0429, -0.0495, -0.0563, -0.063, -0.0694, -0.0753, -0.0805, -0.0848, -0.0878, -0.0896, -0.0898, -0.0884]
 }
 tracks/24/type = "value"
 tracks/24/imported = false
 tracks/24/enabled = true
-tracks/24/path = NodePath("Rig/HIPS/CLOTH_front_skirt_panel:rotation")
+tracks/24/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/ARM_R_forearm_hand/ARM_R_hand/FINGER_R_ring:rotation")
 tracks/24/interp = 1
 tracks/24/loop_wrap = true
 tracks/24/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0054, 0.0058, 0.0061, 0.0064, 0.0066, 0.0067, 0.0067, 0.0067, 0.0066, 0.0064, 0.0061, 0.0058, 0.0054, 0.005, 0.0045, 0.0039, 0.0034, 0.0027, 0.0021, 0.0014, 0.0007, 0, -0.0007, -0.0014, -0.0021, -0.0027, -0.0034, -0.0039, -0.0045, -0.005, -0.0054, -0.0058, -0.0061, -0.0064, -0.0066, -0.0067, -0.0067, -0.0067, -0.0066, -0.0064, -0.0061, -0.0058, -0.0054, -0.005, -0.0045, -0.0039, -0.0034, -0.0027, -0.0021, -0.0014, -0.0007, 0, 0.0007, 0.0014, 0.0021, 0.0027, 0.0034, 0.0039, 0.0045, 0.005, 0.0054]
+"values": [-0.0843, -0.0749, -0.0638, -0.0512, -0.0373, -0.0225, -0.0069, 0.0089, 0.0246, 0.0399, 0.0545, 0.0679, 0.08, 0.0904, 0.099, 0.1055, 0.11, 0.1124, 0.1128, 0.1112, 0.1079, 0.1029, 0.0966, 0.0892, 0.081, 0.0722, 0.0632, 0.0541, 0.0452, 0.0366, 0.0286, 0.0211, 0.0143, 0.0081, 0.0026, -0.0024, -0.0069, -0.0112, -0.0153, -0.0194, -0.0236, -0.028, -0.0328, -0.0381, -0.0437, -0.0498, -0.0562, -0.0629, -0.0698, -0.0765, -0.0831, -0.089, -0.0943, -0.0986, -0.1016, -0.1031, -0.1031, -0.1012, -0.0975, -0.0919, -0.0843]
 }
 tracks/25/type = "value"
 tracks/25/imported = false
 tracks/25/enabled = true
-tracks/25/path = NodePath("Rig/HIPS/HIP_ornaments_left:rotation")
+tracks/25/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/ARM_R_forearm_hand/ARM_R_hand/FINGER_R_pinky:rotation")
 tracks/25/interp = 1
 tracks/25/loop_wrap = true
 tracks/25/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0274, 0.0298, 0.0294, 0.0263, 0.0208, 0.0137, 0.0056, -0.0025, -0.0098, -0.0155, -0.0191, -0.02, -0.0183, -0.0139, -0.0074, 0.0007, 0.0095, 0.0183, 0.0261, 0.0321, 0.0357, 0.0366, 0.0345, 0.0297, 0.0226, 0.0137, 0.0039, -0.0059, -0.0149, -0.0223, -0.0274, -0.0298, -0.0294, -0.0263, -0.0208, -0.0137, -0.0056, 0.0025, 0.0098, 0.0155, 0.0191, 0.02, 0.0183, 0.0139, 0.0074, -0.0007, -0.0095, -0.0183, -0.0261, -0.0321, -0.0357, -0.0366, -0.0345, -0.0297, -0.0226, -0.0137, -0.0039, 0.0059, 0.0149, 0.0223, 0.0274]
+"values": [-0.0547, -0.039, -0.0221, -0.0044, 0.0137, 0.0318, 0.0496, 0.0665, 0.0823, 0.0965, 0.1089, 0.1192, 0.1271, 0.1327, 0.1358, 0.1364, 0.1347, 0.1307, 0.1248, 0.1171, 0.108, 0.0977, 0.0866, 0.075, 0.0632, 0.0515, 0.0402, 0.0294, 0.0194, 0.0101, 0.0017, -0.0059, -0.0126, -0.0187, -0.0242, -0.0292, -0.0339, -0.0386, -0.0433, -0.0481, -0.0532, -0.0586, -0.0644, -0.0705, -0.0769, -0.0834, -0.0898, -0.096, -0.1017, -0.1066, -0.1106, -0.1133, -0.1145, -0.114, -0.1116, -0.1072, -0.1007, -0.0921, -0.0815, -0.069, -0.0547]
 }
 tracks/26/type = "value"
 tracks/26/imported = false
 tracks/26/enabled = true
-tracks/26/path = NodePath("Rig/HIPS/HIP_ornaments_right:rotation")
+tracks/26/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/SLEEVE_R:rotation")
 tracks/26/interp = 1
 tracks/26/loop_wrap = true
 tracks/26/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.018, 0.0094, 0.0006, -0.0073, -0.0138, -0.018, -0.0197, -0.0186, -0.015, -0.0092, -0.0018, 0.0064, 0.0145, 0.0217, 0.0272, 0.0304, 0.0308, 0.0284, 0.0233, 0.0159, 0.0069, -0.003, -0.0128, -0.0217, -0.0289, -0.0338, -0.0359, -0.0352, -0.0316, -0.0257, -0.018, -0.0094, -0.0006, 0.0073, 0.0138, 0.018, 0.0197, 0.0186, 0.015, 0.0092, 0.0018, -0.0064, -0.0145, -0.0217, -0.0272, -0.0304, -0.0308, -0.0284, -0.0233, -0.0159, -0.0069, 0.003, 0.0128, 0.0217, 0.0289, 0.0338, 0.0359, 0.0352, 0.0316, 0.0257, 0.018]
+"values": [0.0245, 0.0246, 0.0239, 0.0224, 0.0202, 0.0174, 0.0141, 0.0105, 0.0067, 0.0029, -0.0008, -0.0041, -0.0071, -0.0095, -0.0112, -0.0123, -0.0127, -0.0124, -0.0114, -0.0099, -0.0078, -0.0054, -0.0027, 0, 0.0027, 0.0052, 0.0073, 0.009, 0.0101, 0.0106, 0.0104, 0.0095, 0.008, 0.0058, 0.0031, 0, -0.0033, -0.0069, -0.0104, -0.0137, -0.0167, -0.0192, -0.0212, -0.0224, -0.0229, -0.0226, -0.0214, -0.0195, -0.0168, -0.0135, -0.0096, -0.0054, -0.0009, 0.0036, 0.0081, 0.0123, 0.016, 0.0192, 0.0218, 0.0236, 0.0245]
 }
 tracks/27/type = "value"
 tracks/27/imported = false
 tracks/27/enabled = true
-tracks/27/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper/SLEEVE_L_back:rotation")
+tracks/27/path = NodePath("Rig/HIPS/SKIRT_rear_left:rotation")
 tracks/27/interp = 1
 tracks/27/loop_wrap = true
 tracks/27/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [-0.0125, -0.0108, -0.0085, -0.0056, -0.0023, 0.0013, 0.0051, 0.009, 0.0126, 0.016, 0.0189, 0.0213, 0.0229, 0.0238, 0.0239, 0.0232, 0.0216, 0.0193, 0.0163, 0.0128, 0.0088, 0.0045, 0.0002, -0.0042, -0.0083, -0.0121, -0.0154, -0.018, -0.0199, -0.0211, -0.0215, -0.0211, -0.0199, -0.018, -0.0156, -0.0127, -0.0095, -0.0061, -0.0026, 0.0006, 0.0037, 0.0063, 0.0083, 0.0098, 0.0106, 0.0108, 0.0102, 0.009, 0.0073, 0.0051, 0.0026, -0.0002, -0.003, -0.0058, -0.0083, -0.0105, -0.0122, -0.0133, -0.0137, -0.0134, -0.0125]
+"values": [0.0072, 0.0079, 0.0084, 0.0087, 0.0089, 0.0089, 0.0088, 0.0087, 0.0084, 0.0081, 0.0078, 0.0074, 0.0071, 0.0069, 0.0066, 0.0064, 0.0063, 0.0061, 0.006, 0.0059, 0.0058, 0.0056, 0.0054, 0.0051, 0.0047, 0.0041, 0.0035, 0.0027, 0.0017, 0.0007, -0.0005, -0.0018, -0.0032, -0.0046, -0.0061, -0.0075, -0.0088, -0.0101, -0.0112, -0.0122, -0.013, -0.0135, -0.0138, -0.0138, -0.0136, -0.0131, -0.0123, -0.0113, -0.0101, -0.0087, -0.0072, -0.0056, -0.0039, -0.0022, -0.0006, 0.0011, 0.0026, 0.004, 0.0052, 0.0063, 0.0072]
 }
 tracks/28/type = "value"
 tracks/28/imported = false
 tracks/28/enabled = true
-tracks/28/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper/SLEEVE_L_front:rotation")
+tracks/28/path = NodePath("Rig/HIPS/SKIRT_rear_right:rotation")
 tracks/28/interp = 1
 tracks/28/loop_wrap = true
 tracks/28/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [-0.0125, -0.0108, -0.0085, -0.0056, -0.0023, 0.0013, 0.0051, 0.009, 0.0126, 0.016, 0.0189, 0.0213, 0.0229, 0.0238, 0.0239, 0.0232, 0.0216, 0.0193, 0.0163, 0.0128, 0.0088, 0.0045, 0.0002, -0.0042, -0.0083, -0.0121, -0.0154, -0.018, -0.0199, -0.0211, -0.0215, -0.0211, -0.0199, -0.018, -0.0156, -0.0127, -0.0095, -0.0061, -0.0026, 0.0006, 0.0037, 0.0063, 0.0083, 0.0098, 0.0106, 0.0108, 0.0102, 0.009, 0.0073, 0.0051, 0.0026, -0.0002, -0.003, -0.0058, -0.0083, -0.0105, -0.0122, -0.0133, -0.0137, -0.0134, -0.0125]
+"values": [0.0067, 0.0073, 0.0077, 0.0081, 0.0084, 0.0086, 0.0087, 0.0087, 0.0086, 0.0085, 0.0082, 0.0078, 0.0074, 0.0068, 0.0062, 0.0056, 0.0048, 0.004, 0.0032, 0.0023, 0.0015, 0.0005, -0.0004, -0.0013, -0.0022, -0.003, -0.0039, -0.0047, -0.0054, -0.0061, -0.0067, -0.0073, -0.0077, -0.0081, -0.0084, -0.0086, -0.0087, -0.0087, -0.0086, -0.0085, -0.0082, -0.0078, -0.0074, -0.0068, -0.0062, -0.0056, -0.0048, -0.004, -0.0032, -0.0023, -0.0015, -0.0005, 0.0004, 0.0013, 0.0022, 0.003, 0.0039, 0.0047, 0.0054, 0.0061, 0.0067]
 }
 tracks/29/type = "value"
 tracks/29/imported = false
 tracks/29/enabled = true
-tracks/29/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/SLEEVE_R_back:rotation")
+tracks/29/path = NodePath("Rig/HIPS/CLOTH_front_skirt_panel:rotation")
 tracks/29/interp = 1
 tracks/29/loop_wrap = true
 tracks/29/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0229, 0.023, 0.0224, 0.0209, 0.0188, 0.0161, 0.013, 0.0095, 0.0058, 0.0022, -0.0013, -0.0045, -0.0072, -0.0095, -0.0111, -0.012, -0.0123, -0.0118, -0.0107, -0.009, -0.0069, -0.0044, -0.0016, 0.0012, 0.0039, 0.0064, 0.0086, 0.0103, 0.0114, 0.0119, 0.0117, 0.0108, 0.0092, 0.007, 0.0043, 0.0012, -0.0023, -0.0059, -0.0095, -0.0129, -0.016, -0.0186, -0.0207, -0.0221, -0.0227, -0.0225, -0.0215, -0.0198, -0.0172, -0.0141, -0.0104, -0.0063, -0.002, 0.0024, 0.0068, 0.0109, 0.0145, 0.0177, 0.0202, 0.0219, 0.0229]
+"values": [0.01, 0.0102, 0.0104, 0.0105, 0.0104, 0.0102, 0.01, 0.0096, 0.0091, 0.0085, 0.0078, 0.007, 0.0062, 0.0052, 0.0043, 0.0032, 0.0022, 0.0011, 0, -0.0011, -0.0022, -0.0032, -0.0043, -0.0052, -0.0062, -0.007, -0.0078, -0.0085, -0.0091, -0.0096, -0.01, -0.0102, -0.0104, -0.0105, -0.0104, -0.0102, -0.01, -0.0096, -0.0091, -0.0085, -0.0078, -0.007, -0.0062, -0.0052, -0.0043, -0.0032, -0.0022, -0.0011, 0, 0.0011, 0.0022, 0.0032, 0.0043, 0.0052, 0.0062, 0.007, 0.0078, 0.0085, 0.0091, 0.0096, 0.01]
 }
 tracks/30/type = "value"
 tracks/30/imported = false
 tracks/30/enabled = true
-tracks/30/path = NodePath("Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/SLEEVE_R_front:rotation")
+tracks/30/path = NodePath("Rig/HIPS/HIP_ornaments_left:rotation")
 tracks/30/interp = 1
 tracks/30/loop_wrap = true
 tracks/30/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0229, 0.023, 0.0224, 0.0209, 0.0188, 0.0161, 0.013, 0.0095, 0.0058, 0.0022, -0.0013, -0.0045, -0.0072, -0.0095, -0.0111, -0.012, -0.0123, -0.0118, -0.0107, -0.009, -0.0069, -0.0044, -0.0016, 0.0012, 0.0039, 0.0064, 0.0086, 0.0103, 0.0114, 0.0119, 0.0117, 0.0108, 0.0092, 0.007, 0.0043, 0.0012, -0.0023, -0.0059, -0.0095, -0.0129, -0.016, -0.0186, -0.0207, -0.0221, -0.0227, -0.0225, -0.0215, -0.0198, -0.0172, -0.0141, -0.0104, -0.0063, -0.002, 0.0024, 0.0068, 0.0109, 0.0145, 0.0177, 0.0202, 0.0219, 0.0229]
+"values": [0.0282, 0.0308, 0.0304, 0.0272, 0.0217, 0.0144, 0.0062, -0.0022, -0.0097, -0.0155, -0.0191, -0.0201, -0.0183, -0.0138, -0.007, 0.0013, 0.0104, 0.0194, 0.0274, 0.0336, 0.0373, 0.0381, 0.036, 0.031, 0.0236, 0.0144, 0.0043, -0.0059, -0.0153, -0.0229, -0.0282, -0.0308, -0.0304, -0.0272, -0.0217, -0.0144, -0.0062, 0.0022, 0.0097, 0.0155, 0.0191, 0.0201, 0.0183, 0.0138, 0.007, -0.0013, -0.0104, -0.0194, -0.0274, -0.0336, -0.0373, -0.0381, -0.036, -0.031, -0.0236, -0.0144, -0.0043, 0.0059, 0.0153, 0.0229, 0.0282]
+}
+tracks/31/type = "value"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("Rig/HIPS/HIP_ornaments_right:rotation")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0191, 0.0102, 0.0012, -0.007, -0.0136, -0.018, -0.0197, -0.0187, -0.0149, -0.009, -0.0014, 0.007, 0.0153, 0.0227, 0.0283, 0.0315, 0.0318, 0.0293, 0.024, 0.0163, 0.007, -0.0032, -0.0134, -0.0227, -0.0302, -0.0352, -0.0375, -0.0367, -0.0331, -0.027, -0.0191, -0.0102, -0.0012, 0.007, 0.0136, 0.018, 0.0197, 0.0187, 0.0149, 0.009, 0.0014, -0.007, -0.0153, -0.0227, -0.0283, -0.0315, -0.0318, -0.0293, -0.024, -0.0163, -0.007, 0.0032, 0.0134, 0.0227, 0.0302, 0.0352, 0.0375, 0.0367, 0.0331, 0.027, 0.0191]
+}
+tracks/32/type = "value"
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/path = NodePath("Rig/HIPS/LEG_L_thigh:rotation")
+tracks/32/interp = 1
+tracks/32/loop_wrap = true
+tracks/32/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 0.0047, 0.0094, 0.0141, 0.0187, 0.0232, 0.0276, 0.0317, 0.0354, 0.0389, 0.0419, 0.0445, 0.0465, 0.048, 0.0489, 0.0492, 0.0489, 0.048, 0.0465, 0.0445, 0.0419, 0.0389, 0.0354, 0.0317, 0.0276, 0.0232, 0.0187, 0.0141, 0.0094, 0.0047, 0, -0.0046, -0.0091, -0.0134, -0.0174, -0.0213, -0.0249, -0.0282, -0.0311, -0.0337, -0.0359, -0.0378, -0.0392, -0.0403, -0.0409, -0.0411, -0.0409, -0.0403, -0.0392, -0.0378, -0.0359, -0.0337, -0.0311, -0.0282, -0.0249, -0.0213, -0.0174, -0.0134, -0.0091, -0.0046, 0]
+}
+tracks/33/type = "value"
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/path = NodePath("Rig/HIPS/LEG_L_thigh/LEG_L_shin_foot:rotation")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, -0.0059, -0.0119, -0.0179, -0.0239, -0.0297, -0.0354, -0.0407, -0.0457, -0.0502, -0.0542, -0.0576, -0.0603, -0.0622, -0.0635, -0.0639, -0.0635, -0.0622, -0.0603, -0.0576, -0.0542, -0.0502, -0.0457, -0.0407, -0.0354, -0.0297, -0.0239, -0.0179, -0.0119, -0.0059, 0, 0.0058, 0.0114, 0.0168, 0.0218, 0.0266, 0.031, 0.035, 0.0387, 0.0418, 0.0446, 0.0468, 0.0486, 0.0498, 0.0506, 0.0508, 0.0506, 0.0498, 0.0486, 0.0468, 0.0446, 0.0418, 0.0387, 0.035, 0.031, 0.0266, 0.0218, 0.0168, 0.0114, 0.0058, 0]
+}
+tracks/34/type = "value"
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/path = NodePath("Rig/HIPS/LEG_R_thigh:rotation")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, -0.0017, -0.0033, -0.0049, -0.0063, -0.0077, -0.009, -0.0101, -0.0111, -0.012, -0.0128, -0.0134, -0.0139, -0.0142, -0.0144, -0.0145, -0.0144, -0.0142, -0.0139, -0.0134, -0.0128, -0.012, -0.0111, -0.0101, -0.009, -0.0077, -0.0063, -0.0049, -0.0033, -0.0017, 0, 0.0017, 0.0035, 0.0053, 0.0071, 0.0088, 0.0104, 0.012, 0.0135, 0.0148, 0.016, 0.017, 0.0178, 0.0184, 0.0187, 0.0189, 0.0187, 0.0184, 0.0178, 0.017, 0.016, 0.0148, 0.0135, 0.012, 0.0104, 0.0088, 0.0071, 0.0053, 0.0035, 0.0017, 0]
+}
+tracks/35/type = "value"
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/path = NodePath("Rig/HIPS/LEG_R_thigh/LEG_R_shin_foot:rotation")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 0.0044, 0.0087, 0.0128, 0.0167, 0.0204, 0.0239, 0.027, 0.0299, 0.0324, 0.0345, 0.0363, 0.0377, 0.0387, 0.0393, 0.0395, 0.0393, 0.0387, 0.0377, 0.0363, 0.0345, 0.0324, 0.0299, 0.027, 0.0239, 0.0204, 0.0167, 0.0128, 0.0087, 0.0044, 0, -0.0045, -0.009, -0.0134, -0.0178, -0.0221, -0.0262, -0.03, -0.0335, -0.0367, -0.0395, -0.0418, -0.0437, -0.0451, -0.0459, -0.0462, -0.0459, -0.0451, -0.0437, -0.0418, -0.0395, -0.0367, -0.0335, -0.03, -0.0262, -0.0221, -0.0178, -0.0134, -0.009, -0.0045, 0]
 }
 
 [sub_resource type="AnimationLibrary" id="lib"]
@@ -440,426 +500,461 @@ scale = Vector2(0.25, 0.25)
 [node name="Parts" type="Node2D" parent="Visuals"]
 
 [node name="HAIR_back" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(-11, -1082)
+position = Vector2(-95, -966)
 scale = Vector2(2, 2)
 texture = ExtResource("t0")
 centered = false
-offset = Vector2(-132.5, -44)
+offset = Vector2(-93, -41)
 
 [node name="SKIRT_rear_left" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(-56, -772)
+position = Vector2(-55, -631)
 scale = Vector2(2, 2)
 texture = ExtResource("t1")
 centered = false
-offset = Vector2(-175, -10)
+offset = Vector2(-207, -57.5)
 
 [node name="SKIRT_rear_right" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(74, -772)
+position = Vector2(90, -606)
 scale = Vector2(2, 2)
 texture = ExtResource("t2")
 centered = false
-offset = Vector2(-32, -184)
+offset = Vector2(-29.5, -70)
 
-[node name="LEG_L_shin_foot" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(-118, -480)
+[node name="LEG_R_shin_foot" type="Sprite2D" parent="Visuals/Parts"]
+position = Vector2(205, -399)
 scale = Vector2(2, 2)
 texture = ExtResource("t3")
 centered = false
-offset = Vector2(-68, -12)
+offset = Vector2(-52, -11.5)
 
-[node name="LEG_R_shin_foot" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(139, -475)
+[node name="LEG_R_thigh" type="Sprite2D" parent="Visuals/Parts"]
+position = Vector2(110, -561)
 scale = Vector2(2, 2)
 texture = ExtResource("t4")
 centered = false
-offset = Vector2(-28.5, -13.5)
+offset = Vector2(-35.5, -72.5)
 
-[node name="LEG_L_thigh" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(-74, -732)
+[node name="LEG_L_shin_foot" type="Sprite2D" parent="Visuals/Parts"]
+position = Vector2(-123, -351)
 scale = Vector2(2, 2)
 texture = ExtResource("t5")
 centered = false
-offset = Vector2(-43, -24)
+offset = Vector2(-108, -17.5)
 
-[node name="LEG_R_thigh" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(76, -727)
+[node name="LEG_L_thigh" type="Sprite2D" parent="Visuals/Parts"]
+position = Vector2(-75, -576)
 scale = Vector2(2, 2)
 texture = ExtResource("t6")
 centered = false
-offset = Vector2(-38, -19.5)
+offset = Vector2(-52, -40)
 
-[node name="PELVIS_base" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(0, -732)
+[node name="BELLY_lower_torso_variant" type="Sprite2D" parent="Visuals/Parts"]
+position = Vector2(10, -616)
 scale = Vector2(2, 2)
 texture = ExtResource("t7")
 centered = false
-offset = Vector2(-57, -37)
+offset = Vector2(-55.5, -70)
 
-[node name="BELLY_lower_torso_variant" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(4, -747)
+[node name="TORSO_upper" type="Sprite2D" parent="Visuals/Parts"]
+position = Vector2(15, -731)
 scale = Vector2(2, 2)
 texture = ExtResource("t8")
 centered = false
-offset = Vector2(-44, -75.5)
+offset = Vector2(-54, -104.5)
 
-[node name="SKIRT_hip_wrap_left" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(-91, -792)
+[node name="ARM_L_upper" type="Sprite2D" parent="Visuals/Parts"]
+position = Vector2(-127, -851)
 scale = Vector2(2, 2)
 texture = ExtResource("t9")
 centered = false
-offset = Vector2(-51.5, -8)
+offset = Vector2(-41, -23.5)
 
-[node name="TORSO_upper" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(2, -847)
+[node name="HEAD_face_plus_front_hair" type="Sprite2D" parent="Visuals/Parts"]
+position = Vector2(0, -894)
 scale = Vector2(2, 2)
 texture = ExtResource("t10")
 centered = false
-offset = Vector2(-62, -129.5)
+offset = Vector2(-39.5, -80)
 
-[node name="ARM_R_upper" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(92, -984)
+[node name="BREASTS_plus_wrap_variant" type="Sprite2D" parent="Visuals/Parts"]
+position = Vector2(10, -776)
 scale = Vector2(2, 2)
 texture = ExtResource("t11")
 centered = false
-offset = Vector2(-27, -11)
+offset = Vector2(-50.5, -27)
 
-[node name="ARM_L_upper" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(-128, -1000)
+[node name="HAIR_side_R" type="Sprite2D" parent="Visuals/Parts"]
+position = Vector2(75, -896)
 scale = Vector2(2, 2)
 texture = ExtResource("t12")
 centered = false
-offset = Vector2(-55, -15)
+offset = Vector2(-35, -2)
 
-[node name="HEAD_face_plus_front_hair" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(-6, -1027)
+[node name="HAIR_side_L" type="Sprite2D" parent="Visuals/Parts"]
+position = Vector2(-53, -896)
 scale = Vector2(2, 2)
 texture = ExtResource("t13")
 centered = false
-offset = Vector2(-53, -109.5)
+offset = Vector2(-64, -5)
 
-[node name="HAIR_side_L" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(-71, -1137)
+[node name="SLEEVE_L" type="Sprite2D" parent="Visuals/Parts"]
+position = Vector2(-175, -786)
 scale = Vector2(2, 2)
 texture = ExtResource("t14")
 centered = false
-offset = Vector2(-30.5, -27.5)
+offset = Vector2(-82, -34)
 
-[node name="HAIR_side_R" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(79, -1137)
+[node name="SLEEVE_R" type="Sprite2D" parent="Visuals/Parts"]
+position = Vector2(107, -766)
 scale = Vector2(2, 2)
 texture = ExtResource("t15")
 centered = false
-offset = Vector2(-32.5, -31.5)
+offset = Vector2(-15, -25)
 
-[node name="BREASTS_plus_wrap_variant" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(-6, -942)
+[node name="ARM_L_forearm_hand" type="Sprite2D" parent="Visuals/Parts"]
+position = Vector2(-220, -771)
 scale = Vector2(2, 2)
 texture = ExtResource("t16")
 centered = false
-offset = Vector2(-62, -11)
+offset = Vector2(-84.5, -31.5)
 
-[node name="SLEEVE_L_back" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(-171, -932)
+[node name="ARM_R_forearm_hand" type="Sprite2D" parent="Visuals/Parts"]
+position = Vector2(160, -694)
 scale = Vector2(2, 2)
 texture = ExtResource("t17")
 centered = false
-offset = Vector2(-78.5, -15)
+offset = Vector2(-8.5, -62)
 
-[node name="SLEEVE_R_back" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(126, -920)
+[node name="ARM_R_hand" type="Sprite2D" parent="Visuals/Parts"]
+position = Vector2(247, -796)
 scale = Vector2(2, 2)
 texture = ExtResource("t18")
 centered = false
-offset = Vector2(-22, -14)
+offset = Vector2(-10, -36)
 
-[node name="ARM_L_forearm_hand" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(-218, -860)
+[node name="FINGER_R_pinky" type="Sprite2D" parent="Visuals/Parts"]
+position = Vector2(263, -826)
 scale = Vector2(2, 2)
 texture = ExtResource("t19")
 centered = false
-offset = Vector2(-96, -16)
+offset = Vector2(-16, -13)
 
-[node name="ARM_R_forearm_hand" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(166, -832)
+[node name="FINGER_R_ring" type="Sprite2D" parent="Visuals/Parts"]
+position = Vector2(274, -833)
 scale = Vector2(2, 2)
 texture = ExtResource("t20")
 centered = false
-offset = Vector2(-20, -36)
+offset = Vector2(-18.5, -15.5)
 
-[node name="SLEEVE_L_front" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(-171, -932)
+[node name="FINGER_R_middle" type="Sprite2D" parent="Visuals/Parts"]
+position = Vector2(285, -835)
 scale = Vector2(2, 2)
 texture = ExtResource("t21")
 centered = false
-offset = Vector2(-78.5, -15)
+offset = Vector2(-13, -25.5)
 
-[node name="SLEEVE_R_front" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(126, -920)
+[node name="FINGER_R_index" type="Sprite2D" parent="Visuals/Parts"]
+position = Vector2(295, -837)
 scale = Vector2(2, 2)
 texture = ExtResource("t22")
 centered = false
-offset = Vector2(-22, -14)
+offset = Vector2(-5, -25.5)
 
 [node name="CLOTH_front_skirt_panel" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(-6, -812)
+position = Vector2(7, -644)
 scale = Vector2(2, 2)
 texture = ExtResource("t23")
 centered = false
-offset = Vector2(-67, -9)
+offset = Vector2(-57, -20)
 
 [node name="HIP_ornaments_left" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(-78, -794)
+position = Vector2(-67, -648)
 scale = Vector2(2, 2)
 texture = ExtResource("t24")
 centered = false
-offset = Vector2(-16, -14)
+offset = Vector2(-25, -19)
 
 [node name="HIP_ornaments_right" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(106, -784)
+position = Vector2(87, -628)
 scale = Vector2(2, 2)
 texture = ExtResource("t25")
 centered = false
-offset = Vector2(-11, -14)
+offset = Vector2(-12, -18)
 
 [node name="PROP_censer_and_chains" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(-384, -752)
+position = Vector2(-363, -774)
 scale = Vector2(2, 2)
 texture = ExtResource("t26")
 centered = false
-offset = Vector2(-40, -3)
+offset = Vector2(-44, -14)
 
 [node name="FX_censer_smoke" type="Sprite2D" parent="Visuals/Parts"]
 material = SubResource("mat_smoke")
-position = Vector2(-436, -602)
+position = Vector2(-400, -606)
 scale = Vector2(2, 2)
 texture = ExtResource("t27")
 centered = false
-offset = Vector2(-80, -205)
+offset = Vector2(-105.5, -235)
 
 [node name="HAT_main" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(-6, -1137)
+position = Vector2(10, -996)
 scale = Vector2(2, 2)
 texture = ExtResource("t28")
 centered = false
-offset = Vector2(-137, -111.5)
+offset = Vector2(-147.5, -88)
 
 [node name="HAT_charm" type="Sprite2D" parent="Visuals/Parts"]
-position = Vector2(150, -1132)
+position = Vector2(137, -974)
 scale = Vector2(2, 2)
 texture = ExtResource("t29")
 centered = false
-offset = Vector2(-12, -4)
+offset = Vector2(-11, -1)
 
 [node name="Rig" type="Node2D" parent="Visuals"]
 
 [node name="HIPS" type="Node2D" parent="Visuals/Rig"]
-position = Vector2(0, -732)
-
-[node name="PELVIS_base" type="Node2D" parent="Visuals/Rig/HIPS"]
-position = Vector2(0, 0)
-
-[node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/PELVIS_base"]
-scale = Vector2(2, 2)
-remote_path = NodePath("../../../../Parts/PELVIS_base")
+position = Vector2(10, -606)
+rotation = 0
 
 [node name="LEG_L_thigh" type="Node2D" parent="Visuals/Rig/HIPS"]
-position = Vector2(-74, 0)
+position = Vector2(-85, 30)
+rotation = 0
 
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/LEG_L_thigh"]
 scale = Vector2(2, 2)
 remote_path = NodePath("../../../../Parts/LEG_L_thigh")
 
 [node name="LEG_L_shin_foot" type="Node2D" parent="Visuals/Rig/HIPS/LEG_L_thigh"]
-position = Vector2(-44, 252)
+position = Vector2(-48, 225)
+rotation = 0
 
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/LEG_L_thigh/LEG_L_shin_foot"]
 scale = Vector2(2, 2)
 remote_path = NodePath("../../../../../Parts/LEG_L_shin_foot")
 
 [node name="LEG_R_thigh" type="Node2D" parent="Visuals/Rig/HIPS"]
-position = Vector2(76, 5)
+position = Vector2(100, 45)
+rotation = 0
 
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/LEG_R_thigh"]
 scale = Vector2(2, 2)
 remote_path = NodePath("../../../../Parts/LEG_R_thigh")
 
 [node name="LEG_R_shin_foot" type="Node2D" parent="Visuals/Rig/HIPS/LEG_R_thigh"]
-position = Vector2(63, 252)
+position = Vector2(95, 162)
+rotation = 0
 
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/LEG_R_thigh/LEG_R_shin_foot"]
 scale = Vector2(2, 2)
 remote_path = NodePath("../../../../../Parts/LEG_R_shin_foot")
 
 [node name="SKIRT_rear_left" type="Node2D" parent="Visuals/Rig/HIPS"]
-position = Vector2(-56, -40)
+position = Vector2(-65, -25)
+rotation = 0
 
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/SKIRT_rear_left"]
 scale = Vector2(2, 2)
 remote_path = NodePath("../../../../Parts/SKIRT_rear_left")
 
 [node name="SKIRT_rear_right" type="Node2D" parent="Visuals/Rig/HIPS"]
-position = Vector2(74, -40)
+position = Vector2(80, 0)
+rotation = 0
 
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/SKIRT_rear_right"]
 scale = Vector2(2, 2)
 remote_path = NodePath("../../../../Parts/SKIRT_rear_right")
 
-[node name="SKIRT_hip_wrap_left" type="Node2D" parent="Visuals/Rig/HIPS"]
-position = Vector2(-91, -60)
-
-[node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/SKIRT_hip_wrap_left"]
-scale = Vector2(2, 2)
-remote_path = NodePath("../../../../Parts/SKIRT_hip_wrap_left")
-
 [node name="CLOTH_front_skirt_panel" type="Node2D" parent="Visuals/Rig/HIPS"]
-position = Vector2(-6, -80)
+position = Vector2(-3, -38)
+rotation = 0
 
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/CLOTH_front_skirt_panel"]
 scale = Vector2(2, 2)
 remote_path = NodePath("../../../../Parts/CLOTH_front_skirt_panel")
 
 [node name="HIP_ornaments_left" type="Node2D" parent="Visuals/Rig/HIPS"]
-position = Vector2(-78, -62)
+position = Vector2(-77, -42)
+rotation = 0
 
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/HIP_ornaments_left"]
 scale = Vector2(2, 2)
 remote_path = NodePath("../../../../Parts/HIP_ornaments_left")
 
 [node name="HIP_ornaments_right" type="Node2D" parent="Visuals/Rig/HIPS"]
-position = Vector2(106, -52)
+position = Vector2(77, -22)
+rotation = 0
 
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/HIP_ornaments_right"]
 scale = Vector2(2, 2)
 remote_path = NodePath("../../../../Parts/HIP_ornaments_right")
 
 [node name="BELLY_lower_torso_variant" type="Node2D" parent="Visuals/Rig/HIPS"]
-position = Vector2(4, -15)
+position = Vector2(0, -10)
+rotation = 0
 
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant"]
 scale = Vector2(2, 2)
 remote_path = NodePath("../../../../Parts/BELLY_lower_torso_variant")
 
 [node name="TORSO_upper" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant"]
-position = Vector2(-2, -100)
+position = Vector2(5, -115)
+rotation = 0
 
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper"]
 scale = Vector2(2, 2)
 remote_path = NodePath("../../../../../Parts/TORSO_upper")
 
 [node name="BREASTS_plus_wrap_variant" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper"]
-position = Vector2(-8, -95)
+position = Vector2(-5, -45)
+rotation = 0
 
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/BREASTS_plus_wrap_variant"]
 scale = Vector2(2, 2)
 remote_path = NodePath("../../../../../../Parts/BREASTS_plus_wrap_variant")
 
 [node name="ARM_L_upper" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper"]
-position = Vector2(-130, -153)
+position = Vector2(-142, -120)
+rotation = 0
 
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper"]
 scale = Vector2(2, 2)
 remote_path = NodePath("../../../../../../Parts/ARM_L_upper")
 
+[node name="SLEEVE_L" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper"]
+position = Vector2(-48, 65)
+rotation = 0
+
+[node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper/SLEEVE_L"]
+scale = Vector2(2, 2)
+remote_path = NodePath("../../../../../../../Parts/SLEEVE_L")
+
 [node name="ARM_L_forearm_hand" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper"]
-position = Vector2(-90, 140)
+position = Vector2(-93, 80)
+rotation = 0
 
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper/ARM_L_forearm_hand"]
 scale = Vector2(2, 2)
 remote_path = NodePath("../../../../../../../Parts/ARM_L_forearm_hand")
 
-[node name="SLEEVE_L_back" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper"]
-position = Vector2(-43, 68)
-
-[node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper/SLEEVE_L_back"]
-scale = Vector2(2, 2)
-remote_path = NodePath("../../../../../../../Parts/SLEEVE_L_back")
-
-[node name="SLEEVE_L_front" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper"]
-position = Vector2(-43, 68)
-
-[node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper/SLEEVE_L_front"]
-scale = Vector2(2, 2)
-remote_path = NodePath("../../../../../../../Parts/SLEEVE_L_front")
-
 [node name="PROP_censer_and_chains" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper/ARM_L_forearm_hand"]
-position = Vector2(-166, 108)
+position = Vector2(-143, -3)
+rotation = 0
 
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper/ARM_L_forearm_hand/PROP_censer_and_chains"]
 scale = Vector2(2, 2)
 remote_path = NodePath("../../../../../../../../Parts/PROP_censer_and_chains")
 
-[node name="FX_censer_smoke" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper/ARM_L_forearm_hand"]
-position = Vector2(-218, 258)
+[node name="FX_censer_smoke" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper/ARM_L_forearm_hand/PROP_censer_and_chains"]
+position = Vector2(-37, 168)
+rotation = 0
 
-[node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper/ARM_L_forearm_hand/FX_censer_smoke"]
+[node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_L_upper/ARM_L_forearm_hand/PROP_censer_and_chains/FX_censer_smoke"]
 scale = Vector2(2, 2)
-remote_path = NodePath("../../../../../../../../Parts/FX_censer_smoke")
+remote_path = NodePath("../../../../../../../../../Parts/FX_censer_smoke")
 
 [node name="ARM_R_upper" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper"]
-position = Vector2(90, -137)
+position = Vector2(90, -95)
+rotation = 0
 
-[node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper"]
+[node name="SLEEVE_R" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper"]
+position = Vector2(2, 60)
+rotation = 0
+
+[node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/SLEEVE_R"]
 scale = Vector2(2, 2)
-remote_path = NodePath("../../../../../../Parts/ARM_R_upper")
+remote_path = NodePath("../../../../../../../Parts/SLEEVE_R")
 
 [node name="ARM_R_forearm_hand" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper"]
-position = Vector2(74, 152)
+position = Vector2(55, 132)
+rotation = 0
 
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/ARM_R_forearm_hand"]
 scale = Vector2(2, 2)
 remote_path = NodePath("../../../../../../../Parts/ARM_R_forearm_hand")
 
-[node name="SLEEVE_R_back" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper"]
-position = Vector2(34, 64)
+[node name="ARM_R_hand" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/ARM_R_forearm_hand"]
+position = Vector2(87, -102)
+rotation = 0
 
-[node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/SLEEVE_R_back"]
+[node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/ARM_R_forearm_hand/ARM_R_hand"]
 scale = Vector2(2, 2)
-remote_path = NodePath("../../../../../../../Parts/SLEEVE_R_back")
+remote_path = NodePath("../../../../../../../../Parts/ARM_R_hand")
 
-[node name="SLEEVE_R_front" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper"]
-position = Vector2(34, 64)
+[node name="FINGER_R_pinky" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/ARM_R_forearm_hand/ARM_R_hand"]
+position = Vector2(16, -30)
+rotation = 0
 
-[node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/SLEEVE_R_front"]
+[node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/ARM_R_forearm_hand/ARM_R_hand/FINGER_R_pinky"]
 scale = Vector2(2, 2)
-remote_path = NodePath("../../../../../../../Parts/SLEEVE_R_front")
+remote_path = NodePath("../../../../../../../../../Parts/FINGER_R_pinky")
+
+[node name="FINGER_R_ring" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/ARM_R_forearm_hand/ARM_R_hand"]
+position = Vector2(27, -37)
+rotation = 0
+
+[node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/ARM_R_forearm_hand/ARM_R_hand/FINGER_R_ring"]
+scale = Vector2(2, 2)
+remote_path = NodePath("../../../../../../../../../Parts/FINGER_R_ring")
+
+[node name="FINGER_R_middle" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/ARM_R_forearm_hand/ARM_R_hand"]
+position = Vector2(38, -39)
+rotation = 0
+
+[node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/ARM_R_forearm_hand/ARM_R_hand/FINGER_R_middle"]
+scale = Vector2(2, 2)
+remote_path = NodePath("../../../../../../../../../Parts/FINGER_R_middle")
+
+[node name="FINGER_R_index" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/ARM_R_forearm_hand/ARM_R_hand"]
+position = Vector2(48, -41)
+rotation = 0
+
+[node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/ARM_R_upper/ARM_R_forearm_hand/ARM_R_hand/FINGER_R_index"]
+scale = Vector2(2, 2)
+remote_path = NodePath("../../../../../../../../../Parts/FINGER_R_index")
 
 [node name="HEAD_face_plus_front_hair" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper"]
-position = Vector2(-8, -180)
+position = Vector2(-15, -163)
+rotation = 0
 
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair"]
 scale = Vector2(2, 2)
 remote_path = NodePath("../../../../../../Parts/HEAD_face_plus_front_hair")
 
 [node name="HAIR_back" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair"]
-position = Vector2(-5, -55)
+position = Vector2(-95, -72)
+rotation = 0
 
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair/HAIR_back"]
 scale = Vector2(2, 2)
 remote_path = NodePath("../../../../../../../Parts/HAIR_back")
 
 [node name="HAIR_side_L" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair"]
-position = Vector2(-65, -110)
+position = Vector2(-53, -2)
+rotation = 0
 
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair/HAIR_side_L"]
 scale = Vector2(2, 2)
 remote_path = NodePath("../../../../../../../Parts/HAIR_side_L")
 
 [node name="HAIR_side_R" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair"]
-position = Vector2(85, -110)
+position = Vector2(75, -2)
+rotation = 0
 
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair/HAIR_side_R"]
 scale = Vector2(2, 2)
 remote_path = NodePath("../../../../../../../Parts/HAIR_side_R")
 
 [node name="HAT_main" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair"]
-position = Vector2(0, -110)
+position = Vector2(10, -102)
+rotation = 0
 
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair/HAT_main"]
 scale = Vector2(2, 2)
 remote_path = NodePath("../../../../../../../Parts/HAT_main")
 
 [node name="HAT_charm" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair/HAT_main"]
-position = Vector2(156, 5)
+position = Vector2(127, 22)
+rotation = 0
 
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant/TORSO_upper/HEAD_face_plus_front_hair/HAT_main/HAT_charm"]
 scale = Vector2(2, 2)
@@ -875,16 +970,16 @@ autoplay = "idle"
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -100.0
-offset_top = -350.0
+offset_left = -110.0
+offset_top = -300.0
 offset_right = 100.0
 offset_bottom = -10.0
 mouse_filter = 2
 
 [node name="CenterPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -170)
+position = Vector2(0, -150)
 
 [node name="IntentPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -370)
+position = Vector2(0, -330)
