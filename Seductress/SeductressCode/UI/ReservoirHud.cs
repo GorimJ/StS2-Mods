@@ -31,12 +31,12 @@ public partial class ReservoirHud : Control
 
     private readonly Label[] _lines = new Label[8];
     private Player? _player;
-    private BellyVisuals? _belly;
+    private RigVisuals? _belly;
 
     public void Initialize(Player player)
     {
         _player = player;
-        _belly = new BellyVisuals(player);
+        _belly = new RigVisuals(player);
     }
 
     public override void _Ready()

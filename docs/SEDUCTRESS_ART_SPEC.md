@@ -81,7 +81,10 @@ So Stage 1 at 300 ml Ass reads as band 2; Stage 3 at 500 ml reads as band 6. **S
 Each source alone stops at band 3, so the fullest belly in the game is only available to a player
 pushing both tracks at once.
 
-[Claude, 2026-11-18] Wired in `SeductressCode/UI/BellyVisuals.cs`, refreshed from the combat HUD.
+[Claude, 2026-11-18] Wired in `SeductressCode/UI/RigVisuals.cs`, refreshed from the combat HUD. The same
+class swaps the breasts ([Claude] reading of the table above: normal wrap when not pregnant, `wrap__stage1..3`
+at Stages 1-3) and shows the milk layer. **[Gorim, 2026-11-18] Milk shows while lactating**, which in the
+mod runs from conception until one combat after birth; the stomach drip shows only on the flat belly.
 
 ### 1c. The dripping cum animation
 
