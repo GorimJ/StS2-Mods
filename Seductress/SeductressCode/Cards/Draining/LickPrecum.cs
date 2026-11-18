@@ -33,6 +33,7 @@ public class LickPrecum : SeductressCard
         var r = Reservoirs.Of(Owner.RunState);
         var added = r.AddPrecum((int)DynamicVars["Ml"].BaseValue);
         MainFile.Logger.Info($"[Seductress] Lick Pre-cum: +{added} ml precum | mouth {r.Mouth}+{r.Precum}p");
+        await Stomach.AfterPrecumGained(Owner);
 
         var enemies = CombatState!.Enemies.Where(e => e.IsAlive).ToList();
         if (enemies.Count > 0)

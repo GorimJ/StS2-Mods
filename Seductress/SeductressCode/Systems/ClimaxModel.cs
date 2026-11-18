@@ -147,7 +147,7 @@ public class ClimaxModel : CustomSingletonModel
 
     /// <summary>
     /// Only Attacks set the mode, and only tagged ones — that is the whole rule (design §6.0).
-    /// A Continuing card inherits the mode rather than setting it, so Pump never overwrites it.
+    /// A Continuing card inherits the mode rather than setting it, so More never overwrites it.
     ///
     /// This must run <b>before</b> the card resolves, not after. A tagged attack that lands the
     /// killing blow triggers AfterDeath from inside its own resolution, so setting the mode
@@ -391,6 +391,8 @@ public class ClimaxModel : CustomSingletonModel
         if (legLocked) MainFile.Logger.Info("[Seductress] Leg-Locked claim: routing to Pussy");
         // Milking Grip: Ass-tagged kills gain double intake (design §7).
         if (hole == Hole.Ass && me.Creature.HasPower<Powers.MilkingGripPower>()) ml *= 2;
+        // [Gorim, 2026-11-17] Hyperfertile: twice as much Pussy cum.
+        if (hole == Hole.Pussy && me.Creature.HasPower<Powers.HyperfertilePower>()) ml *= 2;
 
         var res = Reservoirs.Of(me.RunState);
         var before = res.Get(hole);

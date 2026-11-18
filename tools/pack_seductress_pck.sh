@@ -34,7 +34,8 @@ mkdir -p "$STAGE/out"
 done)
 
 SIZE=$(stat -c %s "$STAGE/out/Seductress.pck")
-if [ "$SIZE" -gt 20000000 ]; then
+# [Claude, 2026-11-17] 80 MB: a full set of 43 card portraits (small + big) is about 38 MB on its own.
+if [ "$SIZE" -gt 80000000 ]; then
     echo "pack: REFUSING - pck is $SIZE bytes, which means stray files got in"; exit 1
 fi
 echo "pack: built Seductress.pck ($SIZE bytes)"

@@ -68,18 +68,20 @@ is 12. Undirected is almost certainly enough.
 | **Mouth fill** | 3 | Mouth ml | **[Gorim]** Visible filling |
 | **Plug** | 2 | Plug relic | Low priority; also readable from the relic bar |
 
-**[Gorim] Belly bands are additive, capped at 4, and neither source can reach the cap alone.**
+**[Gorim, 2026-11-18] Belly bands are additive, capped at 6, one rig stage per band.** This replaces
+the earlier cap of 4, now that the battle rig has six belly stages.
 
 ```
 pregnancy  = min(stage, 3)
-inflation  = min(floor((Ass - 200) / 100), 3)     # 100 ml over ≈ one stage
-belly band = min(pregnancy + inflation, 4)
+inflation  = min(floor((Ass - 200) / 100), 3)     # 100 ml over ≈ one stage; never below 0
+belly band = min(pregnancy + inflation, 6)
 ```
 
-So Stage 1 at 300 ml Ass reads as band 2; Stage 3 at 300 ml reads as band 4 and is capped there.
-**Five states: flat + 4.** Requiring both sources to reach the cap means the fullest belly in the
-game is only available to a player pushing both tracks at once, which is the right thing to reserve
-for.
+So Stage 1 at 300 ml Ass reads as band 2; Stage 3 at 500 ml reads as band 6. **Seven states: flat + 6.**
+Each source alone stops at band 3, so the fullest belly in the game is only available to a player
+pushing both tracks at once.
+
+[Claude, 2026-11-18] Wired in `SeductressCode/UI/BellyVisuals.cs`, refreshed from the combat HUD.
 
 ### 1c. The dripping cum animation
 

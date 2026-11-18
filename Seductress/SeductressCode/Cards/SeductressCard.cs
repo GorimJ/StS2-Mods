@@ -178,6 +178,21 @@ public abstract class SeductressCard(int cost, CardType type, CardRarity rarity,
     }
 
     /// <summary>
+    /// [Gorim, 2026-11-17] A <i>Continuing</i> attack routed to Ass takes the Ass rule's cum cost
+    /// (and so its bonus), but never an HP cost: "Continuing ass shouldn't have an HP cost, but it
+    /// should still have the cum cost."
+    ///
+    /// [Claude] The preview half. Zero for any other route, so a Continuing card's face only
+    /// moves once an Ass attack has set the mode.
+    /// </summary>
+    protected decimal ContinuingAssNotional() =>
+        IsContinuing && Owner is not null && Route == Hole.Ass ? AssNotional() : 0m;
+
+    /// <summary>The spending half of <see cref="ContinuingAssNotional"/>. Returns the per-hit bonus.</summary>
+    protected int SpendContinuingAss() =>
+        IsContinuing && Route == Hole.Ass ? SpendAssForDamage() : 0;
+
+    /// <summary>
     /// The tier-2 damage swap, expressed as a delta over the printed base, so the three tiered
     /// Pussy attacks show one live top-line number rather than making the player work out which of
     /// two printed damages is currently in force.

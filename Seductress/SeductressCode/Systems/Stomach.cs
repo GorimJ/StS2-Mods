@@ -165,6 +165,47 @@ public static class Stomach
     /// <b>Gulp</b> — the 100 ml milestone's extra swallow. Fires whenever the Mouth is at or above
     /// 50 ml, which with the 50 ml cap means exactly when it is full.
     /// </summary>
+    /// <summary>
+    /// [Gorim, 2026-11-17] <b>Eat N</b>: take N ml from the reservoirs in Spend order, swallow it.
+    /// It heals and goes to the Stomach.
+    ///
+    /// [Claude] Three readings Gorim accepted with "Yes, build Eat": it heals at the ordinary
+    /// swallow rate (1 HP per 2 ml); precum can be eaten and heals but banks nothing, as at the
+    /// bell; and with less than N held it eats what there is. Returns the ml actually eaten.
+    /// </summary>
+    public static async Task<int> Eat(Player player, int ml, string reason)
+    {
+        if (ml <= 0) return 0;
+        var (cum, precum) = Reservoirs.Of(player.RunState).TakeForEat(ml);
+        await Digest(player, cum, precum, reason);
+        return cum + precum;
+    }
+
+    /// <summary>Heals for, and banks, ml that has already left a reservoir (or never entered one).</summary>
+    public static async Task Digest(Player player, int cum, int precum, string reason)
+    {
+        var total = cum + precum;
+        if (total <= 0) return;
+
+        var r = Reservoirs.Of(player.RunState);
+        var heal = total * DefaultHealPercent / 100;
+        if (heal > 0) await CreatureCmd.Heal(player.Creature, heal);
+
+        MainFile.Logger.Info(
+            $"[Seductress] {reason}: ate {total} ml ({cum} cum + {precum} precum) -> healed {heal}");
+        await Bank(player, cum + (PrecumBanks(r.Stomach) ? precum : 0));
+    }
+
+    /// <summary>
+    /// Call after any card or power adds precum. <i>Milking Throat</i>: gain that much more and
+    /// eat it. The extra never enters the Mouth, so the 50 ml cap cannot waste it.
+    /// </summary>
+    public static async Task AfterPrecumGained(Player player)
+    {
+        if (player.Creature.GetPower<MilkingThroatPower>() is not { } throat) return;
+        await Digest(player, 0, (int)throat.Amount, "Milking Throat");
+    }
+
     public static async Task SwallowIfFull(Player player)
     {
         var r = Reservoirs.Of(player.RunState);

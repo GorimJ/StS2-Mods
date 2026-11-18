@@ -31,8 +31,13 @@ public partial class ReservoirHud : Control
 
     private readonly Label[] _lines = new Label[8];
     private Player? _player;
+    private BellyVisuals? _belly;
 
-    public void Initialize(Player player) => _player = player;
+    public void Initialize(Player player)
+    {
+        _player = player;
+        _belly = new BellyVisuals(player);
+    }
 
     public override void _Ready()
     {
@@ -68,6 +73,7 @@ public partial class ReservoirHud : Control
     private void Refresh()
     {
         if (_player is null || _lines[0] is null) return;
+        _belly?.Refresh();
 
         var r = Reservoirs.Of(_player.RunState);
         var climax = ClimaxModel.Instance;

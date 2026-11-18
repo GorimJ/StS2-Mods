@@ -68,6 +68,7 @@ public class Suckle : SeductressCard
             $" | mouth {r.Mouth}+{r.Precum}p");
 
         if (killed) await Stomach.SwallowIfFull(Owner);
+        else await Stomach.AfterPrecumGained(Owner);
     }
 
     /// <summary>

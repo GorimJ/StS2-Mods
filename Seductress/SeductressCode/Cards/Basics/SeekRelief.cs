@@ -33,12 +33,13 @@ public class SeekRelief : SeductressCard
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new HpLossVar(9m),
-        new CardsVar(2)
+        new CardsVar(2),
+        new EnergyVar(1)
     ];
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Seek Relief",
-        "Lose {HpLoss:diff()} HP. Draw {Cards:diff()}.");
+        "Lose {HpLoss:diff()} HP. Draw {Cards:diff()}. Gain {Energy:energyIcons()}.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -46,6 +47,8 @@ public class SeekRelief : SeductressCard
         await CreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.HpLoss.BaseValue,
             ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
         await CardPileCmd.Draw(choiceContext, DynamicVars["Cards"].BaseValue, Owner);
+        // [Gorim, 2026-11-17, board comment] "I want to add 'Gain 1 energy' to that card."
+        await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
     }
 
     protected override void OnUpgrade() => DynamicVars.HpLoss.UpgradeValueBy(-5m);

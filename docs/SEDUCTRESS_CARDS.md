@@ -1,6 +1,6 @@
 # The Seductress — card list v25
 
-33 draftable cards plus 5 basics. Companion to `SEDUCTRESS_DESIGN.md` v3.11.
+38 draftable cards plus 5 basics. Companion to `SEDUCTRESS_DESIGN.md` v3.11.
 
 **[Claude, 2026-11-14] v25 brings this document back in line with the build**, at [Gorim]'s request: where
 the two disagreed the build was taken as correct. Changes from v24: ***Gulp* is cut** (it became the 100 ml
@@ -84,6 +84,17 @@ banked, and it eats your Ass — or worse, your Conception.
 That self-limits without a single restriction clause. Spenders read as free utility and quietly
 cost the most to exactly the decks that can least afford them.
 
+### Eat
+
+**[Gorim, 2026-11-17]** A new rules word, built the same day.
+
+> **Eat N** — take **N ml** in the Spend order (Skin → Mouth → Ass → Womb) and swallow it: it heals you and goes to
+> the **Stomach**.
+
+[Claude], accepted by [Gorim]: it heals at the ordinary swallow rate, **1 HP per 2 ml**; eaten precum heals but banks
+nothing (until the 300 ml milestone); with less than N held it eats what there is. Unlike Spend, the ml is not lost —
+it becomes Stomach progress — so Eat is a way to move Skin and Ass into Draining's track.
+
 ---
 
 ## 3. Attacks and Skills do not generate intake — Powers may
@@ -124,13 +135,16 @@ simply a Power doing what Powers may do.
 
 ## 4. Basics — starting deck (not draftable)
 
-4 × Pump, 4 × Guard, 1 × Seek Relief, 1 × Breed Me!, 1 × Suckle. **Eleven cards.**
+4 × More, 4 × Guard, 1 × Seek Relief, 1 × Breed Me!, 1 × Suckle. **Eleven cards.**
+
+**[Gorim, 2026-11-17]** *Pump* is renamed ***More***. *Continuing* attacks are named as things she says,
+so the name and art fit whichever hole the card routes to.
 
 | Card | Cost | Type | Text | Upgrade |
 |---|---|---|---|---|
-| **Pump** | 1 | Attack · *Continuing* | Deal **6** damage. | 9 damage |
+| **More** | 1 | Attack · *Continuing* | Deal **6** damage. | 9 damage |
 | **Guard** | 1 | Skill | Gain **5** Block. | 8 Block |
-| **Seek Relief** | 0 | Skill | Lose **9** HP. Draw **2**. | Lose 4 HP |
+| **Seek Relief** | 0 | Skill | Lose **9** HP. Draw **2**. Gain **1** energy. | Lose 4 HP |
 | **Breed Me!** | 2 | Attack · *Pussy* | Deal **12** damage. Kills from this card give **5 ml** extra. *1 Sigil:* intake from this card's kills is **doubled**. *3 Sigils:* deal **16** instead. *5 Sigils:* **tripled** instead. *7 Sigils:* repeats **2** times. | 16 damage |
 | **Suckle** | 1 | Attack · *Mouth* | Deal **4** damage. Gain **5 ml precum**. If this kills, gain **5 ml** instead. | Costs 0 |
 
@@ -189,11 +203,14 @@ puzzle.
 
 ---
 
-## 5. Core — 4 cards
+## 5. Core — 7 cards
 
 | Card | Cost | Type | Rarity | Text | Upgrade |
 |---|---|---|---|---|---|
-| **Second Wind** | 1 | Skill | Common | Heal **8**. | 12 |
+| **Rehydrate** | 1 | Skill | Common | **Eat 5.** Your next Attack gains **5** ml precum. | 8 and 8 |
+| **Catch Your Breath** | 1 | Skill | Common | Gain **6** Block. **Eat 3.** | 9 Block |
+| **Keep Going** | 1 | Attack · *Continuing* | Common | Deal **8** damage. If your last Attack used a hole, draw **1**. | Draw 2 |
+| **Faster** | 1 | Attack · *Continuing* | Uncommon | Deal **4** damage twice. | 5 twice |
 | **Bat Eyelashes** | 0 | Skill | Common | Apply **1 Weak** to ALL enemies. | Also 1 Vulnerable |
 | **Forced Orgasm** | 0 | Skill | Uncommon | **Climax** with no heal and no Lust card. Draw **2**. Gain **1** energy. **Exhaust.** | Draw 3 |
 | **Afterglow** | 1 | Power | Rare | Whenever you Climax, gain **15** Block and draw **2**. Each turn, draw **1** and gain **1** energy per stack of **Sensitive**. | Costs 0 |
@@ -210,6 +227,15 @@ value lands**: across the turns you spend rebuilding, instead of dumped on the t
 zero arousal and need Block least. The rate is per stack and deliberately steep, because at 3
 Sensitive you are taking +150% arousal and the payoff should match the position rather than hedge
 it.
+
+**[Gorim, 2026-11-17] *Keep Going* and *Faster* added** from the draft board ([Claude] drafts; *Faster* was drafted as
+*Rhythm*). A "hole" for *Keep Going* is Mouth, Ass or Pussy, not Skin. **[Gorim] A *Continuing* attack routed to Ass
+pays the Ass rule's cum cost and takes its bonus, but has no HP cost** — this applies to *More* as well.
+[Claude] Not yet play-tested; neither card has a portrait.
+
+**[Gorim, 2026-11-17] *Rehydrate* replaces *Second Wind*** (boring, and it shared a name with an Ironclad card), and
+***Catch Your Breath*** is built as Block 6, Eat 3 rather than the drafted Block-and-draw. [Claude] *Rehydrate* is read as:
+the next Attack you play adds 5 ml precum to the Mouth. Its upgrade numbers are [Claude]'s. Not yet play-tested.
 
 ***Forced Orgasm* replaces *Abandon*.** Abandon paid a **Lust card** for its Climax, which priced
 it out of exactly the decks that wanted it: the reason to want a Climax on demand is to switch on
@@ -258,7 +284,7 @@ weak reason to draft anything. Each of these does something structural instead:
 
 ---
 
-## 6. Draining (Mouth) — 9 cards
+## 6. Draining (Mouth) — 10 cards
 
 Keep HP high, bank mouthfuls, swallow at the bell into the **Stomach**.
 
@@ -295,6 +321,10 @@ in hand, so the loop always costs a draw — which is what stops it becoming a s
 the fastest line.
 
 ### The rest
+
+**[Gorim, 2026-11-17] *Milking Throat*** — 1, Power, Uncommon: *Whenever you gain precum, gain **3** ml more and **Eat** it.*
+Upgrade 5 ml. [Claude] The extra ml is eaten directly and never enters the Mouth, so each precum gain also heals 1.
+It triggers on cards and powers, not on the Stomach milestone's combat-start precum. Upgrade number is [Claude]'s.
 
 | Card | Cost | Type | Rarity | Text | Upgrade |
 |---|---|---|---|---|---|
@@ -399,7 +429,7 @@ not the energy — which is why it is Uncommon at 1 rather than Rare at 2.
 
 ---
 
-## 8. Breeding (Pussy) — 8 cards
+## 8. Breeding (Pussy) — 9 cards
 
 Finishers, Conception, and the Sigil payoff. **Sigil gating at 1 / 3 / 5 / 7**, on the fixed tier
 shape from design §7.1:
@@ -417,6 +447,9 @@ shape from design §7.1:
 | **Ritual Mark** | 1 | Power | Uncommon | Your **Pussy** and **Breasts** cards deal **2** additional damage. *1:* your Sigils deal **1** additional damage. *3:* they deal **4** instead. *5:* Sigils deal **4** too. *7:* both bonuses become **+1 per Sigil**. | Innate |
 | **Consummate** | 0 | Skill | Rare | **Exhaust a Sigil** for this combat: gain **2** energy and draw **3**. *1:* gain **10** Block. *3:* gain **3** energy instead. *5:* gain **20** Block instead. *7:* does not exhaust a Sigil. | Draw 4 |
 | **Rapture** | 3 | Power | Rare | Gain **10** Block. Whenever you Climax, gain **3** energy and **2 Strength**. *1:* also gain **10** Block whenever you Climax. *3:* this costs **1 less**. *5:* both Block values become **20**. *7:* **double** the energy gained. | 3 Strength |
+
+**[Gorim, 2026-11-17] *Hyperfertile*** — 2, Power, Rare: *Gain twice as much Pussy cum. Your Pussy attacks deal **1%** more
+damage for each HP the enemy is missing.* Upgrade costs 1 ([Claude]'s number). Not tiered by Sigils.
 
 > **Leg-Locked** — while an enemy is Leg-Locked, its death routes its output to your **Pussy**,
 > whatever killed it. Counts down at the end of its turn.
@@ -634,8 +667,8 @@ Still open:
 [Claude, 2026-11-14] From an audit of the 33 draftable cards. Proposals, not decisions.
 
 - **Rares.** Five in total; Freehand has none, Draining and Squeezing one each.
-- **Core.** Four cards, with no draftable Block outside the archetypes and no draftable *Continuing*
-  attack — the rule lives only on *Pump*.
+- **Core.** (Written at four cards; *Keep Going* and *Faster* have since been built.) No draftable Block outside the archetypes and no draftable *Continuing*
+  attack — the rule lives only on *More*.
 - **Squeezing** has no Skills and one Block card (*Grind*), and only *Stuffed* pays off being below half HP.
 - **Draining** has only *Restraint* paying off being above half HP. With *Gulp* gone, *Spit* is the only
   card that uses a full Mouth, and no card removes Sensitive.

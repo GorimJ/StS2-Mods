@@ -33,7 +33,8 @@ Earlier (v1.3): Mouth reworked — end-of-combat swallow, Total Swallowed track,
 
 Earlier (v1.2): **Freehand** added — no-hole attacks tagged *Skin*, stronger in exchange for collecting nothing.
 
-Earlier (v1.1): basic attack is **Pump**, tagged *Continuing*.
+Earlier (v1.1): basic attack is **Pump**, tagged *Continuing*. **[Gorim, 2026-11-17]** renamed ***More***: *Continuing*
+attacks are named as things she says, so name and art fit any hole. Older entries below still say Pump.
 
 Earlier (v1.0): reservoirs measured in **ml** with per-hole capacities (Mouth 50 / Womb 100 / Ass 200); **cards no longer generate intake** — kills are the only source, and each archetype instead gets an in-combat identity based on its position on the HP bar (§6.2a).
 
@@ -1015,23 +1016,23 @@ strictly stronger and should not be a common. Specced with the fourth archetype.
 
 ---
 
-## 8. Card pool — 33 draftable cards as built
+## 8. Card pool — 38 draftable cards as built
 
 **[Claude, 2026-11-14]** The table below was the v1 plan (35 cards, nine of them Core) and no longer
 matched anything. It now shows what is built; `SEDUCTRESS_CARDS.md` v25 is the card-by-card record and
 lists the gaps in its §14.
 
-Starting deck (11): 4 × Pump, 4 × Guard, Seek Relief, Breed Me!, Suckle.
+Starting deck (11): 4 × More, 4 × Guard, Seek Relief, Breed Me!, Suckle.
 Starting relic: reduce arousal by 6 after each combat, and halve Max HP from relics (§6.5).
 **The relic is not built** — the character still starts with Ironclad's *Burning Blood*. The halving itself is built, as a patch on Max HP gain.
 
 | Group | Count | Role |
 |---|---|---|
-| **Core** | 4 | Heal, Weak, Climax on demand, and the Climax engine. The planned neutral spine of nine was never filled. |
+| **Core** | 7 | *Rehydrate* (Eat), neutral Block, Weak, two *Continuing* attacks, Climax on demand, and the Climax engine. The planned neutral spine of nine was never filled. |
 | **Freehand** (Skin) | 5 | No-hole attacks that do structural things instead of collecting; one generic spender. |
-| **Draining** (Mouth) | 9 | The Deep Throat family, precum generation, *Spit*, one above-half-HP payoff. |
+| **Draining** (Mouth) | 10 | The Deep Throat family, precum generation, *Milking Throat*, *Spit*, one above-half-HP payoff. |
 | **Squeezing** (Ass) | 7 | Multi-hit attacks that spend the bank for Strength. *Milking Grip* is the 100 ml reward, not draftable. |
-| **Breeding** (Pussy) | 8 | Sigil-tiered cards on the 1 / 3 / 5 / 7 ladder, Leg-Locked, Climax payoffs. |
+| **Breeding** (Pussy) | 9 | *Hyperfertile*, Sigil-tiered cards on the 1 / 3 / 5 / 7 ladder, Leg-Locked, Climax payoffs. |
 | **Ancient** | 1 | *Edging Form*. |
 | **Generated** | 1 | *Milk*, into the combat pile while Lactating. |
 | **Lust** | 2 | The curse cards (not draftable). |

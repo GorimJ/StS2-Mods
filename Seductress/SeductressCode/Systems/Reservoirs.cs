@@ -225,6 +225,40 @@ public class ReservoirState
 
         return ml - remaining;
     }
+
+    /// <summary>
+    /// [Gorim, 2026-11-17] <b>Eat</b> takes ml in the Spend order (Skin, Mouth, Ass, Womb) and
+    /// swallows it. [Claude] The same walk as <see cref="SpendMl"/>, but it reports cum and precum
+    /// apart, because only cum banks to the Stomach. May return less than asked.
+    /// </summary>
+    public (int Cum, int Precum) TakeForEat(int ml)
+    {
+        var remaining = ml;
+
+        var fromSkin = Math.Min(Skin, remaining);
+        Skin -= fromSkin;
+        remaining -= fromSkin;
+
+        var fromPrecum = Math.Min(Precum, remaining);
+        Precum -= fromPrecum;
+        remaining -= fromPrecum;
+
+        var fromMouth = Math.Min(Mouth, remaining);
+        Mouth -= fromMouth;
+        remaining -= fromMouth;
+
+        var fromAss = Math.Min(Ass, remaining);
+        Ass -= fromAss;
+        remaining -= fromAss;
+
+        var fromWomb = Math.Min(Womb, remaining);
+        Womb -= fromWomb;
+
+        var stage = Womb / WombStage;
+        if (stage < PregnancyStage) PregnancyStage = stage;
+
+        return (fromSkin + fromMouth + fromAss + fromWomb, fromPrecum);
+    }
 }
 
 public static class Reservoirs

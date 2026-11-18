@@ -52,7 +52,7 @@ public class Seductress : PlaceholderCharacterModel
     public override int StartingHp => 20;
 
     /// <summary>
-    /// [Gorim] Eleven cards: 4 Pump, 4 Guard, 1 Seek Relief, plus two class cards (design §4).
+    /// [Gorim] Eleven cards: 4 More, 4 Guard, 1 Seek Relief, plus two class cards (design §4).
     ///
     /// Two class cards rather than one, each demonstrating a different half of the mechanic —
     /// Breed Me! is the Pussy half and teaches intake, Suckle is the Mouth half. As previously
@@ -68,10 +68,10 @@ public class Seductress : PlaceholderCharacterModel
     /// </summary>
     public override IEnumerable<CardModel> StartingDeck =>
     [
-        ModelDb.Card<Pump>(),
-        ModelDb.Card<Pump>(),
-        ModelDb.Card<Pump>(),
-        ModelDb.Card<Pump>(),
+        ModelDb.Card<More>(),
+        ModelDb.Card<More>(),
+        ModelDb.Card<More>(),
+        ModelDb.Card<More>(),
         ModelDb.Card<Guard>(),
         ModelDb.Card<Guard>(),
         ModelDb.Card<Guard>(),

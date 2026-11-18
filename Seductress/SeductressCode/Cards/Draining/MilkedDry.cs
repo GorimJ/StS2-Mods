@@ -42,6 +42,7 @@ public class MilkedDry : SeductressCard
         var r = Reservoirs.Of(Owner.RunState);
         var added = r.AddPrecum((int)DynamicVars["Ml"].BaseValue);
         MainFile.Logger.Info($"[Seductress] Milked Dry: +{added} ml precum | mouth {r.Mouth}+{r.Precum}p");
+        await Stomach.AfterPrecumGained(Owner);
     }
 
     protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(4m);
