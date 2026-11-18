@@ -7,7 +7,7 @@ OUT=sys.argv[1]; os.makedirs(OUT,exist_ok=True)
 rgb,cls,fg,dist,bg=load(); lab=np.load('labels.npy'); DRAW=json.load(open('draw.json'))
 H,W=lab.shape; master=rgb.astype(np.float32)
 GROW={"HAIR_back":40,"SKIRT_rear_left":45,"SKIRT_rear_right":45,"LEG_L_thigh":30,"LEG_R_thigh":30,"LEG_L_shin_foot":20,
-      "LEG_R_shin_foot":20,"BELLY_lower_torso_variant":24,"TORSO_upper":30,"ARM_L_upper":30,"SLEEVE_L":20,"SLEEVE_R":20,
+      "LEG_R_shin_foot":20,"BELLY_lower_torso_variant":55,"TORSO_upper":60,"ARM_L_upper":30,"SLEEVE_L":20,"SLEEVE_R":20,
       "HEAD_face_plus_front_hair":10,"ARM_R_hand":6,"FINGER_R_index":3,"FINGER_R_middle":3,"FINGER_R_ring":3,"FINGER_R_pinky":3,"BREASTS_plus_wrap_variant":16,"CLOTH_front_skirt_panel":12}
 solid=cv2.erode(fg.astype(np.uint8),np.ones((3,3),np.uint8)).astype(bool)
 edge_alpha=np.clip(cv2.GaussianBlur(solid.astype(np.float32),(0,0),0.8)*1.15,0,1)     # soft outer silhouette

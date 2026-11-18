@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3]
+[gd_scene load_steps=41 format=3]
 
 [ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/HAIR_back.png" id="t0"]
 [ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/SKIRT_rear_left.png" id="t1"]
@@ -30,6 +30,12 @@
 [ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/FX_censer_smoke.png" id="t27"]
 [ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/HAT_main.png" id="t28"]
 [ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/HAT_charm.png" id="t29"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/BELLY_stage1.png" id="s1"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/BELLY_stage2.png" id="s2"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/BELLY_stage3.png" id="s3"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/BELLY_stage4.png" id="s4"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/BELLY_stage5.png" id="s5"]
+[ext_resource type="Texture2D" path="res://Seductress/images/character/parts_battle/BELLY_stage6.png" id="s6"]
 
 [sub_resource type="Shader" id="sh_smoke"]
 code = "shader_type canvas_item;
@@ -553,14 +559,14 @@ position = Vector2(10, -616)
 scale = Vector2(2, 2)
 texture = ExtResource("t7")
 centered = false
-offset = Vector2(-55.5, -70)
+offset = Vector2(-70.5, -85)
 
 [node name="TORSO_upper" type="Sprite2D" parent="Visuals/Parts"]
 position = Vector2(15, -731)
 scale = Vector2(2, 2)
 texture = ExtResource("t8")
 centered = false
-offset = Vector2(-54, -104.5)
+offset = Vector2(-69, -119.5)
 
 [node name="ARM_L_upper" type="Sprite2D" parent="Visuals/Parts"]
 position = Vector2(-127, -851)
@@ -581,14 +587,14 @@ position = Vector2(10, -776)
 scale = Vector2(2, 2)
 texture = ExtResource("t11")
 centered = false
-offset = Vector2(-50.5, -27)
+offset = Vector2(-50.5, -30)
 
 [node name="HAIR_side_R" type="Sprite2D" parent="Visuals/Parts"]
 position = Vector2(75, -896)
 scale = Vector2(2, 2)
 texture = ExtResource("t12")
 centered = false
-offset = Vector2(-35, -2)
+offset = Vector2(-33, -2)
 
 [node name="HAIR_side_L" type="Sprite2D" parent="Visuals/Parts"]
 position = Vector2(-53, -896)
@@ -609,7 +615,7 @@ position = Vector2(107, -766)
 scale = Vector2(2, 2)
 texture = ExtResource("t15")
 centered = false
-offset = Vector2(-15, -25)
+offset = Vector2(-14, -25)
 
 [node name="ARM_L_forearm_hand" type="Sprite2D" parent="Visuals/Parts"]
 position = Vector2(-220, -771)
@@ -680,6 +686,46 @@ scale = Vector2(2, 2)
 texture = ExtResource("t25")
 centered = false
 offset = Vector2(-12, -18)
+
+[node name="BELLY_overlay" type="Node2D" parent="Visuals/Parts"]
+position = Vector2(10, -616)
+scale = Vector2(2, 2)
+
+[node name="stage1" type="Sprite2D" parent="Visuals/Parts/BELLY_overlay"]
+visible = false
+texture = ExtResource("s1")
+centered = false
+offset = Vector2(-38.5, -58)
+
+[node name="stage2" type="Sprite2D" parent="Visuals/Parts/BELLY_overlay"]
+visible = false
+texture = ExtResource("s2")
+centered = false
+offset = Vector2(-38.5, -58)
+
+[node name="stage3" type="Sprite2D" parent="Visuals/Parts/BELLY_overlay"]
+visible = false
+texture = ExtResource("s3")
+centered = false
+offset = Vector2(-38.5, -58)
+
+[node name="stage4" type="Sprite2D" parent="Visuals/Parts/BELLY_overlay"]
+visible = false
+texture = ExtResource("s4")
+centered = false
+offset = Vector2(-38.5, -58)
+
+[node name="stage5" type="Sprite2D" parent="Visuals/Parts/BELLY_overlay"]
+visible = false
+texture = ExtResource("s5")
+centered = false
+offset = Vector2(-38.5, -58)
+
+[node name="stage6" type="Sprite2D" parent="Visuals/Parts/BELLY_overlay"]
+visible = false
+texture = ExtResource("s6")
+centered = false
+offset = Vector2(-38.5, -58)
 
 [node name="PROP_censer_and_chains" type="Sprite2D" parent="Visuals/Parts"]
 position = Vector2(-363, -774)
@@ -795,6 +841,10 @@ rotation = 0
 [node name="RT" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant"]
 scale = Vector2(2, 2)
 remote_path = NodePath("../../../../Parts/BELLY_lower_torso_variant")
+
+[node name="RT_overlay" type="RemoteTransform2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant"]
+scale = Vector2(2, 2)
+remote_path = NodePath("../../../../Parts/BELLY_overlay")
 
 [node name="TORSO_upper" type="Node2D" parent="Visuals/Rig/HIPS/BELLY_lower_torso_variant"]
 position = Vector2(5, -115)

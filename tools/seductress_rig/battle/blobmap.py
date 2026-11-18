@@ -65,6 +65,14 @@ for i,n in enumerate(DRAW):
 hole=lab==-2
 _,(iy,ix)=ndimage.distance_transform_edt((lab<0),return_indices=True)
 lab[hole]=lab[iy[hole],ix[hole]]
+# the wrap must be one swappable piece: everything inside it that is not skin belongs to the breast part,
+# and so does the wrap's dark outline where it was filed under torso/belly [Claude]
+BR=DRAW.index("BREASTS_plus_wrap_variant")
+core=poly([(560,488),(697,488),(700,592),(548,606),(548,545),(560,545)])
+lab[core&fg&~SKIN]=BR
+ring=cv2.dilate((lab==BR).astype(np.uint8),np.ones((9,9),np.uint8)).astype(bool)
+dark=rgb.max(2)<175
+lab[ring&dark&np.isin(lab,[DRAW.index("TORSO_upper"),DRAW.index("BELLY_lower_torso_variant")])]=BR
 # raised hand: split hand from forearm at the wrist, then the four fingers from the hand [Claude, by eye]
 A=DRAW.index("ARM_R_forearm_hand")
 arm=lab==A

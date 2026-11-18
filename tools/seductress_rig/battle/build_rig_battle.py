@@ -17,7 +17,7 @@ from PIL import Image
 
 SRC, WORK, OUT = sys.argv[1], sys.argv[2], sys.argv[3]
 CUTS = f"{SRC}/GorimCuts/Claude_2026-10-24"
-PARTS_SUB = "parts_battle"   # the neutral rig keeps images/character/parts
+PARTS_SUB = os.environ.get("PARTS_SUB", "parts_battle")   # the neutral rig keeps images/character/parts
 RES = f"res://Seductress/images/character/{PARTS_SUB}"
 PARTS_DIR = f"{OUT}/Seductress/images/character/{PARTS_SUB}"
 SCENE = f"{OUT}/Seductress/scenes/seductress_visuals.tscn"
@@ -116,6 +116,12 @@ void fragment() {
 	COLOR = c;
 }
 """
+# swappable belly stages: full-canvas PNGs from fit_variants.py in "<work dir>_var". They sit in one hidden layer,
+# Parts/BELLY_overlay/stage1..6, drawn in front of the skirt and ornaments and moved by the belly bone.
+# The game shows a stage by setting that one sprite visible. SHOW_STAGE (env) turns one on for previews.
+OVERLAY_AFTER = "HIP_ornaments_right"
+STAGES = 6
+SHOW_STAGE = int(os.environ.get("SHOW_STAGE", "0"))
 STEP = 0.1  # key spacing, seconds
 # optional pose file (4th argument): {"bone": [rot_deg, dx, dy]} added to the rest pose; the idle plays around it
 POSE = json.load(open(sys.argv[4])) if len(sys.argv) > 4 else {}
@@ -158,10 +164,29 @@ def main():
                "bones": {k: {"parent": v[0], "pivot": v[1]} for k, v in BONES.items()}, "parts": parts},
               open(f"{OUT}/parts.json", "w"), indent=1)
 
+    # belly stages: one common crop box so every stage shares the same offset
+    VAR = f"{WORK}_var"
+    stages = [Image.open(f"{VAR}/BELLY_stage{k}.png").convert("RGBA") for k in range(1, STAGES + 1)] if os.path.isdir(VAR) else []
+    if stages:
+        bbs = [im.getbbox() for im in stages]
+        sx0, sy0 = min(b[0] for b in bbs) - 2, min(b[1] for b in bbs) - 2
+        sx1, sy1 = max(b[2] for b in bbs) + 2, max(b[3] for b in bbs) + 2
+        sx0 -= sx0 % 2; sy0 -= sy0 % 2; sx1 += sx1 % 2; sy1 += sy1 % 2
+        for k, im in enumerate(stages, 1):
+            arr = np.array(im.crop((sx0, sy0, sx1, sy1))).astype(np.float32)
+            arr[..., :3] *= arr[..., 3:4] / 255.0
+            small = arr.reshape((sy1 - sy0) // 2, 2, (sx1 - sx0) // 2, 2, 4).mean(axis=(1, 3))
+            al = np.clip(small[..., 3:4], 1, 255)
+            small[..., :3] = np.clip(small[..., :3] * 255.0 / al, 0, 255)
+            Image.fromarray(small.astype(np.uint8), "RGBA").save(f"{PARTS_DIR}/BELLY_stage{k}.png")
+
     # ---------------- scene text ----------------
     ext, nodes = [], []
     for i, name in enumerate(DRAW):
         ext.append(f'[ext_resource type="Texture2D" path="{RES}/{name}.png" id="t{i}"]')
+
+    for k in range(1, len(stages) + 1):
+        ext.append(f'[ext_resource type="Texture2D" path="{RES}/BELLY_stage{k}.png" id="s{k}"]')
 
     def bone_path(b):
         chain = []
@@ -241,6 +266,16 @@ def main():
                 f"scale = Vector2({f(1 / TEX_SCALE)}, {f(1 / TEX_SCALE)})",
                 f'texture = ExtResource("t{i}")', "centered = false",
                 f"offset = Vector2({f((x0 - px) * TEX_SCALE)}, {f((y0 - py) * TEX_SCALE)})", ""]
+        if stages and name == OVERLAY_AFTER:
+            bx, by = BONES["BELLY_lower_torso_variant"][1]
+            out += ['[node name="BELLY_overlay" type="Node2D" parent="Visuals/Parts"]',
+                    f"position = Vector2({f(bx - ORIGIN[0])}, {f(by - ORIGIN[1])})",
+                    f"scale = Vector2({f(1 / TEX_SCALE)}, {f(1 / TEX_SCALE)})", ""]
+            for k in range(1, len(stages) + 1):
+                out += [f'[node name="stage{k}" type="Sprite2D" parent="Visuals/Parts/BELLY_overlay"]',
+                        f"visible = {'true' if k == SHOW_STAGE else 'false'}",
+                        f'texture = ExtResource("s{k}")', "centered = false",
+                        f"offset = Vector2({f((sx0 - bx) * TEX_SCALE)}, {f((sy0 - by) * TEX_SCALE)})", ""]
     out += ['[node name="Rig" type="Node2D" parent="Visuals"]', ""]
     # bones, parents before children (dict order already satisfies this)
     for b, (par, piv) in BONES.items():
@@ -255,6 +290,10 @@ def main():
             out += [f'[node name="RT" type="RemoteTransform2D" parent="{parent_path}/{b}"]',
                     f"scale = Vector2({f(1 / TEX_SCALE)}, {f(1 / TEX_SCALE)})",
                     f'remote_path = NodePath("{up}/Parts/{b}")', ""]
+            if stages and b == "BELLY_lower_torso_variant":
+                out += [f'[node name="RT_overlay" type="RemoteTransform2D" parent="{parent_path}/{b}"]',
+                        f"scale = Vector2({f(1 / TEX_SCALE)}, {f(1 / TEX_SCALE)})",
+                        f'remote_path = NodePath("{up}/Parts/BELLY_overlay")', ""]
     out += ['[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals"]',
             'libraries = {\n&"": SubResource("lib")\n}', 'autoplay = "idle"', ""]
     # contract nodes, same numbers as the static scene
