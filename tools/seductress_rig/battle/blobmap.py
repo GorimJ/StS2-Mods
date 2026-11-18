@@ -69,7 +69,8 @@ lab[hole]=lab[iy[hole],ix[hole]]
 # and so does the wrap's dark outline where it was filed under torso/belly [Claude]
 BR=DRAW.index("BREASTS_plus_wrap_variant")
 core=poly([(560,488),(697,488),(700,592),(548,606),(548,545),(560,545)])
-lab[core&fg&~SKIN]=BR
+keep=np.isin(lab,[DRAW.index(n) for n in ("HAIR_side_L","HAIR_side_R","HAIR_back","SLEEVE_L","SLEEVE_R")])&((xx<596)|(xx>690))
+lab[core&fg&~SKIN&~keep]=BR          # real hair locks and the sleeve that cross the wrap at its ends stay where they are
 ring=cv2.dilate((lab==BR).astype(np.uint8),np.ones((9,9),np.uint8)).astype(bool)
 dark=rgb.max(2)<175
 lab[ring&dark&np.isin(lab,[DRAW.index("TORSO_upper"),DRAW.index("BELLY_lower_torso_variant")])]=BR

@@ -41,8 +41,12 @@ BONES = {
     "HIP_ornaments_left":         ("HIPS", (548, 648)),
     "HIP_ornaments_right":        ("HIPS", (702, 668)),
     "BELLY_lower_torso_variant":  ("HIPS", (625, 680)),
+    "BELLY_overlay":              ("BELLY_lower_torso_variant", (615, 600)),   # swappable belly stages hang from here
     "TORSO_upper":                ("BELLY_lower_torso_variant", (630, 565)),
     "BREASTS_plus_wrap_variant":  ("TORSO_upper", (625, 520)),
+    "BREASTS_overlay":            ("BREASTS_plus_wrap_variant", (625, 520)),   # swappable breast art rides the breast bone
+    "PAIR_overlay":               ("BREASTS_plus_wrap_variant", (625, 520)),   # join patches, on top of all three
+    "BREASTS_under":              ("BREASTS_plus_wrap_variant", (625, 520)),   # its stomach half, drawn below the belly stages
     "ARM_L_upper":                ("TORSO_upper", (488, 445)),
     "SLEEVE_L":                   ("ARM_L_upper", (440, 510)),
     "ARM_L_forearm_hand":         ("ARM_L_upper", (395, 525)),
@@ -76,6 +80,9 @@ IDLE = {
     # [Gorim 2026-11-17] less vertical bob everywhere except the breasts; small weight shift; fingers move
     "HIPS":                      [("px", HIP, 1, 0.00)],
     "BELLY_lower_torso_variant": [("sy", 0.006, B2, 0.00), ("py", -0.4, B2, 0.02)],
+    # the big belly breathes more than the waist and lags the hip sway a little
+    "BELLY_overlay":             [("rot", 0.7, 1, -0.10), ("rot", 0.25, B2, -0.12), ("sx", 0.010, B2, -0.02),
+                                  ("sy", 0.012, B2, -0.06), ("py", -1.0, B2, -0.10)],
     "TORSO_upper":               [("py", -0.7, B2, 0.00), ("rot", -0.5, 1, 0.00)],
     "BREASTS_plus_wrap_variant": [("py", -3.4, B2, -0.08), ("sx", 0.008, B2, -0.04), ("sy", 0.016, B2, -0.08)],
     "HEAD_face_plus_front_hair": [("rot", 0.5, 1, 0.05), ("py", -0.3, B2, -0.10)],
@@ -116,12 +123,95 @@ void fragment() {
 	COLOR = c;
 }
 """
-# swappable belly stages: full-canvas PNGs from fit_variants.py in "<work dir>_var". They sit in one hidden layer,
-# Parts/BELLY_overlay/stage1..6, drawn in front of the skirt and ornaments and moved by the belly bone.
-# The game shows a stage by setting that one sprite visible. SHOW_STAGE (env) turns one on for previews.
-OVERLAY_AFTER = "HIP_ornaments_right"
-STAGES = 6
-SHOW_STAGE = int(os.environ.get("SHOW_STAGE", "0"))
+# swappable overlays: hidden sprites the game turns on one at a time. Each layer is a Node2D in Parts holding one
+# Sprite2D per variant (all cropped to one shared box), drawn right after a given part and moved by its own bone.
+#   layer -> (drawn after this part, folder of full-canvas PNGs, variant names)
+# BELLY_overlay: fit_variants.py output. BREASTS_overlay: cut_breasts.py output (NovelAI art on the battle pose).
+BV = ["BREASTS_nude__flat", "BREASTS_nude__modest", "BREASTS_nude__bare", "BREASTS_nude__enormous",
+      "BREASTS_nude__absurd", "BREASTS_wrap__stage1", "BREASTS_wrap__stage2", "BREASTS_wrap__stage3"]
+# Order matters [Gorim 2026-11-18]: painted stomach, then belly stage, then breasts.
+OVERLAYS = {
+    "BREASTS_under":   ("HIP_ornaments_right", "{work}_breasts", [n + "__under" for n in BV]),   # whole repaint incl. stomach
+    "BELLY_overlay":   ("HIP_ornaments_right", "{work}_var", [f"BELLY_stage{k}" for k in range(1, 7)]),
+    # breasts alone. A size that split_breasts.py cut in two is a Node2D <name> holding sprites "far" and "near".
+    "BREASTS_overlay": ("HIP_ornaments_right", "{work}_breasts", ["BREASTS_base_hem"] + [
+        m for n in BV for m in ([n + "__far", n + "__near"] if os.path.exists(f"{WORK}_breasts/{n}__near.png") else [n])]),
+    # the join between one breast state and one belly stage, repainted so the breasts rest on the belly
+    "PAIR_overlay":    ("HIP_ornaments_right", "{work}_pairs2",
+                        [f"PAIR_{b}__belly{k}" for b in ["base"] + [v.replace("BREASTS_", "") for v in BV] for k in range(1, 7)]),
+}
+# BREASTS_overlay/base_hem is the normal wrap's lower hem; it is on by default and covers the top of the belly stages.
+# While a breast variant is showing, the game must show BREASTS_under/<name> and BREASTS_overlay/<name>, and hide both
+# Parts/BREASTS_plus_wrap_variant and BREASTS_overlay/base_hem.
+# Every overlay sprite has its own bone, so each size gets its own idle [Gorim 2026-11-18: idle for all of them]:
+#   B_<breast>  (child of the breast bone)  moves BREASTS_under/<breast> and BREASTS_overlay/<breast>
+#   S_<k>       (child of BELLY_overlay)    moves BELLY_overlay/stage<k>
+#   P_<breast>  (child of the torso)        moves the six pair patches of that breast state, at half the breast's bob,
+#                                           because a patch holds both the breasts' underside and the top of the belly
+for _n in ("BREASTS_overlay", "BREASTS_under", "PAIR_overlay"): BONES.pop(_n, None)
+HEAVY = {"base": 0.0, "nude__flat": -0.7, "nude__modest": -0.4, "nude__bare": 0.0, "nude__enormous": 0.5, "nude__absurd": 1.0,
+         "wrap__stage1": 0.3, "wrap__stage2": 0.6, "wrap__stage3": 0.9}      # how much heavier than the base breasts
+for _b, _h in HEAVY.items():
+    if _b != "base":
+        BONES[f"B_{_b}"] = ("BREASTS_plus_wrap_variant", (625, 520))
+        IDLE[f"B_{_b}"] = [("py", -3.4 * 0.6 * _h, B2, -0.14), ("sy", 0.016 * 0.8 * _h, B2, -0.14), ("sx", 0.006 * _h, B2, -0.10),
+                           ("rot", 0.5 * max(_h, 0), 1, -0.20), ("rot", 0.25 * max(_h, 0), B2, -0.25)]
+# [Gorim 2026-11-18] at the larger nude sizes each breast moves on its own: BL_ = near breast (her right), BR_ = far.
+# These add to B_<breast>, which still carries the shared motion and the painted stomach piece behind them.
+# [Gorim 2026-11-18, second note] the breasts must feel attached: the top edge was sliding up her chest and over the
+# necklace. So for these two sizes nothing translates. B_ hangs from the torso with its pivot on the top edge and
+# stretches downward (the underside moves as much as the old bob did); each breast swells sideways with the breath
+# and swings a little about the top of the cleavage.
+# [Gorim 2026-11-18: "Yes, all sizes"] every breast state is pinned the same way; top edge and height are read
+# from the piece itself. The base breasts' own bone gets the same treatment (its lower hem piece rides on it).
+def _dims(path):
+    x0, y0, x1, y1 = Image.open(path).getbbox(); return y0, y1 - y0
+for _b, _h in HEAVY.items():
+    _top, _hgt = _dims(f"{WORK}/BREASTS_plus_wrap_variant.png" if _b == "base" else f"{WORK}_breasts/BREASTS_{_b}.png")
+    _n = "BREASTS_plus_wrap_variant" if _b == "base" else f"B_{_b}"
+    BONES[_n] = ("TORSO_upper", (632, _top))
+    IDLE[_n] = [("sy", -3.4 * (1 + 0.6 * _h) / _hgt, B2, -0.10), ("sx", 0.008, B2, -0.04), ("rot", 0.3 * max(_h, 0), 1, -0.20)]
+    # [Gorim 2026-11-18: "something clipping in" under the breasts on larger bellies] The join patch used to slide at
+    # half the breast's bob, so the breast's own underside stepped out from behind it. Each patch now has its own
+    # bone pinned at the patch's lower edge (which stays with the belly) and is squeezed from the top by exactly
+    # what the breast underside moves. The painted stomach piece rides with the breasts again (same bone), so no
+    # copy of the breasts can peek out from behind them.
+    _split = (0.018 * _h + 0.004) * _hgt if _b in ("nude__enormous", "nude__absurd") else 0.0   # mean extra stretch, px
+    for _k in range(1, 7):
+        _pp = f"{WORK}_pairs2/PAIR_{_b}__belly{_k}.png"
+        if not os.path.exists(_pp): continue
+        _pt, _ph = _dims(_pp); _bot = _pt + _ph
+        _hp = max(_bot - (_top + _hgt), 40)
+        BONES[f"P_{_b}__belly{_k}"] = ("TORSO_upper", (632, _bot))
+        IDLE[f"P_{_b}__belly{_k}"] = [("sy", 3.4 * (1 + 0.6 * _h) / _hp, B2, -0.10)] + ([("sy", -_split / _hp, 0, 0.25)] if _split else [])
+    print("pinned", _b, "top", _top, "height", _hgt, "underside moves", round(3.4 * (1 + 0.6 * _h), 1))
+for _b in ("nude__enormous", "nude__absurd"):
+    _h = HEAVY[_b]; _TOP = BONES[f"B_{_b}"][1][1]
+    BONES[f"BL_{_b}"] = (f"B_{_b}", (628, _TOP + 4))
+    BONES[f"BR_{_b}"] = (f"B_{_b}", (640, _TOP + 4))
+    _w = 0.022 * (0.5 + 0.5 * _h)
+    IDLE[f"BL_{_b}"] = [("sy", -0.018 * _h - 0.004, B2, 0.06), ("sx", _w, B2, 0.00), ("rot", 0.8 * _h, 1, -0.12), ("rot", 0.45 * _h, B2, -0.16)]
+    IDLE[f"BR_{_b}"] = [("sy", -0.018 * _h - 0.004, B2, -0.22), ("sx", _w, B2, -0.10), ("rot", -0.7 * _h, 1, -0.34), ("rot", -0.4 * _h, B2, -0.40)]
+    # constant offsets (0 cycles, phase 0.25 = +1): each breast only ever stretches past its rest size, so it always
+    # covers the copy of itself painted on the stomach piece behind it (that copy showed as a pale rim when it shrank)
+    for _n in (f"BL_{_b}", f"BR_{_b}"):
+        IDLE[_n] += [("sy", 0.018 * _h + 0.004, 0, 0.25), ("sx", _w, 0, 0.25)]
+for _k in range(1, 7):
+    BONES[f"S_{_k}"] = ("BELLY_overlay", (615, 600))
+    IDLE[f"S_{_k}"] = [("rot", 0.6 * _k / 6, 1, -0.15), ("sy", 0.010 * _k / 6, B2, -0.08), ("sx", 0.006 * _k / 6, B2, -0.04),
+                       ("py", -0.8 * _k / 6, B2, -0.12)]
+def overlay_bone(n):
+    if n.endswith("__under"): return "B_" + n[8:-7]
+    if n.endswith("__near"): return "BL_" + n[8:-6]
+    if n.endswith("__far"): return "BR_" + n[8:-5]
+    if n == "BREASTS_base_hem": return "BREASTS_plus_wrap_variant"
+    if n.startswith("BREASTS_"): return "B_" + n[8:]
+    if n.startswith("BELLY_stage"): return "S_" + n[11:]
+    return "P_" + n[5:]
+SHOW = os.environ.get("SHOW", "").split(",")      # variant names to show, for previews only
+_b = next((v.replace("BREASTS_", "") for v in SHOW if v.startswith("BREASTS_")), "base")
+_k = next((v.replace("BELLY_stage", "") for v in SHOW if v.startswith("BELLY_stage")), None)
+SHOW_PAIR = f"PAIR_{_b}__belly{_k}" if _k and os.environ.get("NO_PAIR") != "1" else None    # the pair patch that goes with them
 STEP = 0.1  # key spacing, seconds
 # optional pose file (4th argument): {"bone": [rot_deg, dx, dy]} added to the rest pose; the idle plays around it
 POSE = json.load(open(sys.argv[4])) if len(sys.argv) > 4 else {}
@@ -164,29 +254,34 @@ def main():
                "bones": {k: {"parent": v[0], "pivot": v[1]} for k, v in BONES.items()}, "parts": parts},
               open(f"{OUT}/parts.json", "w"), indent=1)
 
-    # belly stages: one common crop box so every stage shares the same offset
-    VAR = f"{WORK}_var"
-    stages = [Image.open(f"{VAR}/BELLY_stage{k}.png").convert("RGBA") for k in range(1, STAGES + 1)] if os.path.isdir(VAR) else []
-    if stages:
-        bbs = [im.getbbox() for im in stages]
-        sx0, sy0 = min(b[0] for b in bbs) - 2, min(b[1] for b in bbs) - 2
+    # overlays: one common crop box per layer so every variant shares the same offset
+    layers = {}
+    for lname, (after, folder, names) in OVERLAYS.items():
+        folder = folder.format(work=WORK)
+        names = [n for n in names if os.path.exists(f"{folder}/{n}.png")]
+        if not names: continue
+        ims = [Image.open(f"{folder}/{n}.png").convert("RGBA") for n in names]
+        bbs = [im.getbbox() for im in ims]
+        sx0, sy0 = max(min(b[0] for b in bbs) - 2, 0), max(min(b[1] for b in bbs) - 2, 0)
         sx1, sy1 = max(b[2] for b in bbs) + 2, max(b[3] for b in bbs) + 2
         sx0 -= sx0 % 2; sy0 -= sy0 % 2; sx1 += sx1 % 2; sy1 += sy1 % 2
-        for k, im in enumerate(stages, 1):
+        for n, im in zip(names, ims):
             arr = np.array(im.crop((sx0, sy0, sx1, sy1))).astype(np.float32)
             arr[..., :3] *= arr[..., 3:4] / 255.0
             small = arr.reshape((sy1 - sy0) // 2, 2, (sx1 - sx0) // 2, 2, 4).mean(axis=(1, 3))
             al = np.clip(small[..., 3:4], 1, 255)
             small[..., :3] = np.clip(small[..., :3] * 255.0 / al, 0, 255)
-            Image.fromarray(small.astype(np.uint8), "RGBA").save(f"{PARTS_DIR}/BELLY_stage{k}.png")
+            Image.fromarray(small.astype(np.uint8), "RGBA").save(f"{PARTS_DIR}/{n}.png")
+        layers[lname] = (after, names, sx0, sy0)
 
     # ---------------- scene text ----------------
     ext, nodes = [], []
     for i, name in enumerate(DRAW):
         ext.append(f'[ext_resource type="Texture2D" path="{RES}/{name}.png" id="t{i}"]')
 
-    for k in range(1, len(stages) + 1):
-        ext.append(f'[ext_resource type="Texture2D" path="{RES}/BELLY_stage{k}.png" id="s{k}"]')
+    for lname, (after, names, _, _) in layers.items():
+        for n in names:
+            ext.append(f'[ext_resource type="Texture2D" path="{RES}/{n}.png" id="o_{n}"]')
 
     def bone_path(b):
         chain = []
@@ -254,6 +349,7 @@ def main():
 
     shader = ['[sub_resource type="Shader" id="sh_smoke"]', 'code = "' + SMOKE_SHADER.replace('"', '\\"') + '"', "",
               '[sub_resource type="ShaderMaterial" id="mat_smoke"]', 'shader = SubResource("sh_smoke")']
+    rts = {}
     out = [f"[gd_scene load_steps={len(ext) + 5} format=3]", ""] + ext + [""] + shader + [""] + anim + [""] + lib + [""]
     out += ['[node name="SeductressVisuals" type="Node2D"]', "",
             '[node name="Visuals" type="Node2D" parent="."]', "unique_name_in_owner = true",
@@ -261,20 +357,38 @@ def main():
             '[node name="Parts" type="Node2D" parent="Visuals"]', ""]
     for i, name in enumerate(DRAW):
         x0, y0, _, _ = parts[name]["box"]; px, py = BONES[name][1]
-        out += [f'[node name="{name}" type="Sprite2D" parent="Visuals/Parts"]'] +                (['material = SubResource("mat_smoke")'] if name == "FX_censer_smoke" else []) + [
+        out += [f'[node name="{name}" type="Sprite2D" parent="Visuals/Parts"]'] +                (['material = SubResource("mat_smoke")'] if name == "FX_censer_smoke" else []) +                (["visible = false"] if name == "BREASTS_plus_wrap_variant" and any(v.startswith("BREASTS_") for v in SHOW) else []) + [
                 f"position = Vector2({f(px - ORIGIN[0])}, {f(py - ORIGIN[1])})",
                 f"scale = Vector2({f(1 / TEX_SCALE)}, {f(1 / TEX_SCALE)})",
                 f'texture = ExtResource("t{i}")', "centered = false",
                 f"offset = Vector2({f((x0 - px) * TEX_SCALE)}, {f((y0 - py) * TEX_SCALE)})", ""]
-        if stages and name == OVERLAY_AFTER:
-            bx, by = BONES["BELLY_lower_torso_variant"][1]
-            out += ['[node name="BELLY_overlay" type="Node2D" parent="Visuals/Parts"]',
-                    f"position = Vector2({f(bx - ORIGIN[0])}, {f(by - ORIGIN[1])})",
-                    f"scale = Vector2({f(1 / TEX_SCALE)}, {f(1 / TEX_SCALE)})", ""]
-            for k in range(1, len(stages) + 1):
-                out += [f'[node name="stage{k}" type="Sprite2D" parent="Visuals/Parts/BELLY_overlay"]',
-                        f"visible = {'true' if k == SHOW_STAGE else 'false'}",
-                        f'texture = ExtResource("s{k}")', "centered = false",
+        for lname, (after, names, sx0, sy0) in layers.items():
+            if name != after: continue
+            out += [f'[node name="{lname}" type="Node2D" parent="Visuals/Parts"]', ""]
+            for n in names:
+                short = n.replace("BELLY_", "").replace("BREASTS_", "").replace("PAIR_", "").replace("__under", "")
+                base_n = n.replace("__under", "")
+                half = "far" if n.endswith("__far") else "near" if n.endswith("__near") else None
+                if half:
+                    group = short[:-len(half) - 2]; gshow = base_n[:-len(half) - 2] in SHOW
+                    if half == "far":
+                        out += [f'[node name="{group}" type="Node2D" parent="Visuals/Parts/{lname}"]',
+                                f"visible = {'true' if gshow else 'false'}", ""]
+                    bx, by = BONES[overlay_bone(n)][1]
+                    rts.setdefault(overlay_bone(n), []).append((lname, f"{group}/{half}"))
+                    out += [f'[node name="{half}" type="Sprite2D" parent="Visuals/Parts/{lname}/{group}"]',
+                            f"position = Vector2({f(bx - ORIGIN[0])}, {f(by - ORIGIN[1])})",
+                            f"scale = Vector2({f(1 / TEX_SCALE)}, {f(1 / TEX_SCALE)})",
+                            f'texture = ExtResource("o_{n}")', "centered = false",
+                            f"offset = Vector2({f((sx0 - bx) * TEX_SCALE)}, {f((sy0 - by) * TEX_SCALE)})", ""]
+                    continue
+                bx, by = BONES[overlay_bone(n)][1]
+                rts.setdefault(overlay_bone(n), []).append((lname, short))
+                out += [f'[node name="{short}" type="Sprite2D" parent="Visuals/Parts/{lname}"]',
+                        f"visible = {'true' if (base_n in SHOW or base_n == SHOW_PAIR or (n == 'BREASTS_base_hem' and not any(v.startswith('BREASTS_') for v in SHOW))) else 'false'}",
+                        f"position = Vector2({f(bx - ORIGIN[0])}, {f(by - ORIGIN[1])})",
+                        f"scale = Vector2({f(1 / TEX_SCALE)}, {f(1 / TEX_SCALE)})",
+                        f'texture = ExtResource("o_{n}")', "centered = false",
                         f"offset = Vector2({f((sx0 - bx) * TEX_SCALE)}, {f((sy0 - by) * TEX_SCALE)})", ""]
     out += ['[node name="Rig" type="Node2D" parent="Visuals"]', ""]
     # bones, parents before children (dict order already satisfies this)
@@ -284,16 +398,16 @@ def main():
         out += [f'[node name="{b}" type="Node2D" parent="{parent_path}"]',
                 f"position = Vector2({f(piv[0] - ppiv[0] + pose(b)[1])}, {f(piv[1] - ppiv[1] + pose(b)[2])})",
                 f"rotation = {f(math.radians(pose(b)[0]))}", ""]
+        depth = bone_path(b).count("/") + 1
+        up = "/".join([".."] * (depth + 2))              # RT -> bone ... -> Rig -> Visuals
+        for lname, short in rts.get(b, []):
+            out += [f'[node name="RT_{lname}_{short.replace("/", "_")}" type="RemoteTransform2D" parent="{parent_path}/{b}"]',
+                    f"scale = Vector2({f(1 / TEX_SCALE)}, {f(1 / TEX_SCALE)})",
+                    f'remote_path = NodePath("{up}/Parts/{lname}/{short}")', ""]
         if b in parts:
-            depth = bone_path(b).count("/") + 1
-            up = "/".join([".."] * (depth + 2))          # RT -> bone ... -> Rig -> Visuals
             out += [f'[node name="RT" type="RemoteTransform2D" parent="{parent_path}/{b}"]',
                     f"scale = Vector2({f(1 / TEX_SCALE)}, {f(1 / TEX_SCALE)})",
                     f'remote_path = NodePath("{up}/Parts/{b}")', ""]
-            if stages and b == "BELLY_lower_torso_variant":
-                out += [f'[node name="RT_overlay" type="RemoteTransform2D" parent="{parent_path}/{b}"]',
-                        f"scale = Vector2({f(1 / TEX_SCALE)}, {f(1 / TEX_SCALE)})",
-                        f'remote_path = NodePath("{up}/Parts/BELLY_overlay")', ""]
     out += ['[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals"]',
             'libraries = {\n&"": SubResource("lib")\n}', 'autoplay = "idle"', ""]
     # contract nodes, same numbers as the static scene

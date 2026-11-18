@@ -33,6 +33,10 @@ for i,n in enumerate(DRAW):
     r=GROW.get(n,10)
     k=cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(2*r+1,2*r+1))
     grown=cv2.dilate(vis.astype(np.uint8),k).astype(bool)&(lab>i)&fg&(lab!=DRAW.index("FX_censer_smoke"))
+    # keep the hidden fill 4 px back from any edge of its cover that borders a part drawn earlier or the background:
+    # a fill that ends exactly on such an edge shows as a thin line as soon as the cover moves
+    foreign=~vis&~((lab>i)&fg)
+    grown&=~cv2.dilate(foreign.astype(np.uint8),np.ones((9,9),np.uint8)).astype(bool)
     p=np.zeros((H,W,4),np.float32); p[vis,:3]=master[vis]
     _,(sy,sx)=ndimage.distance_transform_edt(~cv2.erode(vis.astype(np.uint8),np.ones((5,5),np.uint8)).astype(bool),return_indices=True)
     p[grown,:3]=master[sy[grown],sx[grown]]
@@ -43,6 +47,8 @@ for i,n in enumerate(DRAW):
     a=np.where(vis|grown,1.0,0.0)
     # 2 px of the neighbours underneath, so no hairline of some third part shows through a cut
     over=cv2.dilate(vis.astype(np.uint8),np.ones((5,5),np.uint8)).astype(bool)&(lab<i)&(lab>=0)&(lab!=SMOKE)
+    # only where the neighbour looks like this part: a fringe of another material would show as a line when it moves
+    over&=np.abs(master-master[sy,sx]).sum(2)<70
     p[over,:3]=master[over]; a=np.where(over,1.0,a)
     if n in FEATHER:
         d=ndimage.distance_transform_edt(~vis)
