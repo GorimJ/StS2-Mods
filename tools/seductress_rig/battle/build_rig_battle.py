@@ -139,6 +139,12 @@ OVERLAYS = {
     # the join between one breast state and one belly stage, repainted so the breasts rest on the belly
     "PAIR_overlay":    ("HIP_ornaments_right", "{work}_pairs2",
                         [f"PAIR_{b}__belly{k}" for b in ["base"] + [v.replace("BREASTS_", "") for v in BV] for k in range(1, 7)]),
+    # lactation [Gorim 2026-11-18]: milk layers from cut_milk.py, on top of everything. Per breast state b:
+    #   MILK_overlay/<b>        milk on the breasts, moved by that state's breast bone (split sizes: Node2D with far/near)
+    #   MILK_overlay/<b>__drip  milk that ran onto the stomach; show it only while no belly stage is showing
+    "MILK_overlay":    ("HIP_ornaments_right", "{work}_milk",
+                        [m for b in ["base"] + [v.replace("BREASTS_", "") for v in BV]
+                         for m in [f"MILK_{b}__far", f"MILK_{b}__near", f"MILK_{b}", f"MILK_{b}__drip"]]),
 }
 # BREASTS_overlay/base_hem is the normal wrap's lower hem; it is on by default and covers the top of the belly stages.
 # While a breast variant is showing, the game must show BREASTS_under/<name> and BREASTS_overlay/<name>, and hide both
@@ -148,6 +154,34 @@ OVERLAYS = {
 #   S_<k>       (child of BELLY_overlay)    moves BELLY_overlay/stage<k>
 #   P_<breast>  (child of the torso)        moves the six pair patches of that breast state, at half the breast's bob,
 #                                           because a patch holds both the breasts' underside and the top of the belly
+# ---- hit: a recoil added on top of the idle. [Gorim 2026-11-18: "a 'getting hit' animation"] [Claude: all numbers] ----
+# She faces right, so a blow knocks her back to the left. kick() = the blow itself (peaks at ~0.07 s, gone by ~0.5 s);
+# wob(d, hz) = a loose part swinging after it, starting d seconds late. Everything is back at zero by HIT_LEN.
+HIT_LEN = 0.8
+def kick(t): return (1 - math.exp(-t / 0.025)) * math.exp(-t / 0.13) * 1.8 * max(0.0, 1 - t / HIT_LEN)
+def wob(d, hz, tau=0.17):
+    return lambda t: 0.0 if t < d else math.exp(-(t - d) / tau) * math.sin(2 * math.pi * hz * (t - d)) * max(0.0, 1 - t / HIT_LEN)
+def _kick(a): return lambda t: a * kick(t)
+def _wob(a, d, hz, tau=0.17): return (lambda g: (lambda t: a * g(t)))(wob(d, hz, tau))
+def _sum(*fs): return lambda t: sum(g(t) for g in fs)
+# HAIR_side_R gets a -5 kick: it keeps the loose curl by her waist off the belly [Claude 2026-11-18]
+HIT = {
+    ("HIPS", "px"): _kick(-16), ("HIPS", "py"): _kick(5),
+    ("BELLY_lower_torso_variant", "rot"): _kick(-2.0),
+    ("TORSO_upper", "rot"): _kick(-5.0), ("TORSO_upper", "py"): _kick(2),
+    ("HEAD_face_plus_front_hair", "rot"): _sum(_kick(3.0), _wob(-5.0, 0.05, 2.2)),
+    ("HAT_main", "rot"): _wob(-5.0, 0.06, 2.4), ("HAT_charm", "rot"): _wob(22, 0.05, 3.0, 0.25),
+    ("HAIR_back", "rot"): _wob(5.0, 0.08, 2.0, 0.22), ("HAIR_side_L", "rot"): _wob(6.0, 0.07, 2.4, 0.2), ("HAIR_side_R", "rot"): _sum(_kick(-5.0), _wob(6.0, 0.09, 2.4, 0.2)),
+    ("ARM_L_upper", "rot"): _sum(_kick(7.0), _wob(2.0, 0.1, 2.5)), ("ARM_L_forearm_hand", "rot"): _sum(_kick(6.0), _wob(3.0, 0.12, 2.5)),
+    ("SLEEVE_L", "rot"): _wob(9.0, 0.08, 2.2, 0.22), ("PROP_censer_and_chains", "rot"): _wob(16, 0.08, 2.0, 0.28),
+    ("ARM_R_upper", "rot"): _sum(_kick(-8.0), _wob(-2.0, 0.1, 2.5)), ("ARM_R_forearm_hand", "rot"): _sum(_kick(-9.0), _wob(-3.0, 0.12, 2.5)),
+    ("ARM_R_hand", "rot"): _sum(_kick(-10), _wob(-4.0, 0.12, 3.0)), ("SLEEVE_R", "rot"): _wob(-9.0, 0.08, 2.2, 0.22),
+    ("FINGER_R_index", "rot"): _kick(-12), ("FINGER_R_middle", "rot"): _kick(-14), ("FINGER_R_ring", "rot"): _kick(-16), ("FINGER_R_pinky", "rot"): _kick(-18),
+    ("SKIRT_rear_left", "rot"): _wob(4.0, 0.08, 2.0, 0.22), ("SKIRT_rear_right", "rot"): _wob(4.0, 0.1, 2.0, 0.22),
+    ("CLOTH_front_skirt_panel", "rot"): _wob(5.0, 0.08, 2.0, 0.22),
+    ("HIP_ornaments_left", "rot"): _wob(6, 0.06, 2.6, 0.25), ("HIP_ornaments_right", "rot"): _wob(6, 0.08, 2.6, 0.25),
+    ("BELLY_overlay", "rot"): _wob(1.5, 0.04, 3.0), ("BELLY_overlay", "sy"): _wob(0.03, 0.03, 3.2),
+}
 for _n in ("BREASTS_overlay", "BREASTS_under", "PAIR_overlay"): BONES.pop(_n, None)
 HEAVY = {"base": 0.0, "nude__flat": -0.7, "nude__modest": -0.4, "nude__bare": 0.0, "nude__enormous": 0.5, "nude__absurd": 1.0,
          "wrap__stage1": 0.3, "wrap__stage2": 0.6, "wrap__stage3": 0.9}      # how much heavier than the base breasts
@@ -200,7 +234,29 @@ for _k in range(1, 7):
     BONES[f"S_{_k}"] = ("BELLY_overlay", (615, 600))
     IDLE[f"S_{_k}"] = [("rot", 0.6 * _k / 6, 1, -0.15), ("sy", 0.010 * _k / 6, B2, -0.08), ("sx", 0.006 * _k / 6, B2, -0.04),
                        ("py", -0.8 * _k / 6, B2, -0.12)]
+# hit jiggle: pinned breasts bounce by stretching (heavier = more), belly stages wobble
+for _b, _h in HEAVY.items():
+    _n = "BREASTS_plus_wrap_variant" if _b == "base" else f"B_{_b}"
+    _a = 0.05 * (1 + 0.7 * _h)
+    HIT[(_n, "sy")] = _wob(_a, 0.03, 3.4, 0.2); HIT[(_n, "sx")] = _wob(-_a * 0.35, 0.03, 3.4, 0.2); HIT[(_n, "rot")] = _wob(1.2 * (1 + _h), 0.04, 3.0)
+    for _k in range(1, 7):
+        if f"P_{_b}__belly{_k}" in BONES:
+            _hp = 1.0 / abs(IDLE[f"P_{_b}__belly{_k}"][0][1]) * 3.4 * (1 + 0.6 * _h)      # the patch's squeeze height
+            _hg = 3.4 * (1 + 0.6 * _h) / abs(IDLE[_n][0][1])                               # breast piece height
+            HIT[(f"P_{_b}__belly{_k}", "sy")] = _wob(-_a * _hg / _hp, 0.03, 3.4, 0.2)        # keeps the patch on the underside
+for _b in ("nude__enormous", "nude__absurd"):
+    _h = HEAVY[_b]
+    HIT[(f"BL_{_b}", "rot")] = _wob(2.0 * _h, 0.03, 3.6); HIT[(f"BR_{_b}", "rot")] = _wob(-2.0 * _h, 0.07, 3.2)
+    HIT[(f"BL_{_b}", "sy")] = _wob(0.02 * _h, 0.02, 3.8); HIT[(f"BR_{_b}", "sy")] = _wob(0.02 * _h, 0.08, 3.2)
+for _k in range(1, 7):
+    HIT[(f"S_{_k}", "sy")] = _wob(0.02 * _k / 6, 0.05, 3.0); HIT[(f"S_{_k}", "rot")] = _wob(1.0 * _k / 6, 0.05, 2.8)
 def overlay_bone(n):
+    if n.startswith("MILK_"):
+        b = n[5:]
+        for suf, pre in (("__near", "BL_"), ("__far", "BR_")):
+            if b.endswith(suf): return pre + b[:-len(suf)]
+        b = b.replace("__drip", "")
+        return "BREASTS_plus_wrap_variant" if b == "base" else "B_" + b
     if n.endswith("__under"): return "B_" + n[8:-7]
     if n.endswith("__near"): return "BL_" + n[8:-6]
     if n.endswith("__far"): return "BR_" + n[8:-5]
@@ -208,10 +264,12 @@ def overlay_bone(n):
     if n.startswith("BREASTS_"): return "B_" + n[8:]
     if n.startswith("BELLY_stage"): return "S_" + n[11:]
     return "P_" + n[5:]
+TINT = dict(x.split("=") for x in os.environ.get("TINT", "").split(";") if x)   # debug only: NAME=r,g,b,a;...
 SHOW = os.environ.get("SHOW", "").split(",")      # variant names to show, for previews only
 _b = next((v.replace("BREASTS_", "") for v in SHOW if v.startswith("BREASTS_")), "base")
 _k = next((v.replace("BELLY_stage", "") for v in SHOW if v.startswith("BELLY_stage")), None)
 SHOW_PAIR = f"PAIR_{_b}__belly{_k}" if _k and os.environ.get("NO_PAIR") != "1" else None    # the pair patch that goes with them
+if os.environ.get("MILK") == "1": SHOW += [f"MILK_{_b}"] + ([] if _k else [f"MILK_{_b}__drip"])    # preview only
 STEP = 0.1  # key spacing, seconds
 # optional pose file (4th argument): {"bone": [rot_deg, dx, dy]} added to the rest pose; the idle plays around it
 POSE = json.load(open(sys.argv[4])) if len(sys.argv) > 4 else {}
@@ -289,75 +347,94 @@ def main():
             chain.append(b); b = BONES[b][0]
         return "/".join(reversed(chain))
 
-    # animation tracks
-    tracks, ti = [], 0
-    times = [round(i * STEP, 4) for i in range(int(round(L / STEP)) + 1)]
-    for bone, terms in IDLE.items():
-        rest = BONES[bone][1]; par = BONES[bone][0]
-        ppiv = BONES[par][1] if par else ORIGIN
-        base_pos = (rest[0] - ppiv[0] + pose(bone)[1], rest[1] - ppiv[1] + pose(bone)[2])
-        props = {}
-        for prop, amp, cyc, ph in terms:
-            props.setdefault(prop, []).append((amp, cyc, ph))
-        def val(prop, t):
-            return sum(a * math.sin(2 * math.pi * (c * t / L + p)) for a, c, p in props.get(prop, []))
-        path = f"Rig/{bone_path(bone)}"
-        if "rot" in props:
-            vals = ", ".join(f(math.radians(val("rot", t) + pose(bone)[0])) for t in times)
-            tracks.append((ti, f"{path}:rotation", "PackedFloat32Array(" + ", ".join(f(t) for t in times) + ")",
-                           "[" + vals + "]")); ti += 1
-        if "px" in props or "py" in props:
-            vals = ", ".join(f"Vector2({f(base_pos[0] + val('px', t))}, {f(base_pos[1] + val('py', t))})" for t in times)
-            tracks.append((ti, f"{path}:position", "PackedFloat32Array(" + ", ".join(f(t) for t in times) + ")",
-                           "[" + vals + "]")); ti += 1
-        if "sx" in props or "sy" in props:
-            vals = ", ".join(f"Vector2({f(1 + val('sx', t))}, {f(1 + val('sy', t))})" for t in times)
-            tracks.append((ti, f"{path}:scale", "PackedFloat32Array(" + ", ".join(f(t) for t in times) + ")",
-                           "[" + vals + "]")); ti += 1
-
-    # legs: two-bone IK against the hip sway
+    # ---------------- animations ----------------
     def rot(v, a):
         return (v[0] * math.cos(a) - v[1] * math.sin(a), v[0] * math.sin(a) + v[1] * math.cos(a))
-    for leg, foot in FEET.items():
-        Hp, Kp = BONES[f"{leg}_thigh"][1], BONES[f"{leg}_shin_foot"][1]
-        u, w = (Kp[0] - Hp[0], Kp[1] - Hp[1]), (foot[0] - Kp[0], foot[1] - Kp[1])
-        t1s, t2s, a1, a2 = [], [], 0.0, 0.0
-        for t in times:
-            dx = sum(a * math.sin(2 * math.pi * (c * t / L + p)) for pr, a, c, p in IDLE["HIPS"] if pr == "px")
-            def err(x1, x2):
-                r1, r2 = rot(u, x1), rot(w, x1 + x2)
-                return (dx + r1[0] + r2[0] - u[0] - w[0], r1[1] + r2[1] - u[1] - w[1])
-            for _ in range(12):                       # Newton, numeric Jacobian
-                e = err(a1, a2); h = 1e-6
-                e1, e2 = err(a1 + h, a2), err(a1, a2 + h)
-                j11, j21, j12, j22 = (e1[0] - e[0]) / h, (e1[1] - e[1]) / h, (e2[0] - e[0]) / h, (e2[1] - e[1]) / h
-                det = j11 * j22 - j12 * j21
-                a1 -= (j22 * e[0] - j12 * e[1]) / det; a2 -= (-j21 * e[0] + j11 * e[1]) / det
-            t1s.append(a1); t2s.append(a2)
-        for bone, vals in ((f"{leg}_thigh", t1s), (f"{leg}_shin_foot", t2s)):
-            tracks.append((ti, f"Rig/{bone_path(bone)}:rotation", "PackedFloat32Array(" + ", ".join(f(t) for t in times) + ")",
-                           "[" + ", ".join(f(v) for v in vals) + "]")); ti += 1
-        print(leg, "max thigh/shin deg", round(math.degrees(max(map(abs, t1s))), 2), round(math.degrees(max(map(abs, t2s))), 2))
 
-    anim = ['[sub_resource type="Animation" id="anim_idle"]', 'resource_name = "idle"', f"length = {f(L)}", "loop_mode = 1"]
-    for i, path, tarr, varr in tracks:
+    def make_anim(name, length, loop, step, extra):
+        """One animation. Every bone gets idle(t) from the IDLE table plus extra[(bone, prop)](t), so all animations
+        key the same tracks (an AnimationTree resets tracks a clip lacks). Legs are solved so the feet stay put."""
+        times = [round(i * step, 4) for i in range(int(round(length / step)) + 1)]
+        T = "PackedFloat32Array(" + ", ".join(f(t) for t in times) + ")"
+        tracks = []
+        def val(bone, prop, t):
+            v = sum(a * math.sin(2 * math.pi * (c * t / L + p)) for pr, a, c, p in IDLE.get(bone, []) if pr == prop)
+            e = extra.get((bone, prop))
+            return v + (e(t) if e else 0.0)
+        for bone in BONES:
+            if bone not in IDLE and not any(b == bone for b, _ in ALLEXTRA): continue
+            if bone.endswith("_thigh") or bone.endswith("_shin_foot"): continue
+            has = lambda *ps: any(pr in ps for pr, *_ in IDLE.get(bone, [])) or any((bone, q) in ALLEXTRA for q in ps)
+            rest = BONES[bone][1]; par = BONES[bone][0]
+            ppiv = BONES[par][1] if par else ORIGIN
+            base_pos = (rest[0] - ppiv[0] + pose(bone)[1], rest[1] - ppiv[1] + pose(bone)[2])
+            path = f"Rig/{bone_path(bone)}"
+            if has("rot"):
+                tracks.append((f"{path}:rotation", T, "[" + ", ".join(f(math.radians(val(bone, "rot", t) + pose(bone)[0])) for t in times) + "]"))
+            if has("px", "py"):
+                tracks.append((f"{path}:position", T, "[" + ", ".join(
+                    f"Vector2({f(base_pos[0] + val(bone, 'px', t))}, {f(base_pos[1] + val(bone, 'py', t))})" for t in times) + "]"))
+            if has("sx", "sy"):
+                tracks.append((f"{path}:scale", T, "[" + ", ".join(
+                    f"Vector2({f(1 + val(bone, 'sx', t))}, {f(1 + val(bone, 'sy', t))})" for t in times) + "]"))
+        # legs: two-bone IK against the hip motion
+        for leg, foot in FEET.items():
+            Hp, Kp = BONES[f"{leg}_thigh"][1], BONES[f"{leg}_shin_foot"][1]
+            u, w = (Kp[0] - Hp[0], Kp[1] - Hp[1]), (foot[0] - Kp[0], foot[1] - Kp[1])
+            t1s, t2s, a1, a2 = [], [], 0.0, 0.0
+            for t in times:
+                dx, dy = val("HIPS", "px", t), val("HIPS", "py", t)
+                def err(x1, x2):
+                    r1, r2 = rot(u, x1), rot(w, x1 + x2)
+                    return (dx + r1[0] + r2[0] - u[0] - w[0], dy + r1[1] + r2[1] - u[1] - w[1])
+                for _ in range(12):                       # Newton, numeric Jacobian
+                    e = err(a1, a2); h = 1e-6
+                    e1, e2 = err(a1 + h, a2), err(a1, a2 + h)
+                    j11, j21, j12, j22 = (e1[0] - e[0]) / h, (e1[1] - e[1]) / h, (e2[0] - e[0]) / h, (e2[1] - e[1]) / h
+                    det = j11 * j22 - j12 * j21
+                    a1 -= (j22 * e[0] - j12 * e[1]) / det; a2 -= (-j21 * e[0] + j11 * e[1]) / det
+                t1s.append(a1); t2s.append(a2)
+            for bone, vals in ((f"{leg}_thigh", t1s), (f"{leg}_shin_foot", t2s)):
+                tracks.append((f"Rig/{bone_path(bone)}:rotation", T, "[" + ", ".join(f(v) for v in vals) + "]"))
+            print(name, leg, "max thigh/shin deg", round(math.degrees(max(map(abs, t1s))), 2), round(math.degrees(max(map(abs, t2s))), 2))
+        a = [f'[sub_resource type="Animation" id="anim_{name}"]', f'resource_name = "{name}"', f"length = {f(length)}"] + (["loop_mode = 1"] if loop else [])
         trans = "PackedFloat32Array(" + ", ".join(["1"] * len(times)) + ")"
-        anim += [f'tracks/{i}/type = "value"', f"tracks/{i}/imported = false", f"tracks/{i}/enabled = true",
-                 f'tracks/{i}/path = NodePath("{path}")', f"tracks/{i}/interp = 1", f"tracks/{i}/loop_wrap = true",
-                 f"tracks/{i}/keys = {{\n\"times\": {tarr},\n\"transitions\": {trans},\n\"update\": 0,\n\"values\": {varr}\n}}"]
-    lib = ['[sub_resource type="AnimationLibrary" id="lib"]', '_data = {\n&"idle": SubResource("anim_idle")\n}']
+        for i, (path, tarr, varr) in enumerate(tracks):
+            a += [f'tracks/{i}/type = "value"', f"tracks/{i}/imported = false", f"tracks/{i}/enabled = true",
+                  f'tracks/{i}/path = NodePath("{path}")', f"tracks/{i}/interp = 1", f"tracks/{i}/loop_wrap = true",
+                  f"tracks/{i}/keys = {{\n\"times\": {tarr},\n\"transitions\": {trans},\n\"update\": 0,\n\"values\": {varr}\n}}"]
+        return a, len(tracks)
+
+    ALLEXTRA = set(HIT)
+    a_idle, n_idle = make_anim("idle", L, True, STEP, {})
+    a_hit, n_hit = make_anim("hit", HIT_LEN, False, 1 / 30, HIT)
+    tracks = [None] * n_idle
+    anim = a_idle + [""] + a_hit
+    lib = ['[sub_resource type="AnimationLibrary" id="lib"]', '_data = {\n&"hit": SubResource("anim_hit"),\n&"idle": SubResource("anim_idle")\n}']
+    # State machine, because BaseLib's plain AnimationPlayer path never returns to idle. BaseLib calls
+    # playback.travel("hit") on the Hit trigger; "hit" then falls back to "idle" by itself.
+    tree = ['[sub_resource type="AnimationNodeAnimation" id="n_idle"]', 'animation = &"idle"', "",
+            '[sub_resource type="AnimationNodeAnimation" id="n_hit"]', 'animation = &"hit"', "",
+            '[sub_resource type="AnimationNodeStateMachineTransition" id="tr_start"]', "advance_mode = 2", "",
+            '[sub_resource type="AnimationNodeStateMachineTransition" id="tr_idle_hit"]', "xfade_time = 0.05", "",
+            '[sub_resource type="AnimationNodeStateMachineTransition" id="tr_hit_idle"]', "xfade_time = 0.3", "switch_mode = 2", "advance_mode = 2", "",
+            '[sub_resource type="AnimationNodeStateMachine" id="sm"]',
+            'states/idle/node = SubResource("n_idle")', "states/idle/position = Vector2(360, 100)",
+            'states/hit/node = SubResource("n_hit")', "states/hit/position = Vector2(560, 100)",
+            'transitions = ["Start", "idle", SubResource("tr_start"), "idle", "hit", SubResource("tr_idle_hit"), "hit", "idle", SubResource("tr_hit_idle")]']
+    lib += [""] + tree
 
     shader = ['[sub_resource type="Shader" id="sh_smoke"]', 'code = "' + SMOKE_SHADER.replace('"', '\\"') + '"', "",
               '[sub_resource type="ShaderMaterial" id="mat_smoke"]', 'shader = SubResource("sh_smoke")']
     rts = {}
-    out = [f"[gd_scene load_steps={len(ext) + 5} format=3]", ""] + ext + [""] + shader + [""] + anim + [""] + lib + [""]
+    out = [f"[gd_scene load_steps={len(ext) + 12} format=3]", ""] + ext + [""] + shader + [""] + anim + [""] + lib + [""]
     out += ['[node name="SeductressVisuals" type="Node2D"]', "",
             '[node name="Visuals" type="Node2D" parent="."]', "unique_name_in_owner = true",
             f"scale = Vector2({f(VIS_SCALE)}, {f(VIS_SCALE)})", "",
             '[node name="Parts" type="Node2D" parent="Visuals"]', ""]
     for i, name in enumerate(DRAW):
         x0, y0, _, _ = parts[name]["box"]; px, py = BONES[name][1]
-        out += [f'[node name="{name}" type="Sprite2D" parent="Visuals/Parts"]'] +                (['material = SubResource("mat_smoke")'] if name == "FX_censer_smoke" else []) +                (["visible = false"] if name == "BREASTS_plus_wrap_variant" and any(v.startswith("BREASTS_") for v in SHOW) else []) + [
+        out += [f'[node name="{name}" type="Sprite2D" parent="Visuals/Parts"]'] +                (['material = SubResource("mat_smoke")'] if name == "FX_censer_smoke" else []) +                (["visible = false"] if name == "BREASTS_plus_wrap_variant" and any(v.startswith("BREASTS_") for v in SHOW) else []) + ([f"modulate = Color({TINT[name]})"] if name in TINT else []) + [
                 f"position = Vector2({f(px - ORIGIN[0])}, {f(py - ORIGIN[1])})",
                 f"scale = Vector2({f(1 / TEX_SCALE)}, {f(1 / TEX_SCALE)})",
                 f'texture = ExtResource("t{i}")', "centered = false",
@@ -366,7 +443,7 @@ def main():
             if name != after: continue
             out += [f'[node name="{lname}" type="Node2D" parent="Visuals/Parts"]', ""]
             for n in names:
-                short = n.replace("BELLY_", "").replace("BREASTS_", "").replace("PAIR_", "").replace("__under", "")
+                short = n.replace("BELLY_", "").replace("BREASTS_", "").replace("PAIR_", "").replace("MILK_", "").replace("__under", "")
                 base_n = n.replace("__under", "")
                 half = "far" if n.endswith("__far") else "near" if n.endswith("__near") else None
                 if half:
@@ -408,8 +485,12 @@ def main():
             out += [f'[node name="RT" type="RemoteTransform2D" parent="{parent_path}/{b}"]',
                     f"scale = Vector2({f(1 / TEX_SCALE)}, {f(1 / TEX_SCALE)})",
                     f'remote_path = NodePath("{up}/Parts/{b}")', ""]
+    # the AnimationTree drives everything; the AnimationPlayer only holds the animations (no autoplay, or the two fight)
     out += ['[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals"]',
-            'libraries = {\n&"": SubResource("lib")\n}', 'autoplay = "idle"', ""]
+            'libraries = {\n&"": SubResource("lib")\n}', "",
+            '[node name="AnimationTree" type="AnimationTree" parent="Visuals"]',
+            'root_node = NodePath("..")', 'libraries = {\n&"": SubResource("lib")\n}',
+            'tree_root = SubResource("sm")', ""]
     # contract nodes, same numbers as the static scene
     out += ['[node name="Bounds" type="Control" parent="."]', "unique_name_in_owner = true", "layout_mode = 3",
             "anchors_preset = 0", "offset_left = -110.0", "offset_top = -300.0", "offset_right = 100.0",
