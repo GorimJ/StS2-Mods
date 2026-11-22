@@ -84,18 +84,24 @@ regR = (dil(np.array(Image.open(JOBS / "nai_jobs6/guide.png"))[..., 3] > 0, 14) 
 cR, _ = classes(tR)
 armR = ndimage.binary_fill_holes(biggest(regR & (cR == 1)))
 # [Gorim 2026-11-22: "strip 1 has a visible gap"] between the wrap's edge and the arm the backdrop showed: the sleeve
-# band used to cover that strip. The arm piece is drawn before the wrap and the hair, so it simply runs on under them
-# there, in a slightly shaded skin tone (armpit side of the arm).
-# Row by row: from the wrap's side up to the arm's own left edge, only on rows where the arm is, in the arm's colour
-# darkened (it reads as her side in the arm's shadow; the arm keeps its outline in front of it).
-_gap = np.zeros((H, W), bool); tR = tR.copy()
+# band used to cover that strip. The arm piece is drawn before the wrap and the hair, so it runs on under them there.
+# Row by row: from the wrap's side up to the arm's own left edge, on the rows beside the wrap.
+# Colour [Gorim, same day: "Use the same colour as the shadowed bit of skin"; not my first brown (sampled from the
+# arm's outline), and not the wrap's purple]: one flat colour, the shade tone the arm itself carries along that edge.
 _solid = np.isin(lab, ix("TORSO_upper", "BELLY_lower_torso_variant"))
-for _y in range(480, 560):        # down to the wrap's lower edge; below it the arm really is clear of the body
+_gap = np.zeros((H, W), bool); tR = tR.copy(); _edge = []
+for _y in range(480, 560):
     _xs = np.nonzero(armR[_y, 690:760])[0]
     if not len(_xs): continue
+    if not ((lab[_y, 640:730] == D.index("BREASTS_plus_wrap_variant")) & (c0[_y, 640:730] == 2)).any(): continue   # only beside the wrap
     _ax = 690 + int(_xs[0])
     _row = np.zeros(W, bool); _row[676:_ax] = True; _row &= ~_solid[_y]
-    _gap[_y] = _row; tR[_y, _row] = tR[_y, min(_ax + 7, W - 1)] * 0.8
+    _gap[_y] = _row; _edge.append(tR[_y, _ax + 3:_ax + 16])
+_e = np.concatenate(_edge); _lum = _e.sum(1)
+_lit, _line = np.percentile(_lum, 92), np.percentile(_lum, 4)               # lit skin and the dark outline
+SHADOW_SKIN = np.median(_e[(_lum > _line + 0.35 * (_lit - _line)) & (_lum < _lit - 0.2 * (_lit - _line))], axis=0)
+print("shadowed skin colour", SHADOW_SKIN.round())
+tR[_gap] = SHADOW_SKIN
 save(piece(tR, armR | _gap), "ARM_R_bare")     # wider than the sleeve's band, so it is off until the sleeve is
 
 # ---- feet: the shin+foot part with the foot repainted bare ----
