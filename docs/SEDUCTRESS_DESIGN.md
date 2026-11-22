@@ -114,7 +114,7 @@ table above or an older section disagrees, this is right.
 | **Card wording rule** (22 Nov): card text "shouldn't explain where numbers come from, it should just give numbers." | [Gorim] |
 | **Sigil card view** (22 Nov): the slider is vertical with seven Sigil hearts and no caption; the four tier icons sit in a strip under the text so they never overlap it; text is kept short (Ritual Mark states the number, not the maths). **Leg-Locked** has a hover pop-out. | [Gorim]; wording [Claude] |
 | Open point: the Gulp milestone's "a swallow over 125 ml removes 1 Sensitive" cannot trigger now that the Mouth holds 100 ml. Not changed. | [Claude] noticed |
-| **Milk on the combat rig** shows while pregnant (stage 1 or more), not while Lactating. | [Gorim] |
+| **Milk on the combat rig** shows while Lactating, which lingers one combat after birth (22 Nov; replaces the 20 Nov "while pregnant" rule). | [Gorim] |
 | **Hole insets** (mouth, womb, ass) in a row along the top of the combat screen: fill by area, thrust on each Attack hit and until the next card or death, big spurt and pull-out when an enemy dies; thickness normal / elite thick / boss massive. | [Gorim]; details in `UI/HoleInsets.cs` |
 
 Agreed in principle, **not built**: archetypes defined by events rather than bar position (Draining = healing,

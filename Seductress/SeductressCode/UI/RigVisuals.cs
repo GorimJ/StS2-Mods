@@ -26,11 +26,9 @@ namespace Seductress.SeductressCode.UI;
 /// read as: Stage 0 is the normal wrap, Stages 1-3 are <c>wrap__stage1..3</c>. The rig also has
 /// five <c>nude__*</c> sizes; nothing in the game picks those yet.
 ///
-/// <b>Milk</b> — [Gorim, 2026-11-20] shown while pregnant (<see cref="Pregnancy.IsPregnant"/>,
-/// stage 1 or more): "Pregnancy. So womb 100%+. Belly stages can be cum inflation from anal, so
-/// it has to be womb fill only." It replaces his 2026-11-18 choice of the Lactating flag, which
-/// lingered one combat after birth. Stage rather than the raw Womb bar, so Womb precum cannot
-/// turn it on mid-combat.
+/// <b>Milk</b> — [Gorim, 2026-11-22] shown while Lactating (<see cref="Pregnancy.IsLactating"/>),
+/// which lingers one combat after birth. This goes back to his 2026-11-18 rule and replaces the
+/// 2026-11-20 "womb fill only" rule (milk while pregnant, stage 1 or more).
 /// <c>MILK_overlay/{breasts}</c> is the milk on the breasts; <c>MILK_overlay/{breasts}__drip</c>
 /// is the run onto the stomach and only fits the flat belly, so it shows at band 0 only.
 ///
@@ -98,7 +96,7 @@ public sealed class RigVisuals
         var band = Band(r);
         var strip = ClimaxModel.Instance.Stripped;
         var breasts = Breasts(r, strip);
-        var milk = Pregnancy.IsPregnant(r);
+        var milk = Pregnancy.IsLactating(r);
         if (band == _band && breasts == _breasts && milk == _milk && strip == _strip) return;
 
         foreach (var name in Sleeves) SetVisible(name, strip < 1);

@@ -78,7 +78,7 @@ table above or an older section disagrees, this is right.
 | **UI pass.** The debug text box is replaced. Run-long counters (Stomach, Skin, Sigils, Womb, Ass, Lust) sit in the top bar on every screen; clicking them opens one milestones screen with a bar track per ladder (he picked tracks "for now"; a body map is planned for the hole pictures on the combat screen). In combat each hole picture has its numbers under it. | [Gorim] chose the three forms; layout and wording [Claude] |
 | **Hover pop-outs on cards** for Gulp, Precum, Pussy, Ass, Mouth, Skin, Climax, Sigil, Eat. A card gets a term's pop-out when its text uses the word. Text is in `localization/eng/static_hover_tips.json`. | terms [Gorim]; wording is a [Claude] draft awaiting his edit |
 | Open point: the Gulp milestone's "a swallow over 125 ml removes 1 Sensitive" cannot trigger now that the Mouth holds 100 ml. Not changed. | [Claude] noticed |
-| **Milk on the combat rig** shows while pregnant (stage 1 or more), not while Lactating. | [Gorim] |
+| **Milk on the combat rig** shows while Lactating, which lingers one combat after birth (22 Nov; replaces the 20 Nov "while pregnant" rule). | [Gorim] |
 | **Hole insets** (mouth, womb, ass) in a row along the top of the combat screen: fill by area, thrust on each Attack hit and until the next card or death, big spurt and pull-out when an enemy dies; thickness normal / elite thick / boss massive. | [Gorim]; details in `UI/HoleInsets.cs` |
 
 Agreed in principle, **not built**: archetypes defined by events rather than bar position (Draining = healing,
