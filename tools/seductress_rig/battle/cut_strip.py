@@ -83,7 +83,20 @@ FADE_R = _fa & (_d < 50) & (xx < 806)                 # the forearm part fades o
 regR = (dil(np.array(Image.open(JOBS / "nai_jobs6/guide.png"))[..., 3] > 0, 14) & ~(_keep & ~_fa)) | (_fa & (_d < 54) & (xx < 810)) | ((_d < 34) & (lab < 0))
 cR, _ = classes(tR)
 armR = ndimage.binary_fill_holes(biggest(regR & (cR == 1)))
-save(piece(tR, armR), "ARM_R_bare")     # wider than the sleeve's band, so it is off until the sleeve is
+# [Gorim 2026-11-22: "strip 1 has a visible gap"] between the wrap's edge and the arm the backdrop showed: the sleeve
+# band used to cover that strip. The arm piece is drawn before the wrap and the hair, so it simply runs on under them
+# there, in a slightly shaded skin tone (armpit side of the arm).
+# Row by row: from the wrap's side up to the arm's own left edge, only on rows where the arm is, in the arm's colour
+# darkened (it reads as her side in the arm's shadow; the arm keeps its outline in front of it).
+_gap = np.zeros((H, W), bool); tR = tR.copy()
+_solid = np.isin(lab, ix("TORSO_upper", "BELLY_lower_torso_variant"))
+for _y in range(480, 560):        # down to the wrap's lower edge; below it the arm really is clear of the body
+    _xs = np.nonzero(armR[_y, 690:760])[0]
+    if not len(_xs): continue
+    _ax = 690 + int(_xs[0])
+    _row = np.zeros(W, bool); _row[676:_ax] = True; _row &= ~_solid[_y]
+    _gap[_y] = _row; tR[_y, _row] = tR[_y, min(_ax + 7, W - 1)] * 0.8
+save(piece(tR, armR | _gap), "ARM_R_bare")     # wider than the sleeve's band, so it is off until the sleeve is
 
 # ---- feet: the shin+foot part with the foot repainted bare ----
 cF, _ = classes(tF)
