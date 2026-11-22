@@ -1,10 +1,14 @@
-# [Claude, 2026-11-14] Close, launch or restart Slay the Spire 2, so a mod can be rebuilt and retested
+﻿# [Claude, 2026-11-14] Close, launch or restart Slay the Spire 2, so a mod can be rebuilt and retested
 # without anyone at the keyboard. Launches through Steam (the game needs Steam running).
 #
 #   tools\sts2.ps1 status
 #   tools\sts2.ps1 stop
-#   tools\sts2.ps1 start   [-NoWait] [-Foreground]
-#   tools\sts2.ps1 restart [-NoWait] [-Foreground]
+#   tools\sts2.ps1 start   [-NoWait] [-Foreground] [-Mods keep|all|mp|seductress|vanilla]
+#   tools\sts2.ps1 restart [-NoWait] [-Foreground] [-Mods ...]
+#
+# [Claude, 2026-11-21] -Mods answers Gorim's "which mods?" launcher window (tools\sts2-launcher.ps1, run by
+# Steam) so nobody has to click it: it writes the word to tools\.launch_choice, which the launcher reads once.
+# keep (the default) starts with the mods as they are; seductress is that mod, what it depends on, and Spire Link.
 #
 # start/restart wait until the main menu is usable: Spire Link's local /health answers (it is
 # unauthenticated) and the game has logged that the menu finished loading. -NoWait returns as soon as
@@ -17,6 +21,7 @@ param(
     [Parameter(Position = 0)][ValidateSet('status', 'stop', 'start', 'restart')][string]$Action = 'status',
     [switch]$NoWait,
     [switch]$Foreground,
+    [ValidateSet('keep', 'all', 'mp', 'seductress', 'vanilla')][string]$Mods = 'keep',
     [int]$TimeoutSec = 180
 )
 
@@ -74,6 +79,7 @@ function Start-Game {
     if (Get-Game) { Write-Output 'start: already running'; return }
     $previous = [Sts2Tool.Win]::GetForegroundWindow()
     $script:FocusReturned = 0
+    Set-Content -Path (Join-Path $PSScriptRoot '.launch_choice') -Value $Mods -NoNewline
     Start-Process "steam://rungameid/$AppId"
     $deadline = (Get-Date).AddSeconds($TimeoutSec)
     while (-not (Get-Game) -and (Get-Date) -lt $deadline) { Start-Sleep -Milliseconds 250 }
