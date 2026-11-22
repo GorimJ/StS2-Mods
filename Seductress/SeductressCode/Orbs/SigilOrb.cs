@@ -55,6 +55,22 @@ public class SigilOrb : CustomOrbModel
 
         var sprite = scene.Instantiate<Node2D>(PackedScene.GenEditState.Disabled);
         sprite.Modulate = Pink;
+
+        // [Gorim, 2026-11-22] "I want to put the sigil mark in them." [Claude] The mark sits on
+        // top of the orb. A child is multiplied by the parent's pink, so its own colour is
+        // divided by that pink first to come out near white. Size is mine.
+        var mark = GD.Load<Texture2D>($"{MainFile.ResPath}/images/ui/sigil.png");
+        if (mark is not null)
+        {
+            const float size = 54f;
+            sprite.AddChild(new Sprite2D
+            {
+                Texture = mark,
+                Scale = Vector2.One * (size / mark.GetWidth()),
+                Modulate = new Color(1f / Pink.R, 0.93f / Pink.G, 0.97f / Pink.B),
+                ZIndex = 1,
+            });
+        }
         return sprite;
     }
 
