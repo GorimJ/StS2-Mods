@@ -16,7 +16,7 @@ namespace Seductress.SeductressCode.UI;
 /// <b>Belly</b> — [Gorim, 2026-11-18] one stage per band, cap 6:
 /// <code>
 /// pregnancy = min(stage, 3)
-/// inflation = min(floor((Ass - 200) / 100), 3), not below 0
+/// inflation = min(floor((Ass - 1000) / 500), 3), not below 0     (x5 with the 2026-11-20 ml scale)
 /// band      = min(pregnancy + inflation, 6)
 /// </code>
 /// Band k shows <c>BELLY_overlay/stage{k}</c> and the join patch
@@ -26,10 +26,19 @@ namespace Seductress.SeductressCode.UI;
 /// read as: Stage 0 is the normal wrap, Stages 1-3 are <c>wrap__stage1..3</c>. The rig also has
 /// five <c>nude__*</c> sizes; nothing in the game picks those yet.
 ///
-/// <b>Milk</b> — [Gorim, 2026-11-18] shown while lactating (<see cref="Pregnancy.IsLactating"/>,
-/// which the mod sets from conception until one combat after birth).
+/// <b>Milk</b> — [Gorim, 2026-11-20] shown while pregnant (<see cref="Pregnancy.IsPregnant"/>,
+/// stage 1 or more): "Pregnancy. So womb 100%+. Belly stages can be cum inflation from anal, so
+/// it has to be womb fill only." It replaces his 2026-11-18 choice of the Lactating flag, which
+/// lingered one combat after birth. Stage rather than the raw Womb bar, so Womb precum cannot
+/// turn it on mid-combat.
 /// <c>MILK_overlay/{breasts}</c> is the milk on the breasts; <c>MILK_overlay/{breasts}__drip</c>
 /// is the run onto the stomach and only fits the flat belly, so it shows at band 0 only.
+///
+/// <b>Strip</b> — [Gorim, 2026-11-22] each Power played in a combat takes something off:
+/// "Sleeves and shoes, then wrap, then skirt." Nude breasts follow pregnancy as
+/// "modest / bare / enormous / absurd". [Claude] Shoes and dressed thighs are baked into their
+/// sprites, so those stages swap a dressed sprite for a bare one. The hip ornaments go with the
+/// skirt (the animation session's call: they hang from its band).
 ///
 /// Driven from <see cref="ReservoirHud"/>'s per-frame refresh rather than from hooks on every
 /// place the Womb or Ass can change: the HUD is created once per combat, which is also how often
@@ -46,20 +55,32 @@ public sealed class RigVisuals
     private int _band = -1;
     private string? _breasts;
     private bool _milk;
+    private int _strip = -1;
     private bool _warned;
+
+    private static readonly string[] Nude = ["nude__modest", "nude__bare", "nude__enormous", "nude__absurd"];
+    private static readonly string[] Sleeves = ["SLEEVE_L", "SLEEVE_R", "LEG_L_shin_foot", "LEG_R_shin_foot"];
+    private static readonly string[] SleevesOff = ["ARM_R_bare", "LEG_L_shin_foot_bare", "LEG_R_shin_foot_bare"];
+    private static readonly string[] Skirt =
+    [
+        "CLOTH_front_skirt_panel", "SKIRT_rear_left", "SKIRT_rear_right", "HIP_ornaments_left",
+        "HIP_ornaments_right", "SLEEVE_L_behind_skirt", "LEG_L_thigh", "LEG_R_thigh",
+    ];
+    private static readonly string[] SkirtOff = ["PELVIS_bare", "LEG_L_thigh_bare", "LEG_R_thigh_bare"];
 
     public RigVisuals(Player player) => _player = player;
 
     public static int Band(ReservoirState r)
     {
         var pregnancy = Math.Min(r.PregnancyStage, 3);
-        var inflation = Math.Clamp((r.Ass - 200) / 100, 0, 3);
+        var inflation = Math.Clamp((r.Ass - ReservoirState.AssCap) / (ReservoirState.AssCap / 2), 0, 3);
         return Math.Min(pregnancy + inflation, MaxBand);
     }
 
     /// <summary>"base" for the normal wrap, otherwise the rig's variant name.</summary>
-    public static string Breasts(ReservoirState r) =>
-        r.PregnancyStage <= 0 ? BaseBreasts : $"wrap__stage{Math.Min(r.PregnancyStage, 3)}";
+    public static string Breasts(ReservoirState r, int strip = 0) =>
+        strip >= 2 ? Nude[Math.Clamp(r.PregnancyStage, 0, 3)]
+        : r.PregnancyStage <= 0 ? BaseBreasts : $"wrap__stage{Math.Min(r.PregnancyStage, 3)}";
 
     public void Refresh()
     {
@@ -69,14 +90,21 @@ public sealed class RigVisuals
             _band = -1;
             _breasts = null;
             _milk = false;
+            _strip = -1;
             if (_parts is null) return;
         }
 
         var r = Reservoirs.Of(_player.RunState);
         var band = Band(r);
-        var breasts = Breasts(r);
-        var milk = Pregnancy.IsLactating(r);
-        if (band == _band && breasts == _breasts && milk == _milk) return;
+        var strip = ClimaxModel.Instance.Stripped;
+        var breasts = Breasts(r, strip);
+        var milk = Pregnancy.IsPregnant(r);
+        if (band == _band && breasts == _breasts && milk == _milk && strip == _strip) return;
+
+        foreach (var name in Sleeves) SetVisible(name, strip < 1);
+        foreach (var name in SleevesOff) SetVisible(name, strip >= 1);
+        foreach (var name in Skirt) SetVisible(name, strip < 3);
+        foreach (var name in SkirtOff) SetVisible(name, strip >= 3);
 
         var isBase = breasts == BaseBreasts;
         ShowOnly("BELLY_overlay", band > 0 ? $"stage{band}" : null);
@@ -87,10 +115,16 @@ public sealed class RigVisuals
 
         ShowOnly("MILK_overlay", milk ? breasts : null, milk && band == 0 ? $"{breasts}__drip" : null);
 
-        MainFile.Logger.Info($"[Seductress] Rig: belly {_band} -> {band}, breasts {_breasts ?? "?"} -> {breasts}, milk {milk}");
+        MainFile.Logger.Info($"[Seductress] Rig: belly {_band} -> {band}, breasts {_breasts ?? "?"} -> {breasts}, milk {milk}, strip {strip}");
         _milk = milk;
+        _strip = strip;
         _band = band;
         _breasts = breasts;
+    }
+
+    private void SetVisible(string part, bool visible)
+    {
+        if (_parts!.GetNodeOrNull<CanvasItem>(part) is { } item) item.Visible = visible;
     }
 
     /// <summary>Shows the named children of a group and hides their siblings; null names are skipped.</summary>
