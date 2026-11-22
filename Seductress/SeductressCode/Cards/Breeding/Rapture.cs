@@ -39,7 +39,7 @@ public class Rapture : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Rapture",
-        "Gain {Block:diff()} [gold]Block[/gold]. Whenever you Climax, gain 3 [gold]Energy[/gold] and {Strength:diff()} [gold]Strength[/gold].\n{T1} Sigil: also gain {Block:diff()} [gold]Block[/gold] whenever you Climax.\n{T2} Sigils: this costs 1 less.\n{T3} Sigils: both Block values become {TierBlock:diff()}.\n{T4} Sigils: double the energy gained.");
+        "Gain {S3:cond:{TierBlock:diff()}|{Block:diff()}} [gold]Block[/gold].\nWhenever you Climax, gain {S4:cond:6|3} [gold]Energy[/gold]{S1:cond:,| and} {Strength:diff()} [gold]Strength[/gold]{S1:cond: and {S3:cond:{TierBlock:diff()}|{Block:diff()}} [gold]Block[/gold]|}.{S2:cond:{Live:cond:|\nCosts 1 less.}|}");
 
     /// <summary>Tier 2 reduces the cost, which also lowers what tier 4 would repeat — see §7.1.</summary>
     private void RefreshCost() =>

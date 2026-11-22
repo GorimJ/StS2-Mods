@@ -47,7 +47,7 @@ public class Clench : SeductressCard
 
         // Spend first, then deal: the bonus returned is the notional spend, which is exactly the
         // number the card face was showing a moment ago.
-        var bonus = SpendAssForDamage();
+        var bonus = StandingAssBonus();
         var damage = DynamicVars.CalculationBase.BaseValue + bonus;
 
         for (var i = 0; i < 2; i++)

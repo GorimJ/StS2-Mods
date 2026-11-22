@@ -24,7 +24,7 @@ public class Rehydrate : SeductressCard
 {
     public Rehydrate() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self) { }
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Ml", 5m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Ml", 50m)];   // [Gorim, 2026-11-19] "Buff this to 10/10 actually"; 50 on the x5 scale
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Rehydrate", "Eat {Ml:diff()}. Your next Attack gains {Ml:diff()} ml precum.");
@@ -36,5 +36,5 @@ public class Rehydrate : SeductressCard
         await PowerCmd.Apply<RehydratePower>(choiceContext, Owner.Creature, ml, Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() => DynamicVars["Ml"].UpgradeValueBy(3m);
+    protected override void OnUpgrade() => DynamicVars["Ml"].UpgradeValueBy(15m);
 }

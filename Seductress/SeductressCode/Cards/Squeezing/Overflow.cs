@@ -34,15 +34,17 @@ public class Overflow : SeductressCard
 
 
     /// <summary>The live Ass bonus, so the card face shows what it will actually deal.</summary>
-    protected override decimal PreviewBonus() => AssNotional(0.20);
+    protected override decimal PreviewBonus() => AssNotional();
+
+    protected override int AssSpendLeaks => 1;
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Overflow",
-        "Ass. Deal {CalculatedDamage:diff()} damage to ALL enemies and apply 1 [gold]Vulnerable[/gold]{IfUpgraded:show: and 1 [gold]Weak[/gold]|}.\nThis card loses double the usual Ass.");
+        "Ass. Deal {CalculatedDamage:diff()} damage to ALL enemies and apply 1 [gold]Vulnerable[/gold]{IfUpgraded:show: and 1 [gold]Weak[/gold]|}.\nYou may spend {AssSpend} Ass for {AssSpendBonus} bonus damage.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var bonus = SpendAssForDamage(0.20);
+        var bonus = await AssSpendOrKeep(choiceContext, 1);
         var enemies = CombatState!.Enemies.Where(e => e.IsAlive).ToList();
 
         await DamageCmd.Attack(DynamicVars.CalculationBase.BaseValue + bonus).FromCard(this, cardPlay).TargetingAllOpponents(CombatState)

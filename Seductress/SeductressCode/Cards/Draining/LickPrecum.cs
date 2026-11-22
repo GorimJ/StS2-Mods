@@ -22,7 +22,7 @@ public class LickPrecum : SeductressCard
 {
     public LickPrecum() : base(1, CardType.Skill, CardRarity.Common, TargetType.AllEnemies) { }
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Ml", 5m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Ml", 25m)];
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Lick Pre-cum",
@@ -33,7 +33,8 @@ public class LickPrecum : SeductressCard
         var r = Reservoirs.Of(Owner.RunState);
         var added = r.AddPrecum((int)DynamicVars["Ml"].BaseValue);
         MainFile.Logger.Info($"[Seductress] Lick Pre-cum: +{added} ml precum | mouth {r.Mouth}+{r.Precum}p");
-        await Stomach.AfterPrecumGained(Owner);
+        await Stomach.SwallowIfFull(Owner, (int)DynamicVars["Ml"].BaseValue, added, cum: false);
+        await Stomach.AfterPrecumGained(Owner, (int)DynamicVars["Ml"].BaseValue);
 
         var enemies = CombatState!.Enemies.Where(e => e.IsAlive).ToList();
         if (enemies.Count > 0)
@@ -42,5 +43,5 @@ public class LickPrecum : SeductressCard
         }
     }
 
-    protected override void OnUpgrade() => DynamicVars["Ml"].UpgradeValueBy(3m);
+    protected override void OnUpgrade() => DynamicVars["Ml"].UpgradeValueBy(15m);
 }

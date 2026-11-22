@@ -109,7 +109,7 @@ public class Milk : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Milk",
-        "Skin. Breasts.\nHeal {CalculatedHeal:diff()}. Deal {Damage:diff()} damage.\n{T1} Sigil: draw 1.\n{T2} Sigils: heal {TierHeal} instead.\n{T3} Sigils: draw 2 instead.\n{T4} Sigils: does not Exhaust.");
+        "Skin. Breasts.\nHeal {Live:cond:{CalculatedHeal:diff()}|{S2:cond:{TierHeal}|{CalculatedHeal:diff()}}}.\nDeal {Damage:diff()} damage.{S3:cond:\nDraw 2.|{S1:cond:\nDraw 1.|}}");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

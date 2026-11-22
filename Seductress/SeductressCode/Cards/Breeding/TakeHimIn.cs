@@ -40,7 +40,7 @@ public class TakeHimIn : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Take Him In",
-        "Pussy. Deal {CalculatedDamage:diff()} damage.\n{T1} Sigil: draw 1.\n{T2} Sigils: deal {TierDamage:diff()} instead.\n{T3} Sigils: draw 2 instead.\n{T4} Sigils: repeats 1 time.");
+        "Pussy. Deal " + TieredDamage + " damage.{S3:cond:\nDraw 2.|{S1:cond:\nDraw 1.|}}{S4:cond:\nRepeats 1 time.|}");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

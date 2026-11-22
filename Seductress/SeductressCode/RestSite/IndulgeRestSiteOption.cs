@@ -62,6 +62,9 @@ public class IndulgeRestSiteOption(Player owner) : CustomRestSiteOption(owner)
     /// Two thirds, or all of it once the Stomach passes 200 ml — the track improving its own
     /// input, using a number introduced one milestone earlier rather than inventing one.
     /// </summary>
+    /// <summary>ml of Skin recovered per HP healed.</summary>
+    public const int MlPerHp = 5;
+
     private int Recovered(int skin) =>
         Stomach.IndulgeIsClean(Reservoirs.Of(Owner.RunState).Stomach)
             ? skin
@@ -81,12 +84,15 @@ public class IndulgeRestSiteOption(Player owner) : CustomRestSiteOption(owner)
         // (+Max HP) and Night Terrors are all dead weight on this character otherwise. Indulge is
         // the heal option, so it is the one that should carry them.
         var runState = Owner.RunState;
-        var healed = (int)Hook.ModifyRestSiteHealAmount(runState, Owner.Creature, recovered);
+        // [Gorim, 2026-11-20] Indulge heals 1 HP per 5 ml recovered: the x5 ml scale applied, so it
+        // heals what it did before, and twice what a swallow now does (1 per 10).
+        var baseHeal = recovered / MlPerHp;
+        var healed = (int)Hook.ModifyRestSiteHealAmount(runState, Owner.Creature, baseHeal);
 
         MainFile.Logger.Info(
             $"[Seductress] Indulge: skin {skin} ml -> recovered {recovered} ml " +
             $"({(Stomach.IndulgeIsClean(r.Stomach) ? "100%" : "67%")}), spilled {skin - recovered}" +
-            (healed != recovered ? $", healing {healed} after relics" : ""));
+            $", healing {baseHeal}" + (healed != baseHeal ? $" ({healed} after relics)" : ""));
 
         await CreatureCmd.Heal(Owner.Creature, healed);
 

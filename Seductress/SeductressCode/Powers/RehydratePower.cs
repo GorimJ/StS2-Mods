@@ -28,9 +28,11 @@ public class RehydratePower : SeductressPower
 
         var player = Owner.Player;
         var r = Reservoirs.Of(player.RunState);
-        var added = r.AddPrecum((int)Amount);
+        var ml = (int)Amount;
+        var added = r.AddPrecum(ml);
         MainFile.Logger.Info($"[Seductress] Rehydrate: +{added} ml precum | mouth {r.Mouth}+{r.Precum}p");
         await PowerCmd.Remove(this);
-        await Stomach.AfterPrecumGained(player);
+        await Stomach.SwallowIfFull(player, ml, added, cum: false);
+        await Stomach.AfterPrecumGained(player, ml);
     }
 }

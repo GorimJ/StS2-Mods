@@ -67,8 +67,8 @@ public class ReservoirConsoleCmd : AbstractConsoleCmd
             return new CmdResult(success: false, "Usage: reservoir <" + string.Join("|", Names) + "> <non-negative amount>");
         }
 
-        // Set past the design capacity deliberately — Ass inflation above 200 and Womb stages
-        // above 100 are both real states and both need to be testable.
+        // Set past the design capacity deliberately — Ass inflation above its cap and Womb stages
+        // above the first are both real states and both need to be testable.
         switch (name)
         {
             case "mouth": r.Mouth = amount; break;
@@ -88,7 +88,7 @@ public class ReservoirConsoleCmd : AbstractConsoleCmd
     }
 
     private static string Describe(ReservoirState r) =>
-        $"mouth {r.Mouth}+{r.Precum}p/50 · ass {r.Ass}/200 (hw {r.AssHighWater}) · womb {r.Womb} " +
+        $"mouth {r.Mouth}+{r.Precum}p/{ReservoirState.MouthCap} · ass {r.Ass}/{ReservoirState.AssCap} (hw {r.AssHighWater}) · womb {r.Womb} " +
         $"· skin {r.Skin} · stomach {r.Stomach} · sigils {r.Sigils} " +
         $"· pregnant S{r.PregnancyStage} · lactating S{r.LactatingStage}{(r.LactationTail ? " tail" : "")} " +
         $"· plug {(r.PlugIn ? "in" : "out")}";

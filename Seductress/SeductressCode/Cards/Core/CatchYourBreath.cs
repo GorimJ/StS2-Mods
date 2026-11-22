@@ -23,7 +23,7 @@ public class CatchYourBreath : SeductressCard
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BlockVar(6m, ValueProp.Move),
-        new DynamicVar("Ml", 3m)
+        new DynamicVar("Ml", 15m)
     ];
 
     public override List<(string, string)>? Localization => new CardLoc(

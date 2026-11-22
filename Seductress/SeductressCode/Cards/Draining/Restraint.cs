@@ -15,10 +15,11 @@ using Seductress.SeductressCode.Systems;
 
 namespace Seductress.SeductressCode.Cards;
 
-/// <summary>Draining Power. Pays for staying high on the bar, which is the archetype's plan.</summary>
+/// <summary>Draining Power. Pays for staying high on the bar, which is the archetype's plan.
+/// [Gorim, 2026-11-21] Costs 1 (was 2).</summary>
 public class Restraint : SeductressCard
 {
-    public Restraint() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self) { }
+    public Restraint() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self) { }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(4m, ValueProp.Move)];
 

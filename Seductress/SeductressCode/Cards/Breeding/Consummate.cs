@@ -31,6 +31,8 @@ public class Consummate : SeductressCard
         new DynamicVar("T4", Sigils.Tier4),
         new EnergyVar(2),
         new CardsVar(3),
+        new EnergyVar("SmallEnergy", 1),
+        new DynamicVar("SmallCards", 1m),
         new BlockVar(10m, ValueProp.Move),
         new DynamicVar("TierBlock", 20m),
         // [Claude, 2026-11-14] Must be an EnergyVar: energyIcons() rejects a plain DynamicVar, and one
@@ -40,18 +42,24 @@ public class Consummate : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Consummate",
-        "Exhaust a Sigil for this combat: gain {Energy:energyIcons()} and draw {Cards:diff()}.\n{T1} Sigil: gain {Block:diff()} [gold]Block[/gold].\n{T2} Sigils: gain {TierEnergy:energyIcons()} instead.\n{T3} Sigils: gain {TierBlock:diff()} [gold]Block[/gold] instead.\n{T4} Sigils: does not exhaust a Sigil.");
+        "{S1:cond:{S4:cond:|Exhaust a Sigil this combat.\n}Gain {S2:cond:{TierEnergy:energyIcons()}|{Energy:energyIcons()}}.\nDraw {Cards:diff()}.\nGain {S3:cond:{TierBlock:diff()}|{Block:diff()}} [gold]Block[/gold].|Gain {SmallEnergy:energyIcons()}.\nDraw {SmallCards:diff()}.}");
 
     /// <summary>
-    /// Unplayable with no Sigil left to spend — unless tier 4, where it no longer needs one.
-    /// CanPlay folds this into BlockedByCardLogic.
+    /// [Gorim, 2026-11-21] "Consummate is too bad with 0 sigils... I'd like to make it do
+    /// something. Probably it should exhaust." He picked the small version: with no Sigil to
+    /// spend it gives 1 energy and 1 card. It used to be unplayable then.
     /// </summary>
-    protected override bool IsPlayable =>
-        base.IsPlayable && (Sigils.At(Owner, Sigils.Tier4) || Sigils.Effective(Owner) > 0);
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         // Tier 4 on a 0-cost card sheds the non-energy cost instead of repeating.
+        if (!Sigils.At(Owner, Sigils.Tier4) && Sigils.Effective(Owner) <= 0)
+        {
+            await PlayerCmd.GainEnergy(DynamicVars["SmallEnergy"].BaseValue, Owner);
+            await CardPileCmd.Draw(choiceContext, DynamicVars["SmallCards"].BaseValue, Owner);
+            return;
+        }
         if (!Sigils.At(Owner, Sigils.Tier4)) ClimaxModel.Instance.ExhaustSigil();
 
         var energy = Sigils.At(Owner, Sigils.Tier2) ? DynamicVars["TierEnergy"] : DynamicVars.Energy;

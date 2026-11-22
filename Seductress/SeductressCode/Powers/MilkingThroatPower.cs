@@ -12,14 +12,16 @@ using Seductress.SeductressCode.Systems;
 
 namespace Seductress.SeductressCode.Powers;
 
-/// <summary>Milking Throat. The work is in <see cref="Stomach.AfterPrecumGained"/>; Amount is the ml.</summary>
+/// <summary>Milking Throat. The work is in <see cref="Stomach.AfterPrecumGained"/>; It only has to be present.</summary>
 public class MilkingThroatPower : SeductressPower
 {
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerStackType StackType => PowerStackType.Single;
 
     public override List<(string, string)>? Localization => new PowerLoc(
         "Milking Throat",
-        "Whenever you gain precum, gain more and Eat it.",
-        "Whenever you gain precum, gain more and Eat it.");
+        "Whenever you gain precum, gain twice as much, then [gold]Gulp[/gold].",
+        "Whenever you gain precum, gain twice as much, then [gold]Gulp[/gold].");
+
+    protected override IEnumerable<MegaCrit.Sts2.Core.HoverTips.IHoverTip> ExtraHoverTips => [UI.Glossary.Tip("GULP")];
 }

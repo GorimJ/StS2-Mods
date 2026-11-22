@@ -13,10 +13,13 @@ namespace Seductress.SeductressCode.Systems;
 /// thresholds</b>.
 ///
 /// <list type="table">
-/// <item><term>100 ml</term><description><i>Milking Grip</i> added to the deck free</description></item>
-/// <item><term>200 ml</term><description>the <b>Plug</b> relic</description></item>
-/// <item><term>300 ml</term><description>open — a genuine stretch rung, deliberately empty</description></item>
+/// <item><term>half the Ass cap (250 ml)</term><description><i>Milking Grip</i> added to the deck free</description></item>
+/// <item><term>the Ass cap (500 ml)</term><description>the <b>Plug</b> relic</description></item>
+/// <item><term>one and a half caps (750 ml)</term><description>open — a genuine stretch rung, deliberately empty</description></item>
 /// </list>
+///
+/// [Gorim, 2026-11-20] Thresholds x5 with every other ml figure. The reasoning below was written
+/// for the old flat-intake rule and its numbers are the old ones.
 ///
 /// [Claude-Cowork] <b>Why this is load-bearing rather than polish.</b> The Ass bank has a
 /// structural fixed point at 100 ml — the spend is a percentage of the bank while normal intake is
@@ -34,9 +37,9 @@ namespace Seductress.SeductressCode.Systems;
 /// </summary>
 public static class AssUnlocks
 {
-    public const int MilkingGripAt = 100;
-    public const int PlugAt = 200;
-    public const int OpenRungAt = 300;
+    public const int MilkingGripAt = ReservoirState.AssCap / 2;
+    public const int PlugAt = ReservoirState.AssCap;
+    public const int OpenRungAt = ReservoirState.AssCap * 3 / 2;
 
     /// <summary>
     /// Called on entering a floor, after the leak.

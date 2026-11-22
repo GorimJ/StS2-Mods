@@ -77,7 +77,27 @@ public class RunModel : CustomSingletonModel
         if (!IsSeductress(me)) return;
 
         await Stomach.SwallowAll(me!, "End of combat");
+
+        // [Gorim, 2026-11-20] Precum in the Ass and Womb (Edging Form) goes the way Mouth precum
+        // does. Before conception, so precum can never carry a pregnancy.
+        var (assPre, wombPre) = Reservoirs.Of(me!.RunState).EvaporateHolePrecum();
+        if (assPre + wombPre > 0)
+        {
+            MainFile.Logger.Info($"[Seductress] End of combat: precum evaporated (ass -{assPre}, womb -{wombPre})");
+        }
+
         Pregnancy.ResolveEndOfCombat(me!);
+
+        // [Gorim, 2026-11-22] "Killing a boss should remove all your lust cards."
+        if (room.RoomType == MegaCrit.Sts2.Core.Rooms.RoomType.Boss)
+        {
+            var lust = me!.Deck.Cards.Where(c => c is Cards.LustCard).ToList();
+            if (lust.Count > 0)
+            {
+                await MegaCrit.Sts2.Core.Commands.CardPileCmd.RemoveFromDeck(lust);
+                MainFile.Logger.Info($"[Seductress] Boss killed: {lust.Count} Lust card(s) removed");
+            }
+        }
     }
 
     // ---------------------------------------------------------------- per-floor leak
@@ -121,6 +141,14 @@ public class RunModel : CustomSingletonModel
     /// in the player's favour. A consequence worth knowing is that anything below 10 ml in the Womb
     /// never decays at all.
     /// </summary>
+    /// <summary>One floor's Ass leak for a bank of <paramref name="ass"/> ml. Also the unit Blowout and Overflow spend in.</summary>
+    public static int AssLeakOf(int ass)
+    {
+        var excess = Math.Max(0, ass - ReservoirState.AssCap);
+        var band = Math.Min(ass, ReservoirState.AssCap);
+        return (int)Math.Floor(band * 0.05) + (int)Math.Floor(excess * 0.25);
+    }
+
     private static void ApplyLeak(Player player)
     {
         var r = Reservoirs.Of(player.RunState);
@@ -134,9 +162,7 @@ public class RunModel : CustomSingletonModel
         leaked += wombLost;
 
         // Ass: banded. 5% of the first 200 plus 25% of the excess — at 300 ml that is 35, not 75.
-        var excess = Math.Max(0, r.Ass - ReservoirState.AssCap);
-        var band = Math.Min(r.Ass, ReservoirState.AssCap);
-        var assLost = (int)Math.Floor(band * 0.05) + (int)Math.Floor(excess * 0.25);
+        var assLost = AssLeakOf(r.Ass);
         r.Ass -= assLost;
         leaked += assLost;
 

@@ -39,7 +39,7 @@ public class Suckle : SeductressCard
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(4m, ValueProp.Move),
-        new DynamicVar("Ml", 5m)
+        new DynamicVar("Ml", 25m)
     ];
 
     public override List<(string, string)>? Localization => new CardLoc(
@@ -67,8 +67,8 @@ public class Suckle : SeductressCard
             (added < ml ? $" — {ml - added} ml did not fit" : "") +
             $" | mouth {r.Mouth}+{r.Precum}p");
 
-        if (killed) await Stomach.SwallowIfFull(Owner);
-        else await Stomach.AfterPrecumGained(Owner);
+        await Stomach.SwallowIfFull(Owner, ml, added, cum: killed);
+        if (!killed) await Stomach.AfterPrecumGained(Owner, ml);
     }
 
     /// <summary>

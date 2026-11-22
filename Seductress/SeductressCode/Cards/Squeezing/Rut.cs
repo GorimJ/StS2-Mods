@@ -39,7 +39,7 @@ public class Rut : SeductressCard
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        var bonus = SpendAssForDamage();
+        var bonus = StandingAssBonus();
         var hits = 3 + StretchBonusHits(true);
 
         for (var i = 0; i < hits; i++)

@@ -27,7 +27,7 @@ public class WetWork : SeductressCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar("Ml", 10m),
+        new DynamicVar("Ml", 50m),
         new BlockVar(10m, ValueProp.Move)
     ];
 
@@ -49,5 +49,5 @@ public class WetWork : SeductressCard
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
     }
 
-    protected override void OnUpgrade() => DynamicVars["Ml"].UpgradeValueBy(-2m);
+    protected override void OnUpgrade() => DynamicVars["Ml"].UpgradeValueBy(-10m);
 }

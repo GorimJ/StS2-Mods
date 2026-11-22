@@ -15,9 +15,9 @@ using Seductress.SeductressCode.Systems;
 namespace Seductress.SeductressCode.Relics;
 
 /// <summary>
-/// The Plug (design §7.3), granted by the 200 ml Ass threshold rather than drafted.
+/// The Plug (design §7.3), granted by the 1000 ml Ass threshold rather than drafted.
 ///
-/// While in: the Ass does not leak below 200 ml and leaks only 5% above it, the Ass cannot be
+/// While in: the Ass does not leak below 500 ml and leaks only 5% above it, the Ass cannot be
 /// filled, and you lose 2 HP entering each floor and 1 HP at the start of each turn. Ass-tagged
 /// cards cost 1 more and <b>pull the plug when played</b>, spilling 10% of the Ass on top of their
 /// own drain.
@@ -45,13 +45,13 @@ public class Plug : SeductressRelic
 
     public override RelicRarity Rarity => RelicRarity.Common;
 
-    /// <summary>Never in a reward pool — it arrives from the 200 ml Ass threshold (§6.1a).</summary>
+    /// <summary>Never in a reward pool — it arrives from the 1000 ml Ass threshold (§6.1a).</summary>
     // Game 0.113: IsAllowed is no longer virtual; IsAllowedInternal is the hook it calls.
     protected override bool IsAllowedInternal(MegaCrit.Sts2.Core.Runs.IRunState runState) => false;
 
     public override List<(string, string)>? Localization => new RelicLoc(
         "Plug",
-        "While in: your Ass does not leak below 200 ml and leaks 5% above it, and cannot be filled. " +
+        "While in: your Ass does not leak below 500 ml and leaks 5% above it, and cannot be filled. " +
         "Lose 2 HP entering a floor and 1 HP at the start of each turn. " +
         "Ass cards cost 1 more, pull the Plug, and spill 10% of your Ass — gaining Strength for all of it. " +
         "Re-inserted on the next floor.",

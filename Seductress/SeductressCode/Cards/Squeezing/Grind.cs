@@ -43,7 +43,7 @@ public class Grind : SeductressCard
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        var bonus = SpendAssForDamage();
+        var bonus = StandingAssBonus();
         var damage = DynamicVars.CalculationBase.BaseValue + bonus;
         var hits = 1 + StretchBonusHits(true);
 

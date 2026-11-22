@@ -46,7 +46,7 @@ public class BreedMe : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Breed Me!",
-        "Pussy. Deal {CalculatedDamage:diff()} damage. Kills from this card give 5 ml extra.\n{T1} Sigil: intake from this card's kills is doubled.\n{T2} Sigils: deal {TierDamage:diff()} instead.\n{T3} Sigils: tripled instead.\n{T4} Sigils: repeats 2 times.");
+        "Pussy. Deal " + TieredDamage + " damage.\nKills give 50 ml extra{S3:cond: and triple intake|{S1:cond: and double intake|}}.{S4:cond:\nRepeats 2 times.|}");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -54,9 +54,9 @@ public class BreedMe : SeductressCard
 
         var damage = DynamicVars.CalculatedDamage.Calculate(cardPlay.Target);
 
-        // The multiplier replaces the flat +5 rather than compounding — [Gorim], slice 2 D5.
+        // The multiplier replaces the flat +50 ([Gorim, 2026-11-21]: 25 was too small; 50 is [Claude]'s number) rather than compounding — [Gorim], slice 2 D5.
         var multiplier = Sigils.At(Owner, Sigils.Tier3) ? 3 : Sigils.At(Owner, Sigils.Tier1) ? 2 : 1;
-        ClimaxModel.Instance.SetKillIntakeBonus(5, multiplier);
+        ClimaxModel.Instance.SetKillIntakeBonus(50, multiplier);
         try
         {
             await DamageCmd.Attack(damage).FromCard(this, cardPlay).Targeting(cardPlay.Target)

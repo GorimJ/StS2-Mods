@@ -152,9 +152,9 @@ public static class FloorLog
     private static string Unlocks(ReservoirState r)
     {
         var hit = new List<string>();
-        if (r.AssHighWater >= AssUnlocks.MilkingGripAt) hit.Add("100:grip");
-        if (r.AssHighWater >= AssUnlocks.PlugAt) hit.Add("200:plug");
-        if (r.AssHighWater >= AssUnlocks.OpenRungAt) hit.Add("300:-");
+        if (r.AssHighWater >= AssUnlocks.MilkingGripAt) hit.Add($"{AssUnlocks.MilkingGripAt}:grip");
+        if (r.AssHighWater >= AssUnlocks.PlugAt) hit.Add($"{AssUnlocks.PlugAt}:plug");
+        if (r.AssHighWater >= AssUnlocks.OpenRungAt) hit.Add($"{AssUnlocks.OpenRungAt}:-");
         return hit.Count == 0 ? "none" : string.Join(",", hit);
     }
 }

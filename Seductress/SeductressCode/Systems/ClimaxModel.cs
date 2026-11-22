@@ -73,36 +73,6 @@ public class ClimaxModel : CustomSingletonModel
     }
 
     /// <summary>
-    /// Enemies present when the combat began. Needed because §6.2 prices an elite differently for
-    /// one enemy (40 ml) than for several (20 ml each), and by the time the last one dies the rest
-    /// have already been removed from the combat state.
-    ///
-    /// Counted as "still alive + already killed this combat" rather than sampled at turn
-    /// boundaries, so it does not depend on a hook having fired before the first kill — an early
-    /// kill on turn one would otherwise see a count of zero and price a multi-enemy elite as solo.
-    ///
-    /// Waves that spawn mid-fight are included as they arrive, so an elite with a solo first stage
-    /// is priced as multi-enemy once the adds appear. Kills landed while it really was alone are
-    /// still priced solo, which is the reading that matches "elite, multi-enemy: 20 ml each".
-    /// </summary>
-    private int _monstersKilledThisCombat;
-
-    /// <summary>
-    /// The combat the kill counter belongs to. Comparing against this on every death means the
-    /// counter self-resets when the combat changes, so it cannot leak across fights if
-    /// BeforeCombatStart is ever missed or runs out of order — which would read a solo elite as
-    /// multi and underpay it.
-    /// </summary>
-    private ICombatState? _countingFor;
-
-    private void EnsureCountingFor(ICombatState? combat)
-    {
-        if (ReferenceEquals(combat, _countingFor)) return;
-        _countingFor = combat;
-        _monstersKilledThisCombat = 0;
-    }
-
-    /// <summary>
     /// Set by a card while its own attack resolves, so kills it causes pay extra intake
     /// (<i>Breed Me!</i>). Routing itself stays in AfterDeath so there is one place that decides
     /// where ml goes.
@@ -139,9 +109,18 @@ public class ClimaxModel : CustomSingletonModel
         ClimaxesThisCombat = 0;
         SigilsExhaustedThisCombat = 0;
         LastAttackPlayed = null;
-        _monstersKilledThisCombat = 0;
+        Stripped = 0;
         return Task.CompletedTask;
     }
+
+    /// <summary>
+    /// [Gorim, 2026-11-20] "Every Power you play strips an item of clothing." [Gorim, 2026-11-22]
+    /// Order: "Sleeves and shoes, then wrap, then skirt"; she is dressed again each combat. A
+    /// fourth stage waits on a new pose. Shown by <see cref="UI.RigVisuals"/>; no rules effect.
+    /// </summary>
+    public int Stripped { get; set; }
+
+    public const int MaxStripped = 3;
 
     // ---------------------------------------------------------------- Continuing / tags
 
@@ -157,6 +136,12 @@ public class ClimaxModel : CustomSingletonModel
     public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
         var card = cardPlay.Card;
+        UI.HoleInsets.Current?.CardPlayed();
+        if (card.Type == CardType.Power && card.Owner?.Character is Character.Seductress && Stripped < MaxStripped)
+        {
+            Stripped++;
+            MainFile.Logger.Info($"[Seductress] {card.Id.Entry} played: strip stage {Stripped}");
+        }
         if (card.Type != CardType.Attack) return Task.CompletedTask;
         LastAttackPlayed = card;
         if (card is SeductressCard { IsContinuing: true }) return Task.CompletedTask;
@@ -315,6 +300,7 @@ public class ClimaxModel : CustomSingletonModel
         {
             var added = r.AddPrecum(precum);
             MainFile.Logger.Info($"[Seductress] Stomach milestone: +{added} ml precum at combat start (Stomach {r.Stomach})");
+            await Stomach.SwallowIfFull(me, precum, added, cum: false);
         }
 
         await Pregnancy.ApplyCombatStartSensitive(me);
@@ -323,34 +309,102 @@ public class ClimaxModel : CustomSingletonModel
     // ---------------------------------------------------------------- Intake
 
     /// <summary>
-    /// Base intake per enemy climax, from design §6.2. This was a flat 10 through the spike and
-    /// the first half of slice 2, which underpaid every elite and boss — and since §6.3 makes
-    /// elites and bosses "the pregnancy moments", that quietly broke the whole pregnancy pacing.
+    /// [Gorim, 2026-11-20] Share of an enemy's Max HP paid as cum to the finishing hole when it
+    /// dies. Replaces the flat 10 / 15 / 40 / 60 ml table. Design note: reduce proportionally in
+    /// multiplayer if that is ever built.
     /// </summary>
-    private int BaseIntakeFor(Player me, ICombatState? combat)
-    {
-        // Minions are excluded, so an elite that summons adds stays a solo elite at 40 rather
-        // than being demoted to the cheaper multi rate.
-        var alive = combat?.Enemies.Count(e => e.IsAlive && !e.IsSecondaryEnemy) ?? 0;
-        var encounterSize = alive + _monstersKilledThisCombat;
+    public const decimal KillBonusShare = 0.25m;
 
-        return me.RunState.CurrentRoom?.RoomType switch
-        {
-            RoomType.Boss => 60,
-            // [decided 2026-09-06, Gorim] Multi-enemy elites pay 15, not the 20 in §6.2 — so a
-            // three-enemy elite is 45 rather than 60, below a solo elite's 40 per kill but still
-            // the better total.
-            RoomType.Elite => encounterSize > 1 ? 15 : 40,
-            _ => 10
-        };
+    /// <summary>Where an enemy's output goes: Leg-Locked claims it for the Pussy, else the attack's hole.</summary>
+    private static Hole HoleFor(Creature enemy, Hole attackHole)
+    {
+        // [Gorim] Leg-Locked overrides where intake goes but never whether it happens. Design §6.3a.
+        return enemy.HasPower<Powers.LegLockedPower>() ? Hole.Pussy : attackHole;
     }
 
     /// <summary>
-    /// When an enemy climaxes (dies), their output routes via the finishing attack's tag.
+    /// The one place cum from an enemy enters a reservoir.
+    /// </summary>
+    /// <param name="mirrorAsPrecum">
+    /// True for the per-hit gain, which <i>Edging Form</i> copies as precum. [Claude] The kill bonus
+    /// is not copied: Gorim's wording was "per attack, +100% cum as precum", and a quarter of a
+    /// boss's Max HP again as precum looked like more than that meant.
+    /// </param>
+    private static async Task GainCum(Player me, Hole hole, int ml, string why, bool mirrorAsPrecum)
+    {
+        if (ml <= 0) return;
+
+        // [Gorim, 2026-11-17] Hyperfertile: twice as much Pussy cum.
+        if (hole == Hole.Pussy && me.Creature.HasPower<Powers.HyperfertilePower>()) ml *= 2;
+
+        var res = Reservoirs.Of(me.RunState);
+        var before = res.Get(hole);
+        res.Add(hole, ml);
+        var landed = res.Get(hole) - before;
+
+        FloorLog.RecordIntake(ml);
+        MainFile.Logger.Info(
+            $"[Seductress] Intake {ml} ml -> {hole} ({why})" +
+            (landed < ml ? $" — {ml - landed} ml did not fit and is lost" : "") +
+            (hole == Hole.Ass && res.PlugIn ? " — BLOCKED, the Plug is in" : ""));
+
+        int edgingAsked = 0, edgingFitted = 0;
+        if (mirrorAsPrecum && me.Creature.GetPower<Powers.EdgingFormPower>() is { } edging)
+        {
+            var pre = ml * (int)edging.Amount;
+            var added = hole switch
+            {
+                Hole.Mouth => res.AddPrecum(pre),
+                Hole.Ass => res.AddAssPrecum(pre),
+                Hole.Pussy => res.AddWombPrecum(pre),
+                _ => 0   // Skin is not a hole; Edging Form does nothing there
+            };
+            if (added > 0)
+            {
+                MainFile.Logger.Info($"[Seductress] Edging Form +{added} ml precum -> {hole}");
+                if (hole == Hole.Mouth) await Stomach.AfterPrecumGained(me, pre);
+            }
+            if (hole == Hole.Mouth) edgingAsked = pre;
+            if (hole == Hole.Mouth) edgingFitted = added;
+        }
+
+        // The Gulp milestone swallows a full Mouth mid-combat, which uncaps throughput. The cum
+        // goes first, then Edging Form's precum.
+        if (hole == Hole.Mouth)
+        {
+            await Stomach.SwallowIfFull(me, ml, landed, cum: true);
+            await Stomach.SwallowIfFull(me, edgingAsked, edgingFitted, cum: false);
+        }
+    }
+
+    /// <summary>
+    /// [Gorim, 2026-11-20] <b>Every Attack gains cum 1:1 with the HP it actually removes</b>, into
+    /// the attack's hole. Nothing for overkill and nothing for damage Block absorbed, which is
+    /// exactly what <c>UnblockedDamage</c> reports. Replaces register decision 44 ("Attacks and
+    /// Skills do not generate intake").
     ///
-    /// SPIKE SIMPLIFICATION: this reads the current Continuing mode rather than the specific card
-    /// that landed the killing blow, and pays a flat normal-enemy 10 ml with no elite/boss tiers.
-    /// Enough to exercise routing, the Sensitive multiplier and the display.
+    /// The Ass rule's bonus damage is ordinary damage by the time it lands, so it gains cum too.
+    ///
+    /// [Claude] Minions still pay nothing (the 2026-09-06 ruling), for hits as well as kills;
+    /// otherwise a summoner is the same intake fountain that ruling closed.
+    /// </summary>
+    public override async Task AfterDamageGiven(PlayerChoiceContext choiceContext, Creature? dealer,
+        DamageResult result, MegaCrit.Sts2.Core.ValueProps.ValueProp props, Creature target, CardModel? cardSource)
+    {
+        if (!IsSeductress(dealer) || cardSource is null || cardSource.Type != CardType.Attack) return;
+        if (!target.IsMonster || target.IsSecondaryEnemy) return;
+
+        var ml = result.UnblockedDamage;
+        if (ml <= 0) return;
+
+        var hole = HoleFor(target, RouteOf(cardSource));
+        UI.HoleInsets.Current?.Hit(hole, target);
+        await GainCum(dealer!.Player!, hole, ml, $"{cardSource.Id.Entry} removed {ml} HP", mirrorAsPrecum: true);
+    }
+
+    /// <summary>
+    /// When an enemy climaxes (dies), a quarter of its Max HP is paid to the finishing hole, on
+    /// top of what the hits themselves gained.
     /// </summary>
     public override Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature,
         CardModel? source, bool wasRemovalPrevented, float deathAnimLength)   // 0.113 added `source` (unused here)
@@ -372,41 +426,15 @@ public class ClimaxModel : CustomSingletonModel
         var me = MegaCrit.Sts2.Core.Context.LocalContext.GetMe(creature.CombatState);
         if (me?.Character is not Character.Seductress) return Task.CompletedTask;
 
-        EnsureCountingFor(creature.CombatState);
-        _monstersKilledThisCombat++;
+        var baseMl = (int)System.Math.Ceiling(creature.MaxHp * KillBonusShare);
+        var ml = _killIntakeMultiplier > 1 ? baseMl * _killIntakeMultiplier : baseMl + _killIntakeFlat;
 
-        var multiplier = SensitivePower.MultiplierFor(me.Creature);
-        var baseMl = BaseIntakeFor(me, creature.CombatState);
-        // Sensitive multipliers on intake round UP, in the player's favour (design §6.2).
-        var ml = (int)System.Math.Ceiling(baseMl * multiplier);
-
-
-        ml = _killIntakeMultiplier > 1 ? ml * _killIntakeMultiplier : ml + _killIntakeFlat;
-
-        // [Gorim] Precedence: minions bank nothing at all (that test already returned above);
-        // then Leg-Locked, which overrides where intake goes but never whether it happens; then
-        // the finishing attack's tag; then the Skin catch-all. Design §6.3a.
-        var legLocked = creature.HasPower<Powers.LegLockedPower>();
-        var hole = legLocked ? Hole.Pussy : ContinuingHole;
-        if (legLocked) MainFile.Logger.Info("[Seductress] Leg-Locked claim: routing to Pussy");
-        // Milking Grip: Ass-tagged kills gain double intake (design §7).
+        var hole = HoleFor(creature, ContinuingHole);
+        // Milking Grip: Ass kills gain double intake (design §7).
         if (hole == Hole.Ass && me.Creature.HasPower<Powers.MilkingGripPower>()) ml *= 2;
-        // [Gorim, 2026-11-17] Hyperfertile: twice as much Pussy cum.
-        if (hole == Hole.Pussy && me.Creature.HasPower<Powers.HyperfertilePower>()) ml *= 2;
 
-        var res = Reservoirs.Of(me.RunState);
-        var before = res.Get(hole);
-        res.Add(hole, ml);
-        var landed = res.Get(hole) - before;
+        UI.HoleInsets.Current?.Finish(hole, creature);
 
-        FloorLog.RecordIntake(ml);
-        MainFile.Logger.Info(
-            $"[Seductress] Intake {ml} ml -> {hole} (base {baseMl}, sensitive x{multiplier}, " +
-            $"{me.RunState.CurrentRoom?.RoomType})" +
-            (landed < ml ? $" — {ml - landed} ml did not fit and is lost" : "") +
-            (hole == Hole.Ass && res.PlugIn ? " — BLOCKED, the Plug is in" : ""));
-
-        // The 100 ml Stomach milestone swallows a full Mouth mid-combat, which uncaps throughput.
-        return hole == Hole.Mouth ? Stomach.SwallowIfFull(me) : Task.CompletedTask;
+        return GainCum(me, hole, ml, $"kill bonus, {KillBonusShare:P0} of {creature.MaxHp} Max HP", mirrorAsPrecum: false);
     }
 }

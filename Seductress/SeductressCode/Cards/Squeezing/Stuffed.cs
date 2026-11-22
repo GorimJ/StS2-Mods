@@ -40,7 +40,7 @@ public class Stuffed : SeductressCard
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        var bonus = SpendAssForDamage();
+        var bonus = StandingAssBonus();
         var belowHalf = Owner.Creature.CurrentHp * 2 < Owner.Creature.MaxHp;
         var hits = 1 + (belowHalf ? 1 : 0) + StretchBonusHits(true);
 

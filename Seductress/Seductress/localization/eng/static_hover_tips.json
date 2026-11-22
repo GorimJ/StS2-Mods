@@ -1,3 +1,24 @@
 {
-  
+  "SEDUCTRESS_GULP.title": "Gulp",
+  "SEDUCTRESS_GULP.description": "Swallow everything in your Mouth. Heal 1 per 10 ml.",
+  "SEDUCTRESS_LEG_LOCKED.title": "Leg-Locked",
+  "SEDUCTRESS_LEG_LOCKED.description": "When this enemy dies, its cum goes to your Pussy, whatever killed it. Drops by 1 at the end of its turn.",
+  "SEDUCTRESS_EAT.title": "Eat",
+  "SEDUCTRESS_EAT.description": "Swallow that many ml, taken from your Skin first, then Mouth, Ass and Womb. Heal 1 per 10 ml. The cum is banked in your Stomach.",
+  "SEDUCTRESS_PRECUM.title": "Precum",
+  "SEDUCTRESS_PRECUM.description": "Counts as cum during the combat. At the end of combat it is lost instead of kept.",
+  "SEDUCTRESS_MOUTH.title": "Mouth",
+  "SEDUCTRESS_MOUTH.description": "Holds up to 100 ml. Mouth Attacks fill it by the HP they remove. At the end of combat you swallow it: heal 1 per 10 ml and bank the cum in your Stomach.",
+  "SEDUCTRESS_PUSSY.title": "Pussy",
+  "SEDUCTRESS_PUSSY.description": "Pussy Attacks fill your Womb by the HP they remove. Each 250 ml held at the end of a combat is one pregnancy stage. Give birth at a rest site for 1 Sigil per stage.",
+  "SEDUCTRESS_ASS.title": "Ass",
+  "SEDUCTRESS_ASS.description": "Holds up to 500 ml. Ass Attacks fill it by the HP they remove, and deal +1 damage on every hit per 50 ml held. Blowout and Overflow can spend it for more. It leaks between floors.",
+  "SEDUCTRESS_SKIN.title": "Skin",
+  "SEDUCTRESS_SKIN.description": "Cum on your body. Most of what leaks from your Ass and Womb lands here. Recover it with Indulge at a rest site.",
+  "SEDUCTRESS_CLIMAX.title": "Climax",
+  "SEDUCTRESS_CLIMAX.description": "At 0 HP you Climax instead of dying: heal to full, gain 1 Sensitive for this combat and a Lust card for the rest of the run. With 3 Lust cards, the next Climax kills you.",
+  "SEDUCTRESS_SIGIL.title": "Sigil",
+  "SEDUCTRESS_SIGIL.description": "Earned by giving birth, 1 per pregnancy stage. Sigil cards grow stronger at 1, 3, 5 and 7 Sigils.",
+  "SEDUCTRESS_MILESTONES.title": "Milestones",
+  "SEDUCTRESS_MILESTONES.description": "Click to see what your Stomach, Womb, Ass and Sigils have unlocked and what comes next."
 }

@@ -17,13 +17,13 @@ public class ReservoirState
 {
     /// <summary>
     /// Mouth, <b>cum only</b>. Banks to the Stomach at the end of every combat (design §6.5).
-    /// The 50 ml cap is on <see cref="MouthTotal"/>, not on this alone.
+    /// The 250 ml cap is on <see cref="MouthTotal"/>, not on this alone.
     /// </summary>
     public int Mouth;
 
     /// <summary>
     /// Mouth, <b>precum</b> (design §6.2a). Inside a combat it is indistinguishable from cum —
-    /// spendable by anything that empties the Mouth, and counting against the same 50 ml cap. At
+    /// spendable by anything that empties the Mouth, and counting against the same 250 ml cap. At
     /// the end of combat it evaporates: no heal, no Stomach.
     ///
     /// [Claude-Code] Held as a separate field rather than a flag on the Mouth because the two
@@ -32,8 +32,30 @@ public class ReservoirState
     /// </summary>
     public int Precum;
 
-    /// <summary>Ass: 200 ml nominal cap, both hole and container. Inflates above it.</summary>
-    public int Ass;
+    /// <summary>
+    /// Ass: 1000 ml nominal cap, both hole and container. Inflates above it. Includes
+    /// <see cref="AssPrecum"/>.
+    ///
+    /// [Claude, 2026-11-20] A property so that precum is spent first without every spender having
+    /// to know about it: any drop in the bank comes out of the precum share before the cum.
+    /// </summary>
+    public int Ass
+    {
+        get => _ass;
+        set
+        {
+            if (value < _ass) AssPrecum = Math.Max(0, AssPrecum - (_ass - value));
+            _ass = value;
+        }
+    }
+    private int _ass;
+
+    /// <summary>
+    /// [Gorim, 2026-11-20] Precum outside the Mouth, granted by <i>Edging Form</i>. The share of
+    /// <see cref="Ass"/> that is precum: usable like cum during the combat, gone at the bell.
+    /// [Claude] It never counts toward the high-water mark, so it cannot unlock rewards.
+    /// </summary>
+    public int AssPrecum;
 
     /// <summary>
     /// The highest Ass the run has ever held (design §6.1a). Threshold unlocks read this rather
@@ -42,8 +64,23 @@ public class ReservoirState
     /// </summary>
     public int AssHighWater;
 
-    /// <summary>Womb: filled by the Pussy tag. 100 ml conceives; stages sit at N x 100.</summary>
-    public int Womb;
+    /// <summary>
+    /// Womb: filled by the Pussy tag. 500 ml conceives; stages sit at N x 500. Includes
+    /// <see cref="WombPrecum"/>, which is spent first, as with <see cref="Ass"/>.
+    /// </summary>
+    public int Womb
+    {
+        get => _womb;
+        set
+        {
+            if (value < _womb) WombPrecum = Math.Max(0, WombPrecum - (_womb - value));
+            _womb = value;
+        }
+    }
+    private int _womb;
+
+    /// <summary>The share of <see cref="Womb"/> that is precum. Gone at the bell, before conception.</summary>
+    public int WombPrecum;
 
     /// <summary>
     /// Skin: external catch-all. Uncapped, and <b>does not leak</b> — a pure accumulator that only
@@ -51,13 +88,13 @@ public class ReservoirState
     /// </summary>
     public int Skin;
 
-    /// <summary>Stomach: Draining's permanent track. Unbounded. +1 Max HP per 10 ml (§6.5).</summary>
+    /// <summary>Stomach: Draining's permanent track. Unbounded. +1 Max HP per 50 ml (§6.5).</summary>
     public int Stomach;
 
     /// <summary>One per pregnancy stage delivered, kept for the run.</summary>
     public int Sigils;
 
-    /// <summary>Pregnancy stage: 0 not pregnant, N at N x 100 ml committed (design §6.3b).</summary>
+    /// <summary>Pregnancy stage: 0 not pregnant, N at N x 500 ml committed (design §6.3b).</summary>
     public int PregnancyStage;
 
     /// <summary>
@@ -77,19 +114,27 @@ public class ReservoirState
 
     // ---------------------------------------------------------------- Mouth
 
-    /// <summary>Everything in the Mouth right now, cum and precum together. Capped at 50.</summary>
+    /// <summary>Everything in the Mouth right now, cum and precum together. Capped at MouthCap.</summary>
     public int MouthTotal => Mouth + Precum;
 
-    public const int MouthCap = 50;
-    public const int WombStage = 100;
-    public const int AssCap = 200;
+    // [Gorim, 2026-11-20] Every ml figure is five times what it was ("for now, and see where
+    // that gets us"), because attacks now gain cum 1:1 with the HP they remove.
+    //
+    // [Gorim, 2026-11-21] After seeing it in play: "Womb seems too hard to fill, lets cut it down
+    // to 250ml for now and see how that is. Probably cut the other two down as well by half.
+    // Maybe mouth to 100ml actually." So Womb 500 -> 250, Ass 1000 -> 500, Mouth 250 -> 100.
+    // [Claude] The Ass unlock rungs and the Plug follow the Ass cap; the Stomach's thresholds
+    // and every card's ml amount are unchanged.
+    public const int MouthCap = 100;
+    public const int WombStage = 250;
+    public const int AssCap = 500;
 
     /// <summary>Nominal capacity. The Ass and Womb both overfill past theirs by design.</summary>
     public int Capacity(Hole hole) => hole switch
     {
         Hole.Mouth => MouthCap,
         Hole.Ass => int.MaxValue,
-        Hole.Pussy => int.MaxValue,   // the Womb inflates past 100; stages are thresholds, not caps
+        Hole.Pussy => int.MaxValue,   // the Womb inflates past 500; stages are thresholds, not caps
         _ => int.MaxValue
     };
 
@@ -176,7 +221,37 @@ public class ReservoirState
     /// </summary>
     public void TouchAssHighWater()
     {
-        if (Ass > AssHighWater) AssHighWater = Ass;
+        var cum = Ass - AssPrecum;
+        if (cum > AssHighWater) AssHighWater = cum;
+    }
+
+    /// <summary>Adds precum to the Ass. Blocked by the Plug like any other filling. Returns what was added.</summary>
+    public int AddAssPrecum(int ml)
+    {
+        if (PlugIn || ml <= 0) return 0;
+        _ass += ml;
+        AssPrecum += ml;
+        return ml;
+    }
+
+    /// <summary>Adds precum to the Womb. Returns what was added.</summary>
+    public int AddWombPrecum(int ml)
+    {
+        if (ml <= 0) return 0;
+        _womb += ml;
+        WombPrecum += ml;
+        return ml;
+    }
+
+    /// <summary>The bell: whatever precum is left in the Ass and Womb is gone. Returns (ass, womb) lost.</summary>
+    public (int Ass, int Womb) EvaporateHolePrecum()
+    {
+        var lost = (AssPrecum, WombPrecum);
+        Ass -= AssPrecum;
+        Womb -= WombPrecum;
+        AssPrecum = 0;
+        WombPrecum = 0;
+        return lost;
     }
 
     /// <summary>
@@ -283,6 +358,8 @@ public static class Reservoirs
         Register("Seductress.Ass", s => s.Ass, (s, v) => s.Ass = v);
         Register("Seductress.AssHighWater", s => s.AssHighWater, (s, v) => s.AssHighWater = v);
         Register("Seductress.Womb", s => s.Womb, (s, v) => s.Womb = v);
+        Register("Seductress.AssPrecum", s => s.AssPrecum, (s, v) => s.AssPrecum = v);
+        Register("Seductress.WombPrecum", s => s.WombPrecum, (s, v) => s.WombPrecum = v);
         Register("Seductress.Skin", s => s.Skin, (s, v) => s.Skin = v);
         Register("Seductress.Stomach", s => s.Stomach, (s, v) => s.Stomach = v);
         Register("Seductress.Sigils", s => s.Sigils, (s, v) => s.Sigils = v);

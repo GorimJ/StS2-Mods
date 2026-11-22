@@ -44,7 +44,7 @@ public class Claim : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Claim",
-        "Pussy. Deal {CalculatedDamage:diff()} damage. Lose {HpLoss:diff()} HP.\n{T1} Sigil: apply 1 [gold]Vulnerable[/gold].\n{T2} Sigils: deal {TierDamage:diff()} instead.\n{T3} Sigils: apply 2 [gold]Vulnerable[/gold] instead.\n{T4} Sigils: repeats 1 time.");
+        "Pussy. Deal " + TieredDamage + " damage.\nLose {HpLoss:diff()} HP.{S3:cond:\nApply 2 [gold]Vulnerable[/gold].|{S1:cond:\nApply 1 [gold]Vulnerable[/gold].|}}{S4:cond:\nRepeats 1 time.|}");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

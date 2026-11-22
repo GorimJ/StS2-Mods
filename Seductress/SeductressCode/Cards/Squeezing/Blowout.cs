@@ -14,10 +14,12 @@ using Seductress.SeductressCode.Systems;
 
 namespace Seductress.SeductressCode.Cards;
 
-/// <summary>Squeezing's ceiling. Half the bank for four hits — it should hurt to use.</summary>
+/// <summary>Squeezing's ceiling. Half the bank for four hits — it should hurt to use.
+/// [Gorim, 2026-11-21] Costs 2 (was 3) "for now": "Losing 50% of your scaling mechanic probably
+/// makes it unplayable I think. Though admittedly not sure."</summary>
 public class Blowout : SeductressCard
 {
-    public Blowout() : base(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy) { }
+    public Blowout() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy) { }
 
     public override Hole Hole => Hole.Ass;
 
@@ -29,15 +31,17 @@ public class Blowout : SeductressCard
 
 
     /// <summary>The live Ass bonus, so the card face shows what it will actually deal.</summary>
-    protected override decimal PreviewBonus() => AssNotional(0.50);
+    protected override decimal PreviewBonus() => AssNotional();
+
+    protected override int AssSpendLeaks => 2;
 
     public override List<(string, string)>? Localization => new CardLoc(
-        "Blowout", "Ass. This card loses 50% of your Ass instead of 10%.\nDeal {CalculatedDamage:diff()} damage four times.");
+        "Blowout", "Ass. Deal {CalculatedDamage:diff()} damage four times.\nYou may spend {AssSpend} Ass for {AssSpendBonus} bonus damage.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        var bonus = SpendAssForDamage(0.50);
+        var bonus = await AssSpendOrKeep(choiceContext, 2);
         var hits = 4;
 
         for (var i = 0; i < hits; i++)

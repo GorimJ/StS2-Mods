@@ -26,7 +26,7 @@ public class MilkedDry : SeductressCard
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(10m, ValueProp.Move),
-        new DynamicVar("Ml", 15m)
+        new DynamicVar("Ml", 75m)
     ];
 
     public override List<(string, string)>? Localization => new CardLoc(
@@ -42,7 +42,8 @@ public class MilkedDry : SeductressCard
         var r = Reservoirs.Of(Owner.RunState);
         var added = r.AddPrecum((int)DynamicVars["Ml"].BaseValue);
         MainFile.Logger.Info($"[Seductress] Milked Dry: +{added} ml precum | mouth {r.Mouth}+{r.Precum}p");
-        await Stomach.AfterPrecumGained(Owner);
+        await Stomach.SwallowIfFull(Owner, (int)DynamicVars["Ml"].BaseValue, added, cum: false);
+        await Stomach.AfterPrecumGained(Owner, (int)DynamicVars["Ml"].BaseValue);
     }
 
     protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(4m);

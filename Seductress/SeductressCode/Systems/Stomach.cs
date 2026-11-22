@@ -20,19 +20,25 @@ namespace Seductress.SeductressCode.Systems;
 /// </summary>
 public static class Stomach
 {
-    /// <summary>Max HP the Stomach has earned in total: 1 per 10 ml.</summary>
-    public static int MaxHpEarned(int stomach) => stomach / 10;
+    /// <summary>ml of Stomach per point of Max HP. [Gorim, 2026-11-20] x5 with every other ml figure.</summary>
+    public const int MlPerMaxHp = 50;
+
+    /// <summary>Max HP the Stomach has earned in total: 1 per 50 ml.</summary>
+    public static int MaxHpEarned(int stomach) => stomach / MlPerMaxHp;
 
     /// <summary>
     /// Precum granted at the start of each combat: 5 ml per <b>x50</b> milestone passed.
     ///
     /// [Gorim] The milestones are the ones <i>ending</i> in 50 — 50, 150, 250, 350 — not every
     /// fifty and not the x00s, which carry the unique rewards instead.
+    ///
+    /// [Gorim, 2026-11-20] x5: the milestones are now 250, 750, 1250, 1750 and each grants 25 ml.
     /// </summary>
-    public static int CombatStartPrecum(int stomach) => stomach < 50 ? 0 : (stomach + 50) / 100 * 5;
+    public static int CombatStartPrecum(int stomach) => stomach < 250 ? 0 : (stomach + 250) / 500 * 25;
 
     /// <summary>
-    /// 100 ml — <b>Gulp</b>: the Mouth <b>also</b> swallows whenever it reaches 50 ml.
+    /// 500 ml — <b>Gulp</b>: the Mouth <b>also</b> swallows whenever it is full (250 ml).
+    /// (Figures in the notes below predate the 2026-11-20 x5 scale.)
     ///
     /// [Gorim 2026-09-08] The name belongs to this milestone. There is no <i>Gulp</i> card — one
     /// was built from cards doc §6 and has been cut, because the same idea does not want to exist
@@ -45,13 +51,13 @@ public static class Stomach
     /// Additive, not a trade — the end-of-combat swallow is unchanged. It uncaps throughput, so a
     /// long fight can bank 100-150 ml where the Mouth's 50 ml capacity previously capped it.
     /// </summary>
-    public static bool SwallowsAtFifty(int stomach) => stomach >= 100;
+    public static bool SwallowsAtFifty(int stomach) => stomach >= 500;
 
-    /// <summary>200 ml: Indulge stops spilling — 100% reclamation instead of two thirds.</summary>
-    public static bool IndulgeIsClean(int stomach) => stomach >= 200;
+    /// <summary>1000 ml: Indulge stops spilling — 100% reclamation instead of two thirds.</summary>
+    public static bool IndulgeIsClean(int stomach) => stomach >= 1000;
 
-    /// <summary>300 ml: precum counts as cum, and banks instead of evaporating.</summary>
-    public static bool PrecumBanks(int stomach) => stomach >= 300;
+    /// <summary>1500 ml: precum counts as cum, and banks instead of evaporating.</summary>
+    public static bool PrecumBanks(int stomach) => stomach >= 1500;
 
     /// <summary>
     /// Banks ml into the Stomach and pays out any Max HP it just earned.
@@ -86,11 +92,13 @@ public static class Stomach
             $" | precum banks {(PrecumBanks(r.Stomach) ? "yes" : "no")}");
     }
 
-    /// <summary>Default heal rate on a swallow: 1 HP per 2 ml, i.e. half the ml swallowed.</summary>
-    public const int DefaultHealPercent = 50;
+    /// <summary>
+    /// Default heal rate on a swallow. [Gorim, 2026-11-20] 1 HP per 10 ml (was 1 per 2).
+    /// </summary>
+    public const int DefaultHealPercent = 10;
 
     /// <summary>A swallow this large removes a Sensitive, once the Gulp milestone is reached.</summary>
-    public const int SensitiveThreshold = 25;
+    public const int SensitiveThreshold = 125;
 
     /// <summary>
     /// A swallow (design §6.5). It <b>heals</b>, cum <b>banks</b>, and precum evaporates unless the
@@ -197,20 +205,45 @@ public static class Stomach
     }
 
     /// <summary>
-    /// Call after any card or power adds precum. <i>Milking Throat</i>: gain that much more and
-    /// eat it. The extra never enters the Mouth, so the 50 ml cap cannot waste it.
+    /// Call after any card or power adds <paramref name="ml"/> precum to the Mouth.
+    ///
+    /// [Gorim, 2026-11-21] <i>Milking Throat</i>: "still needs the bonus precum. Probably gain
+    /// twice as much, then gulp."
+    ///
+    /// [Claude] The second helping is swallowed directly and never enters the Mouth, so the cap
+    /// cannot waste it; it is the amount the card asked for, even when the Mouth had no room for
+    /// all of the first helping.
     /// </summary>
-    public static async Task AfterPrecumGained(Player player)
+    public static async Task AfterPrecumGained(Player player, int ml)
     {
-        if (player.Creature.GetPower<MilkingThroatPower>() is not { } throat) return;
-        await Digest(player, 0, (int)throat.Amount, "Milking Throat");
+        if (!player.Creature.HasPower<MilkingThroatPower>()) return;
+        await Digest(player, 0, ml, "Milking Throat (second helping)");
+        await SwallowAll(player, "GULP (Milking Throat)");
     }
 
-    public static async Task SwallowIfFull(Player player)
+    /// <summary>
+    /// Call after adding to the Mouth: <paramref name="asked"/> is what the source gave and
+    /// <paramref name="fitted"/> what went in. With the Gulp milestone, a full Mouth swallows and
+    /// the rest then goes in.
+    ///
+    /// [Gorim, 2026-11-21] "If you're on 99 and gain 10, it should be gulp 100 gain 9." Asked
+    /// whether that should be always on, he kept it behind the 500 ml Stomach milestone; without
+    /// the milestone the part that does not fit is still lost.
+    /// </summary>
+    public static async Task SwallowIfFull(Player player, int asked = 0, int fitted = 0, bool cum = true)
     {
         var r = Reservoirs.Of(player.RunState);
         if (!SwallowsAtFifty(r.Stomach)) return;
-        if (r.MouthTotal < ReservoirState.MouthCap) return;
-        await SwallowAll(player, "GULP (mouth full)");
+
+        var left = asked - fitted;
+        while (true)
+        {
+            if (r.MouthTotal >= ReservoirState.MouthCap) await SwallowAll(player, "GULP (mouth full)");
+            if (left <= 0) break;
+            var went = cum ? r.AddMouthCum(left) : r.AddPrecum(left);
+            if (went <= 0) break;
+            left -= went;
+            MainFile.Logger.Info($"[Seductress] after the Gulp: +{went} ml {(cum ? "cum" : "precum")} | mouth {r.Mouth}+{r.Precum}p");
+        }
     }
 }

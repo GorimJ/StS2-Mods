@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections.Generic;
 using BaseLib.Abstracts;
 using BaseLib.Extensions;
@@ -32,6 +33,93 @@ public abstract class SeductressCard(int cost, CardType type, CardRarity rarity,
     /// </summary>
     public virtual bool IsContinuing => false;
 
+    /// <summary>
+    /// [Gorim, 2026-11-21] Hover pop-outs for the character's own words (Gulp, Precum, Mouth...).
+    /// A card gets the pop-out of every term its text uses; see <see cref="UI.Glossary"/>.
+    /// </summary>
+    protected override IEnumerable<MegaCrit.Sts2.Core.HoverTips.IHoverTip> ExtraHoverTips =>
+        UI.Glossary.TipsFor(GetType(), () => (Localization ?? []).Select(pair =>
+            SigilToken.IsMatch(pair.Item2) ? pair.Item2 + " Sigil" : pair.Item2));
+
+    // ---- Sigil text ----------------------------------------------------------------------
+    //
+    // [Gorim, 2026-11-22] "This is too much text on a card. Perhaps the sigil stuff is only
+    // visible in the right click menu? Could do a sliding bar of activating sigils to see how the
+    // card changes?" Asked what the card itself should show, he chose what it does at your
+    // current Sigil count, "but different effects need different sentences": one effect per line.
+    //
+    // [Claude] How: every description gets four switches, S1 to S4, one per tier. A card's text
+    // uses them as {S1:cond:text with the tier|text without}, so one description covers every
+    // Sigil count. The right-click view sets SigilPreview on its copy of the card to show any
+    // count (UI.SigilSliderPatch); four icons on the card face show the tiers (UI.SigilMarks).
+
+    private static readonly System.Text.RegularExpressions.Regex SigilToken = new(@"\{S[1-4]:");
+    private static readonly Dictionary<Type, bool> TieredTypes = [];
+
+    /// <summary>The right-click view's slider value, on its copy of the card only. Null in play.</summary>
+    public int? SigilPreview;
+
+    /// <summary>The Sigil count this card's text is written for.</summary>
+    public int SigilCount => SigilPreview ?? (Owner is null ? 0 : Sigils.Effective(Owner));
+
+    /// <summary>Whether this card's text changes with Sigils.</summary>
+    public bool HasSigilTiers
+    {
+        get
+        {
+            var type = GetType();
+            if (!TieredTypes.TryGetValue(type, out var tiered))
+            {
+                tiered = (Localization ?? []).Any(pair => SigilToken.IsMatch(pair.Item2));
+                TieredTypes[type] = tiered;
+            }
+            return tiered;
+        }
+    }
+
+    protected override void AddExtraArgsToDescription(MegaCrit.Sts2.Core.Localization.LocString description)
+    {
+        var sigils = SigilCount;
+        description.Add("SigilN", (decimal)sigils);
+        description.Add("S1", sigils >= Sigils.Tier1);
+        description.Add("S2", sigils >= Sigils.Tier2);
+        description.Add("S3", sigils >= Sigils.Tier3);
+        description.Add("S4", sigils >= Sigils.Tier4);
+        // True when the card's calculated numbers are live (in a combat pile, not a preview).
+        // Elsewhere the text states the tier's number itself.
+        description.Add("Live", SigilPreview is null
+            && MegaCrit.Sts2.Core.Combat.CombatManager.Instance.IsInProgress
+            && (Pile?.IsCombatPile ?? false));
+
+        // [Gorim, 2026-11-22] Card text gives numbers, not where they come from: "You may spend
+        // X Ass for X/10 bonus damage."
+        if (AssSpendLeaks > 0)
+        {
+            var (lost, bonus) = AssSpendQuote(AssSpendLeaks);
+            description.Add("AssSpend", (decimal)lost);
+            description.Add("AssSpendBonus", (decimal)bonus);
+        }
+    }
+
+    /// <summary>How many floor-leaks of Ass this card may spend when played. 0: not a spender.</summary>
+    protected virtual int AssSpendLeaks => 0;
+
+    /// <summary>What Spend would cost and pay right now: ml lost, and bonus damage per hit on top of standing.</summary>
+    protected (int Lost, int Bonus) AssSpendQuote(int leaks)
+    {
+        if (Owner is null) return (0, 0);
+        var reservoirs = Reservoirs.Of(Owner.RunState);
+        var notional = Math.Min(reservoirs.Ass, leaks * Systems.RunModel.AssLeakOf(reservoirs.Ass));
+        var milking = Owner.Creature?.GetPower<Powers.MilkingGripPower>();
+        var lost = milking is null ? notional : (int)Math.Ceiling(notional * milking.DrainShare);
+        var spill = reservoirs.PlugIn ? (int)Math.Ceiling(reservoirs.Ass * Relics.Plug.SpillFraction) : 0;
+        return (lost + spill, AssStrength(notional + spill));
+    }
+
+    /// <summary>The damage of the three tiered Pussy attacks: live in combat, the tier's printed number elsewhere.</summary>
+    protected const string TieredDamage =
+        "{Live:cond:{CalculatedDamage:diff()}|{S2:cond:{TierDamage:diff()}|{CalculatedDamage:diff()}}}";
+
     /// <summary>Extra mod tags beyond the hole, e.g. the Deep Throat family.</summary>
     protected virtual IEnumerable<CardTag> ExtraTags => [];
 
@@ -64,13 +152,17 @@ public abstract class SeductressCard(int cost, CardType type, CardRarity rarity,
     ///
     /// <i>Milking Grip</i> halves the drain but pays Strength as though it were full.
     /// </summary>
-    /// <param name="fraction">Share of the bank this card spends. 0.1 for a normal Ass attack.</param>
-    protected int SpendAssForDamage(double fraction = 0.10)
+    /// <param name="notional">Ml this card spends before Milking Grip halves the loss.</param>
+    /// <remarks>
+    /// [Gorim, 2026-11-22] Only the spender cards (Blowout, Overflow) call this now, and only
+    /// when the player picks Spend; see <see cref="AssSpendOrKeep"/>. Every other Ass attack uses
+    /// <see cref="StandingAssBonus"/>.
+    /// </remarks>
+    protected int SpendAssForDamage(int notional)
     {
         var reservoirs = Reservoirs.Of(Owner.RunState);
         var milking = Owner.Creature.GetPower<Powers.MilkingGripPower>();
 
-        var notional = (int)Math.Ceiling(reservoirs.Ass * fraction);
         var actual = milking is null ? notional : (int)Math.Ceiling(notional * milking.DrainShare);
 
         // The Plug: playing an Ass card pulls it and spills 10% on top of the card's own drain,
@@ -97,7 +189,16 @@ public abstract class SeductressCard(int cost, CardType type, CardRarity rarity,
     }
 
     /// <summary>
-    /// The Ass Strength ratio: <b>+1 per 4 ml lost</b>.
+    /// The Ass spend ratio: <b>+1 per 10 ml lost</b>.
+    ///
+    /// [Gorim, 2026-11-22] Fifth setting: "maybe lets make it X/10 damage instead", now that
+    /// spending is optional and sits on top of the standing bonus. The history below is older.
+    ///
+    /// [Gorim, 2026-11-20] Fourth setting. The Ass rule stays (lose 10% per Ass attack, bonus per
+    /// hit), the bonus damage now gains cum like any other damage, and attacks with three or more
+    /// hits are meant to grow the bank without limit as the Squeezing direction. [Claude, design
+    /// review] That needs 1:3 rather than 1:4, and this ratio is deliberately NOT multiplied by
+    /// five with the other ml figures. Single-hit decks settle near 15x their hit size.
     ///
     /// [Gorim 2026-09-07] Third setting of this number. §6.1 originally said +1 per 10 ml; slice 3
     /// raised it to 1:1 because the bank never reached the 100 ml that produced a single point,
@@ -112,7 +213,7 @@ public abstract class SeductressCard(int cost, CardType type, CardRarity rarity,
     /// run against the player here — worth watching at low banks, where the mechanic is meant to
     /// be weak but not literally free to ignore.
     /// </summary>
-    protected static int AssStrength(int mlLost) => mlLost / 4;
+    protected static int AssStrength(int mlLost) => mlLost / 10;
 
     /// <summary>
     /// True when No Gag Reflex should cancel this card's HP cost. Deep Throat only.
@@ -169,12 +270,74 @@ public abstract class SeductressCard(int cost, CardType type, CardRarity rarity,
     ///
     /// Milking Grip halves the spend but pays the full bonus, so the preview ignores it.
     /// </summary>
-    protected decimal AssNotional(double fraction = 0.10)
+    protected decimal AssNotional() => Owner is null ? 0m : AssStanding(Reservoirs.Of(Owner.RunState).Ass);
+
+    // ---- Ass: standing bonus, optional spend ---------------------------------------------
+    //
+    // [Gorim, 2026-11-22] "Ass needs some rethinking on balance. It's both too hard to
+    // accumulate, and too good when you do." He chose: the bank gives a standing bonus, +1 damage
+    // per hit per 50 ml held, and nothing is spent by ordinary Ass attacks. The cards that spent
+    // extra (Blowout 50%, Overflow 20%) are the spending, and they ask Spend or Keep when played.
+    // The floor leak stays as it was.
+    //
+    // [Gorim, 2026-11-22, later] "Spend should be lower now that not every attack spends.
+    // Similar to leak maybe?" He chose: Overflow spends one floor's leak (5% of the Ass up to
+    // 500 ml plus 25% of anything above), Blowout spends two, and spending pays on top of the
+    // standing bonus: +1 per 3 ml at first, +1 per 10 ml from his next message.
+    //
+    // [Claude] The
+    // Plug is still pulled by any Ass card and still spills 10%; on an ordinary attack that spill
+    // now buys nothing. Milking Grip now only matters to the two spenders. All three are mine to
+    // flag, not his decisions.
+
+    /// <summary>Ml of Ass held per +1 damage on every hit.</summary>
+    public const int AssMlPerDamage = 50;
+
+    private static int AssStanding(int ml) => ml / AssMlPerDamage;
+
+    /// <summary>What an ordinary Ass attack gets: the standing bonus. Pulls the Plug; spends nothing else.</summary>
+    protected int StandingAssBonus()
     {
-        var r = Reservoirs.Of(Owner.RunState);
-        var notional = (int)Math.Ceiling(r.Ass * fraction);
-        var spill = r.PlugIn ? (int)Math.Ceiling(r.Ass * Relics.Plug.SpillFraction) : 0;
-        return AssStrength(notional + spill);
+        var reservoirs = Reservoirs.Of(Owner.RunState);
+        var bonus = AssStanding(reservoirs.Ass);
+        if (reservoirs.PlugIn)
+        {
+            var spill = (int)Math.Ceiling(reservoirs.Ass * Relics.Plug.SpillFraction);
+            reservoirs.PlugIn = false;
+            reservoirs.Ass = Math.Max(0, reservoirs.Ass - spill);
+            MainFile.Logger.Info($"[Seductress] {Id.Entry} pulled the Plug, spilling {spill} ml");
+        }
+        if (bonus > 0) MainFile.Logger.Info($"[Seductress] {Id.Entry} Ass standing bonus +{bonus} dmg/hit");
+        return bonus;
+    }
+
+    /// <summary>
+    /// A spender card asks Spend or Keep. Spend loses <paramref name="leaks"/> floor-leaks' worth
+    /// of the bank for +1 damage per 10 ml on every hit, on top of the standing bonus; Keep plays
+    /// the card with the standing bonus alone.
+    /// </summary>
+    protected async System.Threading.Tasks.Task<int> AssSpendOrKeep(
+        MegaCrit.Sts2.Core.GameActions.Multiplayer.PlayerChoiceContext choiceContext, int leaks)
+    {
+        var reservoirs = Reservoirs.Of(Owner.RunState);
+        var standing = AssStanding(reservoirs.Ass);
+
+        var notional = Math.Min(reservoirs.Ass, leaks * Systems.RunModel.AssLeakOf(reservoirs.Ass));
+        var (lost, extra) = AssSpendQuote(leaks);
+        var spendBonus = standing + extra;
+
+        // Nothing to gain by spending: do not ask.
+        if (spendBonus <= standing || CombatState is null) return StandingAssBonus();
+
+        var spend = CombatState.CreateCard(ModelDb.Card<AssSpendOption>(), Owner);
+        spend.DynamicVars["Ml"].BaseValue = lost;
+        spend.DynamicVars["Bonus"].BaseValue = spendBonus;
+        var keep = CombatState.CreateCard(ModelDb.Card<AssKeepOption>(), Owner);
+        keep.DynamicVars["Bonus"].BaseValue = standing;
+
+        var picked = await MegaCrit.Sts2.Core.Commands.CardSelectCmd.FromChooseACardScreen(
+            choiceContext, [spend, keep], Owner);
+        return ReferenceEquals(picked, spend) ? standing + SpendAssForDamage(notional) : StandingAssBonus();
     }
 
     /// <summary>
@@ -190,7 +353,7 @@ public abstract class SeductressCard(int cost, CardType type, CardRarity rarity,
 
     /// <summary>The spending half of <see cref="ContinuingAssNotional"/>. Returns the per-hit bonus.</summary>
     protected int SpendContinuingAss() =>
-        IsContinuing && Route == Hole.Ass ? SpendAssForDamage() : 0;
+        IsContinuing && Route == Hole.Ass ? StandingAssBonus() : 0;
 
     /// <summary>
     /// The tier-2 damage swap, expressed as a delta over the printed base, so the three tiered
