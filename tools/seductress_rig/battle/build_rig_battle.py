@@ -26,7 +26,9 @@ VIS_SCALE = 0.25           # master px -> game px (matches the static sprite: 14
 ORIGIN = (615.0, 1296.0)   # master px that sits at the creature origin (between the feet, on the ground) [Claude]
 
 # ---- draw order, back to front (layercut_config.json order + stand-ins) -------------------------------------
-DRAW = json.load(open(f"{WORK}/prep_report.json"))["draw"]
+_REP = json.load(open(f"{WORK}/prep_report.json"))
+DRAW = _REP["draw"]
+OFF = set(_REP.get("off_by_default", []))    # strip pieces the game turns on (cut_strip.py)
 
 # ---- bones: name -> (parent, pivot in master px). One bone per part, same name. [Claude] ---------------------
 BONES = {
@@ -67,6 +69,13 @@ BONES = {
     "HAT_main":                   ("HEAD_face_plus_front_hair", (625, 300)),
     "HAT_charm":                  ("HAT_main", (752, 322)),
 }
+
+# strip pieces [2026-11-22, cut_strip.py]: each rides the bone of the part it belongs to and has no motion of its own
+for _n, _par in {"ARM_L_bare": "ARM_L_upper", "ARM_R_bare": "ARM_R_upper", "SLEEVE_L_behind_hair": "HAIR_back",
+                 "SLEEVE_L_behind_skirt": "SKIRT_rear_left", "LEG_L_shin_foot_bare": "LEG_L_shin_foot",
+                 "LEG_R_shin_foot_bare": "LEG_R_shin_foot", "LEG_L_thigh_bare": "LEG_L_thigh", "LEG_R_thigh_bare": "LEG_R_thigh",
+                 "PELVIS_bare": "HIPS"}.items():
+    if _n in DRAW: BONES[_n] = (_par, BONES[_par][1])
 
 # ---- idle: per-bone motion as sums of sines. Loop length L seconds; every term has an integer cycle count. ---
 L = 6.0
@@ -270,6 +279,12 @@ _b = next((v.replace("BREASTS_", "") for v in SHOW if v.startswith("BREASTS_")),
 _k = next((v.replace("BELLY_stage", "") for v in SHOW if v.startswith("BELLY_stage")), None)
 SHOW_PAIR = f"PAIR_{_b}__belly{_k}" if _k and os.environ.get("NO_PAIR") != "1" else None    # the pair patch that goes with them
 if os.environ.get("MILK") == "1": SHOW += [f"MILK_{_b}"] + ([] if _k else [f"MILK_{_b}__drip"])    # preview only
+# preview only: STRIP=1..3 shows that strip stage (the game does this by toggling Visible)
+_S = int(os.environ.get("STRIP", "0"))
+STRIP_FLIP = set()
+if _S >= 1: STRIP_FLIP |= {"SLEEVE_L", "SLEEVE_R", "LEG_L_shin_foot", "LEG_R_shin_foot", "ARM_R_bare", "LEG_L_shin_foot_bare", "LEG_R_shin_foot_bare"}
+if _S >= 3: STRIP_FLIP |= {"CLOTH_front_skirt_panel", "SKIRT_rear_left", "SKIRT_rear_right", "HIP_ornaments_left", "HIP_ornaments_right",
+                           "SLEEVE_L_behind_skirt", "LEG_L_thigh", "LEG_R_thigh", "LEG_L_thigh_bare", "LEG_R_thigh_bare", "PELVIS_bare"}
 STEP = 0.1  # key spacing, seconds
 # optional pose file (4th argument): {"bone": [rot_deg, dx, dy]} added to the rest pose; the idle plays around it
 POSE = json.load(open(sys.argv[4])) if len(sys.argv) > 4 else {}
@@ -434,7 +449,7 @@ def main():
             '[node name="Parts" type="Node2D" parent="Visuals"]', ""]
     for i, name in enumerate(DRAW):
         x0, y0, _, _ = parts[name]["box"]; px, py = BONES[name][1]
-        out += [f'[node name="{name}" type="Sprite2D" parent="Visuals/Parts"]'] +                (['material = SubResource("mat_smoke")'] if name == "FX_censer_smoke" else []) +                (["visible = false"] if name == "BREASTS_plus_wrap_variant" and any(v.startswith("BREASTS_") for v in SHOW) else []) + ([f"modulate = Color({TINT[name]})"] if name in TINT else []) + [
+        out += [f'[node name="{name}" type="Sprite2D" parent="Visuals/Parts"]'] +                (['material = SubResource("mat_smoke")'] if name == "FX_censer_smoke" else []) +                (["visible = false"] if (name == "BREASTS_plus_wrap_variant" and any(v.startswith("BREASTS_") for v in SHOW)) or ((name in OFF) != (name in STRIP_FLIP)) else []) + ([f"modulate = Color({TINT[name]})"] if name in TINT else []) + [
                 f"position = Vector2({f(px - ORIGIN[0])}, {f(py - ORIGIN[1])})",
                 f"scale = Vector2({f(1 / TEX_SCALE)}, {f(1 / TEX_SCALE)})",
                 f'texture = ExtResource("t{i}")', "centered = false",
