@@ -54,7 +54,6 @@ front = np.isin(lab, [i for i in range(len(D)) if i > D.index("SLEEVE_R")])
 # ---- targets: the rest pose with the chosen NovelAI result pasted in ----
 A = JOBS / "nai_jobs/STRIP_arms"
 tL = target(A / "context_full.png", A / "result_s1.png", (272, 400, 704, 512))
-tR = target(JOBS / "nai_jobs4/STRIP_arm_R/context_full.png", JOBS / "nai_jobs5/STRIP_shoulder_R/result_s1.png", (608, 352, 384, 384))
 F = JOBS / "nai_jobs/STRIP_feet"; tF = target(F / "context_full.png", F / "result_s1.png", (224, 1024, 768, 320))
 P = JOBS / "nai_jobs/STRIP_hips"; tP = target(P / "context_full.png", P / "result_s1.png", (400, 560, 448, 448))
 
@@ -71,16 +70,20 @@ armL = big(ndimage.binary_opening(regL & (cL == 1)), 400)
 save(piece(tL, armL), "ARM_L_bare")
 save(piece(tL, regL & fgL & ~armL & (cL != 2)), "SLEEVE_L_behind_hair")
 save(piece(tL, regL & fgL & ~armL & (cL == 2)), "SLEEVE_L_behind_skirt")
-# ---- right arm (picture right): skin only, in the corridor that was inpainted; tucked a little under the hair ----
-cor = np.zeros((H, W), np.uint8); cv2.polylines(cor, [np.array([(714, 480), (770, 578), (800, 558)], np.int32)], False, 1, 84)
-regR = cor > 0; regR[432:512, 696:784] = True
-regR &= ~front & ~np.isin(lab, ix("TORSO_upper", "BREASTS_plus_wrap_variant", "HAIR_side_R", "HEAD_face_plus_front_hair"))
+# ---- right arm (picture right): second round, a painted guide arm repainted by NovelAI (make_armR_jobs.py) ----
+# [Gorim 2026-11-22: "Left arm is fucked and needs fixing"] the first one sat apart from the shoulder with a flat top.
+# Used: nai_jobs6 keep70 seed 2 (best of 8), then nai_jobs7 seed 1, a touch-up of the elbow: the visible forearm's
+# end carried the shadow the sleeve cast on it, so the first ~35 px of the forearm are repainted too.
+tR = target(A / "context_full.png", JOBS / "nai_jobs7/ARM_R_elbow/result_s1.png", (608, 352, 384, 384))
+_keep = front | np.isin(lab, ix("TORSO_upper", "BREASTS_plus_wrap_variant", "HAIR_side_R", "HEAD_face_plus_front_hair", "BELLY_lower_torso_variant"))
+_fa = lab == D.index("ARM_R_forearm_hand")
+_seam = dil(_fa, 1) & dil(lab == D.index("SLEEVE_R"), 1) & (xx < 800)
+_d = ndimage.distance_transform_edt(~_seam)
+FADE_R = _fa & (_d < 50) & (xx < 806)                 # the forearm part fades out here; the arm piece below carries the repaint
+regR = (dil(np.array(Image.open(JOBS / "nai_jobs6/guide.png"))[..., 3] > 0, 14) & ~(_keep & ~_fa)) | (_fa & (_d < 54) & (xx < 810)) | ((_d < 34) & (lab < 0))
 cR, _ = classes(tR)
 armR = ndimage.binary_fill_holes(biggest(regR & (cR == 1)))
-tuck = dil(armR, 26) & ~armR & ~np.isin(lab, ix("TORSO_upper", "BELLY_lower_torso_variant")) & (yy < 525) & (xx < 742)   # hair and breasts are drawn over it
-_, (sy, sx) = ndimage.distance_transform_edt(~ero(armR, 3), return_indices=True)
-tR2 = tR.copy(); tR2[tuck] = tR[sy[tuck], sx[tuck]]
-save(piece(tR2, armR | tuck), "ARM_R_bare")     # wider than the sleeve's band, so it is off until the sleeve is
+save(piece(tR, armR), "ARM_R_bare")     # wider than the sleeve's band, so it is off until the sleeve is
 
 # ---- feet: the shin+foot part with the foot repainted bare ----
 cF, _ = classes(tF)
@@ -117,6 +120,12 @@ LOST = {}
 LOST["ARM_L_forearm_hand"] = move("ARM_L_forearm_hand", big((c0 != 1) & (xx > 372), 12), "SLEEVE_L")
 LOST["ARM_R_forearm_hand"] = move("ARM_R_forearm_hand", (big((c0 != 1) & (xx < 790), 12) | (xx < 773)) & (yy > 520), "SLEEVE_R")
 LOST["HIP_ornaments_right"] = move("HIP_ornaments_right", (xx > 758) & (yy < 745), "SLEEVE_R")
+MOVE["SLEEVE_R"] = MOVE.get("SLEEVE_R", np.zeros((H, W), bool)) | FADE_R      # the sleeve keeps a copy of the faded forearm end
+# loose bits of the right rear skirt beside the hip are really the right sleeve's tail: they go with the sleeve
+_sk = np.array(Image.open(WORK / "parts" / "SKIRT_rear_right.png"))[..., 3] > 0
+_sk &= ~(under_slv & (lab != D.index("SKIRT_rear_right")))
+TAIL_R = _sk & ~big(_sk, 1500) & (xx > 690) & (yy < 760)
+MOVE["SLEEVE_R"] |= TAIL_R
 SKIRTS = ("SKIRT_rear_left", "SKIRT_rear_right", "CLOTH_front_skirt_panel", "HIP_ornaments_left", "HIP_ornaments_right")
 def scrub(p, gone):
     """remove `gone` from a part: paint over where it lies inside the part, cut away where it is on the edge"""
@@ -129,10 +138,12 @@ for n in D:
     if n not in ("SLEEVE_L", "SLEEVE_R"): p[under_slv & ~own, 3] = 0
     if n not in SKIRTS: p[under_pan & ~own, 3] = 0
     if n in LOST and LOST[n].any(): scrub(p, LOST[n])
+    if n == "ARM_R_forearm_hand":                     # see FADE_R; the sleeve keeps a copy so the dressed pose is unchanged
+        p[FADE_R, 3] = (p[FADE_R, 3] * np.clip(np.maximum((_d[FADE_R] - 38) / 12.0, (xx[FADE_R] - 796) / 10.0), 0, 1)).astype(np.uint8)
     if n in MOVE:
         got = MOVE[n]; p[got, :3] = restf[got].astype(np.uint8); p[got, 3] = 255
     if n in ("SKIRT_rear_left", "SKIRT_rear_right"):                      # loose shards of filler left by the trimming
-        p[(p[..., 3] > 0) & ~big(p[..., 3] > 0, 1500), 3] = 0
+        p[(p[..., 3] > 0) & ~big(p[..., 3] > 0, 1500) & (~own | TAIL_R), 3] = 0
     if n in ("LEG_L_thigh", "LEG_R_thigh"):
         # dressed: real body under the skirt panel and ornaments instead of filler, for when they swing aside
         hid = body & under_pan & ((xx < 645) if n == "LEG_L_thigh" else (xx >= 645))
