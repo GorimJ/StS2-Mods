@@ -73,11 +73,12 @@ the earlier cap of 4, now that the battle rig has six belly stages.
 
 ```
 pregnancy  = min(stage, 3)
-inflation  = min(floor((Ass - 200) / 100), 3)     # 100 ml over ≈ one stage; never below 0
+inflation  = min(floor((Ass - 1000) / 500), 3)    # 500 ml over ≈ one stage; never below 0
 belly band = min(pregnancy + inflation, 6)
 ```
 
-So Stage 1 at 300 ml Ass reads as band 2; Stage 3 at 500 ml reads as band 6. **Seven states: flat + 6.**
+So Stage 1 at 1500 ml Ass reads as band 2; Stage 3 at 2500 ml reads as band 6. (ml figures x5 since
+20 Nov 2026, with every other ml figure in the game.) **Seven states: flat + 6.**
 Each source alone stops at band 3, so the fullest belly in the game is only available to a player
 pushing both tracks at once.
 

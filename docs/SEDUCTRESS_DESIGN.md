@@ -1,8 +1,15 @@
-# The Seductress — mechanical design v3.11
+# The Seductress — mechanical design v3.12
 
 Status: design draft, 2026-09-07. Personal-use mod, single-player only.
 **Engine spike complete** — see `SEDUCTRESS_SPIKE_RESULTS.md`. All four risks answered, none
 blocked. Nothing in this document had to change to fit the engine.
+
+**[Claude, 2026-11-20] v3.12 rewrites the body to the 20 Nov rules change (§0)**, at [Gorim]'s request: ml figures
+are on the x5 scale, §6.2 and §6.2a describe intake from damage, worked examples are recomputed (and say so), and
+arguments that only made sense under flat per-kill intake are kept but labelled rather than re-argued. Three cards
+from [Gorim]'s board notes are in the build: *Mouthful* (with the **Gulp** keyword), *Hold the Edge*, and *Rehydrate*
+at 50; the pool is 40. Register rows 117–126 record all of it. **The change notes from here down to §0 are history
+and keep the figures of their day.**
 
 **[Claude, 2026-11-14] v3.11 reconciles this document with the build**, at [Gorim]'s request: the *Gulp*
 card is cut and its name and Sensitive removal moved to the 100 ml Stomach milestone; every swallow
@@ -48,6 +55,73 @@ toggleable family that blocks filling as well as leaking.
 
 ---
 
+## 0. Rules change of 20 Nov 2026 — read this first
+
+**[Gorim, 2026-11-20]** decided in the design review session and built the same day. It replaces register
+decision 44 ("Attacks and Skills do not generate intake") and the kill table. The sections below were
+rewritten to these rules the same day ([Claude]); passages kept for their history are labelled as such and keep their
+old-scale figures.
+
+| # | Rule | Whose |
+|---|---|---|
+| 1 | **Intake.** Every Attack gains cum **1:1 with the HP it actually removes**, into the attack's hole. Nothing for overkill, nothing for damage absorbed by Block. | [Gorim] |
+| 2 | **Kill bonus.** **25% of the enemy's Max HP** to the finishing hole, replacing the flat 10 / 15 / 40 / 60 ml. Reduce proportionally in multiplayer if that is ever built. | [Gorim] |
+| 3 | **Scale.** Every ml figure is **x5** "for now, and see where that gets us". Mouth 250, Womb stage 500, Ass 1000. Pregnancy at N x 500. Milking Grip at 500 ml Ass, Plug at 1000. Stomach: +1 Max HP per 50 ml; precum milestones at 250, 750, 1250, 1750 (25 ml each); Gulp at 500; clean Indulge at 1000; precum banks at 1500. Card ml amounts x5. | [Gorim] |
+| 4 | **Healing.** Swallowing heals **1 HP per 10 ml** (was 1 per 2). | [Gorim] |
+| 5 | **Ass rule** stays: lose 10% of Ass per Ass attack, bonus damage on every hit. The bonus damage gains cum like any other damage, and attacks with three or more hits are meant to grow the bank without limit, as the Squeezing direction. | [Gorim] |
+| 5a | The Ass ratio is **+1 damage per 3 ml lost** (was per 4), and is **not** multiplied by five. Single-hit decks settle near 15x their hit size. | [Claude], seen but not explicitly confirmed |
+| 6 | **Sensitive** no longer raises ml intake. Each stack still raises HP loss taken by 50%, and now raises **Pussy damage** ("Pussy damage only for now"). | [Gorim] |
+| 6a | +50% Pussy damage per stack. | [Claude], seen but not explicitly confirmed |
+| 7 | **Precum** stays. It may extend to other holes later; *Edging Form* is the first card to do it. | [Gorim] |
+| 8 | ***Edging Form*** is reworked, since its old effect is now rule 1: **whenever an Attack gains cum, gain that much again as precum in the same hole. Upgrade: costs 1 less.** | [Gorim] |
+| 9 | **Leak** per floor stays. | [Gorim] |
+
+**How it was built — [Claude]'s readings, not yet confirmed:**
+
+- **Minions still pay nothing**, for hits as well as kills (the 2026-09-06 ruling carried over).
+- **Hyperfertile** doubles all Pussy cum, hits and kill bonus alike. **Milking Grip** doubles the Ass **kill bonus**
+  only, as its text says "Ass kills".
+- ***Breed Me!***'s flat kill bonus is 25 ml (x5); its Sigil multipliers apply to the 25%-of-Max-HP kill bonus.
+- ***Spit*** deals **10%** of the ml emptied (20% upgraded) and applies its debuffs per **50 ml**, so a full Mouth
+  does what it did before.
+- **Precum in the Ass and Womb** counts as part of the bank during the combat, is spent first, and is gone at the
+  bell, before conception is checked. It never counts toward the Ass high-water mark, so it cannot unlock rewards.
+  Edging Form copies the per-hit gain only, not the kill bonus, and does nothing for Skin.
+- **Belly bands** on the combat rig scale with the rest: inflation is `floor((Ass - 1000) / 500)`.
+
+**Changes of 21 Nov 2026 — [Gorim], after seeing the 20 Nov build in play.** Built the same day. Where the
+table above or an older section disagrees, this is right.
+
+| Change | Whose |
+|---|---|
+| **Caps cut.** Womb stage **250 ml** (was 500), Ass **500 ml** (was 1000), Mouth **100 ml** (was 250). "Womb seems too hard to fill, lets cut it down to 250ml for now and see how that is." | [Gorim] |
+| The Ass rungs follow the cap: Milking Grip at 250 ml, Plug at 500, open rung at 750. Belly inflation is `floor((Ass - 500) / 250)`. Stomach thresholds and card ml amounts are unchanged. | [Claude] |
+| ***Breed Me!*** kill extra raised from 25 ml (he said 25 was too small). The new figure, **50 ml**, is not his. | [Gorim] / number [Claude] |
+| ***Milking Throat***: "Whenever you gain precum, gain twice as much, then **Gulp**" (swallow everything in the Mouth). Replaces "gain 15 ml more and Eat it". Gulp is explained in a hover pop-out, not on the card; *Mouthful* uses the same pop-out. | [Gorim]; Mouthful matching is [Claude] |
+| *Milking Throat* upgrade: costs 0. | [Claude] |
+| ***Restraint*** costs **1** (was 2). | [Gorim] |
+| ***Blowout*** costs **2** (was 3), "for now". | [Gorim] |
+| ***Consummate*** **Exhausts**, and with no Sigil to spend it gives **1 energy and 1 card** instead of being unplayable. | [Gorim] |
+| ***Hold the Edge*** lasts until the start of your next turn, so it covers the enemies' attacks. "It should be til start of next turn." It used to end with the turn it was played. | [Gorim] |
+| **Mouth overflow.** With the 500 ml Stomach milestone (auto-Gulp), a full Mouth Gulps and the rest then goes in: "If you're on 99 and gain 10, it should be gulp 100 gain 9." Asked whether auto-Gulp should be always on, he kept it behind the milestone; without it the overflow is still lost. | [Gorim] |
+| **UI pass.** The debug text box is replaced. Run-long counters (Stomach, Skin, Sigils, Womb, Ass, Lust) sit in the top bar on every screen; clicking them opens one milestones screen with a bar track per ladder (he picked tracks "for now"; a body map is planned for the hole pictures on the combat screen). In combat each hole picture has its numbers under it. | [Gorim] chose the three forms; layout and wording [Claude] |
+| **Hover pop-outs on cards** for Gulp, Precum, Pussy, Ass, Mouth, Skin, Climax, Sigil, Eat. A card gets a term's pop-out when its text uses the word. Text is in `localization/eng/static_hover_tips.json`. | terms [Gorim]; wording is a [Claude] draft awaiting his edit |
+| **Sigil cards show only what they do at your current Sigil count** (22 Nov), one effect per line. The tier ladder is off the card face. Four small Sigil icons on the card mark tiers 1, 3, 5, 7 (pink when active). The right-click view has a 0 to 7 slider that rewrites the card for any count. Milestones screen: the Sigil track is seven Sigil icons, the other tracks are drawn as fluid tubes. | [Gorim]; per-tier wording, icon and slider placement are [Claude] |
+| **Sigil orbs carry the Sigil mark** on top of the pink orb (22 Nov). | [Gorim]; size [Claude] |
+| **Killing a boss removes every Lust card** from the deck (22 Nov). | [Gorim] |
+| **Ass rework** (22 Nov): "too hard to accumulate, and too good when you do". Ordinary Ass attacks no longer spend the bank; they deal **+1 damage per hit per 50 ml held**. *Blowout* and *Overflow* are the spending and **ask Spend or Keep** when played. Spend is sized like the floor leak (5% of the Ass up to 500 ml plus 25% of anything above): Overflow spends one leak's worth, Blowout two. It pays **+1 per 10 ml** on every hit **on top of** the standing bonus (was per 3 ml for an hour). The card states the numbers: "You may spend 15 Ass for 1 bonus damage." The floor leak is unchanged. This replaces the "lose 10% per Ass attack" rule wherever older sections state it. | [Gorim]; the Plug still spilling 10% on any Ass card, and Milking Grip now only affecting the two spenders are [Claude] and open |
+| **Strip on Power** (22 Nov): each Power played in a combat takes something off the combat rig, in the order "Sleeves and shoes, then wrap, then skirt"; nude breasts follow pregnancy as "modest / bare / enormous / absurd"; dressed again each combat. A fourth stage waits on a new pose. Appearance only. Console `strip [0-3]` previews a stage. | [Gorim]; built with what the rig has: stage 1 hides only the sleeves and stage 3 only the skirt panels, since bare feet, a bare right upper arm and the body under the skirt are not drawn yet [Claude]. Not seen in a fight |
+| **Card wording rule** (22 Nov): card text "shouldn't explain where numbers come from, it should just give numbers." | [Gorim] |
+| **Sigil card view** (22 Nov): the slider is vertical with seven Sigil hearts and no caption; the four tier icons sit in a strip under the text so they never overlap it; text is kept short (Ritual Mark states the number, not the maths). **Leg-Locked** has a hover pop-out. | [Gorim]; wording [Claude] |
+| Open point: the Gulp milestone's "a swallow over 125 ml removes 1 Sensitive" cannot trigger now that the Mouth holds 100 ml. Not changed. | [Claude] noticed |
+| **Milk on the combat rig** shows while pregnant (stage 1 or more), not while Lactating. | [Gorim] |
+| **Hole insets** (mouth, womb, ass) in a row along the top of the combat screen: fill by area, thrust on each Attack hit and until the next card or death, big spurt and pull-out when an enemy dies; thickness normal / elite thick / boss massive. | [Gorim]; details in `UI/HoleInsets.cs` |
+
+Agreed in principle, **not built**: archetypes defined by events rather than bar position (Draining = healing,
+Squeezing = losing HP to your own cards, Breeding = Climaxing); "every Power you play strips an item of clothing".
+
+---
+
 ## 1. What this design carries
 
 Both bars are spoken for — enemy HP is their arousal, yours is yours, using the HP variable
@@ -75,12 +149,14 @@ Terms below are the new systems only. Everything else means what it means in the
 |---|---|---|
 | **Arousal** | The *presentation* of `MaxHp - CurrentHp` | The bar, drawn inverted so it fills. Not a separate stat — losing HP is gaining arousal |
 | **Climax** | Death interception at 0 HP | §4 |
-| **Sensitive** | In-combat stacking state | +50% HP loss taken **and** +50% intake |
+| **Sensitive** | In-combat stacking state | +50% HP loss taken **and** +50% Pussy damage. It no longer raises intake (§0) |
 | **Lust** | Playable curse-type card | The death clock, §5 |
 | **Intake** | Four reservoirs | §6 |
-| **Conception** | The Womb reservoir's fill | 100 ml ⇒ pregnancy ⇒ Sigil |
-| **Stomach** | Lifetime total swallowed | Draining's permanent track; 150 ml ⇒ +5 max HP. **Precum never counts** |
-| **Precum** | Mouth-only, combat-only fuel | Spends like cum inside a fight; heals nothing and banks nothing |
+| **Conception** | The Womb reservoir's fill | 500 ml ⇒ pregnancy ⇒ Sigil |
+| **Stomach** | Lifetime total swallowed | Draining's permanent track; +1 Max HP per 50 ml. **Precum does not count** until the 1500 ml milestone |
+| **Precum** | Combat-only fuel; Mouth by default | Spends like cum inside a fight, and first. Heals when swallowed, banks nothing. *Edging Form* also makes it in the Ass and Womb |
+| **Eat N** | Rules word | Take N ml in the Spend order and swallow it: heals, and the cum goes to the Stomach |
+| **Gulp** | Rules word | Swallow everything in your Mouth now. Also the name of the 500 ml Stomach milestone |
 | **Sigil** | Permanent passive earned by pregnancy | §7 |
 | **Skin** | External catch-all reservoir | §6.4 |
 | **Continuing** | Attack keyword | Uses whichever hole your last Attack used this combat; Skin if none yet. Resets each combat |
@@ -129,8 +205,8 @@ in flight. The cost is already real without it — **+1 Lust is a fifth of the r
 Sensitive compounds every remaining hit of the combat. Adding a tempo punishment on top taxed the
 same event three times.
 
-**Sensitive is +50% per stack**, applying to both arousal taken and Intake gained. **[decided]**
-That includes **your own self-damage**, ignoring `ValueProp.Unpowered` — a deliberate departure
+**Sensitive is +50% per stack** to arousal taken. **[Gorim, 2026-11-20]** It no longer applies to Intake gained; each
+stack raises **Pussy damage** instead ([Claude]: by the same +50%). **[decided]** The arousal half includes **your own self-damage**, ignoring `ValueProp.Unpowered` — a deliberate departure
 from what `Unpowered` means everywhere else in the game, made because most of your arousal comes
 from your own cards and the arithmetic below is false without it. The consequence is a real one:
 *Let Go* at 3 stacks is 50 HP on a 65 HP character, so a starting card becomes a self-kill button
@@ -139,8 +215,9 @@ late in a long fight. That is the character.
 
 
 - Two climaxes **halve your effective bar** (`1 + 0.5×2 = 2.0`); a third is nearly immediate.
-- One climax against a boss nearly pays a whole pregnancy: 60% × 1.5 = **90%**.
-- One climax entering an elite with 40% banked completes one: 40% × 1.5 = 60%, +40% = **100%**.
+- ~~One climax against a boss nearly pays a whole pregnancy: 60% × 1.5 = **90%**.~~
+- ~~One climax entering an elite with 40% banked completes one: 40% × 1.5 = 60%, +40% = **100%**.~~
+  [Claude, 2026-11-20] Written for the flat-intake rule; not re-argued for the new one. Sensitive no longer multiplies intake.
 
 Sensitive clears at end of combat. Lust, Intake and Sigils do not.
 
@@ -196,21 +273,22 @@ in. Separating them fixes the naming and clarifies the systems:
 
 | Hole (the tag) | Container | Capacity | Behaviour |
 |---|---|---|---|
-| **Mouth** | **Mouth** in combat → **Stomach** after | 50 ml → unbounded | Holds cum *and* precum; cum banks, precum evaporates |
-| **Pussy** | **Womb** | 100 ml | Leaks 10%/floor; 100 ml ⇒ pregnancy ⇒ Sigil |
-| **Ass** | **Ass** | 200 ml | Both hole and container |
+| **Mouth** | **Mouth** in combat → **Stomach** after | 250 ml → unbounded | Holds cum *and* precum; cum banks, precum evaporates |
+| **Pussy** | **Womb** | 500 ml per stage | Leaks 10%/floor; 500 ml ⇒ pregnancy ⇒ Sigil |
+| **Ass** | **Ass** | 1000 ml | Both hole and container |
 | *(none)* | **Skin** | — | External; **does not leak** — accumulates until Indulged |
 
 *Womb* is no longer a tag — the tag is **Pussy**, and Womb is what it fills. **Stomach** replaces
 "Total Swallowed" as the name of Draining's permanent track, which reads far better.
 
-**[decided] Only attacks carry tags.** A tag means *finishing with this attack fills this hole*.
+**[decided] Only attacks carry tags.** A tag names the hole the attack's cum goes to: what each hit gains, and the
+kill bonus if it finishes the enemy (§6.2).
 Skills never finish anything, so they are never tagged no matter how hole-specific their text is.
 Consequence: only attacks set the *Continuing* mode, so you lead with a tagged attack and your
 Pumps follow it. The earlier claim that tagged skills exist to set the mode is withdrawn.
 
-When an enemy climaxes, the attack that finished them routes their output via its
-**Mouth / Ass / Pussy** tag.
+Every hit routes what it gains via the attack's **Mouth / Ass / Pussy** tag, and when an enemy climaxes the
+attack that finished them routes the kill bonus the same way.
 
 | | **Draining** (Mouth) | **Squeezing** (Ass) | **Breeding** (Pussy) |
 |---|---|---|---|
@@ -221,7 +299,7 @@ When an enemy climaxes, the attack that finished them routes their output via it
 | Arousal relationship | **Minimises** it — rarely climaxes | **Runs hot** — hits hard, self-arouses | Accepts it; climaxing accelerates |
 
 Draining is self-limiting in a way worth keeping: never climaxing means never gaining
-Sensitive, so never getting the intake multiplier. It is deliberately the safe build — and
+Sensitive, so never getting the intake multiplier *(which no longer exists — §0; [Claude, 2026-11-20] Written for the flat-intake rule; not re-argued for the new one.)*. It is deliberately the safe build — and
 its permanent Max HP track is the right reward for it, since more capacity is exactly
 what a cautious player wants.
 
@@ -230,54 +308,71 @@ what a cautious player wants.
 **[decided] The Ass tag carries its own rule:**
 
 > **Ass-tagged attacks** lose **10% of your current Ass** (rounded up), and gain **+1 Strength
-> per 4 ml lost** for that attack.
+> per 3 ml lost** for that attack.
 
 A hole in active use leaks, and the leaking is what powers the hit. This replaces the earlier
 "read the reservoir" design entirely and gives Squeezing the in-combat identity it was missing —
 its bank is not a stat to protect, it is **ammunition**, spent across a fight and refilled by
-kills routed back into it.
+the damage it deals: **[Gorim, 2026-11-20]** the bonus damage gains cum like any other damage, and attacks with
+three or more hits are meant to grow the bank without limit.
 
 Because Strength applies per hit, the archetype now wants **multi-hit attacks**, which is a real
-build signature rather than a number on a card. At 200 ml an attack loses 20 ml for **+5**; at an
-inflated 400 ml it loses 40 for **+10**. On a three-hit card that is +15 or +30 damage.
+build signature rather than a number on a card. [Claude, recomputed 2026-11-20 for the 1000 ml cap and +1 per 3 ml]
+At 1000 ml an attack loses 100 ml for **+33**; at an inflated 2000 ml it loses 200 for **+66**. On a three-hit card
+that is +99 or +198 damage.
 
-**[decided 2026-09-07] The ratio is tuned for the plateau, not the unaided bank.** It has moved
-twice: §6.1 originally said +1 per 10 ml lost, slice 3 raised it to 1:1 because the bank never
-reached the 100 ml that produced a single point of Strength, and 1:1 then made *Blowout* deal 424
-at a full bank. **+1 per 4 ml lost** is set against where an Ass deck actually settles once
-*Milking Grip* is in play — 200–270 ml — rather than against the unaided fixed point.
+**The ratio is on its fourth setting.** [Claude, design review 2026-11-20; seen by Gorim, not explicitly confirmed]
+**+1 per 3 ml lost**, which is what lets a three-hit attack put back more than it spends. It is deliberately **not**
+multiplied by five with the other ml figures. Single-hit decks settle near 15× their hit size.
 
-| Card | Drain | At 200 ml | At 400 ml |
+*History, old scale:* **[decided 2026-09-07]** the ratio was tuned for the plateau, not the unaided bank. §6.1
+originally said +1 per 10 ml lost, slice 3 raised it to 1:1 because the bank never reached the 100 ml that produced a
+single point of Strength, and 1:1 then made *Blowout* deal 424 at a full bank. +1 per 4 ml lost was set against where
+an Ass deck settled once *Milking Grip* was in play — 200–270 ml.
+
+[Claude, recomputed 2026-11-20] What the build does at a full and at a doubled bank:
+
+| Card | Drain | At 1000 ml | At 2000 ml |
 |---|---|---|---|
-| Clench | 10% | +5 → 2 × 10 | +10 → 2 × 15 |
-| Rut | 10% | +5 → 3 × 11 | +10 → 3 × 16 |
-| Overflow | 20% | +10 → 11 to all | +20 → 21 to all |
-| Blowout | 50% | +25 → 4 × 31 = **124** | +50 → 4 × 56 = **224** |
+| Clench | 10% | +33 → 2 × 38 | +66 → 2 × 71 |
+| Rut | 10% | +33 → 3 × 39 | +66 → 3 × 72 |
+| Overflow | 20% | +66 → 67 to all | +133 → 134 to all |
+| Blowout | 50% | +166 → 4 × 172 = **688** | +333 → 4 × 339 = **1356** |
 
-**This choice depends on the unlock system below.** At 100 ml the ratio pays only +2 or +3, so a
-deck stuck at the unaided ceiling barely feels the mechanic. That is acceptable *only* because
-reaching 100 ml now grants *Milking Grip*, which is what moves the settled bank into the range the
-ratio is tuned for. If the unlocks do not land, the ratio wants to be closer to +1 per 2 ml.
+These are much larger than the old table (*Blowout* was 124 and 224) because the bank is five times bigger while
+the ratio got tighter instead of looser. Whether a deck actually reaches a full bank under 1:1 intake is not yet
+known, and none of these figures has been looked at in play. [verified, 2026-11-20] At 300 ml *Clench* lost 30 ml
+for +10 a hit and its two 15-damage hits put 30 ml back.
 
-**Inflation** still applies and now matters more: the excess above 200 ml leaks 25% per floor
-outside combat, but inside a fight it is simply a deeper magazine. Filling to 400 before an elite
-means your first few attacks hit for roughly double.
+*History, old scale:* this choice depended on the unlock system below. At 100 ml the ratio paid only +2 or +3, so a
+deck stuck at the unaided ceiling barely felt the mechanic. That was acceptable *only* because
+reaching 100 ml granted *Milking Grip*, which moved the settled bank into the range the
+ratio was tuned for. [Claude, 2026-11-20] Written for the flat-intake rule; not re-argued for the new one.
+
+**Inflation** still applies and now matters more: the excess above 1000 ml leaks 25% per floor
+outside combat, but inside a fight it is simply a deeper magazine. Filling to 2000 before an elite
+means your first few attacks get roughly double the bonus.
 
 The counterweight is *Milking Grip*, which halves the drain while paying the **full** Strength and
-doubling intake on Ass kills.
+doubling the Ass kill bonus.
 
-### 6.1a The Ass economy has a fixed point — and unlocks are the answer
+### 6.1a The Ass economy had a fixed point — and unlocks were the answer
 
-**[found in play, 2026-09-07]** The bank cannot climb past **100 ml** against normal enemies in
+> [Claude, 2026-11-20] Written for the flat-intake rule; not re-argued for the new one.
+> The fixed-point argument (the next three paragraphs) depends on intake being a flat 10 ml per kill against a
+> percentage spend. Intake is now proportional to damage, so the bank no longer has that ceiling. The paragraphs are
+> kept as history with their old-scale figures. **The unlock system itself stands**, with thresholds ×5.
+
+*(historical)* **[found in play, 2026-09-07]** The bank cannot climb past **100 ml** against normal enemies in
 steady state, and this is structural rather than a tuning miss: the spend is a **percentage** (10%
 of the bank) while normal intake is a **flat** 10 ml, so they meet at exactly 100. The 5% floor
 leak pulls the real figure lower. Observed floors 1–6: `0 → 19 → 19 → 27 → 38 → 48 → 46`.
 
-*Milking Grip* halves the spend **and** doubles the intake, moving parity to `0.05 × B = 20`, i.e.
+*(historical)* *Milking Grip* halves the spend **and** doubles the intake, moving parity to `0.05 × B = 20`, i.e.
 **400 ml** — clamped by §6.4's 25% excess leak to a settled **215–275 ml** across every play
 pattern.
 
-**The revealing figure is the spread, not the average.** Without Milking Grip the settled bank
+*(historical)* **The revealing figure is the spread, not the average.** Without Milking Grip the settled bank
 swings from 177 down to 68 purely on how often you play your Ass cards — so *using the archetype is
 what stops you having a bank*. With it, the settled value barely moves. Milking Grip is therefore
 not "more Ass": it converts the bank from something you spend into something you hold, and that is
@@ -293,24 +388,25 @@ why it reads as mandatory rather than strong.
 
 | Threshold | Reward |
 |---|---|
-| **100 ml** | ***Milking Grip*** added to your deck free |
-| **200 ml** | The **Plug** relic |
-| **300 ml** | Open — a genuine stretch rung |
+| **500 ml** | ***Milking Grip*** added to your deck free |
+| **1000 ml** | The **Plug** relic |
+| **1500 ml** | Open — a genuine stretch rung |
 
 **Why this is the cheap fix.** The complaint was never that Milking Grip is too strong; it is that
 a whole build depends on drafting one specific Uncommon. Granting it at a threshold converts a
-draft dependency into a system reward without touching the card's numbers. And the threshold and
-the gate line up exactly: 100 ml is the unaided ceiling, and Milking Grip is the thing that lets
-you pass it — the system hands you the key at the moment you reach the lock.
+draft dependency into a system reward without touching the card's numbers. *(Historical, old scale: the threshold and
+the gate lined up exactly — 100 ml was the unaided ceiling, and Milking Grip was the thing that let
+you pass it. [Claude, 2026-11-20] Written for the flat-intake rule; not re-argued for the new one.)*
 
-**The Plug at 200 ml resolves its own tension.** The Plug blocks Ass cards while worn, which reads
+**The Plug at 1000 ml resolves its own tension.** The Plug blocks Ass cards while worn, which reads
 backwards as a reward for an Ass deck — but it is a toggle, and stopping leak between floors is
-exactly what a deck at 200 ml needs to push into inflation. Plugged between fights, unplugged to
+exactly what a deck at 1000 ml needs to push into inflation. Plugged between fights, unplugged to
 spend. It is the inflation enabler, handed over at the point inflation becomes the goal.
 
 **[decided] Unlocks track a high-water mark, not the live value.** The bank leaks every floor, so a
-threshold touched at 105 ml would otherwise be lost by the next rest site. Reached once, kept for
-the run. One extra saved int alongside the reservoirs.
+threshold touched at 525 ml would otherwise be lost by the next rest site. Reached once, kept for
+the run. One extra saved int alongside the reservoirs. [Claude, as built 2026-11-20] Precum in the Ass (*Edging Form*)
+never counts toward the mark.
 
 **[decided] *Milking Grip* leaves the draft pool** once it is a threshold reward. If it stayed, an
 early draft would skip the progression entirely and the thresholds would become decoration.
@@ -319,81 +415,82 @@ early draft would skip the progression entirely and the thresholds would become 
 ammunition loop gives it a within-run rhythm that Draining's Stomach and Breeding's Sigils do not
 have.
 
-### 6.2 Capacities and fill rates
+### 6.2 Capacities and intake
 
-**[decided]** Reservoirs are measured in **ml**, with different capacities per hole:
+**[decided]** Reservoirs are measured in **ml**, with different capacities per hole. **[Gorim, 2026-11-20]** Every
+ml figure is five times what it was, "for now, and see where that gets us":
 
-| Reservoir | Capacity | Leak / floor | Fills in |
+| Reservoir | Capacity | Leak / floor | Fills from |
 |---|---|---|---|
-| Mouth | **50 ml** | 0% | ~5 normal kills |
-| Womb | **100 ml** | 10% of current | ~10 normal kills |
-| Ass | **200 ml** | **Banded** — 5% of the first 200, 25% of the excess | ~20 normal kills |
+| Mouth | **250 ml** | 0% | 250 HP of Mouth damage, less kill bonuses |
+| Womb | **500 ml** per stage | 10% of the unlocked ml | 500 HP of Pussy damage, less kill bonuses |
+| Ass | **1000 ml** | **Banded** — 5% of the first 1000, 25% of the excess | 1000 HP of Ass damage, less kill bonuses and what its own attacks spend |
 
-| Source | Fill | |
+**[Gorim, 2026-11-20] Intake comes from damage:**
+
+| Source | Fill | Goes to |
 |---|---|---|
-| Normal enemy | 10 ml | |
-| Elite, multi-enemy | 15 ml each | |
-| Elite, single | 40 ml | × `(1 + 0.5 × Sensitive)` |
-| Boss | 60 ml | |
-| **Minion** | **0 ml** | |
+| **Every Attack** | **1 ml per HP it actually removes.** Nothing for overkill; nothing for damage Block absorbed | The attack's hole |
+| **A kill** | **25% of the enemy's Max HP**, rounded up | The finishing hole |
+| **Minion** | **0 ml**, for hits and for the kill | — |
 
-**[decided]** Multi-enemy elites pay **15 each**, not 20. Note the ordering still holds — a
-three-enemy elite (45) beats a solo one (40) — but the margin is 5 ml rather than 20, so the
-choice between elite types is now nearly neutral rather than clearly favouring crowds.
+- **Leg-Locked** (§6.3a) claims both hits and the kill bonus for the Pussy. [Claude, as built]
+- ***Hyperfertile*** doubles all Pussy cum; ***Milking Grip*** doubles the Ass **kill bonus** only. [Claude readings]
+- **Sensitive does not touch intake** any more (§4).
+- **Design note [Gorim]:** reduce the kill bonus proportionally in multiplayer if that is ever built.
 
-**[decided] Minions produce no intake, and do not count toward encounter size.** An elite that
-summons adds stays a *solo* elite at 40 ml rather than being demoted to the multi rate. Without
-this, any summoner is an intake fountain: minions are cheap to kill and often respawn, so they
-would pay better per unit of effort than the enemy summoning them, and Breeding would want to farm
-adds rather than kill elites. Implemented against `Creature.IsSecondaryEnemy` — the game's own
-definition — rather than a hand-maintained list of monster ids.
+[verified, 2026-11-20] In game: a 12-damage *Breed Me!* gained 12 ml; a 4-damage *Suckle* on an enemy at 1 HP gained
+1 ml for the hit; killing a 39 Max HP enemy paid a 10 ml kill bonus.
 
-**[clarified] Ass leak is banded, not a flat rate on the total.** At 300 ml it is `5% × 200 = 10`
-plus `25% × 100 = 25`, so **35 ml** — not 75. The 25% never applies to the whole bank, only to what
-sits above 200.
+*What this section said until 20 Nov 2026, replaced by [Gorim]:* a flat fill per enemy climax — normal 10 ml,
+multi-enemy elite 15 each (**[decided]**, down from 20), single elite 40, boss 60 — multiplied by
+`(1 + 0.5 × Sensitive)` and **rounded up** (**[decided]**). Encounter size, the 45-against-40 elite comparison and the
+rounding rule went with it.
 
-**[decided] Sensitive multipliers on intake round UP.** 5 ml at one stack is 7.5 → **8 ml**.
-Rounding in the player's favour stops attrition quietly undercutting the "should I Climax before
-this fight" calculation, which is the decision the whole system hangs on.
+**[decided] Minions produce no intake.** Without this, any summoner is an intake fountain: minions are cheap to kill
+and often respawn, so they would pay better per unit of effort than the enemy summoning them, and Breeding would
+want to farm adds rather than kill elites. Implemented against `Creature.IsSecondaryEnemy` — the game's own
+definition — rather than a hand-maintained list of monster ids. [Claude, 2026-11-20] Carried over to the new rule
+for hits as well as kills; the old "does not count toward encounter size" half is moot.
 
-Womb capacity of 100 ml means every calculation below **carries over unchanged** — the old "%"
-was already a percentage of 100.
+**[clarified] Ass leak is banded, not a flat rate on the total.** At 1500 ml it is `5% × 1000 = 50`
+plus `25% × 500 = 125`, so **175 ml** — not 375. The 25% never applies to the whole bank, only to what
+sits above 1000.
 
 The differing capacities do real work for free. Mouth cycles fast and is meant to be spent
-repeatedly; Womb is the calibrated progression track; Ass takes most of an act to fill and is a
-genuine long-term bank. That is the pacing each archetype wants, with no extra rules.
+repeatedly; Womb is the calibrated progression track; Ass is the largest and a genuine long-term bank.
+[Claude, 2026-11-20] How long each takes to fill under 1:1 intake has not been measured.
 
-Keeping 50/100/200 rather than 500/1000/2000: the sense of excess is better bought from
-**inflation** than from the baseline. An Ass at 400 ml reads as absurd precisely because 200 is
-normal; raise the baseline and 400 becomes unremarkable, while mid-fight arithmetic gets harder,
-which StS deliberately avoids.
+*Historical, superseded by the x5 scale:* the earlier position was to keep 50/100/200 rather than 500/1000/2000, on
+the grounds that the sense of excess is better bought from **inflation** than from the baseline — an Ass at 400 ml
+reads as absurd precisely because 200 is normal — and that bigger numbers make mid-fight arithmetic harder, which
+StS deliberately avoids. [Gorim, 2026-11-20] chose 250/500/1000 because intake now tracks damage; the arithmetic
+concern was not re-argued.
 
-### 6.2a Attacks and Skills do not generate intake — Powers may
+### 6.2a Intake comes from damage; precum is the extra
 
-**[decided]** The rule is drawn by **card type**, because the problem was never generation, it was
-**repeatability**. An Attack or Skill can be replayed every turn and every shuffle; a Power resolves
-once, costs a slot and the energy up front, and cannot be spammed.
+*(Until 20 Nov 2026 this section was "Attacks and Skills do not generate intake — Powers may": the rule was drawn by
+card type, because the problem was held to be repeatability rather than generation. [Gorim, 2026-11-20] replaced it;
+register 44 is retired and 117 is the rule.)*
 
-- **Attacks and Skills** may spend or read a reservoir; they may not fill it.
-- **Powers may fill.**
-- **On-kill bonuses are fine on any type** — they are already gated by the kill.
+**[Gorim, 2026-11-20] Every Attack gains cum 1:1 with the HP it actually removes** (§6.2). Skills and Powers gain
+nothing by themselves; they spend, read, or make **precum**.
 
-**[decided] The Mouth exception generates precum, not cum.** Precum sits in the Mouth and is
+**[decided] Precum is combat-only fuel.** It sits in the Mouth and is
 indistinguishable from cum *inside* a combat — spendable by *Spit* and anything else that
-empties the Mouth, counting against the 50 ml cap. At the end of combat it evaporates and does not
-reach the Stomach. **[Gorim, 2026-09-08] It does heal**: every swallow heals 1 HP per 2 ml, cum and
-precum together (register 111), so precum pays out on its way out.
+empties the Mouth, counting against the 250 ml cap. At the end of combat it evaporates and does not
+reach the Stomach. **It does heal**: every swallow heals 1 HP per 10 ml, cum and precum together
+([Gorim, 2026-11-20]; 1 per 2 from 2026-09-08, register 111), so precum pays out on its way out.
 
-This is what makes the exception free. Mouth cards can manufacture the fuel they need to function
+Mouth cards can manufacture the fuel they need to function
 without inflating Draining's permanent track, so the generation is bounded to the fight it happens
 in. **Spending order is precum first**, so a precum card is never wasted and bankable cum survives
 to the swallow.
 
-*Scoop It Up* also survives as a **transfer** rather than a generator — and what it moves is real
-cum, so it banks normally.
-
-This retroactively legitimises *Edging Form*, and it re-opens the door to Powers cut earlier for
-breaking the old blanket rule.
+**[Gorim, 2026-11-20] Precum may extend to other holes later; *Edging Form* is the first card to do it**: whenever an
+Attack gains cum, it gains that much again as precum in the same hole. [Claude, as built] In the Ass and Womb precum
+counts as part of the bank during the combat, is spent first, and is gone at the bell, before conception is checked.
+It copies the per-hit gain only, not the kill bonus, and does nothing for Skin.
 
 Each archetype still needs an **in-combat** identity that is not "fill my reservoir":
 
@@ -401,9 +498,18 @@ Each archetype still needs an **in-combat** identity that is not "fill my reserv
 |---|---|---|
 | **Draining** | Stay **high** | Payoffs above half HP. Weak, Block, healing, Sensitive removal. |
 | **Squeezing** | Stay **low, without tipping over** | Payoffs below half HP. The bank is ammunition. |
-| **Breeding** | **Climax repeatedly** | Payoffs for having Climaxed. Wants Sensitive for the multiplier. |
+| **Breeding** | **Climax repeatedly** | Payoffs for having Climaxed. Sensitive now raises Pussy damage, not intake. |
+
+[Gorim, 2026-11-20] Agreed in principle and **not built**: defining the archetypes by events rather than bar position
+(Draining = healing, Squeezing = losing HP to your own cards, Breeding = Climaxing). The table above is the older framing.
 
 ### 6.3 Reachability
+
+> [Claude, 2026-11-20] Written for the flat-intake rule; not re-argued for the new one.
+> Everything in this section is computed from the flat per-kill table and the Sensitive intake multiplier, against a
+> 100 ml Womb. Under the built rule a stage is **500 ml**, filled by HP removed with Pussy-routed attacks plus 25% of
+> Max HP per kill, and Sensitive adds nothing to it. Which encounters conceive from empty, and how many pregnancies a
+> run holds, has **not** been re-derived or measured. The text below is kept as history.
 
 Proportional leak means a reservoir drifts toward `gain ÷ leak`, but **pregnancy triggers on
 a peak, not on the drift level**. A single encounter delivers:
@@ -439,6 +545,9 @@ is not implemented. Fill *rate* is measurable; the size of an overshoot is not.
 > **Leg-Locked** — while an enemy is Leg-Locked, its death routes its output to your **Pussy**,
 > whatever killed it. Counts down at the end of its turn.
 
+[Claude, as built 2026-11-20] With intake now per hit, cum from **hits** on a Leg-Locked enemy goes to the Pussy as
+well as its kill bonus.
+
 It is a **claim staked on a kill that has not happened yet**, which is why it expires: you are
 betting on finishing that enemy, not taxing it.
 
@@ -457,43 +566,43 @@ Breeding deck simply opens every fight with it, it wants a real cost.
 
 ### 6.3b Pregnancy — staged gestation
 
-**[decided]** Crossing **100 ml** in the Womb conceives. Until v3.1 that was all pregnancy was: a
+**[decided]** Crossing **500 ml** in the Womb conceives (100 ml before the x5 scale). Until v3.1 that was all pregnancy was: a
 counter increment with a delay before a Sigil arrived. **Nothing happened in between**, and nothing
 distinguished a pregnancy carried one floor from one carried five — so the staging that carries most
 of the breeding flavour, mild to heavy, had no mechanical existence at all.
 
-> **Pregnant (Stage N)** — reached at **N × 100 ml** in the Womb. At the start of each combat gain
+> **Pregnant (Stage N)** — reached at **N × 500 ml** in the Womb. At the start of each combat gain
 > **N Sensitive**; at the start of each of your turns shuffle **N Milk** cards into your draw pile.
-> **Give birth** at any rest site: gain **N Sigils**, and the Womb loses **N × 100 ml**.
+> **Give birth** at any rest site: gain **N Sigils**, and the Womb empties.
 
 **The Womb keeps filling while you carry.** Further intake does not conceive again — it advances
 the stage. That is what makes gestation a *decision* rather than a wait: every fight you stay
 pregnant is a fight you could have cashed out instead, and both the cost and the reward climb
 together.
 
-**[decided] The leak only touches the excess above the locked threshold.** A stage's `N × 100 ml`
+**[decided] The leak only touches the excess above the locked threshold.** A stage's `N × 500 ml`
 is committed and cannot bleed away; the Womb's 10% per floor applies to what sits above it.
 
 | State | Womb | Locked | Leaks 10% of |
 |---|---|---|---|
-| Not pregnant | 60 ml | 0 | 60 |
-| Stage 1 | 140 ml | 100 | 40 |
-| Stage 2 | 250 ml | 200 | 50 |
-| Stage 3 | 340 ml | 300 | 40 |
+| Not pregnant | 300 ml | 0 | 300 |
+| Stage 1 | 700 ml | 500 | 200 |
+| Stage 2 | 1250 ml | 1000 | 250 |
+| Stage 3 | 1700 ml | 1500 | 200 |
 
 **[decided] Birth empties the Womb completely, and the excess is wasted.** Delivering at Stage 3
-with 340 ml gives 3 Sigils and loses all 340 — it goes on the floor, not to Skin, not to the
+with 1700 ml gives 3 Sigils and loses all 1700 — it goes on the floor, not to Skin, not to the
 Stomach. **This is the one place in the design where output is destroyed rather than recycled**,
 and it is deliberate.
 
 **It is what makes delivery a real decision.** Because everything is lost, there are natural
-delivery points at exactly `N × 100`: cashing out at 299 ml wastes 99, cashing out at 300 wastes
-nothing and pays three Sigils. So the question stops being a continuous "carry or deliver" and
+delivery points at exactly `N × 500`: cashing out at 1499 ml wastes 499 for two Sigils, cashing out at 1500 wastes
+nothing and pays three. So the question stops being a continuous "carry or deliver" and
 becomes **"am I close enough to the next threshold to be worth the risk"** — which is a much
 sharper thing to ask every rest site.
 
-**[reading — confirm] Stages are uncapped.** Nothing stops Stage 4 at 400 ml. That follows from
-declining to resume the leak above 300 on the grounds that pushing further should be *possible but
+**[reading — confirm] Stages are uncapped.** Nothing stops Stage 4 at 2000 ml. That follows from
+declining to resume the leak above 1500 on the grounds that pushing further should be *possible but
 risky* — a cap would make pushing pointless rather than dangerous. If 3 was meant as full term with
 the excess simply carried past the birth, that is a one-line change.
 
@@ -573,8 +682,13 @@ number to move.
 **[decided] The Seductress has no `HEAL`.** Her rest site offers **Indulge** and **Relief**
 alongside Smith, and they are three different things rather than a heal plus two alternatives.
 
-> **Indulge** — Scoop the cum off your body and eat it. Empty your Skin: **Soothe 1 per ml** and
+> **Indulge** — Scoop the cum off your body and eat it. Empty your Skin: **Soothe 1 per 5 ml** and
 > bank that ml into your **Stomach**.
+
+**[Gorim, 2026-11-20] Indulge heals 1 HP per 5 ml recovered.** The 20 Nov change did not mention Indulge and the
+build was left healing 1 HP per ml, which on the new scale made almost any Indulge a full heal. [Claude] flagged it
+during the doc rewrite; [Gorim] chose 1 per 5 ml, the x5 scale applied, so Indulge heals what it did before and twice
+what a swallow does. The ml recovered still banks to the Stomach in full. Built the same day; not yet tried in game.
 
 > **Relief** — Masturbate furiously to appease your lusts until you pass out. Wake with **one
 > fewer Lust card**.
@@ -598,17 +712,17 @@ all of it. Comparable, and the Stomach banking is what pays for the difference.
 ### The Womb's leak is bounded and cyclical; the Ass's is unbounded
 
 **[corrected twice, v3.3 and v3.4]** The Womb does **not** leak less while carrying. The unlocked
-excess sweeps 0→100 exactly as the pre-conception Womb does, so both phases produce the **same
-0–10 ml sawtooth**, resetting each time a threshold locks. Earlier drafts claimed a filling/carrying
-distinction; there is none, and the claim came from reading a single point (Stage 3 at 340 ml, so
-4 ml) as though it were the whole curve.
+excess sweeps 0→500 exactly as the pre-conception Womb does, so both phases produce the **same
+0–50 ml sawtooth**, resetting each time a threshold locks. Earlier drafts claimed a filling/carrying
+distinction; there is none, and the claim came from reading a single point (Stage 3 at 1700 ml, so
+20 ml) as though it were the whole curve.
 
 The real contrast is with the Ass:
 
 | | Leak shape | Bound |
 |---|---|---|
-| **Womb** | 10% of unlocked ml — sawtooths 0→10, resets at each threshold | **Capped at 10 ml/floor, forever** |
-| **Ass** | 5% of the bank, 25% of the excess above 200 | **Unbounded** — grows as the bank grows |
+| **Womb** | 10% of unlocked ml — sawtooths 0→50, resets at each threshold | **Capped at 50 ml/floor, forever** |
+| **Ass** | 5% of the bank, 25% of the excess above 1000 | **Unbounded** — grows as the bank grows |
 
 That is what makes halving the Womb's leak a good relic: the cost it removes is **always present
 and never outgrows relevance**, at every point in every cycle. The Plug is the opposite shape — its
@@ -634,7 +748,7 @@ Relief is also unavailable at zero Lust cards, so early on Indulge is the only o
 comparison does not arise.
 
 **[unknown] How much Skin actually accumulates is not derivable at a desk.** An earlier draft put
-inflow at ~15 ml a floor and concluded Indulge would be a guaranteed full heal from early act 1 —
+inflow at ~15 ml a floor (old scale) and concluded Indulge would be a guaranteed full heal from early act 1 —
 that assumed reservoirs full enough to leak at those rates, which is not true for most of act 1
 when everything is near-empty. The instrumented run supplies this number; nothing should be tuned
 against a guess at it.
@@ -699,44 +813,46 @@ Lust card owed at each boundary. What changes is the **rhythm**, not the durabil
 
 ### The Stomach — Draining's permanent track
 
-**[decided] +1 Max HP per 10 ml banked.** Roughly 20–25 Max HP per act on a dedicated build, and
-because Max HP is worth 4× here, that is **+80–100 effective HP per act**. It should be enormous;
-it is the archetype's entire progression.
+**[decided] +1 Max HP per 50 ml banked** (10 ml before the x5 scale). It should be enormous;
+it is the archetype's entire progression. *The earlier estimate — roughly 20–25 Max HP per act on a dedicated build,
+so +80–100 effective HP per act — was made for flat per-kill intake.* [Claude, 2026-11-20] Written for the flat-intake rule; not re-argued for the new one. [verified,
+2026-11-20] Banking 50 ml and then 100 ml gave +1 and +2 Max HP.
 
 | Milestone | Reward |
 |---|---|
-| every **10 ml** | **+1 Max HP** |
-| every **×50** (50, 150, 250, 350 …) | **+5 ml precum** at combat start, cumulative |
-| **100 ml** | **The Mouth also swallows whenever it reaches 50 ml** |
-| **200 ml** | **Indulge stops spilling** — 100% reclamation |
-| **300 ml** | **Precum counts as cum** — it banks instead of evaporating |
+| every **50 ml** | **+1 Max HP** |
+| every **×250** (250, 750, 1250, 1750 …) | **+25 ml precum** at combat start, cumulative |
+| **500 ml** — *Gulp* | **The Mouth also swallows whenever it is full** (250 ml) |
+| **1000 ml** | **Indulge stops spilling** — 100% reclamation |
+| **1500 ml** | **Precum counts as cum** — it banks instead of evaporating |
 
 **[clarified] The Mouth banks to the Stomach at the end of every combat, by default.**
-**[Gorim, 2026-09-08] The *Gulp* card is cut** (register 112): the name belongs to the 100 ml milestone
-above, and a swallow of 25 ml or more removes 1 Sensitive once that milestone is reached. The card
+**[Gorim, 2026-09-08] The *Gulp* card is cut** (register 112): the name belongs to the 500 ml milestone
+above, and a swallow of more than 125 ml removes 1 Sensitive once that milestone is reached. **[Gorim, 2026-11-19]**
+**Gulp** is also a card keyword — swallow everything in your Mouth now — carried by *Mouthful* (register 124). The card
 never enabled banking — its "swallow **now**" bought the *timing*, the heal and the Sensitive
 removal, and the heal now happens on every swallow anyway. This was only ever implied, by §6.2a saying precum is the thing that evaporates, and the
 omission has already caused one misreading.
 
-**100 ml is additive, not a trade.** The 50 ml swallow happens **in addition to** the end-of-combat
+**500 ml is additive, not a trade.** The full-Mouth swallow happens **in addition to** the end-of-combat
 one, which is unchanged. It **uncaps throughput** — fill, bank, fill again, so a long fight can bank
-100–150 ml where the Mouth's 50 ml capacity previously capped it — and nothing is taken away. The
+500–750 ml where the Mouth's 250 ml capacity previously capped it — and nothing is taken away. The
 track is a reward; it should not introduce a way to lose cum you had already collected.
 
-*(An earlier draft made 50 ml swallowing replace the end-of-combat bank, so a fight ending with a
+*(An earlier draft made the full-Mouth swallow replace the end-of-combat bank, so a fight ending with a
 partial Mouth banked nothing. That is a trade rather than an upgrade, and it implied carrying cum
 between fights, which does not fit.)*
 
-**300 ml compounds with the ×50 rung.** The ×50 milestones are the ones *ending* in 50 — 50, 150,
-250, 350 — so at 350 ml Stomach you have passed four and open each combat with **20 ml** of precum,
-which at 300+ banks as real cum. That is roughly **+2 Max HP a fight**, or +20 across an act, from
-the milestone alone.
+**1500 ml compounds with the ×250 rung.** The ×250 milestones are 250, 750, 1250, 1750 (the old ones *ending* in
+50, times five) — so at 1750 ml Stomach you have passed four and open each combat with **100 ml** of precum,
+which at 1500+ banks as real cum. [Claude, recomputed] That is **+2 Max HP a fight**, or roughly +20 across an act, from
+the milestone alone — the same as before the rescale.
 
-The ×50s are the generic rung and the ×00s are the unique ones. Precum at combat start ties the
+The ×250s are the generic rung and the ×500s are the unique ones. Precum at combat start ties the
 permanent track back into the Mouth's in-combat economy, which is the half of Draining that
 otherwise never touches the other.
 
-**200 ml removing the spillage is the track improving its own input** — your body gets better at
+**1000 ml removing the spillage is the track improving its own input** — your body gets better at
 this — and it uses a number introduced one version earlier rather than inventing one.
 
 **[decided] Max HP from relics is halved**, carried on the character's starting relic. Food relics
@@ -800,9 +916,11 @@ Chosen over "1 damage to a random enemy": random creates variance without a deci
 overlaps Defect's Lightning. Hitting everything is cleaner, and it makes "Sigils strike twice"
 or "Sigils also apply Entranced" obvious build-around powers later.
 
-It also feeds the system that produced it. The multi-enemy elite is the best Conception source
-(15 ml each, ×1.5 with one Sensitive stack = 69 ml from three), and passive AoE is exactly what
-helps you close out three enemies at once.
+It also feeds the system that produced it: passive AoE is exactly what helps you close out several enemies at
+once. *(Historical: under the flat table the multi-enemy elite was the best Conception source — 15 ml each, ×1.5
+with one Sensitive stack = 69 ml from three.)* [Claude, 2026-11-20] Note the passive is not an Attack, so the HP it
+removes gains no cum; a kill it lands still pays the kill bonus — as built, to whichever hole the *Continuing* mode currently names
+(not Skin, which §6.4 would suggest), unless the enemy is Leg-Locked.
 
 **[resolved]** The earlier worry that this hollows out a Breeding deck's attack cards does not
 hold. Five Sigils is a late act 2 / act 3 state, and by then cutting attacks *is* the correct
@@ -886,7 +1004,7 @@ linearly with Sigil count, card effects step, and the two do not compound.
 A dominant act 3 is the **correct** shape here, not a balance failure. Breeding is the
 high-risk scaling build — it pays for its ceiling in acts 1 and 2, where it is drafting cards
 that do nothing yet and taking Lust cards to reach the Sensitive multipliers that convert
-elites. Silent's poison, Defect's focus and Ironclad's strength all run the same curve: rough
+elites *(Sensitive now multiplies Pussy damage rather than intake — §0)*. Silent's poison, Defect's focus and Ironclad's strength all run the same curve: rough
 early, silly late. That is the deal the player signed.
 
 The risk is genuinely priced, too — it is denominated in Lust cards, which is the one currency
@@ -903,7 +1021,7 @@ that is unlikely, but it is the thing to watch in playtest rather than power lev
 **[decided]**
 
 > **Plug** — *Common. Toggle.*
-> **While worn:** your Ass does not leak below 200 ml, and leaks only **5%** above it. Ass cannot
+> **While worn:** your Ass does not leak below 1000 ml, and leaks only **5%** above it. Ass cannot
 > be filled. Lose **2 HP** on entering each floor and **1 HP** at the start of each turn.
 > **Ass-tagged cards cost 1 more and remove the Plug when played**, spilling **10%** of your Ass
 > **in addition to their own drain — and gaining Strength for all of it.**
@@ -918,21 +1036,22 @@ whole clause from the relic and a whole click from the turn.
 
 The 2 HP per floor prices the item precisely, and the arithmetic says something specific:
 
-Unplugged, Ass leaks 5% of the first 200 ml plus 25% of everything above it. Plugged, the first
-200 ml does not leak at all and the excess leaks 5%.
+Unplugged, Ass leaks 5% of the first 1000 ml plus 25% of everything above it. Plugged, the first
+1000 ml does not leak at all and the excess leaks 5%. [Claude, 2026-11-20] The table and the dry-stretch example are
+recomputed ×5; the HP figures in them are as originally written.
 
 | Holding | Leaks unplugged | Leaks plugged | Prevented | Cost | Worth it? |
 |---|---|---|---|---|---|
-| 200 ml (full, not inflated) | 10 ml | 0 ml | **10 ml** | 4 HP | Marginal — 10 ml is one normal kill |
-| 300 ml (inflated) | 10 + 25 = 35 ml | 5 ml | **30 ml** | 4 HP | Clearly yes |
-| 400 ml (heavily inflated) | 10 + 50 = 60 ml | 10 ml | **50 ml** | 4 HP | Emphatically yes |
+| 1000 ml (full, not inflated) | 50 ml | 0 ml | **50 ml** | 4 HP | Marginal — 50 ml is a few hits' worth |
+| 1500 ml (inflated) | 50 + 125 = 175 ml | 25 ml | **150 ml** | 4 HP | Clearly yes |
+| 2000 ml (heavily inflated) | 50 + 250 = 300 ml | 50 ml | **250 ml** | 4 HP | Emphatically yes |
 
 **Correction to the "marginal" verdict above.** That table compares one floor's leak against one
 floor's HP, and that framing is wrong, because the two costs are not the same kind of thing:
 **the HP is recoverable and the semen is not.** Over a dry stretch — `? → chest → ? → campfire`,
-no combat to refill — a 200 ml bank unplugged decays 200 → 190 → 180 → 172 → 163, losing ~37 ml.
+no combat to refill — a 1000 ml bank unplugged decays 1000 → 950 → 903 → 858 → 816, losing ~184 ml.
 Plugged it costs 16 HP and loses nothing, and the campfire at the end gives the HP back. Trading
-16 refundable HP for 37 unrecoverable ml is a good deal, not a marginal one, and this character's
+16 refundable HP for 184 unrecoverable ml is a good deal, not a marginal one, and this character's
 HP is deliberately volatile enough to spend that way.
 
 So the Plug has **two** uses, not one: carrying an inflated spike to a chosen elite, and simply
@@ -951,8 +1070,8 @@ It also makes plugged combat a real option rather than a dead one. You can fight
 paying 2 HP a turn, and pull it the moment you want an Ass card — so the per-turn drip now does
 actual work instead of being near-dead text.
 
-The **10% spill on removal** is the anti-spam clause and it does its job: at an inflated 400 ml
-that is 40 ml gone, so flipping it casually is expensive. Removal cost scales with how much you
+The **10% spill on removal** is the anti-spam clause and it does its job: at an inflated 2000 ml
+that is 200 ml gone, so flipping it casually is expensive. Removal cost scales with how much you
 have to lose, which is the right shape.
 
 ### [decided 2026-09-07] The spill feeds the Ass rule
@@ -966,14 +1085,14 @@ trigger it. That reads as a punishment for playing your deck, which is the same 
 "Ass-tagged cards are unplayable" version had, arriving by a quieter route.
 
 With it, pulling the plug is **the archetype's burst moment**: one card, double the drain, double
-the Strength. At 300 ml, on the +1-per-4-ml ratio:
+the Strength. [Claude, recomputed 2026-11-20] At 1500 ml, on the +1-per-3-ml ratio:
 
 | | Drain | Strength | *Blowout* (4 hits of 6) |
 |---|---|---|---|
-| Unplugged | 30 ml (10%) | +7 | 4 × 13 = 52 |
-| Unplugged, *Blowout* | 150 ml (50%) | +37 | 4 × 43 = 172 |
-| **Plugged** | 60 ml (20%) | **+15** | 4 × 21 = 84 |
-| **Plugged, *Blowout*** | 180 ml (60%) | **+45** | 4 × 51 = **204** |
+| Unplugged | 150 ml (10%) | +50 | 4 × 56 = 224 |
+| Unplugged, *Blowout* | 750 ml (50%) | +250 | 4 × 256 = 1024 |
+| **Plugged** | 300 ml (20%) | **+100** | 4 × 106 = 424 |
+| **Plugged, *Blowout*** | 900 ml (60%) | **+300** | 4 × 306 = **1224** |
 
 That is what inflating the bank was *for*, and it reads correctly in fiction as well: you have been
 holding it in, and it comes out all at once.
@@ -993,7 +1112,7 @@ compensating a loss — and it was never the Pussy relic it was described as, si
 everything.
 
 **This is a Pussy-build relic and it works at every point in the cycle.** The Womb's leak is a
-bounded 0–10 ml sawtooth that resets at each threshold and never grows (§6.3c), so halving it is a
+bounded 0–50 ml sawtooth that resets at each threshold and never grows (§6.3c), so halving it is a
 flat, permanent acceleration of the run's progression track: every threshold arrives sooner, so
 pregnancies do, so Sigils do, so every gated card in Breeding turns on earlier.
 
@@ -1016,10 +1135,10 @@ strictly stronger and should not be a common. Specced with the fourth archetype.
 
 ---
 
-## 8. Card pool — 38 draftable cards as built
+## 8. Card pool — 40 draftable cards as built
 
 **[Claude, 2026-11-14]** The table below was the v1 plan (35 cards, nine of them Core) and no longer
-matched anything. It now shows what is built; `SEDUCTRESS_CARDS.md` v25 is the card-by-card record and
+matched anything. It now shows what is built; `SEDUCTRESS_CARDS.md` v26 is the card-by-card record and
 lists the gaps in its §14.
 
 Starting deck (11): 4 × More, 4 × Guard, Seek Relief, Breed Me!, Suckle.
@@ -1028,12 +1147,12 @@ Starting relic: reduce arousal by 6 after each combat, and halve Max HP from rel
 
 | Group | Count | Role |
 |---|---|---|
-| **Core** | 7 | *Rehydrate* (Eat), neutral Block, Weak, two *Continuing* attacks, Climax on demand, and the Climax engine. The planned neutral spine of nine was never filled. |
+| **Core** | 8 | *Rehydrate* (Eat), neutral Block, Weak, two *Continuing* attacks, Climax on demand, the Climax engine, and *Hold the Edge* (a Climax refused and thrown back). |
 | **Freehand** (Skin) | 5 | No-hole attacks that do structural things instead of collecting; one generic spender. |
-| **Draining** (Mouth) | 10 | The Deep Throat family, precum generation, *Milking Throat*, *Spit*, one above-half-HP payoff. |
-| **Squeezing** (Ass) | 7 | Multi-hit attacks that spend the bank for Strength. *Milking Grip* is the 100 ml reward, not draftable. |
+| **Draining** (Mouth) | 11 | The Deep Throat family, precum generation, *Milking Throat*, *Spit*, *Mouthful* (Block from a full Mouth, then **Gulp**), one above-half-HP payoff. |
+| **Squeezing** (Ass) | 7 | Multi-hit attacks that spend the bank for Strength. *Milking Grip* is the 500 ml reward, not draftable. |
 | **Breeding** (Pussy) | 9 | *Hyperfertile*, Sigil-tiered cards on the 1 / 3 / 5 / 7 ladder, Leg-Locked, Climax payoffs. |
-| **Ancient** | 1 | *Edging Form*. |
+| **Ancient** | 1 | *Edging Form* — attacks gain their cum again as precum (reworked 2026-11-20). |
 | **Generated** | 1 | *Milk*, into the combat pile while Lactating. |
 | **Lust** | 2 | The curse cards (not draftable). |
 
@@ -1213,6 +1332,10 @@ kept at the time and guessing now would be worse than leaving it blank.
 
 ### Locked
 
+**[Claude, 2026-11-20]** Rows are kept as decided at the time, and **ml figures in rows 1–116 are on the old scale**
+(multiply by five). Rows **117–126** are the 20 Nov changes; they replace or amend rows 8, 11, 35, 37, 44, 46, 66, 76,
+77, 107, 108, 111, 112 and 116, which are left as written.
+
 | # | Decision |
 |---|---|
 | 1 | Core fantasy: **seductress** |
@@ -1257,7 +1380,7 @@ kept at the time and guessing now would be worse than leaving it blank.
 | 41 | **Only attacks carry tags** — skills never do, so only attacks set *Continuing* |
 | 42 | **Ass-tagged attacks lose 10% of the bank (rounded up) and gain +1 Strength per 10 ml lost** — the bank is ammunition, and the archetype wants multi-hit cards — **[ratio superseded by 76: +1 per 4 ml]** |
 | 43 | *Deep Throat* is a **card family** (vanilla `CardTag.Strike` pattern), so *No Gag Reflex* buffs a group rather than one card |
-| 44 | Intake rule is by **card type**: Powers may generate, Attacks and Skills may not — the issue was repeatability, not generation |
+| 44 | ~~Intake rule is by **card type**: Powers may generate, Attacks and Skills may not — the issue was repeatability, not generation~~ **Replaced 20 Nov 2026 by §0** [Gorim] |
 | 45 | Sigil gating uses **2 / 4 / 6**, three tiers, not 3 / 6 |
 | 46 | *Edging Form* is **strongest in Squeezing** — it raises the floor exactly where the Ass drain bites hardest |
 | 47 | The Mouth exception generates **precum** — combat-only, spent first, never heals or banks |
@@ -1329,7 +1452,18 @@ kept at the time and guessing now would be worse than leaving it blank.
 | 113 | **[Gorim, 2026-09-07] *Ritual Mark* upgrades to Innate** and changes no numbers; **[Gorim, 2026-09-08]** it buffs **Breasts** cards as well as Pussy |
 | 114 | **[Gorim, 2026-09-08] Breasts is a category tag paired with Skin**, as Deep Throat is paired with Mouth. *Milk* carries it, is **heal 4 / deal 2** with the 3-Sigil rung growing the heal, and drags *Continuing* to Skin — pregnancy is meant to fight the routing that caused it |
 | 115 | **[Gorim, 2026-09-09] *Suckle*'s upgrade is cost 0.** Third setting, after 10 ml and +3 damage. Base damage stays 4 |
-| 116 | **[Claude, 2026-11-14, from the build] The draft pool is 33 cards**: Core 4, Freehand 5, Draining 9, Squeezing 7, Breeding 8; 13 Common / 15 Uncommon / 5 Rare. Gaps are listed in the card list §14 |
+| 116 | **[Claude, 2026-11-14, from the build] The draft pool is 33 cards**: Core 4, Freehand 5, Draining 9, Squeezing 7, Breeding 8; 13 Common / 15 Uncommon / 5 Rare. Gaps are listed in the card list §14 — **[superseded by 126]** |
+| 117 | **[Gorim, 2026-11-20] Every Attack gains cum 1:1 with the HP it actually removes**, into the attack's hole — no overkill, nothing absorbed by Block. Replaces 44 and the flat table in 11. [Claude readings, unconfirmed] Minions pay nothing for hits either (65 carried over); Leg-Locked claims hits as well as the kill |
+| 118 | **[Gorim, 2026-11-20] Kill bonus: 25% of the enemy's Max HP to the finishing hole**, replacing the flat 10 / 15 / 40 / 60 ml (11, 66). Reduce proportionally in multiplayer if that is ever built. [Claude] Rounded up; *Breed Me!*'s flat bonus is 25 ml and its Sigil multipliers apply to this bonus (67 unchanged); *Milking Grip* doubles the Ass kill bonus only; *Hyperfertile* doubles all Pussy cum |
+| 119 | **[Gorim, 2026-11-20] Every ml requirement ×5, "for now, and see where that gets us."** Capacities 250 / 500 / 1000; pregnancy at N × 500; *Milking Grip* at 500, Plug at 1000; Stomach +1 Max HP per 50 ml with milestones at ×250, 500, 1000, 1500; leak bands; Spend, Eat and precum amounts on cards. [Claude] *Spit* is 10% (20% upgraded) with debuffs per 50 ml; belly bands inflate per 500 ml over 1000. **Indulge heals 1 HP per 5 ml recovered ([Gorim], see §6.3c)** |
+| 120 | **[Gorim, 2026-11-20] Swallowing heals 1 HP per 10 ml** (was 1 per 2, row 111) |
+| 121 | **[Gorim, 2026-11-20] The Ass rule stays**, its bonus damage gains cum, and attacks with three or more hits should grow the bank without limit — the Squeezing direction. **[Claude, seen but not explicitly confirmed] The ratio is +1 damage per 3 ml lost**, not ×5 (supersedes 76). The fixed-point argument in 77 no longer applies |
+| 122 | **[Gorim, 2026-11-20] Sensitive no longer raises ml intake; each stack raises Pussy damage instead** ("Pussy damage only for now"), and still +50% HP loss taken. [Claude, unconfirmed] +50% Pussy damage per stack. Amends 8; retires 37 |
+| 123 | **[Gorim, 2026-11-20] *Edging Form* is reworked**: whenever an Attack gains cum, gain that much again as precum in the same hole; upgrade costs 1 less. Its old effect (35) is now row 117. **Precum stays, and may extend to other holes later.** [Claude, as built] Ass and Womb precum is spent first, gone at the bell before conception, and never counts toward the Ass high-water mark; the copy covers hits, not the kill bonus, and not Skin |
+| 124 | **[Gorim, 2026-11-19] *Mouthful* is built with "then Gulp"** — "Gulp meaning eat all in your mouth, heal for half that as normal." **Gulp** is a card keyword: swallow everything in your Mouth now. [Claude] It heals at the current swallow rate (row 120), not half; the Block step is 1 per 25 ml |
+| 125 | **[Gorim] *Hold the Edge* reworked from [Claude]'s draft**: "Remove retain, have it 'if you climax this turn, prevent that damage, gain intangible, and deal that damage to all enemies'." [Claude readings] It lasts until the end of the turn it is played, fires once, still Exhausts, and upgrades to cost 0. **[Gorim, 2026-11-19] *Rehydrate* buffed "to 10/10"** — 50 and 50 on the new scale |
+| 126 | **[Claude, 2026-11-20, from the build] The draft pool is 40 cards**: Core 8, Freehand 5, Draining 11, Squeezing 7, Breeding 9; 16 Common / 17 Uncommon / 7 Rare; 20 Attacks / 12 Skills / 8 Powers. **[verified in game, 2026-11-20]** rows 117, 118, 120, 121's ratio, 122, 123, and the three cards in 124–125 |
+| — | **[Gorim, 2026-11-20] Leak per floor stays.** Agreed in principle, not built: archetypes defined by events (Draining = healing, Squeezing = losing HP to your own cards, Breeding = Climaxing); "every Power you play strips an item of clothing" |
 
 ### Proposed, not confirmed
 
