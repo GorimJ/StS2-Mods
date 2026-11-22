@@ -10,26 +10,15 @@ using Seductress.SeductressCode.Systems;
 namespace Seductress.SeductressCode.UI;
 
 /// <summary>
-/// Spike question 4, display half: is there a slot on screen for five numbers?
+/// The combat-screen host for the character's own UI: the three hole pictures with their
+/// readouts (<see cref="HoleInsets"/>) and the rig's belly, breast and milk layers.
 ///
-/// There is no vanilla HUD affordance for custom resources — BaseLib's
-/// <c>BasicResourceVisualsHandler.AddDisplay</c> is an empty method, and its resource system is
-/// combat-scoped anyway, while the reservoirs are run-scoped. So this does what the Buxom port
-/// did: parents a plain Godot <see cref="Control"/> onto <see cref="NCombatUi"/> and draws into
-/// the empty gutter left of the energy orb. Crude on purpose — the question is whether a slot
-/// exists, not what it should look like.
+/// [Gorim, 2026-11-21] The eight-line debug text box that used to live here is replaced: the
+/// run-long counters are in the top bar (<see cref="TopBarStrip"/>), the hole numbers are under
+/// their pictures, and the ladders are on the milestones screen.
 /// </summary>
 public partial class ReservoirHud : Control
 {
-    private const float X = 26f;
-    private const float Y = 690f;
-    private const float LineHeight = 17f;
-    private const float Width = 190f;
-
-    private static readonly Color Ink = new(1f, 0.92f, 0.96f);
-    private static readonly Color Panel = new(0.10f, 0.06f, 0.10f, 0.72f);
-
-    private readonly Label[] _lines = new Label[8];
     private Player? _player;
     private RigVisuals? _belly;
 
@@ -41,65 +30,15 @@ public partial class ReservoirHud : Control
 
     public override void _Ready()
     {
-        var bg = new ColorRect
-        {
-            Position = new Vector2(X - 6f, Y - 6f),
-            Size = new Vector2(Width, LineHeight * _lines.Length + 12f),
-            Color = Panel
-        };
-        AddChild(bg);
+        MouseFilter = MouseFilterEnum.Ignore;
+        if (_player is null) return;
 
-        for (var i = 0; i < _lines.Length; i++)
-        {
-            var label = new Label
-            {
-                Position = new Vector2(X, Y + i * LineHeight),
-                Size = new Vector2(Width - 12f, LineHeight)
-            };
-            label.AddThemeFontSizeOverride("font_size", 12);
-            label.AddThemeColorOverride("font_color", Ink);
-            label.AddThemeColorOverride("font_shadow_color", new Color(0, 0, 0, 0.9f));
-            label.AddThemeConstantOverride("shadow_offset_x", 1);
-            label.AddThemeConstantOverride("shadow_offset_y", 1);
-            AddChild(label);
-            _lines[i] = label;
-        }
-
-        Refresh();
+        var insets = new HoleInsets();
+        insets.Initialize(_player);
+        AddChild(insets);
     }
 
-    public override void _Process(double delta) => Refresh();
-
-    private void Refresh()
-    {
-        if (_player is null || _lines[0] is null) return;
-        _belly?.Refresh();
-
-        var r = Reservoirs.Of(_player.RunState);
-        var climax = ClimaxModel.Instance;
-        var sensitive = _player.Creature.GetPowerAmount<SensitivePower>();
-
-        // Precum is shown separately from cum even though they spend identically inside a combat,
-        // because the one thing the player has to know is which of the two survives the bell.
-        _lines[0].Text = $"Mouth   {r.Mouth} cum + {r.Precum} pre / 50 ml";
-        _lines[1].Text = $"Ass     {r.Ass} / 200 ml   (peak {r.AssHighWater})" +
-                         (r.PlugIn ? "  [PLUGGED]" : "");
-        _lines[2].Text = r.PregnancyStage > 0
-            ? $"Womb    {r.Womb} ml   Stage {r.PregnancyStage} ({r.WombLocked} locked)"
-            : $"Womb    {r.Womb} / 100 ml";
-        _lines[3].Text = $"Skin    {r.Skin} ml";
-        var exhausted = climax.SigilsExhaustedThisCombat;
-        var sigils = exhausted > 0
-            ? $"Sigils {Sigils.Effective(_player)}/{r.Sigils} (-{exhausted} exhausted)"
-            : $"Sigils {r.Sigils}";
-        _lines[4].Text = $"Stomach {r.Stomach} ml (+{r.Stomach / 10} max HP)   {sigils}";
-        _lines[5].Text = $"Continuing: {climax.ContinuingHole}" +
-                         (r.LactatingStage > 0 ? $"   Lactating S{r.LactatingStage}" : "");
-        _lines[6].Text = $"Climaxes {climax.ClimaxesThisCombat}  Sensitive {sensitive}  " +
-                         $"Lust {ClimaxModel.LustCount(_player)}/{ClimaxModel.LustLimit}";
-        _lines[7].Text = $"HP {_player.Creature.CurrentHp}/{_player.Creature.MaxHp}  " +
-                         $"arousal {_player.Creature.MaxHp - _player.Creature.CurrentHp}";
-    }
+    public override void _Process(double delta) => _belly?.Refresh();
 }
 
 [HarmonyPatch(typeof(NCombatUi), nameof(NCombatUi.Activate))]
