@@ -34,7 +34,7 @@ public class MilkingGripPower : SeductressPower
     /// still paying full Strength and Milking Grip's doubled intake — a Blowout that should have
     /// spent 40 ml spent 8, and the bank <i>grew</i> on a card meant to empty it.
     ///
-    /// This is the same shape Ritual Mark once used: state the card needs to
+    /// This is the same shape as <see cref="RitualMarkPower.SigilBonus"/>: state the card needs to
     /// hand the power, which does not fit the stack count.
     /// </summary>
     public int DrainPercent { get; private set; } = 5;

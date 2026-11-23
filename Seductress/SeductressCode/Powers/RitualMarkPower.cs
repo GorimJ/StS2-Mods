@@ -17,12 +17,28 @@ public class RitualMarkPower : SeductressPower
     public override List<(string, string)>? Localization => new PowerLoc(
         "Ritual Mark", "Your Pussy and Breasts cards deal additional damage.", "Your Pussy and Breasts cards deal additional damage.");
 
+    /// <summary>Tier 1 onwards: the Sigil passive also gains a bonus. Set by the card.</summary>
+    public int SigilBonus { get; set; }
+
     /// <summary>
-    /// [Gorim, 2026-11-23] Card notes: copies must stack, and the bonus no longer scales with
-    /// Sigils or touches Sigil damage. Counter stacking adds each copy's amount, so it is flat.
+    /// Tier 4: both bonuses become +1 per Sigil instead of a flat amount. Set by the card.
+    ///
+    /// At 7 Sigils this is +7 against the +8 plain doubling would give, so it is a marginal
+    /// downgrade at exactly the threshold that unlocks it and only pulls ahead from 8. Kept
+    /// deliberately — converting a static buff into a scaling one is the fantasy, and 7 Sigils is
+    /// already past the run target.
     /// </summary>
+    public bool PerSigil { get; set; }
+
+    /// <summary>
+    /// [Gorim, 2026-11-23, card note] "Doesn't seem to stack correctly with multiple." [Claude]
+    /// A second copy overwrote the Sigil bonus instead of adding to it, and added nothing at all
+    /// once the bonus was per Sigil. Copies played are now counted and each one adds its share.
+    /// </summary>
+    public int Copies { get; set; }
+
     public decimal PussyBonus(MegaCrit.Sts2.Core.Entities.Players.Player player) =>
-        Amount; // [Gorim, 2026-11-23] flat; each copy's amount stacks into Amount
+        PerSigil ? Sigils.Effective(player) * System.Math.Max(1, Copies) : Amount;
 
     /// <summary>
     /// [Claude-Code] The bonus rides the vanilla damage hook rather than being added by hand inside
@@ -46,4 +62,11 @@ public class RitualMarkPower : SeductressPower
         if (!card.IsRitualMarked) return 0m;
         return Owner.Player is null ? 0m : PussyBonus(Owner.Player);
     }
+
+    /// <summary>
+    /// NOT YET LIVE: the Sigil passive (design §7.0, start-of-turn AoE) is out of scope, so there
+    /// is nothing for this half to modify. Kept so the card is complete when the passive lands.
+    /// </summary>
+    public decimal SigilPassiveBonus(MegaCrit.Sts2.Core.Entities.Players.Player player) =>
+        PerSigil ? Sigils.Effective(player) * System.Math.Max(1, Copies) : SigilBonus;
 }
