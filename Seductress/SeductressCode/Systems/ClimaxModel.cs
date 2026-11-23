@@ -370,6 +370,13 @@ public class ClimaxModel : CustomSingletonModel
     /// is not copied: Gorim's wording was "per attack, +100% cum as precum", and a quarter of a
     /// boss's Max HP again as precum looked like more than that meant.
     /// </param>
+    /// <summary>
+    /// A card's own cum bonus, through the same path as enemy cum, so Hyperfertile and the rest
+    /// apply. Not mirrored by Edging Form, which copies per-hit cum only. [Claude, 2026-11-23]
+    /// </summary>
+    internal static Task GainCardCum(Player me, Hole hole, int ml, string why) =>
+        GainCum(me, hole, ml, why, mirrorAsPrecum: false);
+
     private static async Task GainCum(Player me, Hole hole, int ml, string why, bool mirrorAsPrecum)
     {
         if (ml <= 0) return;

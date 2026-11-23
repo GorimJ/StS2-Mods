@@ -65,8 +65,8 @@ public class Suckle : SeductressCard
         var killed = !target.IsAlive;
         if (killed && legLocked)
         {
-            r.Add(Hole.Pussy, ml);
-            MainFile.Logger.Info($"[Seductress] Suckle: +{ml} ml cum -> Pussy (Leg-Locked kill)");
+            // Through the Pussy gain path so Hyperfertile applies (Seductress lead, 2026-11-23).
+            await ClimaxModel.GainCardCum(Owner, Hole.Pussy, ml, "Suckle, Leg-Locked kill");
             return;
         }
         var added = killed ? r.AddMouthCum(ml) : r.AddPrecum(ml);
