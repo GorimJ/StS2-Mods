@@ -437,11 +437,23 @@ public class ClimaxModel : CustomSingletonModel
     public override async Task AfterDamageGiven(PlayerChoiceContext choiceContext, Creature? dealer,
         DamageResult result, MegaCrit.Sts2.Core.ValueProps.ValueProp props, Creature target, CardModel? cardSource)
     {
-        if (!IsSeductress(dealer) || cardSource is null || cardSource.Type != CardType.Attack) return;
+        if (!IsSeductress(dealer)) return;
         if (!target.IsMonster || target.IsSecondaryEnemy) return;
 
         var ml = result.UnblockedDamage;
         if (ml <= 0) return;
+
+        // [Gorim, 2026-11-23] "I think all extra damage should go to skin." Damage she deals from
+        // anything but an Attack card (Thorns, Ward's reflect, potions, relics, powers, Skill
+        // cards) gains that much cum on Skin, or the Pussy if the enemy is Leg-Locked. [Claude]
+        // Not mirrored by Edging Form, which copies cum from her attacks' hits only.
+        if (cardSource is null || cardSource.Type != CardType.Attack)
+        {
+            var extraHole = HoleFor(target, Hole.Skin);
+            var source = cardSource?.Id.Entry ?? "non-card damage";
+            await GainCum(dealer!.Player!, extraHole, ml, $"{source} removed {ml} HP", mirrorAsPrecum: false);
+            return;
+        }
 
         var hole = HoleFor(target, RouteOf(cardSource));
         UI.HoleInsets.Current?.Hit(hole, target);
