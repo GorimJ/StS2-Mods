@@ -97,7 +97,10 @@ public static class Stomach
     /// </summary>
     public const int DefaultHealPercent = 10;
 
-    /// <summary>A swallow this large removes a Sensitive, once the Gulp milestone is reached.</summary>
+    /// <summary>
+    /// A swallow this large removes a Sensitive, once the Gulp milestone is reached. Half a full
+    /// Mouth: unreachable while the cap was 100 ml, live again at 250 (2026-11-23).
+    /// </summary>
     public const int SensitiveThreshold = 125;
 
     /// <summary>
@@ -170,8 +173,8 @@ public static class Stomach
     }
 
     /// <summary>
-    /// <b>Gulp</b> — the 100 ml milestone's extra swallow. Fires whenever the Mouth is at or above
-    /// 50 ml, which with the 50 ml cap means exactly when it is full.
+    /// <b>Gulp</b> — the 500 ml Stomach milestone's extra swallow. Fires whenever the Mouth is
+    /// full (<see cref="ReservoirState.MouthCap"/>, 250 ml).
     /// </summary>
     /// <summary>
     /// [Gorim, 2026-11-17] <b>Eat N</b>: take N ml from the reservoirs in Spend order, swallow it.

@@ -125,7 +125,11 @@ public class ReservoirState
     // Maybe mouth to 100ml actually." So Womb 500 -> 250, Ass 1000 -> 500, Mouth 250 -> 100.
     // [Claude] The Ass unlock rungs and the Plug follow the Ass cap; the Stomach's thresholds
     // and every card's ml amount are unchanged.
-    public const int MouthCap = 100;
+    //
+    // [Gorim, 2026-11-23] "Lets make it 250ml and then I think the milestones are fine as is. The
+    // current issue is that on a mouth build you cap mouth basically immediately." Mouth 100 -> 250;
+    // the Stomach milestones stay where they are.
+    public const int MouthCap = 250;
     public const int WombStage = 250;
     public const int AssCap = 500;
 

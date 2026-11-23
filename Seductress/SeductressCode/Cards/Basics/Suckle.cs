@@ -83,7 +83,7 @@ public class Suckle : SeductressCard
     /// a free 5 ml every turn it is drawn — which, at the 1-per-2-ml swallow rate, is 2.5 HP of
     /// sustain a turn for no energy. That is a real engine rather than a tempo bump, and it is
     /// exactly what Draining wants, since the archetype's whole plan is staying high on the bar.
-    /// It self-limits on the 50 ml Mouth cap rather than on energy.
+    /// It self-limits on the Mouth cap (250 ml) rather than on energy.
     /// </summary>
     protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
 }

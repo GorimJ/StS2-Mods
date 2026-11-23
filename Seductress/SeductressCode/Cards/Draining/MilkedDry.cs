@@ -13,7 +13,7 @@ namespace Seductress.SeductressCode.Cards;
 /// <summary>
 /// Draining Rare. Deferred through slices 2 and 3 pending precum; unblocked now.
 ///
-/// [Claude-Code] 15 ml is 30% of the Mouth's 50 ml cap in one card, so this is the archetype's
+/// [Claude-Code] 75 ml is 30% of the Mouth's 250 ml cap in one card, so this is the archetype's
 /// refuel as much as its AoE — and because precum spends first, it fuels <i>Spit</i> and
 /// <i>Wet Work</i> without touching cum already banked for the swallow.
 /// </summary>
