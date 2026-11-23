@@ -46,8 +46,15 @@ public class AfterglowPower : SeductressPower, IClimaxListener
     public async Task OnClimax(Creature owner)
     {
         await CreatureCmd.GainBlock(owner, Amount, ValueProp.Move, null);
-        await CardPileCmd.Draw(new ThrowingPlayerChoiceContext(), 2m, owner.Player!);
+        if (EnergyOnClimax > 0) await PlayerCmd.GainEnergy(EnergyOnClimax, owner.Player!);
+        await CardPileCmd.Draw(new ThrowingPlayerChoiceContext(), DrawOnClimax, owner.Player!);
     }
+
+    /// <summary>Cards drawn on each Climax: 2, or 3 from the card's 3-Sigil stage. Set by the card.</summary>
+    public int DrawOnClimax { get; set; } = 2;
+
+    /// <summary>Energy on each Climax: 0, or 2 at the card's 7-Sigil stage. Set by the card.</summary>
+    public int EnergyOnClimax { get; set; }
 
     /// <summary>
     /// The engine's draw half. Routed through ModifyHandDraw rather than drawing by hand at turn

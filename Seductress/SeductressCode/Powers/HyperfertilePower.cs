@@ -26,6 +26,12 @@ public class HyperfertilePower : SeductressPower
         "Gain twice as much Pussy cum. Your Pussy attacks deal 1% more damage for each HP the enemy is missing.",
         "Gain twice as much Pussy cum. Your Pussy attacks deal 1% more damage for each HP the enemy is missing.");
 
+    /// <summary>Percent more damage per missing HP: 1, 2 or 3 by the card's Sigil stage. Set by the card.</summary>
+    public int PercentPerHp { get; set; } = 1;
+
+    /// <summary>Pussy cum multiplier: 2, or 3 at the card's 7-Sigil stage. Set by the card.</summary>
+    public int CumMultiplier { get; set; } = 2;
+
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
@@ -34,6 +40,6 @@ public class HyperfertilePower : SeductressPower
         if (cardSource is not Cards.SeductressCard card) return 1m;
         if (ClimaxModel.Instance.RouteOf(card) != Hole.Pussy) return 1m;
         var missing = target.MaxHp - target.CurrentHp;
-        return missing <= 0 ? 1m : 1m + missing / 100m;
+        return missing <= 0 ? 1m : 1m + missing * PercentPerHp / 100m;
     }
 }

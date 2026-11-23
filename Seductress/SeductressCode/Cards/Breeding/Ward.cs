@@ -44,6 +44,8 @@ public class Ward : SeductressCard
         {
             var reflect = Sigils.At(Owner, Sigils.Tier3) ? 10m : 5m;
             await PowerCmd.Apply<ThornsPower>(choiceContext, Owner.Creature, reflect, Owner.Creature, this);
+            // [Gorim, 2026-11-23] the reflect is for this turn only: see WardReflectPower.
+            await PowerCmd.Apply<WardReflectPower>(choiceContext, Owner.Creature, reflect, Owner.Creature, this);
         }
     }
 

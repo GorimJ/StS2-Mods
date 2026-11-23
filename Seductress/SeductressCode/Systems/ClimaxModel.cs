@@ -110,6 +110,7 @@ public class ClimaxModel : CustomSingletonModel
         SigilsExhaustedThisCombat = 0;
         LastAttackPlayed = null;
         Stripped = 0;
+        LustSkips = 0;
         return Task.CompletedTask;
     }
 
@@ -121,6 +122,15 @@ public class ClimaxModel : CustomSingletonModel
     public int Stripped { get; set; }
 
     public const int MaxStripped = 3;
+
+    /// <summary>
+    /// [Gorim, 2026-11-23, card notes] Rapture "should maybe make your next climax not give you a
+    /// lust card"; Afterglow should "probably give you a one-off don't get a lust card". Each
+    /// play adds one; the next Climax this combat spends one and adds no Lust card.
+    /// [Claude] It also keeps a Climax at the Lust limit from being fatal, since that Climax is
+    /// fatal only because of the Lust card it would add. Unused ones are lost at the end of combat.
+    /// </summary>
+    public int LustSkips { get; set; }
 
     // ---------------------------------------------------------------- Continuing / tags
 
@@ -172,6 +182,7 @@ public class ClimaxModel : CustomSingletonModel
     public override bool ShouldDie(Creature creature)
     {
         if (!IsSeductress(creature)) return true;                 // enemies die normally
+        if (LustSkips > 0) return false;                           // this Climax adds no Lust card
         if (LustCount(creature.Player!) >= LustLimit) return true; // the death clock ran out
         return false;
     }
@@ -208,6 +219,12 @@ public class ClimaxModel : CustomSingletonModel
     public async Task DoClimax(Creature creature, bool heal = true, bool addLust = true)
     {
         var player = creature.Player!;
+
+        if (addLust && LustSkips > 0)
+        {
+            LustSkips--;
+            addLust = false;
+        }
 
         ClimaxesThisCombat++;
         var shape = (heal ? "arousal reset" : "NO reset") + ", +1 Sensitive, " + (addLust ? "+1 Lust" : "NO Lust");
@@ -270,8 +287,20 @@ public class ClimaxModel : CustomSingletonModel
 
         var target = Math.Min(Sigils.Effective(player), MaxSigilOrbs);
 
-        if (queue.Capacity > target) OrbCmd.RemoveSlots(player, queue.Capacity - target);
-        if (queue.Capacity < target) await OrbCmd.AddSlots(player, target - queue.Capacity);
+        // [Claude, 2026-11-23] OrbCmd's slot calls assume the player's combat node exists and
+        // throw without it, which killed the turn loop when a save was continued straight into
+        // a fight. With no node yet, change the capacity only; the node reads it when it appears.
+        var hasNode = MegaCrit.Sts2.Core.Nodes.Rooms.NCombatRoom.Instance?.GetCreatureNode(player.Creature) is not null;
+        if (queue.Capacity > target)
+        {
+            if (hasNode) OrbCmd.RemoveSlots(player, queue.Capacity - target);
+            else queue.RemoveCapacity(queue.Capacity - target);
+        }
+        if (queue.Capacity < target)
+        {
+            if (hasNode) await OrbCmd.AddSlots(player, target - queue.Capacity);
+            else queue.AddCapacity(target - queue.Capacity);
+        }
 
         // Bounded, and stops if a channel adds nothing, so it can never spin.
         for (var i = 0; i < MaxSigilOrbs && queue.Orbs.Count < target; i++)
@@ -346,7 +375,7 @@ public class ClimaxModel : CustomSingletonModel
         if (ml <= 0) return;
 
         // [Gorim, 2026-11-17] Hyperfertile: twice as much Pussy cum.
-        if (hole == Hole.Pussy && me.Creature.HasPower<Powers.HyperfertilePower>()) ml *= 2;
+        if (hole == Hole.Pussy && me.Creature.GetPower<Powers.HyperfertilePower>() is { } fertile) ml *= fertile.CumMultiplier;
 
         var res = Reservoirs.Of(me.RunState);
         var before = res.Get(hole);

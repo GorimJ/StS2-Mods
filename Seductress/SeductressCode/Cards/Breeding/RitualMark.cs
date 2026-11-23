@@ -31,28 +31,30 @@ public class RitualMark : SeductressCard
         new DynamicVar("T3", Sigils.Tier3),
         new DynamicVar("T4", Sigils.Tier4),
         new DynamicVar("Bonus", 2m),
-        new DynamicVar("TierBonus", 4m),
-        new DynamicVar("SigilBonus", 1m),
-        new DynamicVar("TierSigilBonus", 4m)
+        new DynamicVar("Tier1Bonus", 3m),
+        new DynamicVar("Tier2Bonus", 4m),
+        new DynamicVar("Tier3Bonus", 5m)
     ];
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Ritual Mark",
-        "{S4:cond:Your Pussy and Breasts cards and your Sigils deal {SigilN} additional damage.|{S3:cond:Your Pussy and Breasts cards and your Sigils deal {TierBonus:diff()} additional damage.|Your Pussy and Breasts cards deal {S2:cond:{TierBonus:diff()}|{Bonus:diff()}} additional damage.{S1:cond:\nYour Sigils deal {SigilBonus:diff()} additional damage.|}}}");
+        "Your Pussy and Breasts cards deal {S4:cond:{SigilN}|{S3:cond:{Tier3Bonus:diff()}|{S2:cond:{Tier2Bonus:diff()}|{S1:cond:{Tier1Bonus:diff()}|{Bonus:diff()}}}}} additional damage.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var bonus = Sigils.At(Owner, Sigils.Tier2) ? DynamicVars["TierBonus"].BaseValue
-                                                   : DynamicVars["Bonus"].BaseValue;
+        // [Gorim, 2026-11-23] Ritual Mark no longer adds to Sigil damage. [Claude] That emptied
+        // stages 1 and 3, so the card bonus now steps 2 / 3 / 4 / 5, then +1 per Sigil at the top.
+        var bonus = Sigils.At(Owner, Sigils.Tier3) ? DynamicVars["Tier3Bonus"].BaseValue
+                  : Sigils.At(Owner, Sigils.Tier2) ? DynamicVars["Tier2Bonus"].BaseValue
+                  : Sigils.At(Owner, Sigils.Tier1) ? DynamicVars["Tier1Bonus"].BaseValue
+                  : DynamicVars["Bonus"].BaseValue;
 
         var power = await PowerCmd.Apply<RitualMarkPower>(
             choiceContext, Owner.Creature, bonus, Owner.Creature, this);
         if (power is null) return;
 
-        power.SigilBonus = Sigils.At(Owner, Sigils.Tier3) ? (int)DynamicVars["TierSigilBonus"].BaseValue
-                         : Sigils.At(Owner, Sigils.Tier1) ? (int)DynamicVars["SigilBonus"].BaseValue
-                         : 0;
-        power.PerSigil = Sigils.At(Owner, Sigils.Tier4);
+        power.Copies++;
+        power.PerSigil |= Sigils.At(Owner, Sigils.Tier4);
     }
 
     /// <summary>

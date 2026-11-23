@@ -39,7 +39,7 @@ public class Rapture : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Rapture",
-        "Gain {S3:cond:{TierBlock:diff()}|{Block:diff()}} [gold]Block[/gold].\nWhenever you Climax, gain {S4:cond:6|3} [gold]Energy[/gold]{S1:cond:,| and} {Strength:diff()} [gold]Strength[/gold]{S1:cond: and {S3:cond:{TierBlock:diff()}|{Block:diff()}} [gold]Block[/gold]|}.{S2:cond:{Live:cond:|\nCosts 1 less.}|}");
+        "Gain {S3:cond:{TierBlock:diff()}|{Block:diff()}} [gold]Block[/gold].\nWhenever you Climax, gain {S4:cond:6|3} [gold]Energy[/gold]{S1:cond:,| and} {Strength:diff()} [gold]Strength[/gold]{S1:cond: and {S3:cond:{TierBlock:diff()}|{Block:diff()}} [gold]Block[/gold]|}.{S2:cond:{Live:cond:|\nCosts 1 less.}|}\nYour next Climax adds no Lust.");
 
     /// <summary>Tier 2 reduces the cost, which also lowers what tier 4 would repeat — see §7.1.</summary>
     private void RefreshCost() =>
@@ -67,6 +67,7 @@ public class Rapture : SeductressCard
 
         var power = await PowerCmd.Apply<RapturePower>(
             choiceContext, Owner.Creature, DynamicVars["Strength"].BaseValue, Owner.Creature, this);
+        ClimaxModel.Instance.LustSkips++; // [Gorim, 2026-11-23]
         if (power is null) return;
 
         power.BlockOnClimax = Sigils.At(Owner, Sigils.Tier1) ? (int)block : 0;

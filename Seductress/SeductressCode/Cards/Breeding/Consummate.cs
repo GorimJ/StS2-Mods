@@ -15,8 +15,9 @@ using Seductress.SeductressCode.Systems;
 namespace Seductress.SeductressCode.Cards;
 
 /// <summary>
-/// Breeding Rare, 0 cost — so tier 4 sheds its non-energy cost (the Sigil exhaust) rather than
-/// repeating. Tier 1 lands exactly when the card becomes playable at all, since it needs a Sigil
+/// Breeding Rare, 0 cost. [Gorim, 2026-11-23, card note] "Top stage should no longer exhaust the
+/// card, but still the sigil": at tier 4 the card loses Exhaust and still spends a Sigil. (Until
+/// then tier 4 dropped the Sigil cost instead.) Tier 1 lands exactly when the card becomes playable at all, since it needs a Sigil
 /// to exhaust: the first Sigil both unlocks and improves it.
 /// </summary>
 public class Consummate : SeductressCard
@@ -42,7 +43,7 @@ public class Consummate : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Consummate",
-        "{S1:cond:{S4:cond:|Exhaust a Sigil this combat.\n}Gain {S2:cond:{TierEnergy:energyIcons()}|{Energy:energyIcons()}}.\nDraw {Cards:diff()}.\nGain {S3:cond:{TierBlock:diff()}|{Block:diff()}} [gold]Block[/gold].|Gain {SmallEnergy:energyIcons()}.\nDraw {SmallCards:diff()}.}");
+        "{S1:cond:Exhaust a Sigil this combat.\nGain {S2:cond:{TierEnergy:energyIcons()}|{Energy:energyIcons()}}.\nDraw {Cards:diff()}.\nGain {S3:cond:{TierBlock:diff()}|{Block:diff()}} [gold]Block[/gold].|Gain {SmallEnergy:energyIcons()}.\nDraw {SmallCards:diff()}.}");
 
     /// <summary>
     /// [Gorim, 2026-11-21] "Consummate is too bad with 0 sigils... I'd like to make it do
@@ -53,14 +54,14 @@ public class Consummate : SeductressCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // Tier 4 on a 0-cost card sheds the non-energy cost instead of repeating.
-        if (!Sigils.At(Owner, Sigils.Tier4) && Sigils.Effective(Owner) <= 0)
+        RefreshExhaust(); // read before the Sigil is spent, so the play that drops below tier 4 still stays
+        if (Sigils.Effective(Owner) <= 0)
         {
             await PlayerCmd.GainEnergy(DynamicVars["SmallEnergy"].BaseValue, Owner);
             await CardPileCmd.Draw(choiceContext, DynamicVars["SmallCards"].BaseValue, Owner);
             return;
         }
-        if (!Sigils.At(Owner, Sigils.Tier4)) ClimaxModel.Instance.ExhaustSigil();
+        ClimaxModel.Instance.ExhaustSigil();
 
         var energy = Sigils.At(Owner, Sigils.Tier2) ? DynamicVars["TierEnergy"] : DynamicVars.Energy;
         await PlayerCmd.GainEnergy(energy.BaseValue, Owner);
@@ -71,6 +72,26 @@ public class Consummate : SeductressCard
             var block = Sigils.At(Owner, Sigils.Tier3) ? DynamicVars["TierBlock"].BaseValue : DynamicVars.Block.BaseValue;
             await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Move, cardPlay);
         }
+    }
+
+    /// <summary>Exhaust is on the card below tier 4 and off it at tier 4.</summary>
+    private void RefreshExhaust()
+    {
+        if (Sigils.At(Owner, Sigils.Tier4)) CardCmd.RemoveKeyword(this, CardKeyword.Exhaust);
+        else CardCmd.ApplyKeyword(this, CardKeyword.Exhaust);
+    }
+
+    public override Task AfterCardEnteredCombat(MegaCrit.Sts2.Core.Models.CardModel card)
+    {
+        if (ReferenceEquals(card, this)) RefreshExhaust();
+        return Task.CompletedTask;
+    }
+
+    public override Task AfterCardDrawn(PlayerChoiceContext choiceContext,
+        MegaCrit.Sts2.Core.Models.CardModel card, bool fromHandDraw)
+    {
+        if (ReferenceEquals(card, this)) RefreshExhaust();
+        return Task.CompletedTask;
     }
 
     protected override void OnUpgrade() => DynamicVars["Cards"].UpgradeValueBy(1m);

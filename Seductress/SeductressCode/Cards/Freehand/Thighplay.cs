@@ -25,10 +25,11 @@ public class Thighplay : SeductressCard
 
     public override Hole Hole => Hole.Skin;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(9m, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+        [new DamageVar(9m, ValueProp.Move), new DynamicVar("Discount", 1m)];
 
     public override List<(string, string)>? Localization => new CardLoc(
-        "Thighplay", "Skin. Deal {Damage:diff()} damage.\nYour next Ass or Pussy card costs 1 less.");
+        "Thighplay", "Skin. Deal {Damage:diff()} damage.\nYour next Ass or Pussy card costs {Discount:diff()} less.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -41,9 +42,13 @@ public class Thighplay : SeductressCard
         // one-shot discounts behave: SetUntilPlayed clears itself on the card that uses it.
         foreach (var card in PileType.Hand.GetPile(Owner).Cards.OfType<SeductressCard>())
         {
-            if (card.Hole is Hole.Ass or Hole.Pussy) card.EnergyCost.AddUntilPlayed(-1, reduceOnly: true);
+            if (card.Hole is Hole.Ass or Hole.Pussy) card.EnergyCost.AddUntilPlayed(-(int)DynamicVars["Discount"].BaseValue, reduceOnly: true);
         }
     }
 
-    protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(3m);
+    /// <summary>
+    /// [Gorim, 2026-11-23] "Just do the 2 discount for now." [Claude] It replaces the old +3
+    /// damage upgrade. He also floated making the discount lasting; not built.
+    /// </summary>
+    protected override void OnUpgrade() => DynamicVars["Discount"].UpgradeValueBy(1m);
 }

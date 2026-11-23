@@ -115,6 +115,15 @@ table above or an older section disagrees, this is right.
 | **Sigil card view** (22 Nov): the slider is vertical with seven Sigil hearts and no caption; the four tier icons sit in a strip under the text so they never overlap it; text is kept short (Ritual Mark states the number, not the maths). **Leg-Locked** has a hover pop-out. | [Gorim]; wording [Claude] |
 | Open point: the Gulp milestone's "a swallow over 125 ml removes 1 Sensitive" cannot trigger now that the Mouth holds 100 ml. Not changed. | [Claude] noticed |
 | **Milk on the combat rig** shows while Lactating, which lingers one combat after birth (22 Nov; replaces the 20 Nov "while pregnant" rule). | [Gorim] |
+| **Sigils deal no damage** (23 Nov, trial): "Lets just not make it scale sigils. Lets actually try taking the 1 damage off sigils too." The start-of-turn 1 damage to ALL enemies is gone and Ritual Mark no longer adds to it. | [Gorim] |
+| **Sigil display caps at 10** (23 Nov): the game allows 10 orbs; 11 or more Sigils used to softlock. All Sigils still count for card stages. | [Claude] fix |
+| **Ritual Mark** (23 Nov): cards only. [Claude] The bonus steps 2 / 3 / 4 / 5 at 0 / 1 / 3 / 5 Sigils, then +1 per Sigil at 7; copies add together. | [Gorim] rule, [Claude] numbers |
+| **No Lust on the next Climax** (23 Nov): playing Rapture or Afterglow makes the next Climax that combat add no Lust card. [Claude] It also stops that Climax being fatal at the Lust limit. | [Gorim], [Claude] reading |
+| **Consummate** (23 Nov): "Top stage should no longer exhaust the card, but still the sigil." | [Gorim] |
+| **Ward** (23 Nov): the reflect fades at the start of your next turn, not permanent. | [Gorim] note, [Claude] timing |
+| **Thighplay** (23 Nov): upgrade is "2 discount", replacing +3 damage. Making the discount lasting was floated, not built. | [Gorim] |
+| **Afterglow stages** (23 Nov): 1 = 20 Block, 3 = draw 3, 5 = 30 Block, 7 = Climax also gives 2 Energy. | [Claude] proposal, [Gorim] accepted |
+| **Hyperfertile stages** (23 Nov): 1 = 2% per missing HP, 3 = costs 1 less, 5 = 3%, 7 = three times as much Pussy cum. A second copy adds nothing. | [Claude] proposal, [Gorim] accepted |
 | **Hole insets** (mouth, womb, ass) in a row along the top of the combat screen: fill by area, thrust on each Attack hit and until the next card or death, big spurt and pull-out when an enemy dies; thickness normal / elite thick / boss massive. | [Gorim]; details in `UI/HoleInsets.cs` |
 
 Agreed in principle, **not built**: archetypes defined by events rather than bar position (Draining = healing,

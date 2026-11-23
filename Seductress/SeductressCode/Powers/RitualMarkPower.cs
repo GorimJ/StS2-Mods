@@ -15,7 +15,7 @@ public class RitualMarkPower : SeductressPower
     public override PowerStackType StackType => PowerStackType.Counter;
 
     public override List<(string, string)>? Localization => new PowerLoc(
-        "Ritual Mark", "Your Sigils and your Pussy cards deal additional damage.", "Your Sigils and your Pussy cards deal additional damage.");
+        "Ritual Mark", "Your Pussy and Breasts cards deal additional damage.", "Your Pussy and Breasts cards deal additional damage.");
 
     /// <summary>Tier 1 onwards: the Sigil passive also gains a bonus. Set by the card.</summary>
     public int SigilBonus { get; set; }
@@ -30,8 +30,15 @@ public class RitualMarkPower : SeductressPower
     /// </summary>
     public bool PerSigil { get; set; }
 
+    /// <summary>
+    /// [Gorim, 2026-11-23, card note] "Doesn't seem to stack correctly with multiple." [Claude]
+    /// A second copy overwrote the Sigil bonus instead of adding to it, and added nothing at all
+    /// once the bonus was per Sigil. Copies played are now counted and each one adds its share.
+    /// </summary>
+    public int Copies { get; set; }
+
     public decimal PussyBonus(MegaCrit.Sts2.Core.Entities.Players.Player player) =>
-        PerSigil ? Sigils.Effective(player) : Amount;
+        PerSigil ? Sigils.Effective(player) * System.Math.Max(1, Copies) : Amount;
 
     /// <summary>
     /// [Claude-Code] The bonus rides the vanilla damage hook rather than being added by hand inside
@@ -61,5 +68,5 @@ public class RitualMarkPower : SeductressPower
     /// is nothing for this half to modify. Kept so the card is complete when the passive lands.
     /// </summary>
     public decimal SigilPassiveBonus(MegaCrit.Sts2.Core.Entities.Players.Player player) =>
-        PerSigil ? Sigils.Effective(player) : SigilBonus;
+        PerSigil ? Sigils.Effective(player) * System.Math.Max(1, Copies) : SigilBonus;
 }

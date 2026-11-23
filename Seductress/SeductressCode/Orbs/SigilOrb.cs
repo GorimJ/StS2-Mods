@@ -85,16 +85,22 @@ public class SigilOrb : CustomOrbModel
     /// </summary>
     public override List<(string, string)>? Localization => new OrbLoc(
         "Sigil",
-        "At the start of your turn, deal damage to ALL enemies.",
-        "At the start of your turn, deal {Passive} damage to ALL enemies.");
+        "Your cards grow stronger with each Sigil.",
+        "Your cards grow stronger with each Sigil.");
 
-    /// <summary>1, plus whatever <i>Ritual Mark</i> adds to the Sigil passive.</summary>
+    /// <summary>
+    /// [Gorim, 2026-11-23] "Lets just not make it scale sigils. Lets actually try taking the 1
+    /// damage off sigils too." Sigils dealt 1 to ALL enemies each turn, plus Ritual Mark's bonus;
+    /// now they deal nothing. One number to put back if the trial goes the other way.
+    /// </summary>
+    public const decimal BaseDamage = 0m;
+
+    /// <summary>The Sigil's own damage; nothing adds to it.</summary>
     public override decimal PassiveVal
     {
         get
         {
-            var bonus = Owner?.Creature.GetPower<RitualMarkPower>()?.SigilPassiveBonus(Owner) ?? 0m;
-            return ModifyOrbValue(1m + bonus);
+            return BaseDamage <= 0m ? 0m : ModifyOrbValue(BaseDamage);
         }
     }
 

@@ -29,16 +29,38 @@ public class Afterglow : SeductressCard
 {
     public Afterglow() : base(1, CardType.Power, CardRarity.Rare, TargetType.Self) { }
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(15m, ValueProp.Move)];
+    /// <summary>
+    /// [Gorim, 2026-11-23, card note] "Should probably have sigil scaling". He took my proposal
+    /// [Claude]: 1 = 20 Block, 3 = draw 3, 5 = 30 Block, 7 = the Climax also gives 2 Energy.
+    /// Read when the card is played, like the other Powers.
+    /// </summary>
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new DynamicVar("T1", Sigils.Tier1),
+        new DynamicVar("T2", Sigils.Tier2),
+        new DynamicVar("T3", Sigils.Tier3),
+        new DynamicVar("T4", Sigils.Tier4),
+        new BlockVar(15m, ValueProp.Move),
+        new DynamicVar("Tier1Block", 20m),
+        new DynamicVar("Tier3Block", 30m)
+    ];
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Afterglow",
-        "Whenever you Climax, gain {Block:diff()} [gold]Block[/gold] and draw 2.\nAt the start of your turn, draw 1 card and gain 1 [gold]Energy[/gold] for each stack of [gold]Sensitive[/gold].");
+        "Whenever you Climax, gain {S3:cond:{Tier3Block:diff()}|{S1:cond:{Tier1Block:diff()}|{Block:diff()}}} [gold]Block[/gold]{S4:cond:, 2 [gold]Energy[/gold]|} and draw {S2:cond:3|2}.\nAt the start of your turn, draw 1 card and gain 1 [gold]Energy[/gold] for each stack of [gold]Sensitive[/gold].\nYour next Climax adds no Lust.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<AfterglowPower>(
-            choiceContext, Owner.Creature, DynamicVars.Block.BaseValue, Owner.Creature, this);
+        var block = Sigils.At(Owner, Sigils.Tier3) ? DynamicVars["Tier3Block"].BaseValue
+                  : Sigils.At(Owner, Sigils.Tier1) ? DynamicVars["Tier1Block"].BaseValue
+                  : DynamicVars.Block.BaseValue;
+        var power = await PowerCmd.Apply<AfterglowPower>(choiceContext, Owner.Creature, block, Owner.Creature, this);
+        if (power is not null)
+        {
+            if (Sigils.At(Owner, Sigils.Tier2)) power.DrawOnClimax = 3;
+            if (Sigils.At(Owner, Sigils.Tier4)) power.EnergyOnClimax = 2;
+        }
+        Systems.ClimaxModel.Instance.LustSkips++; // [Gorim, 2026-11-23]
     }
 
     protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
