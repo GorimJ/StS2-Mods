@@ -75,7 +75,7 @@ public partial class MilestonesScreen : CanvasLayer
                 Rung(250, "+25 ml precum\neach combat", r.Stomach),
                 Rung(500, "Gulp: full Mouth\nswallows, keeps filling", r.Stomach),
                 Rung(750, "+50 ml precum\neach combat", r.Stomach),
-                Rung(1000, "Indulge recovers\nall your Skin", r.Stomach),
+                Rung(1000, "Indulge recovers\nall your Skin;\nswallow over 125 ml:\n-1 Sensitive", r.Stomach),
                 Rung(1250, "+75 ml precum\neach combat", r.Stomach),
                 Rung(1500, "precum is banked\nlike cum", r.Stomach),
                 Rung(1750, "+100 ml precum\neach combat", r.Stomach),

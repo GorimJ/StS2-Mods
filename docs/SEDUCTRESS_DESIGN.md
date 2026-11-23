@@ -838,7 +838,7 @@ so +80–100 effective HP per act — was made for flat per-kill intake.* [Claud
 
 **[clarified] The Mouth banks to the Stomach at the end of every combat, by default.**
 **[Gorim, 2026-09-08] The *Gulp* card is cut** (register 112): the name belongs to the 500 ml milestone
-above, and a swallow of more than 125 ml removes 1 Sensitive once that milestone is reached. **[Gorim, 2026-11-19]**
+above. A swallow of more than 125 ml removes 1 Sensitive from the **1000 ml** milestone (**[Gorim, 2026-11-23]** "Move it to 1000"; it was on the 500 ml Gulp milestone, unlisted on the milestone screen). **[Gorim, 2026-11-19]**
 **Gulp** is also a card keyword — swallow everything in your Mouth now — carried by *Mouthful* (register 124). The card
 never enabled banking — its "swallow **now**" bought the *timing*, the heal and the Sensitive
 removal, and the heal now happens on every swallow anyway. This was only ever implied, by §6.2a saying precum is the thing that evaporates, and the

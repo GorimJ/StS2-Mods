@@ -56,6 +56,13 @@ public static class Stomach
     /// <summary>1000 ml: Indulge stops spilling — 100% reclamation instead of two thirds.</summary>
     public static bool IndulgeIsClean(int stomach) => stomach >= 1000;
 
+    /// <summary>
+    /// 1000 ml: a swallow over <see cref="SensitiveThreshold"/> removes 1 Sensitive.
+    /// [Gorim, 2026-11-23] "Move it to 1000": it came with the Gulp milestone (500 ml) but the
+    /// milestone screen never said so, and he saw it take away a Climax's Sensitive.
+    /// </summary>
+    public static bool SwallowClearsSensitive(int stomach) => stomach >= 1000;
+
     /// <summary>1500 ml: precum counts as cum, and banks instead of evaporating.</summary>
     public static bool PrecumBanks(int stomach) => stomach >= 1500;
 
@@ -98,7 +105,8 @@ public static class Stomach
     public const int DefaultHealPercent = 10;
 
     /// <summary>
-    /// A swallow this large removes a Sensitive, once the Gulp milestone is reached. Half a full
+    /// A swallow larger than this removes a Sensitive, from the 1000 ml milestone (was the 500 ml
+    /// Gulp milestone until 2026-11-23). Half a full
     /// Mouth: unreachable while the cap was 100 ml, live again at 250 (2026-11-23).
     /// </summary>
     public const int SensitiveThreshold = 125;
@@ -154,7 +162,7 @@ public static class Stomach
         // bell anyway, so removing one during the end-of-combat swallow changes nothing. That is
         // the right shape — it makes the milestone's extra swallow the thing that does the work.
         var removedSensitive = false;
-        if (SwallowsAtFifty(r.Stomach) && total > SensitiveThreshold &&
+        if (SwallowClearsSensitive(r.Stomach) && total > SensitiveThreshold &&
             player.Creature.GetPower<Powers.SensitivePower>() is { } sensitive)
         {
             await PowerCmd.ModifyAmount(
