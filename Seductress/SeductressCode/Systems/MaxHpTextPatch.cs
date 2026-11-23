@@ -49,7 +49,7 @@ internal static class MaxHpTextPatch
 
     private static int Halve(int value) => value <= 0 ? value : (value + 1) / 2;
 
-    [HarmonyPatch(typeof(DynamicVar), nameof(DynamicVar.ToString))]
+    [HarmonyPatch(typeof(DynamicVar), nameof(DynamicVar.ToString), new Type[0])]
     [HarmonyPostfix]
     private static void ToStringPostfix(DynamicVar __instance, ref string __result)
     {
