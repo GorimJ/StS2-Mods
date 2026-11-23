@@ -46,6 +46,31 @@ internal static class MaxHpHalvingPatch
     }
 }
 
+/// <summary>
+/// [Gorim, 2026-11-23] "Max HP gain is reduced currently, but Max HP loss is not. We should fix
+/// that." [Claude] Same rule as <see cref="MaxHpHalvingPatch"/>: halved, rounded up, Seductress
+/// only. Rounding up keeps a 1-point loss at 1 rather than making it free.
+///
+/// Every vanilla Max HP loss goes through <c>CreatureCmd.LoseMaxHp</c>: Brightest Flame, the
+/// Drowning Beacon, Museum of Torture, Tablet of Truth and Unrest Site events, the Night Terrors
+/// and Terminal modifiers, Paper Cuts, Leafy Poultice and Sere Talon. The mod itself never
+/// removes Max HP. The event and relic text still prints the full number, as it does for gains.
+/// </summary>
+[HarmonyPatch(typeof(CreatureCmd), nameof(CreatureCmd.LoseMaxHp))]
+internal static class MaxHpLossHalvingPatch
+{
+    [HarmonyPrefix]
+    private static void Halve(Creature creature, ref decimal amount)
+    {
+        if (creature.Player?.Character is not Character.Seductress) return;
+        if (amount <= 0m) return;
+
+        var halved = Math.Ceiling(amount / 2m);
+        MainFile.Logger.Info($"[Seductress] Max HP loss halved: {amount} -> {halved}");
+        amount = halved;
+    }
+}
+
 public static class MaxHpPatches
 {
     /// <summary>Grants Max HP without the halving above. For the Stomach track only.</summary>

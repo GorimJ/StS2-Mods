@@ -868,6 +868,8 @@ this — and it uses a number introduced one version earlier rather than inventi
 give 4× value here, so Strawberry / Pear / Mango at full strength would outclass every other pick
 in the game. At 50% they are still strong and still worth taking.
 
+**[Gorim, 2026-11-23] Max HP loss is halved too:** "Max HP gain is reduced currently, but Max HP loss is not. We should fix that." [Claude] Same rule both ways: half, rounded up, so a loss of 1 stays 1. It covers every vanilla source (events, relics, Brightest Flame, Paper Cuts, the Night Terrors and Terminal modifiers). Event and relic text still shows the full number.
+
 ### 6.4 Skin — the catch-all
 
 **[decided]** Output with no finishing card — thorns, a Sigil passive, a damage-over-time
@@ -1427,7 +1429,7 @@ kept at the time and guessing now would be worse than leaving it blank.
 | 107 | **The Stomach gives +1 Max HP per 10 ml banked** — ~20–25 Max HP an act, i.e. +80–100 effective, which is Draining's whole progression |
 | 108 | **[Gorim] Stomach milestones**: every ×50 grants +5 ml precum at combat start (cumulative); **100 ml** swaps end-of-combat swallowing for swallowing at 50 ml; **200 ml** removes Indulge's spillage; **300 ml** makes precum bank as cum |
 | 110 | **[clarified] The Mouth banks to the Stomach at the end of every combat by default.** *Gulp* buys timing, the heal and Sensitive removal — not the banking itself — **[the card is cut; see 111, 112]** |
-| 109 | **Max HP from relics is halved**, carried on the starting relic — food relics would otherwise be worth 4× here and outclass every other pick |
+| 109 | **Max HP from relics is halved**, carried on the starting relic — food relics would otherwise be worth 4× here and outclass every other pick. **[Gorim, 2026-11-23]** Max HP loss is halved the same way. |
 | 104 | **Removing a Lust card is worth a full heal regardless of current HP**, so Relief dominates Indulge on the health axis and Indulge's only edge is the Stomach. **Do not tune Indulge down further until the Stomach payoff exists** |
 | 97 | **The Seductress has no `HEAL`.** Her rest site offers **Indulge** (empty Skin: Soothe 1 per ml, bank it to the Stomach), **Relief** (remove a Lust card — the actual rest-equivalent) and Smith. Indulge is part Rest, part Smith. ***Scoop It Up* is cut from the pool**; leak-to-Skin would have made it mandatory, and a card nobody can skip is worse than no card |
 | 98 | **1 HP per ml is not over-generous because the bar is a quarter of a life** — a full heal restores ~25% of total life resource against vanilla HEAL's 30% of all of it |
