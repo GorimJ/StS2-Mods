@@ -32,7 +32,7 @@ public class HoldTheEdgePower : SeductressPower
     public override List<(string, string)>? Localization => new PowerLoc(
         "Hold the Edge",
         "If you would Climax before your next turn, prevent that damage, gain 1 Intangible, and deal that damage to ALL enemies.",
-        "If you would Climax before your next turn, prevent that damage, gain 1 Intangible, and deal that damage to ALL enemies.");
+        "The next {Amount} time(s) you would Climax before your next turn, prevent that damage, gain 1 Intangible, and deal that damage to ALL enemies.");
 
     private decimal _prevented;
 
