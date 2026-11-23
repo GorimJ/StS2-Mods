@@ -32,6 +32,7 @@ public static class Glossary
         ("PUSSY", new Regex(@"\b(Pussy|Womb)\b")),
         ("ASS", new Regex(@"\bAss\b")),
         ("SKIN", new Regex(@"\bSkin\b")),
+        ("RIDE_IT_OUT", new Regex(@"\bRide It Out\b")),
         ("CLIMAX", new Regex(@"\bClimax(es|ed)?\b")),
         ("SIGIL", new Regex(@"\bSigils?\b")),
     ];

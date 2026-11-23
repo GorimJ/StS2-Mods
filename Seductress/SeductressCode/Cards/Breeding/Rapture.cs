@@ -39,7 +39,7 @@ public class Rapture : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Rapture",
-        "Gain {S3:cond:{TierBlock:diff()}|{Block:diff()}} [gold]Block[/gold].\nWhenever you Climax, gain {S4:cond:6|3} [gold]Energy[/gold]{S1:cond:,| and} {Strength:diff()} [gold]Strength[/gold]{S1:cond: and {S3:cond:{TierBlock:diff()}|{Block:diff()}} [gold]Block[/gold]|}.{S2:cond:{Live:cond:|\nCosts 1 less.}|}\nYour next Climax adds no Lust.");
+        "Gain {S3:cond:{TierBlock:diff()}|{Block:diff()}} [gold]Block[/gold].\nWhenever you Climax, gain {S4:cond:6|3} [gold]Energy[/gold]{S1:cond:,| and} {Strength:diff()} [gold]Strength[/gold]{S1:cond: and {S3:cond:{TierBlock:diff()}|{Block:diff()}} [gold]Block[/gold]|}.{S2:cond:{Live:cond:|\nCosts 1 less.}|}\nGain 1 Ride It Out.");
 
     /// <summary>Tier 2 reduces the cost, which also lowers what tier 4 would repeat — see §7.1.</summary>
     private void RefreshCost() =>
@@ -65,7 +65,7 @@ public class Rapture : SeductressCard
 
         var power = await PowerCmd.Apply<RapturePower>(
             choiceContext, Owner.Creature, 1m, Owner.Creature, this);
-        ClimaxModel.Instance.LustSkips++; // [Gorim, 2026-11-23]
+        await PowerCmd.Apply<RideItOutPower>(choiceContext, Owner.Creature, 1m, Owner.Creature, this); // [Gorim, 2026-11-23]
         if (power is null) return;
 
         // [Gorim, 2026-11-23] one stack per copy; each adds its own Energy, Strength and Block.

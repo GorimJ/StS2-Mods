@@ -119,7 +119,7 @@ table above or an older section disagrees, this is right.
 | **Sigils deal no damage** (23 Nov, trial): "Lets just not make it scale sigils. Lets actually try taking the 1 damage off sigils too." The start-of-turn 1 damage to ALL enemies is gone and Ritual Mark no longer adds to it. | [Gorim] |
 | **Sigil display caps at 10** (23 Nov): the game allows 10 orbs; 11 or more Sigils used to softlock. All Sigils still count for card stages. | [Claude] fix |
 | **Ritual Mark** (23 Nov): cards only. [Claude] The bonus steps 2 / 3 / 4 / 5 at 0 / 1 / 3 / 5 Sigils, then +1 per Sigil at 7; copies add together. | [Gorim] rule, [Claude] numbers |
-| **No Lust on the next Climax** (23 Nov): playing Rapture or Afterglow makes the next Climax that combat add no Lust card. [Claude] It also stops that Climax being fatal at the Lust limit. | [Gorim], [Claude] reading |
+| **No Lust on the next Climax** (23 Nov): playing Rapture or Afterglow gives 1 stack of **Ride It Out** ("should stack as a single buff tracker between those powers. Probably call it 'Ride it out'"); each stack makes one Climax that combat add no Lust card. [Claude] It also stops that Climax being fatal at the Lust limit. | [Gorim], [Claude] reading |
 | **Consummate** (23 Nov): "Top stage should no longer exhaust the card, but still the sigil." | [Gorim] |
 | **Ward** (23 Nov): the reflect fades at the start of your next turn, not permanent. | [Gorim] note, [Claude] timing |
 | **Thighplay** (23 Nov): upgrade is "2 discount", replacing +3 damage. Making the discount lasting was floated, not built. | [Gorim] |

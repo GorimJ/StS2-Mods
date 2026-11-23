@@ -110,7 +110,6 @@ public class ClimaxModel : CustomSingletonModel
         SigilsExhaustedThisCombat = 0;
         LastAttackPlayed = null;
         Stripped = 0;
-        LustSkips = 0;
         return Task.CompletedTask;
     }
 
@@ -123,14 +122,6 @@ public class ClimaxModel : CustomSingletonModel
 
     public const int MaxStripped = 3;
 
-    /// <summary>
-    /// [Gorim, 2026-11-23, card notes] Rapture "should maybe make your next climax not give you a
-    /// lust card"; Afterglow should "probably give you a one-off don't get a lust card". Each
-    /// play adds one; the next Climax this combat spends one and adds no Lust card.
-    /// [Claude] It also keeps a Climax at the Lust limit from being fatal, since that Climax is
-    /// fatal only because of the Lust card it would add. Unused ones are lost at the end of combat.
-    /// </summary>
-    public int LustSkips { get; set; }
 
     // ---------------------------------------------------------------- Continuing / tags
 
@@ -182,7 +173,7 @@ public class ClimaxModel : CustomSingletonModel
     public override bool ShouldDie(Creature creature)
     {
         if (!IsSeductress(creature)) return true;                 // enemies die normally
-        if (LustSkips > 0) return false;                           // this Climax adds no Lust card
+        if (creature.HasPower<Powers.RideItOutPower>()) return false; // this Climax adds no Lust card
         if (LustCount(creature.Player!) >= LustLimit) return true; // the death clock ran out
         return false;
     }
@@ -220,10 +211,12 @@ public class ClimaxModel : CustomSingletonModel
     {
         var player = creature.Player!;
 
-        if (addLust && LustSkips > 0)
+        // [Gorim, 2026-11-23] Ride It Out: a stack stops this Climax's Lust card and is used up.
+        if (addLust && creature.GetPower<Powers.RideItOutPower>() is { } ride)
         {
-            LustSkips--;
             addLust = false;
+            if (ride.Amount > 1m) await PowerCmd.Decrement(ride);
+            else await PowerCmd.Remove(ride);
         }
 
         ClimaxesThisCombat++;
