@@ -19,7 +19,12 @@ namespace Seductress.SeductressCode.Powers;
 public class HyperfertilePower : SeductressPower
 {
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Single;
+    /// <summary>
+    /// [Gorim, 2026-11-23] "Once per turn triggers obviously happen twice? And 'your next climax'
+    /// becomes 'your next 2 climaxes'? Obviously?" A stacked power does its thing once per stack.
+    /// [Claude] So each copy doubles (or triples) the Pussy cum again, and adds its own % per HP.
+    /// </summary>
+    public override PowerStackType StackType => PowerStackType.Counter;
 
     public override List<(string, string)>? Localization => new PowerLoc(
         "Hyperfertile",
@@ -27,10 +32,10 @@ public class HyperfertilePower : SeductressPower
         "Gain twice as much Pussy cum. Your Pussy attacks deal 1% more damage for each HP the enemy is missing.");
 
     /// <summary>Percent more damage per missing HP: 1, 2 or 3 by the card's Sigil stage. Set by the card.</summary>
-    public int PercentPerHp { get; set; } = 1;
+    public int PercentPerHp { get; set; }
 
     /// <summary>Pussy cum multiplier: 2, or 3 at the card's 7-Sigil stage. Set by the card.</summary>
-    public int CumMultiplier { get; set; } = 2;
+    public int CumMultiplier { get; set; } = 1;
 
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)

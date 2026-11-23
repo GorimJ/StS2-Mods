@@ -219,8 +219,10 @@ public static class Stomach
     /// </summary>
     public static async Task AfterPrecumGained(Player player, int ml)
     {
-        if (!player.Creature.HasPower<MilkingThroatPower>()) return;
-        await Digest(player, 0, ml, "Milking Throat (second helping)");
+        if (player.Creature.GetPower<MilkingThroatPower>() is not { } throat) return;
+        // Doubles once per copy: the extra on top of what was gained is ml x (2^copies - 1).
+        var extra = ml * ((1 << System.Math.Min(10, (int)throat.Amount)) - 1);
+        await Digest(player, 0, extra, "Milking Throat (second helping)");
         await SwallowAll(player, "GULP (Milking Throat)");
     }
 

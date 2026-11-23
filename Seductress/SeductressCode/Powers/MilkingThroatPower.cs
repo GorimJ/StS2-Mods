@@ -16,7 +16,13 @@ namespace Seductress.SeductressCode.Powers;
 public class MilkingThroatPower : SeductressPower
 {
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Single;
+    /// <summary>
+    /// [Gorim, 2026-11-23] "Once per turn triggers obviously happen twice? And 'your next climax'
+    /// becomes 'your next 2 climaxes'? Obviously?" A stacked power does its thing once per stack.
+    /// [Claude] Each copy doubles the precum again (2 copies = 4 times as much); the Gulp after
+    /// it happens once, since a second Gulp of an empty Mouth does nothing.
+    /// </summary>
+    public override PowerStackType StackType => PowerStackType.Counter;
 
     public override List<(string, string)>? Localization => new PowerLoc(
         "Milking Throat",

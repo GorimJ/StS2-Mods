@@ -60,7 +60,11 @@ public class HoldTheEdgePower : SeductressPower
         {
             await CreatureCmd.Damage(ctx, enemies, amount, ValueProp.Unpowered, Owner);
         }
-        await PowerCmd.Remove(this);
+        // [Gorim, 2026-11-23] "your next climax" becomes "your next 2 climaxes": one copy is
+        // used up per prevention.
+        _prevented = 0m;
+        if (Amount > 1m) await PowerCmd.Decrement(this);
+        else await PowerCmd.Remove(this);
     }
 
     public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,

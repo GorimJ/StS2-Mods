@@ -29,7 +29,7 @@ public class NoGagReflex : SeductressCard
     {
         var power = await PowerCmd.Apply<NoGagReflexPower>(
             choiceContext, Owner.Creature, 1m, Owner.Creature, this);
-        if (power != null && _upgraded) power.DrawsOnDeepThroat = true; // on or off; a second upgraded copy adds nothing
+        if (power != null && _upgraded) power.DeepThroatDraws++; // [Gorim, 2026-11-23] once per copy
     }
 
     protected override void OnUpgrade() => _upgraded = true;

@@ -29,7 +29,10 @@ public class NoGagReflexPower : SeductressPower
     public override PowerStackType StackType => PowerStackType.Counter;
 
     /// <summary>Set by the card so the upgraded version can add its draw.</summary>
-    public bool DrawsOnDeepThroat { get; set; }
+    public bool DrawsOnDeepThroat => DeepThroatDraws > 0;
+
+    /// <summary>Cards drawn per Deep Throat card played: one per upgraded copy (2026-11-23).</summary>
+    public int DeepThroatDraws { get; set; }
 
     public override List<(string, string)>? Localization => new PowerLoc(
         "No Gag Reflex",

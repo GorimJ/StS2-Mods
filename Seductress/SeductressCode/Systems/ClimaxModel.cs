@@ -470,7 +470,8 @@ public class ClimaxModel : CustomSingletonModel
 
         var hole = HoleFor(creature, ContinuingHole);
         // Milking Grip: Ass kills gain double intake (design §7).
-        if (hole == Hole.Ass && me.Creature.HasPower<Powers.MilkingGripPower>()) ml *= 2;
+        if (hole == Hole.Ass && me.Creature.GetPower<Powers.MilkingGripPower>() is { } grip)
+            ml *= 1 << System.Math.Min(10, (int)grip.Amount); // doubles once per copy
 
         UI.HoleInsets.Current?.Finish(hole, creature);
 

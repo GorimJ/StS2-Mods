@@ -49,9 +49,9 @@ public class BallsDeep : SeductressCard
             await CreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.HpLoss.BaseValue,
                 ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
         }
-        if (Owner.Creature.GetPower<NoGagReflexPower>() is { DrawsOnDeepThroat: true })
+        if (Owner.Creature.GetPower<NoGagReflexPower>() is { DeepThroatDraws: > 0 } noGag)
         {
-            await CardPileCmd.Draw(choiceContext, 1m, Owner);
+            await CardPileCmd.Draw(choiceContext, noGag.DeepThroatDraws, Owner);
         }
         var chosen = (await CardSelectCmd.FromCombatPile(
             context: choiceContext, pile: PileType.Discard.GetPile(Owner), player: Owner,

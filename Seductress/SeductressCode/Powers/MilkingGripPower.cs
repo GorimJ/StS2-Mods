@@ -22,7 +22,12 @@ public class MilkingGripPower : SeductressPower
     public const decimal BaseDrainPercent = 10m;
 
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Single;
+    /// <summary>
+    /// [Gorim, 2026-11-23] "Once per turn triggers obviously happen twice? And 'your next climax'
+    /// becomes 'your next 2 climaxes'? Obviously?" A stacked power does its thing once per stack.
+    /// [Claude] Each copy cuts the loss again and doubles Ass kill intake again.
+    /// </summary>
+    public override PowerStackType StackType => PowerStackType.Counter;
 
     /// <summary>
     /// The Ass drain this power allows, as a percentage of the bank. 5 normally, 3 upgraded.
@@ -46,7 +51,7 @@ public class MilkingGripPower : SeductressPower
     }
 
     /// <summary>The share of a card's notional drain actually paid. 0.5 at 5%, 0.3 at 3%.</summary>
-    public double DrainShare => DrainPercent / (double)BaseDrainPercent;
+    public double DrainShare => System.Math.Pow(DrainPercent / (double)BaseDrainPercent, System.Math.Max(1, (int)Amount));
 
     public override List<(string, string)>? Localization => new PowerLoc(
         "Milking Grip", "Ass attacks lose half as much, but gain full Strength. Ass kills gain double intake.", "Ass attacks lose half as much, but gain full Strength. Ass kills gain double intake.");
