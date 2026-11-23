@@ -47,7 +47,7 @@ public class Afterglow : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Afterglow",
-        "Whenever you Climax, gain {S3:cond:{Tier3Block:diff()}|{S1:cond:{Tier1Block:diff()}|{Block:diff()}}} [gold]Block[/gold]{S4:cond:, 2 [gold]Energy[/gold]|} and draw {S2:cond:3|2}.\nAt the start of your turn, draw 1 card and gain 1 [gold]Energy[/gold] for each stack of [gold]Sensitive[/gold].\nGain 1 Ride It Out.");
+        "Whenever you Climax, gain {S3:cond:{Tier3Block:diff()}|{S1:cond:{Tier1Block:diff()}|{Block:diff()}}} [gold]Block[/gold]{S4:cond:, 2 [gold]Energy[/gold]|} and draw {S2:cond:3|2}.\nAt the start of your turn, draw 1 card and gain 1 [gold]Energy[/gold] for each stack of [gold]Sensitive[/gold].{S2:cond:\nGain 1 Ride It Out.|}");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -57,7 +57,10 @@ public class Afterglow : SeductressCard
         // [Gorim, 2026-11-23] one stack per copy; each copy adds its own Block, draw and Energy.
         var power = await PowerCmd.Apply<AfterglowPower>(choiceContext, Owner.Creature, 1m, Owner.Creature, this);
         power?.AddCopy((int)block, Sigils.At(Owner, Sigils.Tier2) ? 3 : 2, Sigils.At(Owner, Sigils.Tier4) ? 2 : 0);
-        await PowerCmd.Apply<RideItOutPower>(choiceContext, Owner.Creature, 1m, Owner.Creature, this); // [Gorim, 2026-11-23]
+        // [Gorim, 2026-11-23, card note] "Ride it out is probably too strong at the base level.
+        // Maybe 3 sigil bonus." Now from 3 Sigils only.
+        if (Sigils.At(Owner, Sigils.Tier2))
+            await PowerCmd.Apply<RideItOutPower>(choiceContext, Owner.Creature, 1m, Owner.Creature, this);
     }
 
     protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
