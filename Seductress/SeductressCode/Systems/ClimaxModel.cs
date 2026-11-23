@@ -254,20 +254,31 @@ public class ClimaxModel : CustomSingletonModel
     /// test console command is reflected immediately.
     ///
     /// Shrinking goes through RemoveSlots, which trims orbs past the new capacity itself.
+    ///
+    /// [Gorim, 2026-11-23] "Above a certain number of sigils they stop being able to load in
+    /// correctly and it softlocks. Maybe about 10?" [Claude] The game caps the orb queue at 10
+    /// slots, so with 11 or more Sigils the channel loop below never reached its target and ran
+    /// forever. The queue now shows at most <see cref="MaxSigilOrbs"/>; the Sigils past that still
+    /// deal their damage, fired by the first orb (<see cref="Orbs.SigilOrb"/>).
     /// </summary>
+    public const int MaxSigilOrbs = MegaCrit.Sts2.Core.Entities.Orbs.OrbQueue.maxCapacity;
+
     private static async Task SyncSigilOrbs(Player player)
     {
         var queue = player.PlayerCombatState?.OrbQueue;
         if (queue is null) return;
 
-        var target = Sigils.Effective(player);
+        var target = Math.Min(Sigils.Effective(player), MaxSigilOrbs);
 
         if (queue.Capacity > target) OrbCmd.RemoveSlots(player, queue.Capacity - target);
         if (queue.Capacity < target) await OrbCmd.AddSlots(player, target - queue.Capacity);
 
-        while (queue.Orbs.Count < target)
+        // Bounded, and stops if a channel adds nothing, so it can never spin.
+        for (var i = 0; i < MaxSigilOrbs && queue.Orbs.Count < target; i++)
         {
+            var before = queue.Orbs.Count;
             await OrbCmd.Channel<Orbs.SigilOrb>(new ThrowingPlayerChoiceContext(), player);
+            if (queue.Orbs.Count <= before) break;
         }
     }
 

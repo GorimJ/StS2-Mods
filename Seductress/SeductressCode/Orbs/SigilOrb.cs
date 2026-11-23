@@ -107,6 +107,13 @@ public class SigilOrb : CustomOrbModel
     public override async Task AfterTurnStartOrbTrigger(PlayerChoiceContext choiceContext)
     {
         await Passive(choiceContext, null);
+
+        // [Claude, 2026-11-23] The queue holds at most 10 orbs. The first orb also fires once
+        // for every Sigil past that, so 13 Sigils still hit 13 times.
+        var queue = Owner?.PlayerCombatState?.OrbQueue;
+        if (queue is null || queue.Orbs.Count == 0 || !ReferenceEquals(queue.Orbs[0], this)) return;
+        var extra = Systems.Sigils.Effective(Owner!) - queue.Orbs.Count;
+        for (var i = 0; i < extra; i++) await Passive(choiceContext, null);
     }
 
     public override async Task Passive(PlayerChoiceContext choiceContext, Creature? target)
