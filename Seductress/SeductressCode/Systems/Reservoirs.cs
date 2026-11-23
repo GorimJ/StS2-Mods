@@ -151,7 +151,7 @@ public class ReservoirState
     ///
     /// [Gorim, 2026-11-23] "Gaining cum when it fills your mouth and you can't gain more cum
     /// should displace any precum that is there." Free room first, then precum is pushed out to
-    /// make room. [Claude] Pushed-out precum is simply gone; what still does not fit is the
+    /// make room, and [Gorim, 2026-11-23] the pushed-out precum splashes onto Skin. What still does not fit is the
     /// caller's to splash onto Skin (<see cref="Stomach.SwallowIfFull"/>), after any Gulp.
     /// </summary>
     public int AddMouthCum(int ml)
@@ -160,6 +160,7 @@ public class ReservoirState
         var added = Math.Min(ml, room);
         var displaced = Math.Min(Precum, ml - added);
         Precum -= displaced;
+        Skin += displaced; // [Gorim, 2026-11-23] pushed-out precum splashes onto Skin
         added += displaced;
         Mouth += added;
         return added;
