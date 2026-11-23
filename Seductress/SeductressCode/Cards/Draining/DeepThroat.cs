@@ -35,7 +35,7 @@ public class DeepThroat : SeductressCard
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        var hits = 1 + StretchBonusHits(true); // [Gorim, 2026-11-23] counts even when No Gag Reflex removes the HP loss
+        var hits = 1; // Stretch My Hole Daddy adds its hit through StretchPower
         for (var i = 0; i < hits; i++)
         {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target)

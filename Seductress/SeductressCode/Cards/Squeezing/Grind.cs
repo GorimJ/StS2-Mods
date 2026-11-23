@@ -45,7 +45,7 @@ public class Grind : SeductressCard
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         var bonus = StandingAssBonus();
         var damage = DynamicVars.CalculationBase.BaseValue + bonus;
-        var hits = 1 + StretchBonusHits(true);
+        var hits = 1; // Stretch My Hole Daddy adds its hit through StretchPower
 
         for (var i = 0; i < hits; i++)
         {

@@ -241,17 +241,6 @@ public abstract class SeductressCard(int cost, CardType type, CardRarity rarity,
         Tags.Contains(SeductressTags.DeepThroat) && Owner.Creature.HasPower<Powers.NoGagReflexPower>();
 
     /// <summary>
-    /// <i>Stretch My Hole Daddy</i>: attacks that cost you HP hit one additional time.
-    /// Only this character's cards consult it, which is all the design needs.
-    ///
-    /// [Gorim, 2026-11-23] "Stretch my hole still tags them as 'attacks that lose hp' even if the hp
-    /// loss is prevented/removed." [Claude] Callers pass whether the card costs HP by its own
-    /// text, not whether HP is lost on this play, so No Gag Reflex no longer cancels the extra hit.
-    /// </summary>
-    protected int StretchBonusHits(bool costsHp) =>
-        costsHp && Owner.Creature.HasPower<Powers.StretchPower>() ? 1 : 0;
-
-    /// <summary>
     /// Tier 4 (7 Sigils): the card repeats a number of times equal to its <b>current</b> cost.
     ///
     /// [Gorim] This rides <c>ModifyCardPlayCount</c> — the hook <c>DuplicationPower</c> uses —

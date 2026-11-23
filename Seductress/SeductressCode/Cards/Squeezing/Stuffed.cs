@@ -42,7 +42,7 @@ public class Stuffed : SeductressCard
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         var bonus = StandingAssBonus();
         var belowHalf = Owner.Creature.CurrentHp * 2 < Owner.Creature.MaxHp;
-        var hits = 1 + (belowHalf ? 1 : 0) + StretchBonusHits(true);
+        var hits = 1 + (belowHalf ? 1 : 0); // Stretch My Hole Daddy adds its hit through StretchPower
 
         for (var i = 0; i < hits; i++)
         {

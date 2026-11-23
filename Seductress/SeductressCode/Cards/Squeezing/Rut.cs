@@ -40,7 +40,7 @@ public class Rut : SeductressCard
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         var bonus = StandingAssBonus();
-        var hits = 3 + StretchBonusHits(true);
+        var hits = 3; // Stretch My Hole Daddy adds its hit through StretchPower
 
         for (var i = 0; i < hits; i++)
         {
