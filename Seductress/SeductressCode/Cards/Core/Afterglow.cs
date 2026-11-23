@@ -57,8 +57,10 @@ public class Afterglow : SeductressCard
         var power = await PowerCmd.Apply<AfterglowPower>(choiceContext, Owner.Creature, block, Owner.Creature, this);
         if (power is not null)
         {
-            if (Sigils.At(Owner, Sigils.Tier2)) power.DrawOnClimax = 3;
-            if (Sigils.At(Owner, Sigils.Tier4)) power.EnergyOnClimax = 2;
+            // [Gorim, 2026-11-23] copies stack: each adds its own draw and Energy.
+            power.Copies++;
+            power.DrawOnClimax += Sigils.At(Owner, Sigils.Tier2) ? 3 : 2;
+            if (Sigils.At(Owner, Sigils.Tier4)) power.EnergyOnClimax += 2;
         }
         Systems.ClimaxModel.Instance.LustSkips++; // [Gorim, 2026-11-23]
     }

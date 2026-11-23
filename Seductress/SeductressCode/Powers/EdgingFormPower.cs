@@ -19,5 +19,5 @@ public class EdgingFormPower : SeductressPower
     public override List<(string, string)>? Localization => new PowerLoc(
         "Edging Form",
         "Whenever an Attack gains cum, gain that much again as precum in the same hole.",
-        "Whenever an Attack gains cum, gain that much again as precum in the same hole.");
+        "Whenever an Attack gains cum, gain {Amount} times that much as precum in the same hole.");
 }

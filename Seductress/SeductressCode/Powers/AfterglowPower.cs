@@ -42,6 +42,14 @@ public class AfterglowPower : SeductressPower, IClimaxListener
     /// <summary>Stacks of Sensitive on the owner — i.e. Climaxes so far this combat.</summary>
     private int SensitiveStacks => Owner.GetPowerAmount<SensitivePower>();
 
+    /// <summary>
+    /// [Gorim, 2026-11-23] Powers stack. Copies played; the turn engine runs once per copy. The
+    /// Block (the power's amount) and the Climax draw and Energy add up per copy as well.
+    /// </summary>
+    public int Copies { get; set; }
+
+    private int Engine => SensitiveStacks * System.Math.Max(1, Copies);
+
     /// <summary>The burst. Block per stack; the card applies 15 as the amount.</summary>
     public async Task OnClimax(Creature owner)
     {
@@ -51,7 +59,7 @@ public class AfterglowPower : SeductressPower, IClimaxListener
     }
 
     /// <summary>Cards drawn on each Climax: 2, or 3 from the card's 3-Sigil stage. Set by the card.</summary>
-    public int DrawOnClimax { get; set; } = 2;
+    public int DrawOnClimax { get; set; }
 
     /// <summary>Energy on each Climax: 0, or 2 at the card's 7-Sigil stage. Set by the card.</summary>
     public int EnergyOnClimax { get; set; }
@@ -62,7 +70,7 @@ public class AfterglowPower : SeductressPower, IClimaxListener
     /// <c>DrawCardsNextTurnPower</c> uses.
     /// </summary>
     public override decimal ModifyHandDraw(Player player, decimal count) =>
-        player == Owner.Player ? count + SensitiveStacks : count;
+        player == Owner.Player ? count + Engine : count;
 
     /// <summary>
     /// The engine's energy half. AfterEnergyReset fires every turn once energy has been restored
@@ -72,7 +80,7 @@ public class AfterglowPower : SeductressPower, IClimaxListener
     public override async Task AfterEnergyReset(Player player)
     {
         if (player != Owner.Player) return;
-        var stacks = SensitiveStacks;
+        var stacks = Engine;
         if (stacks > 0) await PlayerCmd.GainEnergy(stacks, player);
     }
 }

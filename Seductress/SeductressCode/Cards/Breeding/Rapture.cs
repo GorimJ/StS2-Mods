@@ -68,8 +68,9 @@ public class Rapture : SeductressCard
         ClimaxModel.Instance.LustSkips++; // [Gorim, 2026-11-23]
         if (power is null) return;
 
-        power.BlockOnClimax = Sigils.At(Owner, Sigils.Tier1) ? (int)block : 0;
-        power.EnergyOnClimax = Sigils.At(Owner, Sigils.Tier4) ? 6 : 3;
+        // [Gorim, 2026-11-23] copies stack: each adds its own Block and Energy on Climax.
+        power.BlockOnClimax += Sigils.At(Owner, Sigils.Tier1) ? (int)block : 0;
+        power.EnergyOnClimax += Sigils.At(Owner, Sigils.Tier4) ? 6 : 3;
     }
 
     protected override void OnUpgrade() => DynamicVars["Strength"].UpgradeValueBy(1m);

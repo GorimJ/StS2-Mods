@@ -20,7 +20,7 @@ public class RapturePower : SeductressPower, IClimaxListener
     public int BlockOnClimax { get; set; }
 
     /// <summary>Energy on each Climax — 3, or 6 at the card's tier 4. Set by the card.</summary>
-    public int EnergyOnClimax { get; set; } = 3;
+    public int EnergyOnClimax { get; set; }
 
     /// <summary>Strength per stack; Block and energy are configured by the card's tiers.</summary>
     public async Task OnClimax(Creature owner)

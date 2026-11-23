@@ -30,10 +30,11 @@ namespace Seductress.SeductressCode.Powers;
 public class StretchPower : SeductressPower
 {
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Single;
+    /// <summary>[Gorim, 2026-11-23] Powers stack: each copy adds one more hit.</summary>
+    public override PowerStackType StackType => PowerStackType.Counter;
 
     public override List<(string, string)>? Localization => new PowerLoc(
-        "Stretch My Hole Daddy", "Attacks that cost you HP hit one additional time.", "Attacks that cost you HP hit one additional time.");
+        "Stretch My Hole Daddy", "Attacks that cost you HP hit additional times.", "Attacks that cost you HP hit {Amount} additional time(s).");
 
     private CardPlay? _lastBoosted;
 
@@ -47,6 +48,6 @@ public class StretchPower : SeductressPower
         if (attack.ModelSource is not CardModel card || attack.CardPlay is not { } play) return hitCount;
         if (ReferenceEquals(play, _lastBoosted) || !CostsHp(card)) return hitCount;
         _lastBoosted = play;
-        return hitCount + 1;
+        return hitCount + (int)Amount;
     }
 }
