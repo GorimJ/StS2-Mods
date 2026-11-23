@@ -35,8 +35,9 @@ public class MilkingThroat : SeductressCard
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<MilkingThroatPower>(
+        var throat = await PowerCmd.Apply<MilkingThroatPower>(
             choiceContext, Owner.Creature, 1m, Owner.Creature, this);
+        throat?.Refresh();
     }
 
     protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);

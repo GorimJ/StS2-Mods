@@ -64,13 +64,13 @@ public class Rapture : SeductressCard
         await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Move, cardPlay);
 
         var power = await PowerCmd.Apply<RapturePower>(
-            choiceContext, Owner.Creature, DynamicVars["Strength"].BaseValue, Owner.Creature, this);
+            choiceContext, Owner.Creature, 1m, Owner.Creature, this);
         ClimaxModel.Instance.LustSkips++; // [Gorim, 2026-11-23]
         if (power is null) return;
 
-        // [Gorim, 2026-11-23] copies stack: each adds its own Block and Energy on Climax.
-        power.BlockOnClimax += Sigils.At(Owner, Sigils.Tier1) ? (int)block : 0;
-        power.EnergyOnClimax += Sigils.At(Owner, Sigils.Tier4) ? 6 : 3;
+        // [Gorim, 2026-11-23] one stack per copy; each adds its own Energy, Strength and Block.
+        power.AddCopy(Sigils.At(Owner, Sigils.Tier4) ? 6 : 3, (int)DynamicVars["Strength"].BaseValue,
+            Sigils.At(Owner, Sigils.Tier1) ? (int)block : 0);
     }
 
     protected override void OnUpgrade() => DynamicVars["Strength"].UpgradeValueBy(1m);

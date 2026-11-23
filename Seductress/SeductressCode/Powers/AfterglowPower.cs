@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -37,32 +38,46 @@ public class AfterglowPower : SeductressPower, IClimaxListener
     public override List<(string, string)>? Localization => new PowerLoc(
         "Afterglow",
         "Whenever you Climax, gain Block and draw cards. Each turn, draw a card and gain 1 Energy per stack of Sensitive.",
-        "Whenever you Climax, gain Block and draw cards. Each turn, draw a card and gain 1 Energy per stack of Sensitive.");
+        "Whenever you Climax, gain {Block} [gold]Block[/gold], {Energy} [gold]Energy[/gold] and draw {Draw}. Each turn, draw {Amount} and gain {Amount} [gold]Energy[/gold] per stack of [gold]Sensitive[/gold].");
+
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+        [new DynamicVar("Block", 0m), new DynamicVar("Energy", 0m), new DynamicVar("Draw", 0m)];
+
+    /// <summary>
+    /// [Gorim, 2026-11-23] "When you play it twice it should show 2 stacks of the buff." The
+    /// amount is the copies played; each copy adds its Block, draw and Energy here.
+    /// </summary>
+    public void AddCopy(int block, int draw, int energy)
+    {
+        BlockOnClimax += block;
+        DrawOnClimax += draw;
+        EnergyOnClimax += energy;
+        DynamicVars["Block"].BaseValue = BlockOnClimax;
+        DynamicVars["Draw"].BaseValue = DrawOnClimax;
+        DynamicVars["Energy"].BaseValue = EnergyOnClimax;
+    }
+
+    public int BlockOnClimax { get; private set; }
 
     /// <summary>Stacks of Sensitive on the owner — i.e. Climaxes so far this combat.</summary>
     private int SensitiveStacks => Owner.GetPowerAmount<SensitivePower>();
 
-    /// <summary>
-    /// [Gorim, 2026-11-23] Powers stack. Copies played; the turn engine runs once per copy. The
-    /// Block (the power's amount) and the Climax draw and Energy add up per copy as well.
-    /// </summary>
-    public int Copies { get; set; }
-
-    private int Engine => SensitiveStacks * System.Math.Max(1, Copies);
+    /// <summary>[Gorim, 2026-11-23] Powers stack: the turn engine runs once per copy.</summary>
+    private int Engine => SensitiveStacks * (int)Amount;
 
     /// <summary>The burst. Block per stack; the card applies 15 as the amount.</summary>
     public async Task OnClimax(Creature owner)
     {
-        await CreatureCmd.GainBlock(owner, Amount, ValueProp.Move, null);
+        await CreatureCmd.GainBlock(owner, BlockOnClimax, ValueProp.Move, null);
         if (EnergyOnClimax > 0) await PlayerCmd.GainEnergy(EnergyOnClimax, owner.Player!);
         await CardPileCmd.Draw(new ThrowingPlayerChoiceContext(), DrawOnClimax, owner.Player!);
     }
 
     /// <summary>Cards drawn on each Climax: 2, or 3 from the card's 3-Sigil stage. Set by the card.</summary>
-    public int DrawOnClimax { get; set; }
+    public int DrawOnClimax { get; private set; }
 
     /// <summary>Energy on each Climax: 0, or 2 at the card's 7-Sigil stage. Set by the card.</summary>
-    public int EnergyOnClimax { get; set; }
+    public int EnergyOnClimax { get; private set; }
 
     /// <summary>
     /// The engine's draw half. Routed through ModifyHandDraw rather than drawing by hand at turn

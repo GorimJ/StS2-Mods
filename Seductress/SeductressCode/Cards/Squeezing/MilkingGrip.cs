@@ -32,6 +32,7 @@ public class MilkingGrip : SeductressCard
         // [Claude, 2026-11-14] The upgrade was specified (cards doc: "lose 3%") and the power already
         // supported it, but nothing ever set it. 3% of the bank against the normal 10% is 30% as much.
         if (IsUpgraded) power?.SetDrainPercent(UpgradedDrainPercent);
+        power?.Refresh();
     }
 
     /// <summary>Upgraded drain, as a percentage of the bank. The base card's is the power's default 5.</summary>

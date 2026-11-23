@@ -54,14 +54,9 @@ public class Afterglow : SeductressCard
         var block = Sigils.At(Owner, Sigils.Tier3) ? DynamicVars["Tier3Block"].BaseValue
                   : Sigils.At(Owner, Sigils.Tier1) ? DynamicVars["Tier1Block"].BaseValue
                   : DynamicVars.Block.BaseValue;
-        var power = await PowerCmd.Apply<AfterglowPower>(choiceContext, Owner.Creature, block, Owner.Creature, this);
-        if (power is not null)
-        {
-            // [Gorim, 2026-11-23] copies stack: each adds its own draw and Energy.
-            power.Copies++;
-            power.DrawOnClimax += Sigils.At(Owner, Sigils.Tier2) ? 3 : 2;
-            if (Sigils.At(Owner, Sigils.Tier4)) power.EnergyOnClimax += 2;
-        }
+        // [Gorim, 2026-11-23] one stack per copy; each copy adds its own Block, draw and Energy.
+        var power = await PowerCmd.Apply<AfterglowPower>(choiceContext, Owner.Creature, 1m, Owner.Creature, this);
+        power?.AddCopy((int)block, Sigils.At(Owner, Sigils.Tier2) ? 3 : 2, Sigils.At(Owner, Sigils.Tier4) ? 2 : 0);
         Systems.ClimaxModel.Instance.LustSkips++; // [Gorim, 2026-11-23]
     }
 

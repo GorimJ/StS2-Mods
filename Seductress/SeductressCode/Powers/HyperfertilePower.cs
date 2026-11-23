@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -22,19 +23,35 @@ public class HyperfertilePower : SeductressPower
     /// <summary>
     /// [Gorim, 2026-11-23] "Once per turn triggers obviously happen twice? And 'your next climax'
     /// becomes 'your next 2 climaxes'? Obviously?" A stacked power does its thing once per stack.
-    /// [Claude] So each copy doubles (or triples) the Pussy cum again, and adds its own % per HP.
+    ///
+    /// [Gorim, 2026-11-23] "They should go x2 x3 x4 rather than x2 x4 x8. And we should show it as a
+    /// stacking power on the bar with correct numbers. When you play it twice it should show 2
+    /// stacks of the buff."
+    /// The amount is the copies played. Each copy adds x1 to the Pussy cum multiplier (x2 at
+    /// 7 Sigils, [Claude] reading), and its own % per missing HP.
     /// </summary>
     public override PowerStackType StackType => PowerStackType.Counter;
 
     public override List<(string, string)>? Localization => new PowerLoc(
         "Hyperfertile",
-        "Gain twice as much Pussy cum. Your Pussy attacks deal 1% more damage for each HP the enemy is missing.",
-        "Gain twice as much Pussy cum. Your Pussy attacks deal 1% more damage for each HP the enemy is missing.");
+        "Gain more Pussy cum. Your Pussy attacks deal more damage for each HP the enemy is missing.",
+        "Gain x{Mult} Pussy cum. Your Pussy attacks deal {Pct}% more damage for each HP the enemy is missing.");
+
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Mult", 1m), new DynamicVar("Pct", 0m)];
+
+    /// <summary>Called by the card after each copy: adds that copy's share and refreshes the tooltip.</summary>
+    public void AddCopy(int percent, bool tier4)
+    {
+        PercentPerHp += percent;
+        CumMultiplier += tier4 ? 2 : 1;
+        DynamicVars["Mult"].BaseValue = CumMultiplier;
+        DynamicVars["Pct"].BaseValue = PercentPerHp;
+    }
 
     /// <summary>Percent more damage per missing HP: 1, 2 or 3 by the card's Sigil stage. Set by the card.</summary>
     public int PercentPerHp { get; set; }
 
-    /// <summary>Pussy cum multiplier: 2, or 3 at the card's 7-Sigil stage. Set by the card.</summary>
+    /// <summary>Pussy cum multiplier: 1 + one per copy (two per copy played at 7 Sigils).</summary>
     public int CumMultiplier { get; set; } = 1;
 
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,

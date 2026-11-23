@@ -25,7 +25,12 @@ public class MilkingGripPower : SeductressPower
     /// <summary>
     /// [Gorim, 2026-11-23] "Once per turn triggers obviously happen twice? And 'your next climax'
     /// becomes 'your next 2 climaxes'? Obviously?" A stacked power does its thing once per stack.
-    /// [Claude] Each copy cuts the loss again and doubles Ass kill intake again.
+    ///
+    /// [Gorim, 2026-11-23] "They should go x2 x3 x4 rather than x2 x4 x8. And we should show it as a
+    /// stacking power on the bar with correct numbers. When you play it twice it should show 2
+    /// stacks of the buff."
+    /// The loss is divided by (copies + 1) and Ass kill intake multiplied by (copies + 1); an
+    /// upgraded copy's better rate scales the same way ([Claude] reading).
     /// </summary>
     public override PowerStackType StackType => PowerStackType.Counter;
 
@@ -51,8 +56,21 @@ public class MilkingGripPower : SeductressPower
     }
 
     /// <summary>The share of a card's notional drain actually paid. 0.5 at 5%, 0.3 at 3%.</summary>
-    public double DrainShare => System.Math.Pow(DrainPercent / (double)BaseDrainPercent, System.Math.Max(1, (int)Amount));
+    public double DrainShare => DrainPercent / (double)BaseDrainPercent * 2.0 / (System.Math.Max(1, (int)Amount) + 1);
+
+    /// <summary>Ass kill intake multiplier: x(copies + 1).</summary>
+    public int KillMultiplier => System.Math.Max(1, (int)Amount) + 1;
+
+    protected override IEnumerable<MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVar> CanonicalVars =>
+        [new MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVar("Loss", 50m),
+         new MegaCrit.Sts2.Core.Localization.DynamicVars.DynamicVar("Mult", 2m)];
+
+    public void Refresh()
+    {
+        DynamicVars["Loss"].BaseValue = (decimal)System.Math.Round(DrainShare * 100);
+        DynamicVars["Mult"].BaseValue = KillMultiplier;
+    }
 
     public override List<(string, string)>? Localization => new PowerLoc(
-        "Milking Grip", "Ass attacks lose half as much, but gain full Strength. Ass kills gain double intake.", "Ass attacks lose half as much, but gain full Strength. Ass kills gain double intake.");
+        "Milking Grip", "Ass attacks lose less, but gain full Strength. Ass kills gain more intake.", "Ass attacks lose {Loss}% as much, but gain full Strength. Ass kills gain x{Mult} intake.");
 }

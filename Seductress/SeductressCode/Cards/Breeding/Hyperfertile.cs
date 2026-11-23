@@ -61,9 +61,8 @@ public class Hyperfertile : SeductressCard
         var power = await PowerCmd.Apply<HyperfertilePower>(choiceContext, Owner.Creature, 1m, Owner.Creature, this);
         if (power is null) return;
         var percent = Sigils.At(Owner, Sigils.Tier3) ? 3 : Sigils.At(Owner, Sigils.Tier1) ? 2 : 1;
-        // [Gorim, 2026-11-23] each copy does its thing again.
-        power.PercentPerHp += percent;
-        power.CumMultiplier *= Sigils.At(Owner, Sigils.Tier4) ? 3 : 2;
+        // [Gorim, 2026-11-23] each copy adds x1 (x2, x3, x4), not another doubling.
+        power.AddCopy(percent, Sigils.At(Owner, Sigils.Tier4));
     }
 
     protected override void OnUpgrade() => EnergyCost.UpgradeBy(-1);
