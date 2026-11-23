@@ -233,17 +233,27 @@ public static class Stomach
     public static async Task SwallowIfFull(Player player, int asked = 0, int fitted = 0, bool cum = true)
     {
         var r = Reservoirs.Of(player.RunState);
-        if (!SwallowsAtFifty(r.Stomach)) return;
-
         var left = asked - fitted;
-        while (true)
+
+        if (SwallowsAtFifty(r.Stomach))
         {
-            if (r.MouthTotal >= ReservoirState.MouthCap) await SwallowAll(player, "GULP (mouth full)");
-            if (left <= 0) break;
-            var went = cum ? r.AddMouthCum(left) : r.AddPrecum(left);
-            if (went <= 0) break;
-            left -= went;
-            MainFile.Logger.Info($"[Seductress] after the Gulp: +{went} ml {(cum ? "cum" : "precum")} | mouth {r.Mouth}+{r.Precum}p");
+            while (true)
+            {
+                if (r.MouthTotal >= ReservoirState.MouthCap) await SwallowAll(player, "GULP (mouth full)");
+                if (left <= 0) break;
+                var went = cum ? r.AddMouthCum(left) : r.AddPrecum(left);
+                if (went <= 0) break;
+                left -= went;
+                MainFile.Logger.Info($"[Seductress] after the Gulp: +{went} ml {(cum ? "cum" : "precum")} | mouth {r.Mouth}+{r.Precum}p");
+            }
+        }
+
+        // [Gorim, 2026-11-23] "If you gain cum and your mouth is full, it should splash onto your
+        // skin." Cum only; precum that does not fit is still lost.
+        if (cum && left > 0)
+        {
+            r.Skin += left;
+            MainFile.Logger.Info($"[Seductress] mouth full: {left} ml cum splashes onto Skin (Skin {r.Skin})");
         }
     }
 }

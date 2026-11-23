@@ -378,14 +378,13 @@ public class ClimaxModel : CustomSingletonModel
         if (hole == Hole.Pussy && me.Creature.GetPower<Powers.HyperfertilePower>() is { } fertile) ml *= fertile.CumMultiplier;
 
         var res = Reservoirs.Of(me.RunState);
-        var before = res.Get(hole);
-        res.Add(hole, ml);
-        var landed = res.Get(hole) - before;
+        var landed = res.Add(hole, ml);
 
         FloorLog.RecordIntake(ml);
         MainFile.Logger.Info(
             $"[Seductress] Intake {ml} ml -> {hole} ({why})" +
-            (landed < ml ? $" — {ml - landed} ml did not fit and is lost" : "") +
+            (landed < ml && hole != Hole.Mouth ? $" — {ml - landed} ml did not fit and is lost" : "") +
+            (landed < ml && hole == Hole.Mouth ? $" — {ml - landed} ml did not fit (Gulp or splash next)" : "") +
             (hole == Hole.Ass && res.PlugIn ? " — BLOCKED, the Plug is in" : ""));
 
         int edgingAsked = 0, edgingFitted = 0;

@@ -147,12 +147,20 @@ public class ReservoirState
     };
 
     /// <summary>
-    /// Adds real cum to the Mouth, respecting the combined cap. Returns what actually fitted.
+    /// Adds real cum to the Mouth, respecting the combined cap. Returns what actually went in.
+    ///
+    /// [Gorim, 2026-11-23] "Gaining cum when it fills your mouth and you can't gain more cum
+    /// should displace any precum that is there." Free room first, then precum is pushed out to
+    /// make room. [Claude] Pushed-out precum is simply gone; what still does not fit is the
+    /// caller's to splash onto Skin (<see cref="Stomach.SwallowIfFull"/>), after any Gulp.
     /// </summary>
     public int AddMouthCum(int ml)
     {
         var room = Math.Max(0, MouthCap - MouthTotal);
         var added = Math.Min(ml, room);
+        var displaced = Math.Min(Precum, ml - added);
+        Precum -= displaced;
+        added += displaced;
         Mouth += added;
         return added;
     }
@@ -196,14 +204,14 @@ public class ReservoirState
 
     // ---------------------------------------------------------------- routing
 
-    /// <summary>Routes <paramref name="ml"/> into the container the hole fills, capped.</summary>
-    public void Add(Hole hole, int ml)
+    /// <summary>Routes <paramref name="ml"/> into the container the hole fills. Returns what went in.</summary>
+    public int Add(Hole hole, int ml)
     {
         switch (hole)
         {
-            case Hole.Mouth: AddMouthCum(ml); break;
+            case Hole.Mouth: return AddMouthCum(ml);
             // The Plug blocks filling as well as leaking (design §7.3).
-            case Hole.Ass when PlugIn: break;
+            case Hole.Ass when PlugIn: return 0;
 
             // [Claude-Code] Deliberately NOT capped at 200. The old code clamped here, which
             // silently made inflation impossible — and inflation is a stated mechanic (§6.1) that
@@ -213,6 +221,7 @@ public class ReservoirState
             case Hole.Pussy: Womb += ml; break;
             default: Skin += ml; break;
         }
+        return ml;
     }
 
     /// <summary>
