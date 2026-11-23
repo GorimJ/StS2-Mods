@@ -570,8 +570,9 @@ shape from design §7.1:
 **[Gorim, 2026-11-17] *Hyperfertile*** — 2, Power, Rare: *Gain twice as much Pussy cum. Your Pussy attacks deal **1%** more
 damage for each HP the enemy is missing.* Upgrade costs 1 ([Claude]'s number). Not tiered by Sigils.
 
-> **Leg-Locked** — while an enemy is Leg-Locked, its death routes its output to your **Pussy**,
-> whatever killed it. Counts down at the end of its turn.
+> **Leg-Locked** — **[Gorim, 2026-11-23]** all cum this enemy produces goes to your **Pussy**, from
+> hits and from its death ("all cum produced by this enemy. So including attacks against them").
+> Counts down at the end of its turn.
 
 [Claude, as built 2026-11-20] With intake now per hit, cum from **hits** on a Leg-Locked enemy goes to the Pussy as
 well as its kill bonus.

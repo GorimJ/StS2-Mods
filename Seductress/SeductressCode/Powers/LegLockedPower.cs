@@ -32,8 +32,10 @@ public class LegLockedPower : SeductressPower
 
     public override List<(string, string)>? Localization => new PowerLoc(
         "Leg-Locked",
-        "When this enemy dies, its output routes to your Pussy whatever killed it. Counts down at the end of its turn.",
-        "When this enemy dies, its output routes to your Pussy whatever killed it. Counts down at the end of its turn.");
+        // [Gorim, 2026-11-23] "should be 'all cum produced by this enemy'. So including attacks
+        // against them." Hits already routed here since 2026-11-20; the text now says so.
+        "All cum this enemy produces goes to your Pussy, from hits and from its death. Drops by 1 at the end of its turn.",
+        "All cum this enemy produces goes to your Pussy, from hits and from its death. Drops by 1 at the end of its turn.");
 
     public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
         IEnumerable<Creature> participants)

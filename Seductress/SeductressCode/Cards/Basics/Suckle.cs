@@ -50,6 +50,9 @@ public class Suckle : SeductressCard
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
         var target = cardPlay.Target;
+        // [Gorim, 2026-11-23] Leg-Locked claims all cum the enemy produces, so Suckle's kill cum
+        // goes to the Womb too. Read before the attack, while the enemy still holds the power.
+        var legLocked = target.HasPower<Powers.LegLockedPower>();
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(target)
             .WithHitFx("vfx/vfx_attack_slash").Execute(choiceContext);
@@ -60,6 +63,12 @@ public class Suckle : SeductressCard
         // Read the target after the attack resolves. A Climaxed enemy is no longer alive, which is
         // the same test the intake routing uses.
         var killed = !target.IsAlive;
+        if (killed && legLocked)
+        {
+            r.Add(Hole.Pussy, ml);
+            MainFile.Logger.Info($"[Seductress] Suckle: +{ml} ml cum -> Pussy (Leg-Locked kill)");
+            return;
+        }
         var added = killed ? r.AddMouthCum(ml) : r.AddPrecum(ml);
 
         MainFile.Logger.Info(
