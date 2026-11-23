@@ -119,5 +119,13 @@ public class Seductress : PlaceholderCharacterModel
     public override string CustomIconTexturePath => "character_icon_char_name.png".CharacterUiPath();
     public override string CustomCharacterSelectIconPath => "char_select_char_name.png".CharacterUiPath();
     public override string CustomCharacterSelectLockedIconPath => "char_select_char_name_locked.png".CharacterUiPath();
+    /// <summary>
+    /// [Claude, 2026-11-23] Her own character-select splash. Without this, PlaceholderCharacterModel
+    /// fell back to the Ironclad's. The scene is one TextureRect that covers the screen and keeps
+    /// the picture's shape; the art is images/char_select/char_select_bg_seductress.png
+    /// (1920 x 1080, a placeholder until Gorim's splash replaces it).
+    /// </summary>
+    public override string CustomCharacterSelectBg => $"{MainFile.ResPath}/scenes/char_select_bg_seductress.tscn";
+
     public override string CustomMapMarkerPath => "map_marker_char_name.png".CharacterUiPath();
 }
