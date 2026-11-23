@@ -36,5 +36,5 @@ public class Rehydrate : SeductressCard
         await PowerCmd.Apply<RehydratePower>(choiceContext, Owner.Creature, ml, Owner.Creature, this);
     }
 
-    protected override void OnUpgrade() => DynamicVars["Ml"].UpgradeValueBy(15m);
+    protected override void OnUpgrade() => DynamicVars["Ml"].UpgradeValueBy(20m); // [Gorim, 2026-11-23] 70, rounded up from 65
 }

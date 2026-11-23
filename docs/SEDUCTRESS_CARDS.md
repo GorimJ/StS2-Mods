@@ -292,8 +292,8 @@ puzzle.
 
 | Card | Cost | Type | Rarity | Text | Upgrade |
 |---|---|---|---|---|---|
-| **Rehydrate** | 1 | Skill | Common | **Eat 50.** Your next Attack gains **50** ml precum. | 65 and 65 |
-| **Catch Your Breath** | 1 | Skill | Common | Gain **6** Block. **Eat 15.** | 9 Block |
+| **Rehydrate** | 1 | Skill | Common | **Eat 50.** Your next Attack gains **50** ml precum. | 70 and 70 (23 Nov, rounded up from 65) |
+| **Catch Your Breath** | 1 | Skill | Common | Gain **6** Block. **Eat 20** (23 Nov, was 15). | 9 Block |
 | **Keep Going** | 1 | Attack · *Continuing* | Common | Deal **8** damage. If your last Attack used a hole, draw **1**. | Draw 2 |
 | **Faster** | 1 | Attack · *Continuing* | Uncommon | Deal **4** damage twice. | 5 twice |
 | **Bat Eyelashes** | 0 | Skill | Common | Apply **1 Weak** to ALL enemies. | Also 1 Vulnerable |
@@ -426,7 +426,7 @@ It triggers on cards and powers, not on the Stomach milestone's combat-start pre
 | Card | Cost | Type | Rarity | Text | Upgrade |
 |---|---|---|---|---|---|
 | **Lip Service** | 1 | Attack · *Mouth* | Common | Deal **7** damage. | 10 |
-| **Lick Pre-cum** | 1 | Skill | Common | Gain **25 ml precum**. Apply **1 Weak** to ALL enemies. | 40 ml |
+| **Lick Pre-cum** | 1 | Skill | Common | Gain **30 ml precum** (23 Nov, was 25). Apply **1 Weak** to ALL enemies. | 40 ml |
 | **Spit** | 1 | Attack | Uncommon | Empty your Mouth. Deal damage equal to **10%** of the ml to ALL enemies, and apply **1 Weak and 1 Vulnerable per 50 ml** emptied. | 20% |
 | **Restraint** | 2 | Power | Uncommon | While your HP is above half, gain **4** Block at the start of your turn. | 6 Block |
 | **Milked Dry** | 3 | Attack · *Mouth* | Rare | Deal **10** damage to ALL enemies. Gain **75 ml precum**. | 14 damage |

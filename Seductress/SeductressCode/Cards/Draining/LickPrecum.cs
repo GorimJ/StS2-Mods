@@ -22,7 +22,7 @@ public class LickPrecum : SeductressCard
 {
     public LickPrecum() : base(1, CardType.Skill, CardRarity.Common, TargetType.AllEnemies) { }
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Ml", 25m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Ml", 30m)]; // [Gorim, 2026-11-23] named for rounding up to tens (was 25)
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Lick Pre-cum",
@@ -43,5 +43,5 @@ public class LickPrecum : SeductressCard
         }
     }
 
-    protected override void OnUpgrade() => DynamicVars["Ml"].UpgradeValueBy(15m);
+    protected override void OnUpgrade() => DynamicVars["Ml"].UpgradeValueBy(10m); // 40 upgraded, as before
 }
