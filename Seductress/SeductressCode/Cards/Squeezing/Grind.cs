@@ -49,9 +49,14 @@ public class Grind : SeductressCard
 
         for (var i = 0; i < hits; i++)
         {
-            await DamageCmd.Attack(damage).FromCard(this, cardPlay).Targeting(cardPlay.Target)
+            var attack = await DamageCmd.Attack(damage).FromCard(this, cardPlay).Targeting(cardPlay.Target)
                 .WithHitFx("vfx/vfx_attack_slash").Execute(choiceContext);
-            await CreatureCmd.GainBlock(Owner.Creature, damage, ValueProp.Move, cardPlay);
+            // [Gorim, 2026-11-23] "doesn't gain you block for the additional hits from Stretch my
+            // hole." [Claude] Block is now the damage every hit of the command actually dealt
+            // (Block and HP together), so extra hits from Stretch count. It was the planned
+            // damage of one hit.
+            var dealt = attack.Results.SelectMany(hit => hit).Sum(hit => hit.TotalDamage);
+            if (dealt > 0) await CreatureCmd.GainBlock(Owner.Creature, dealt, ValueProp.Move, cardPlay);
         }
         await CreatureCmd.Damage(choiceContext, Owner.Creature, DynamicVars.HpLoss.BaseValue,
             ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
