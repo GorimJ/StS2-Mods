@@ -43,18 +43,30 @@ public class Consummate : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Consummate",
-        "{S1:cond:Exhaust a Sigil this combat.\nGain {S2:cond:{TierEnergy:energyIcons()}|{Energy:energyIcons()}}.\nDraw {Cards:diff()}.\nGain {S3:cond:{TierBlock:diff()}|{Block:diff()}} [gold]Block[/gold].|Gain {SmallEnergy:energyIcons()}.\nDraw {SmallCards:diff()}.}");
+        "{S1:cond:Exhaust a Sigil this combat.\nGain {S2:cond:{TierEnergy:energyIcons()}|{Energy:energyIcons()}}.\nDraw {Cards:diff()}.\nGain {S3:cond:{TierBlock:diff()}|{Block:diff()}} [gold]Block[/gold].|Gain {SmallEnergy:energyIcons()}.\nDraw {SmallCards:diff()}.}{S4:cond:|\n[gold]Exhaust[/gold].}");
 
     /// <summary>
     /// [Gorim, 2026-11-21] "Consummate is too bad with 0 sigils... I'd like to make it do
     /// something. Probably it should exhaust." He picked the small version: with no Sigil to
     /// spend it gives 1 energy and 1 card. It used to be unplayable then.
     /// </summary>
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+    ///
+    /// [Claude, 2026-11-23] Exhaust is written into the text and decided at play, not carried as
+    /// a keyword, so the Sigil slider's preview matches the fight: the keyword line followed the
+    /// live Sigil count and kept showing "Exhaust" at 7 in the preview.
+    private bool _keepAfterPlay;
+
+    protected override CardLocation GetResultLocationForCardPlay()
+    {
+        var keep = _keepAfterPlay;
+        _keepAfterPlay = false;
+        return keep || IsDupe ? base.GetResultLocationForCardPlay()
+                              : new CardLocation(Owner, PileType.Exhaust, CardPilePosition.Bottom);
+    }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        RefreshExhaust(); // read before the Sigil is spent, so the play that drops below tier 4 still stays
+        _keepAfterPlay = Sigils.At(Owner, Sigils.Tier4); // read before the Sigil is spent
         if (Sigils.Effective(Owner) <= 0)
         {
             await PlayerCmd.GainEnergy(DynamicVars["SmallEnergy"].BaseValue, Owner);
@@ -72,26 +84,6 @@ public class Consummate : SeductressCard
             var block = Sigils.At(Owner, Sigils.Tier3) ? DynamicVars["TierBlock"].BaseValue : DynamicVars.Block.BaseValue;
             await CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Move, cardPlay);
         }
-    }
-
-    /// <summary>Exhaust is on the card below tier 4 and off it at tier 4.</summary>
-    private void RefreshExhaust()
-    {
-        if (Sigils.At(Owner, Sigils.Tier4)) CardCmd.RemoveKeyword(this, CardKeyword.Exhaust);
-        else CardCmd.ApplyKeyword(this, CardKeyword.Exhaust);
-    }
-
-    public override Task AfterCardEnteredCombat(MegaCrit.Sts2.Core.Models.CardModel card)
-    {
-        if (ReferenceEquals(card, this)) RefreshExhaust();
-        return Task.CompletedTask;
-    }
-
-    public override Task AfterCardDrawn(PlayerChoiceContext choiceContext,
-        MegaCrit.Sts2.Core.Models.CardModel card, bool fromHandDraw)
-    {
-        if (ReferenceEquals(card, this)) RefreshExhaust();
-        return Task.CompletedTask;
     }
 
     protected override void OnUpgrade() => DynamicVars["Cards"].UpgradeValueBy(1m);
