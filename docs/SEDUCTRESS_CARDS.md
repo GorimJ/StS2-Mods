@@ -561,8 +561,8 @@ shape from design §7.1:
 | **Ward** | 1 | Skill | Common | Gain **6** Block. *1:* reflect **5** damage to attackers this turn. *3:* gain **12** Block instead. *5:* reflect **10** instead. *7:* repeats **1** time. | 9 base |
 | **Claim** | 1 | Attack · *Pussy* | Uncommon | Deal **7** damage. Lose **1** HP. *1:* apply **1 Vulnerable**. *3:* deal **12** instead. *5:* apply **2 Vulnerable** instead. *7:* repeats **1** time. | 10 / 16 |
 | **Leg Lock** | 1 | Skill | Uncommon | Gain **6** Block. Apply **1 Vulnerable** and **1 Leg-Locked**. *1:* also apply **1 Debilitate**. *3:* apply **2 Leg-Locked** and **2 Vulnerable**. *5:* apply **2 Debilitate** instead. *7:* apply all of it to ALL enemies. | 9 Block |
-| **Ritual Mark** | 1 | Power | Uncommon | Your **Pussy** and **Breasts** cards deal **2** additional damage. *1:* your Sigils deal **1** additional damage. *3:* they deal **4** instead. *5:* Sigils deal **4** too. *7:* both bonuses become **+1 per Sigil**. | Innate |
-| **Consummate** | 0 | Skill | Rare | **Exhaust a Sigil** for this combat: gain **2** energy and draw **3**. *1:* gain **10** Block. *3:* gain **3** energy instead. *5:* gain **20** Block instead. *7:* does not exhaust a Sigil. | Draw 4 |
+| **Ritual Mark** | 1 | Power | Uncommon | Your **Pussy** and **Breasts** cards deal **2** additional damage. *1:* **3** instead. *3:* **4** instead. *5:* **5** instead. *7:* nothing more yet. Copies add together. **[Gorim, 2026-11-23]** No Sigil scaling and no Sigil damage. | Innate |
+| **Consummate** | 0 | Skill | Rare | **Exhaust a Sigil** for this combat: gain **2** energy and draw **3**. *1:* gain **10** Block. *3:* gain **3** energy instead. *5:* gain **20** Block instead. *7:* the card does not Exhaust; it still exhausts a Sigil (**[Gorim, 2026-11-23]**). | Draw 4 |
 | **Rapture** | 3 | Power | Rare | Gain **10** Block. Whenever you Climax, gain **3** energy and **2 Strength**. *1:* also gain **10** Block whenever you Climax. *3:* this costs **1 less**. *5:* both Block values become **20**. *7:* **double** the energy gained. | 3 Strength |
 
 **[Gorim, 2026-11-17] *Hyperfertile*** — 2, Power, Rare: *Gain twice as much Pussy cum. Your Pussy attacks deal **1%** more
@@ -612,11 +612,11 @@ persists at every tier.
 
 **Powers repeat too.** `DuplicationPower` is vanilla and generic, so a repeated Power applies its
 buff twice — the only real exception is a non-stacking Barricade-style effect, and this pool has
-none. *Ritual Mark*'s `+1 per Sigil` and *Rapture*'s doubled energy are **choices**, taken because
+none. *Rapture*'s doubled energy is a **choice** (*Ritual Mark*'s `+1 per Sigil` was too, until **[Gorim, 2026-11-23]** removed it), taken because
 each is more interesting than doubling, not because doubling was unavailable. The rule stands as:
 **everything repeats at tier 4; 0-cost cards shed their non-energy cost instead.**
 
-*Ritual Mark* at 7 Sigils is **+7**, against the **+8** that plain doubling would give — so the
+*[Superseded 2026-11-23: Ritual Mark no longer scales with Sigils.]* *Ritual Mark* at 7 Sigils was **+7**, against the **+8** that plain doubling would give — so the
 scaling tier is a marginal downgrade at exactly the threshold that unlocks it, and only pulls ahead
 from 8 Sigils. Kept deliberately: converting a static buff into a scaling one is the fantasy, and
 7 Sigils is already past the run target, so the tier is aspirational either way.

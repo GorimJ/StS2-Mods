@@ -15,7 +15,11 @@ using Seductress.SeductressCode.Systems;
 namespace Seductress.SeductressCode.Cards;
 
 /// <summary>
-/// Breeding Uncommon Power. Bespoke tier 4 (+1 per Sigil) by choice, not because repeating was
+/// Breeding Uncommon Power. [Gorim, 2026-11-23] "Remove Sigil scaling: the card bonus becomes a
+/// flat amount per copy; no +1 per Sigil at 7." Copies still add together. The 7-Sigil stage now
+/// adds nothing over 5; what it should do is his call.
+///
+/// Earlier: bespoke tier 4 (+1 per Sigil) by choice, not because repeating was
 /// impossible — converting a static buff into a scaling one is the fantasy.
 ///
 /// NOTE: the Sigil half is inert until the Sigil passive (§7.0) exists.
@@ -38,7 +42,7 @@ public class RitualMark : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Ritual Mark",
-        "Your Pussy and Breasts cards deal {S4:cond:{SigilN}|{S3:cond:{Tier3Bonus:diff()}|{S2:cond:{Tier2Bonus:diff()}|{S1:cond:{Tier1Bonus:diff()}|{Bonus:diff()}}}}} additional damage.");
+        "Your Pussy and Breasts cards deal {S3:cond:{Tier3Bonus:diff()}|{S2:cond:{Tier2Bonus:diff()}|{S1:cond:{Tier1Bonus:diff()}|{Bonus:diff()}}}} additional damage.");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -53,8 +57,6 @@ public class RitualMark : SeductressCard
             choiceContext, Owner.Creature, bonus, Owner.Creature, this);
         if (power is null) return;
 
-        power.Copies++;
-        power.PerSigil |= Sigils.At(Owner, Sigils.Tier4);
     }
 
     /// <summary>
