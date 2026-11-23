@@ -868,7 +868,7 @@ this — and it uses a number introduced one version earlier rather than inventi
 give 4× value here, so Strawberry / Pear / Mango at full strength would outclass every other pick
 in the game. At 50% they are still strong and still worth taking.
 
-**[Gorim, 2026-11-23] Max HP loss is halved too:** "Max HP gain is reduced currently, but Max HP loss is not. We should fix that." [Claude] Same rule both ways: half, rounded up, so a loss of 1 stays 1. It covers every vanilla source (events, relics, Brightest Flame, Paper Cuts, the Night Terrors and Terminal modifiers). Event and relic text still shows the full number.
+**[Gorim, 2026-11-23] Max HP loss is halved too:** "Max HP gain is reduced currently, but Max HP loss is not. We should fix that." [Claude] Same rule both ways: half, rounded up, so a loss of 1 stays 1. It covers every vanilla source (events, relics, Brightest Flame, Paper Cuts, the Night Terrors and Terminal modifiers). **[Gorim, 2026-11-23]** "Can we fix shown numbers generically": event, relic, card and potion text now shows the halved Max HP number for her through one display hook (`MaxHpTextPatch`). Still printed in full: Cook, the Blitz merchant, Night Terrors, Terminal, Paper Cuts, Drowning Beacon, Sere Talon, and Tablet of Truth (kept full on purpose: its lethal check uses the full number).
 
 ### 6.4 Skin — the catch-all
 
