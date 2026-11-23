@@ -43,9 +43,7 @@ public class Rapture : SeductressCard
 
     /// <summary>Tier 2 reduces the cost, which also lowers what tier 4 would repeat — see §7.1.</summary>
     private void RefreshCost() =>
-        EnergyCost.SetThisCombat(Sigils.At(Owner, Sigils.Tier2)
-            ? Math.Max(0, EnergyCost.Canonical - 1)
-            : EnergyCost.Canonical);
+        SigilDiscount(Sigils.Tier2);
 
     public override Task AfterCardEnteredCombat(MegaCrit.Sts2.Core.Models.CardModel card)
     {

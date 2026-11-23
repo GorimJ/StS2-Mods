@@ -101,6 +101,25 @@ public abstract class SeductressCard(int cost, CardType type, CardRarity rarity,
         }
     }
 
+    private bool _sigilDiscounted;
+
+    /// <summary>
+    /// "Costs 1 less" from a Sigil stage, applied once per combat as a reduction on top of
+    /// whatever the card costs.
+    ///
+    /// [Gorim, 2026-11-23] "Getting Rapture for free still costs 2, presumably because of how
+    /// we've set the reduced cost." [Claude] It was: the old code set the cost outright each time
+    /// the card was drawn or entered combat, and a cost set later wins over an earlier "free".
+    /// It also ignored the upgraded cost. Once given, the discount stays for the combat even if
+    /// the Sigil count drops.
+    /// </summary>
+    protected void SigilDiscount(int sigils)
+    {
+        if (_sigilDiscounted || Owner is null || !Sigils.At(Owner, sigils)) return;
+        _sigilDiscounted = true;
+        EnergyCost.AddThisCombat(-1, reduceOnly: true);
+    }
+
     /// <summary>How many floor-leaks of Ass this card may spend when played. 0: not a spender.</summary>
     protected virtual int AssSpendLeaks => 0;
 

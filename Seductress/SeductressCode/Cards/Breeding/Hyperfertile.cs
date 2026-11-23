@@ -41,9 +41,7 @@ public class Hyperfertile : SeductressCard
         "Gain {S4:cond:three times|twice} as much Pussy cum. Your Pussy attacks deal {S3:cond:3|{S1:cond:2|1}}% more damage for each HP the enemy is missing.{S2:cond:{Live:cond:|\nCosts 1 less.}|}");
 
     private void RefreshCost() =>
-        EnergyCost.SetThisCombat(Sigils.At(Owner, Sigils.Tier2)
-            ? Math.Max(0, EnergyCost.Canonical - 1)
-            : EnergyCost.Canonical);
+        SigilDiscount(Sigils.Tier2);
 
     public override Task AfterCardEnteredCombat(MegaCrit.Sts2.Core.Models.CardModel card)
     {
