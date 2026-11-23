@@ -30,7 +30,9 @@ public class BallsDeep : SeductressCard
     ];
 
     public override List<(string, string)>? Localization => new CardLoc(
-        "Balls Deep", "Mouth. Deep Throat.\nDeal {Damage:diff()} damage. Lose {HpLoss:diff()} HP.\nPut a card from your discard pile on top of your draw pile. If it is a different Mouth card, put it into your hand instead.");
+        "Balls Deep", "Mouth. Deep Throat.\nDeal {Damage:diff()} damage. Lose {HpLoss:diff()} HP.\nPut a card from your discard pile on top of your draw pile. If it is a different Mouth card, put it into your hand instead.",
+        // [Claude, 2026-11-23] The card picker needs this line; without it the card threw on play.
+        ("selectionScreenPrompt", "Choose a card to take back."));
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
