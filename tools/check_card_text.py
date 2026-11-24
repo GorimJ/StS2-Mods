@@ -65,6 +65,9 @@ def registered_vars(source):
         implied = IMPLICIT_VAR_NAMES.get(match.group(1))
         if implied:
             names.add(implied)
+    # description.Add("Name", ...) in the card's own AddExtraArgsToDescription (2026-11-24)
+    for match in re.finditer(r'description\.Add\(\s*"([^"]+)"', source):
+        names.add(match.group(1))
     return names
 
 

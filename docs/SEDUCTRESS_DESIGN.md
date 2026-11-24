@@ -1488,6 +1488,7 @@ kept at the time and guessing now would be worse than leaving it blank.
 
 ### Open
 
+- **[Gorim, 2026-11-24] Lexicon pass: rename Vigor to "Lubrication".** Noted with the Wet Work change; nothing renamed yet.
 - Resolve the Lust / Lust Sigil naming collision
 - Is 3 Lust right (§5), or should it scale with ascension?
 - Does Squeezing's fullness buff need a cap, given it only leaks 5%?
