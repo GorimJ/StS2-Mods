@@ -89,12 +89,22 @@ public class Plug : SeductressRelic
             ValueProp.Unblockable | ValueProp.Unpowered, dealer: null);
     }
 
-    /// <summary>Ass-tagged cards cost 1 more while the plug is in.</summary>
+    /// <summary>
+    /// Ass-tagged cards cost 1 more while the plug is in.
+    ///
+    /// [Gorim, 2026-11-24, seen in game] "buttplug also doesn't work with 'make this free'
+    /// effects." [Claude] The +1 is added by the cost hook, which runs after the card's own cost
+    /// changes, so a card made free came out at 1. A card that something has made free (its cost
+    /// is 0 but its base cost is not) now stays free. An Ass card whose base cost is 0 still pays
+    /// the +1, as the relic intends.
+    /// </summary>
     public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
     {
         modifiedCost = originalCost;
         if (!Reservoirs.Of(Owner.RunState).PlugIn) return false;
         if (card is not SeductressCard { Hole: Hole.Ass }) return false;
+        if (originalCost <= 0m && card.EnergyCost.GetWithModifiers(MegaCrit.Sts2.Core.Entities.Cards.CostModifiers.None) > 0)
+            return false; // made free: leave it free
 
         modifiedCost = originalCost + 1m;
         return true;
