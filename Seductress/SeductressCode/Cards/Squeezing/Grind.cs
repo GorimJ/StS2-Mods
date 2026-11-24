@@ -38,7 +38,7 @@ public class Grind : SeductressCard
     protected override decimal PreviewBonus() => AssNotional();
 
     public override List<(string, string)>? Localization => new CardLoc(
-        "Grind", "Ass. Deal {CalculatedDamage:diff()} damage. Gain [gold]Block[/gold] equal to the damage dealt. Lose {HpLoss:diff()} HP.\n[i](+1 per 50 ml in your Ass)[/i]");
+        "Grind", "Ass. Deal {CalculatedDamage:diff()} damage. Gain [gold]Block[/gold] equal to the damage dealt. Lose {HpLoss:diff()} HP.{InCombat:\n(+1 per 50 ml in your Ass)|}");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

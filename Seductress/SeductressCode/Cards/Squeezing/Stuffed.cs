@@ -35,7 +35,7 @@ public class Stuffed : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Stuffed",
-        "Ass. Deal {CalculatedDamage:diff()} damage. Lose {HpLoss:diff()} HP.\nIf your HP is below half, hit one additional time.\n[i](+1 per 50 ml in your Ass)[/i]");
+        "Ass. Deal {CalculatedDamage:diff()} damage. Lose {HpLoss:diff()} HP.\nIf your HP is below half, hit one additional time.{InCombat:\n(+1 per 50 ml in your Ass)|}");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

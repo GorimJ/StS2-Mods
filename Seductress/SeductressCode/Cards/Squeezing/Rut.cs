@@ -34,7 +34,7 @@ public class Rut : SeductressCard
     protected override decimal PreviewBonus() => AssNotional();
 
     public override List<(string, string)>? Localization => new CardLoc(
-        "Rut", "Ass. Deal {CalculatedDamage:diff()} damage three times. Lose {HpLoss:diff()} HP.\n[i](+1 per 50 ml in your Ass)[/i]");
+        "Rut", "Ass. Deal {CalculatedDamage:diff()} damage three times. Lose {HpLoss:diff()} HP.{InCombat:\n(+1 per 50 ml in your Ass)|}");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

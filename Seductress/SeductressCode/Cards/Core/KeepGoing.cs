@@ -34,7 +34,7 @@ public class KeepGoing : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Keep Going",
-        "Continuing. Deal {CalculatedDamage:diff()} damage. If your last Attack used a hole, draw {Cards:diff()}.{ContinuingAss:cond:\n[i](+1 per 50 ml in your Ass)[/i]|}");
+        "Continuing. Deal {CalculatedDamage:diff()} damage. If your last Attack used a hole, draw {Cards:diff()}.{ContinuingAss:cond:\n(+1 per 50 ml in your Ass)|}");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

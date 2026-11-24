@@ -49,7 +49,7 @@ IMPLICIT_VAR_NAMES = {
 # IfUpgraded: CardModel adds it to every description, for {IfUpgraded:show:upgraded text|base text}.
 # S1..S4, Live: SeductressCard.AddExtraArgsToDescription adds them to every description, for
 # {S1:cond:text with the tier|text without} (the Sigil tier switches, 2026-11-22).
-ENGINE_PROVIDED = {"energyPrefix", "IfUpgraded", "S1", "S2", "S3", "S4", "Live", "SigilN", "AssSpend", "AssSpendBonus", "ContinuingAss"}
+ENGINE_PROVIDED = {"energyPrefix", "IfUpgraded", "S1", "S2", "S3", "S4", "Live", "SigilN", "AssSpend", "AssSpendBonus", "ContinuingAss", "InCombat"}
 
 COLOUR_TAGS = ("gold", "blue", "red", "green", "purple")
 

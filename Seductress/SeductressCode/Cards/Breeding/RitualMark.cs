@@ -38,7 +38,7 @@ public class RitualMark : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Ritual Mark",
-        "Your Pussy and Breasts cards deal {S4:cond:{SigilN}|{S3:cond:{Tier3Bonus:diff()}|{S2:cond:{Tier2Bonus:diff()}|{S1:cond:{Tier1Bonus:diff()}|{Bonus:diff()}}}}} additional damage.{S4:cond:\n[i](1 per Sigil)[/i]|}");
+        "Your Pussy and Breasts cards deal {S4:cond:{SigilN}|{S3:cond:{Tier3Bonus:diff()}|{S2:cond:{Tier2Bonus:diff()}|{S1:cond:{Tier1Bonus:diff()}|{Bonus:diff()}}}}} additional damage.{S4:cond:{InCombat:\n(1 per Sigil)|}|}");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

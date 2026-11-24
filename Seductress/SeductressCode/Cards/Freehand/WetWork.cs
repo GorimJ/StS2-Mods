@@ -36,7 +36,7 @@ public class WetWork : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Wet Work",
-        "Gain {SkinBlock} [gold]Block[/gold] and {SkinVigor} [gold]Vigor[/gold].\n[i](10% of your cum on Skin)[/i]");
+        "Gain {SkinBlock} [gold]Block[/gold] and {SkinVigor} [gold]Vigor[/gold].{InCombat:\n(10% of your cum on Skin)|}");
 
     // [Gorim, 2026-11-24] "Also we should make wetwork exhaust". Upgraded keeps Exhaust and adds Retain.
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
