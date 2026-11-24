@@ -19,10 +19,15 @@ namespace Seductress.SeductressCode.Cards;
 /// goes to the Stomach and precum is lost. [Claude] The note's "half" was the rate on the day it
 /// was written; the rate became 1 HP per 10 ml on 2026-11-20 and Gulp follows it. The per-ml step
 /// is 25 ml on the x5 scale, so a full Mouth is still +10 Block.
+///
+/// [Gorim, 2026-11-24] "It's actually only good for the gulp early. Maybe it's actually too bad.
+/// Make it cost zero I think. And maybe draw a card after you unlock auto gulp?" Costs 0, and from
+/// the 500 ml Stomach milestone (the automatic Gulp) it also draws 1. [Claude] The draw line shows
+/// on the card only once the milestone is reached, the way Sigil-stage lines do.
 /// </summary>
 public class Mouthful : SeductressCard
 {
-    public Mouthful() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self) { }
+    public Mouthful() : base(0, CardType.Skill, CardRarity.Common, TargetType.Self) { }
 
     private const int MlPerBlock = 25;
 
@@ -34,10 +39,19 @@ public class Mouthful : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Mouthful",
-        "Gain {Block:diff()} [gold]Block[/gold], plus 1 per {Ml:diff()} ml in your Mouth. Then [gold]Gulp[/gold].");
+        "Gain {Block:diff()} [gold]Block[/gold], plus 1 per {Ml:diff()} ml in your Mouth. Then [gold]Gulp[/gold].{AutoGulp:cond:\nDraw 1.|}");
 
     // [Gorim, 2026-11-21] Gulp is a pop-out reminder, not card text (said of Milking Throat;
     // [Claude] applied here too so the two cards match).
+
+    /// <summary>Whether the 500 ml Stomach milestone (automatic Gulp) is reached.</summary>
+    private bool AutoGulp => Owner is not null && Stomach.SwallowsAtFifty(Reservoirs.Of(Owner.RunState).Stomach);
+
+    protected override void AddExtraArgsToDescription(MegaCrit.Sts2.Core.Localization.LocString description)
+    {
+        base.AddExtraArgsToDescription(description);
+        description.Add("AutoGulp", AutoGulp);
+    }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -46,7 +60,9 @@ public class Mouthful : SeductressCard
 
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block.BaseValue + extra, ValueProp.Move, cardPlay);
         MainFile.Logger.Info($"[Seductress] Mouthful: +{extra} Block from {r.MouthTotal} ml in the Mouth, then Gulp");
+        var draws = AutoGulp; // read before the Gulp, which may move the Stomach
         await Stomach.SwallowAll(Owner, "GULP (Mouthful)");
+        if (draws) await CardPileCmd.Draw(choiceContext, 1m, Owner);
     }
 
     protected override void OnUpgrade() => DynamicVars.Block.UpgradeValueBy(2m);
