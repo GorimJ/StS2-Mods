@@ -79,6 +79,7 @@ table above or an older section disagrees, this is right.
 | **Hover pop-outs on cards** for Gulp, Precum, Pussy, Ass, Mouth, Skin, Climax, Sigil, Eat. A card gets a term's pop-out when its text uses the word. Text is in `localization/eng/static_hover_tips.json`. | terms [Gorim]; wording is a [Claude] draft awaiting his edit |
 | **Afterglow** (23 Nov card note): "Ride it out is probably too strong at the base level. Maybe 3 sigil bonus." Afterglow now gives 1 Ride It Out only from 3 Sigils. | [Gorim] |
 | **Wet Work** (24 Nov): "1 block and 1 vigor per 10ml." Per 10 ml on your Skin, gain 1 Block and 1 Vigor; nothing is used up, the holes are untouched, and "spend" is gone from the card. Unplayable under 10 ml of Skin. No upgrade yet: it changes nothing until he picks one. | [Gorim]; reading, playability and upgrade gap [Claude] |
+| **Lip Service** (24 Nov): "Maybe it makes them weak? Just add 1(2) weak (2 for upgraded)". Apply 1 Weak (upgraded 2); damage unchanged. | [Gorim] |
 | **Powers stack** (23 Nov): "a stacked power does its thing once per stack"; "your next Climax" covers the next N; multipliers go "x2 x3 x4 rather than x2 x4 x8", and the bar shows one stack per copy played. Hyperfertile x2/x3/x4 Pussy cum (x3/x5/x7 when played at 7 Sigils), % per missing HP adds per copy; Milking Throat x2/x3/x4 precum, one Gulp; Milking Grip loses 1/2, 1/3, 1/4 as much and x2/x3/x4 Ass kill intake; No Gag Reflex 1/2/3 less; Stretch +1/+2/+3 hits; Hold the Edge prevents 1/2/3 Climaxes; Afterglow and Rapture add each copy's Block, draw, Energy and Strength. | [Gorim] |
 | ~~Open point: the Gulp milestone's "a swallow over 125 ml removes 1 Sensitive" cannot trigger now that the Mouth holds 100 ml.~~ Resolved 23 Nov by the 250 ml Mouth. | [Claude] noticed |
 | **Mouth 250 ml** (23 Nov): "Lets make it 250ml and then I think the milestones are fine as is. The current issue is that on a mouth build you cap mouth basically immediately." Milestones unchanged; the Gulp milestone's 125 ml Sensitive removal can trigger again. | [Gorim] |
@@ -428,7 +429,7 @@ It triggers on cards and powers, not on the Stomach milestone's combat-start pre
 
 | Card | Cost | Type | Rarity | Text | Upgrade |
 |---|---|---|---|---|---|
-| **Lip Service** | 1 | Attack · *Mouth* | Common | Deal **7** damage. | 10 |
+| **Lip Service** | 1 | Attack · *Mouth* | Common | Deal **7** damage. Apply **1** Weak. [Gorim, 2026-11-24] | 10, 2 Weak |
 | **Lick Pre-cum** | 1 | Skill | Common | Gain **30 ml precum** (23 Nov, was 25). Apply **1 Weak** to ALL enemies. | 40 ml |
 | **Spit** | 1 | Attack | Uncommon | Empty your Mouth. Deal damage equal to **10%** of the ml to ALL enemies, and apply **1 Weak and 1 Vulnerable per 50 ml** emptied. | 20% |
 | **Restraint** | 2 | Power | Uncommon | While your HP is above half, gain **4** Block at the start of your turn. | 6 Block |
