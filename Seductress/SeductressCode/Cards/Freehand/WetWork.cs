@@ -38,6 +38,9 @@ public class WetWork : SeductressCard
         "Wet Work",
         "Gain {SkinBlock} [gold]Block[/gold] and {SkinVigor} [gold]Vigor[/gold].\n[i](10% of your cum on Skin)[/i]");
 
+    // [Gorim, 2026-11-24] "Also we should make wetwork exhaust". Upgraded keeps Exhaust and adds Retain.
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         base.ExtraHoverTips.Append(HoverTipFactory.FromPower<VigorPower>());
 

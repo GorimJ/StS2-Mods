@@ -370,7 +370,7 @@ with raw damage, these now do things the tagged groups cannot.
 | **Smothered** | 2 | Attack · *Skin* | Common | Deal **5** damage. Gain **10** Block. Gain **5** Block next turn. | 7 / 13 / 7 |
 | **Thighplay** | 1 | Attack · *Skin* | Uncommon | Deal **9** damage. Your next **Ass** or **Pussy** card costs **1 less**. | 12 damage |
 | **Show Off** | 0 | Attack · *Skin* | Uncommon | Gain **1 Vulnerable**. Deal **10** damage to ALL enemies and apply **1 Vulnerable**. | 14 damage |
-| **Wet Work** | 0 | Skill | Uncommon | Gain **1** Block and **1** Vigor per **10 ml** on your Skin (the card shows the totals). [Gorim, 2026-11-24] | Retain |
+| **Wet Work** | 0 | Skill | Uncommon | Gain **1** Block and **1** Vigor per **10 ml** on your Skin (the card shows the totals). **Exhaust.** [Gorim, 2026-11-24] | Retain |
 
 **The group has an identity now.** Previously it was "the same cards but bigger", which is a
 weak reason to draft anything. Each of these does something structural instead:
