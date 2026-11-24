@@ -22,8 +22,8 @@ namespace Seductress.SeductressCode.Cards;
 /// spend order (Skin, Mouth, Ass, Womb) is gone from this card. Lexicon note for later, not done
 /// here: Vigor is to be called "Lubrication".
 ///
-/// [Claude] Unplayable under 10 ml of Skin, so it cannot be a dead click. No upgrade was given
-/// yet: the upgrade changes nothing until he picks one.
+/// [Claude] Unplayable under 10 ml of Skin, so it cannot be a dead click. [Gorim] Upgraded, it
+/// gains Retain and nothing else.
 ///
 /// [Claude-Code] Untagged: a Skill, so never tagged, and it fills nothing.
 /// </summary>
@@ -64,6 +64,6 @@ public class WetWork : SeductressCard
         await PowerCmd.Apply<VigorPower>(choiceContext, Owner.Creature, points, Owner.Creature, this);
     }
 
-    // [Claude, 2026-11-24] Upgrade pending Gorim's pick; until then it changes nothing.
-    protected override void OnUpgrade() { }
+    // [Gorim, 2026-11-24] Upgrade: Retain (picked from Retain / 1 per 8 ml / Draw 1).
+    protected override void OnUpgrade() => AddKeyword(CardKeyword.Retain);
 }
