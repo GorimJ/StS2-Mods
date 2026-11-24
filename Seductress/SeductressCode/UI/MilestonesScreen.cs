@@ -77,7 +77,7 @@ public partial class MilestonesScreen : CanvasLayer
                 Rung(750, "+50 ml precum\neach combat", r.Stomach),
                 Rung(1000, "Indulge recovers\nall your Skin;\nswallow over 125 ml:\n-1 Sensitive", r.Stomach),
                 Rung(1250, "+75 ml precum\neach combat", r.Stomach),
-                Rung(1500, "precum is banked\nlike cum", r.Stomach),
+                Rung(1500, "precum is banked\nlike cum,\nin every hole", r.Stomach), // [Gorim, 2026-11-24] all holes
                 Rung(1750, "+100 ml precum\neach combat", r.Stomach),
             ]));
 

@@ -834,7 +834,7 @@ so +80–100 effective HP per act — was made for flat per-kill intake.* [Claud
 | every **×250** (250, 750, 1250, 1750 …) | **+25 ml precum** at combat start, cumulative |
 | **500 ml** — *Gulp* | **The Mouth also swallows whenever it is full** (250 ml) |
 | **1000 ml** | **Indulge stops spilling** — 100% reclamation |
-| **1500 ml** | **Precum counts as cum** — it banks instead of evaporating |
+| **1500 ml** | **Precum counts as cum** — it banks instead of evaporating. **[Gorim, 2026-11-24] In every hole:** Mouth precum swallows as cum; Ass and Womb precum (Edging Form) stays as cum there, and what is already in them converts when the Stomach crosses 1500 |
 
 **[clarified] The Mouth banks to the Stomach at the end of every combat, by default.**
 **[Gorim, 2026-09-08] The *Gulp* card is cut** (register 112): the name belongs to the 500 ml milestone

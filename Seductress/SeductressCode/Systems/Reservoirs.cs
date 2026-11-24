@@ -239,12 +239,21 @@ public class ReservoirState
         if (cum > AssHighWater) AssHighWater = cum;
     }
 
+    /// <summary>
+    /// [Gorim, 2026-11-24] The 1500 ml Stomach milestone banks precum in every hole: "Yes, all
+    /// holes: from 1500 ml, Ass and Pussy precum stays and counts as cum too." [Claude] From then
+    /// on, precum added to the Ass or Womb is simply cum there (it is not tracked as precum, so
+    /// it never evaporates and counts toward the Ass high-water mark and the Womb).
+    /// </summary>
+    public bool HolePrecumBanks => Systems.Stomach.PrecumBanks(Stomach);
+
     /// <summary>Adds precum to the Ass. Blocked by the Plug like any other filling. Returns what was added.</summary>
     public int AddAssPrecum(int ml)
     {
         if (PlugIn || ml <= 0) return 0;
         _ass += ml;
-        AssPrecum += ml;
+        if (HolePrecumBanks) TouchAssHighWater();
+        else AssPrecum += ml;
         return ml;
     }
 
@@ -253,13 +262,35 @@ public class ReservoirState
     {
         if (ml <= 0) return 0;
         _womb += ml;
-        WombPrecum += ml;
+        if (!HolePrecumBanks) WombPrecum += ml;
         return ml;
     }
 
-    /// <summary>The bell: whatever precum is left in the Ass and Womb is gone. Returns (ass, womb) lost.</summary>
+    /// <summary>
+    /// [Claude, 2026-11-24] Turns the precum already in the Ass and Womb into cum, when the Stomach
+    /// reaches 1500 ml. Returns (ass, womb) converted.
+    /// </summary>
+    public (int Ass, int Womb) BankHolePrecum()
+    {
+        var banked = (AssPrecum, WombPrecum);
+        AssPrecum = 0;
+        WombPrecum = 0;
+        TouchAssHighWater();
+        return banked;
+    }
+
+    /// <summary>
+    /// The bell: whatever precum is left in the Ass and Womb is gone. Returns (ass, womb) lost.
+    /// From the 1500 ml Stomach milestone nothing is lost: it is banked instead (none should be
+    /// left by then, but a Stomach raised by the console skips the crossing).
+    /// </summary>
     public (int Ass, int Womb) EvaporateHolePrecum()
     {
+        if (HolePrecumBanks)
+        {
+            BankHolePrecum();
+            return (0, 0);
+        }
         var lost = (AssPrecum, WombPrecum);
         Ass -= AssPrecum;
         Womb -= WombPrecum;

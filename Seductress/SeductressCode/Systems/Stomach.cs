@@ -63,7 +63,10 @@ public static class Stomach
     /// </summary>
     public static bool SwallowClearsSensitive(int stomach) => stomach >= 1000;
 
-    /// <summary>1500 ml: precum counts as cum, and banks instead of evaporating.</summary>
+    /// <summary>
+    /// 1500 ml: precum counts as cum, and banks instead of evaporating. [Gorim, 2026-11-24] In every
+    /// hole: Mouth precum is swallowed as cum, and Ass and Womb precum stays as cum there.
+    /// </summary>
     public static bool PrecumBanks(int stomach) => stomach >= 1500;
 
     /// <summary>
@@ -81,6 +84,13 @@ public static class Stomach
         var before = MaxHpEarned(r.Stomach);
         r.Stomach += ml;
         var after = MaxHpEarned(r.Stomach);
+
+        // [Claude, 2026-11-24] Crossing 1500 ml: precum already in the Ass and Womb becomes cum now.
+        if (PrecumBanks(r.Stomach) && r.AssPrecum + r.WombPrecum > 0)
+        {
+            var (assPre, wombPre) = r.BankHolePrecum();
+            MainFile.Logger.Info($"[Seductress] Precum banks: Ass {assPre} ml and Womb {wombPre} ml of precum now count as cum");
+        }
 
         var gained = after - before;
         if (gained > 0)
