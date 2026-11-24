@@ -33,7 +33,7 @@ public class Faster : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Faster",
-        "Continuing. Deal {CalculatedDamage:diff()} damage twice.\n[i](+1 per 50 ml in your Ass, when continuing Ass)[/i]");
+        "Continuing. Deal {CalculatedDamage:diff()} damage twice.{ContinuingAss:cond:\n[i](+1 per 50 ml in your Ass)[/i]|}");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

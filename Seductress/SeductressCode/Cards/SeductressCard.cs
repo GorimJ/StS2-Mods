@@ -90,6 +90,12 @@ public abstract class SeductressCard(int cost, CardType type, CardRarity rarity,
         description.Add("Live", SigilPreview is null
             && MegaCrit.Sts2.Core.Combat.CombatManager.Instance.IsInProgress
             && (Pile?.IsCombatPile ?? false));
+        // [Gorim, 2026-11-24] "Continuing attacks should ideally only have the italics stuff when
+        // continuing ass." True while this Continuing card would take the Ass bonus: in combat,
+        // with an Ass attack setting the route (the condition ContinuingAssNotional uses).
+        description.Add("ContinuingAss", IsContinuing && Owner is not null
+            && MegaCrit.Sts2.Core.Combat.CombatManager.Instance.IsInProgress
+            && Route == Hole.Ass);
 
         // [Gorim, 2026-11-22] Card text gives numbers, not where they come from: "You may spend
         // X Ass for X/10 bonus damage."
