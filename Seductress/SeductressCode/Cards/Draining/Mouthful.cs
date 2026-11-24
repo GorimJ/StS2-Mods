@@ -33,13 +33,12 @@ public class Mouthful : SeductressCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(4m, ValueProp.Move),
-        new DynamicVar("Ml", MlPerBlock)
+        new BlockVar(4m, ValueProp.Move)
     ];
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Mouthful",
-        "Gain {Block:diff()} [gold]Block[/gold], plus 1 per {Ml:diff()} ml in your Mouth. Then [gold]Gulp[/gold].{AutoGulp:cond:\nDraw 1.|}");
+        "Gain {MouthBlock} [gold]Block[/gold]. Then [gold]Gulp[/gold].{AutoGulp:cond:\nDraw 1.|}");
 
     // [Gorim, 2026-11-21] Gulp is a pop-out reminder, not card text (said of Milking Throat;
     // [Claude] applied here too so the two cards match).
@@ -51,7 +50,13 @@ public class Mouthful : SeductressCard
     {
         base.AddExtraArgsToDescription(description);
         description.Add("AutoGulp", AutoGulp);
+        // [Gorim, standing rule] Card text prints the number, never the formula: the Block it
+        // would give now, 4 (6 upgraded) plus 1 per 25 ml in the Mouth. (2026-11-24)
+        description.Add("MouthBlock", DynamicVars.Block.BaseValue + MouthExtra);
     }
+
+    /// <summary>Block from the Mouth right now: 1 per 25 ml.</summary>
+    private int MouthExtra => Owner is null ? 0 : Reservoirs.Of(Owner.RunState).MouthTotal / MlPerBlock;
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

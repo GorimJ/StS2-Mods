@@ -435,7 +435,7 @@ It triggers on cards and powers, not on the Stomach milestone's combat-start pre
 | **Spit** | 1 | Attack | Uncommon | Empty your Mouth. Deal damage equal to **10%** of the ml to ALL enemies, and apply **1 Weak and 1 Vulnerable per 50 ml** emptied. | 20% |
 | **Restraint** | 2 | Power | Uncommon | While your HP is above half, gain **4** Block at the start of your turn. | 6 Block |
 | **Milked Dry** | 3 | Attack · *Mouth* | Rare | Deal **10** damage to ALL enemies. Gain **75 ml precum**. | 14 damage |
-| **Mouthful** | 0 | Skill | Common | Gain **4** Block, plus **1** per **25 ml** in your Mouth. Then **Gulp**. From the 500 ml Stomach milestone: draw 1. [Gorim, 2026-11-24] | 6 Block |
+| **Mouthful** | 0 | Skill | Common | Gain **4** Block, plus **1** per **25 ml** in your Mouth. Then **Gulp**. From the 500 ml Stomach milestone: draw 1. [Gorim, 2026-11-24] The card shows the Block total, not the per-ml step. | 6 Block |
 
 > **Gulp** — swallow everything in your Mouth now. It heals at the ordinary swallow rate, the cum goes to the
 > **Stomach**, and the precum is lost.
