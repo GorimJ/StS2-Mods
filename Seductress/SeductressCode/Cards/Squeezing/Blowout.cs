@@ -36,7 +36,7 @@ public class Blowout : SeductressCard
     protected override int AssSpendLeaks => 2;
 
     public override List<(string, string)>? Localization => new CardLoc(
-        "Blowout", "Ass. Deal {CalculatedDamage:diff()} damage four times.\nYou may spend {AssSpend} Ass for {AssSpendBonus} bonus damage.{InCombat:\n(+1 per 50 ml in your Ass, +1 per 10 ml spent)|}");
+        "Blowout", "Ass. Deal {CalculatedDamage:diff()} damage four times.\nYou may lose {AssSpend} ml of Ass for {AssSpendBonus} bonus damage.{InCombat:\n(+1 per 50 ml in your Ass, +1 per 10 ml lost)|}");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
