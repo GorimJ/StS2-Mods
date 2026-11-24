@@ -36,7 +36,7 @@ public class WetWork : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Wet Work",
-        "Gain {SkinBlock} [gold]Block[/gold] and {SkinVigor} [gold]Vigor[/gold].");
+        "Gain {SkinBlock} [gold]Block[/gold] and {SkinVigor} [gold]Vigor[/gold].\n[i](10% of your cum on Skin)[/i]");
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
         base.ExtraHoverTips.Append(HoverTipFactory.FromPower<VigorPower>());

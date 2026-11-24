@@ -35,7 +35,7 @@ public class More : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "More",
-        "Continuing. Deal {CalculatedDamage:diff()} damage.");
+        "Continuing. Deal {CalculatedDamage:diff()} damage.\n[i](+1 per 50 ml in your Ass, when continuing Ass)[/i]");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

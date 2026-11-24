@@ -39,7 +39,7 @@ public class Clench : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Clench",
-        "Ass. Deal {CalculatedDamage:diff()} damage twice. Lose {HpLoss:diff()} HP.");
+        "Ass. Deal {CalculatedDamage:diff()} damage twice. Lose {HpLoss:diff()} HP.\n[i](+1 per 50 ml in your Ass)[/i]");
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

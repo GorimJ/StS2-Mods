@@ -38,7 +38,7 @@ public class Mouthful : SeductressCard
 
     public override List<(string, string)>? Localization => new CardLoc(
         "Mouthful",
-        "Gain {MouthBlock} [gold]Block[/gold]. Then [gold]Gulp[/gold].{AutoGulp:cond:\nDraw 1.|}");
+        "Gain {MouthBlock} [gold]Block[/gold]. Then [gold]Gulp[/gold].\n[i]({Block:diff()}, plus 1 per 25 ml in your Mouth)[/i]{AutoGulp:cond:\nDraw 1.|}");
 
     // [Gorim, 2026-11-21] Gulp is a pop-out reminder, not card text (said of Milking Throat;
     // [Claude] applied here too so the two cards match).
